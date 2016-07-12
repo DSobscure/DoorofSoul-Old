@@ -19,11 +19,12 @@ namespace DoorofSoul.Server
         {
             Guid = Guid.NewGuid();
             operationManager = new OperationManager(this);
+            Application.Log.Info("new connection");
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)

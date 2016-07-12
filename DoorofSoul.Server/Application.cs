@@ -29,6 +29,7 @@ namespace DoorofSoul.Server
                 LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
                 XmlConfigurator.ConfigureAndWatch(file);
             }
+            Log.Info("Server Setup Successiful.......");
         }
 
         protected override void TearDown()

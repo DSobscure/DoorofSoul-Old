@@ -22,7 +22,6 @@ public class PhotonService : IPhotonPeerListener
 
     public PhotonService(string serverName, string serverAddress, int udpPort)
     {
-        ServerConnected = false;
         this.serverName = serverName;
         this.serverAddress = serverAddress;
         this.udpPort = udpPort;
@@ -65,10 +64,14 @@ public class PhotonService : IPhotonPeerListener
         try
         {
             peer = new PhotonPeer(this, ConnectionProtocol.Udp);
-            if(!peer.Connect(serverAddress + ":" + udpPort.ToString(), serverName))
+            if (!peer.Connect(serverAddress + ":" + udpPort.ToString(), serverName))
             {
                 DebugReturn(DebugLevel.ERROR, "Connect Fail");
                 ServerConnected = false;
+            }
+            else
+            {
+                DebugReturn(DebugLevel.INFO, peer.PeerState.ToString());
             }
         }
         catch(Exception ex)
@@ -96,8 +99,7 @@ public class PhotonService : IPhotonPeerListener
     {
         try
         {
-            if(ServerConnected)
-                peer.Service();
+            peer.Service();
         }
         catch(Exception ex)
         {

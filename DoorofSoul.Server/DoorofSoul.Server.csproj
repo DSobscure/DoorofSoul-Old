@@ -57,10 +57,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="Operations\OperationHandler.cs" />
+    <Compile Include="Operations\OperationManager.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DoorofSoul.Library\DoorofSoul.Library.csproj">
+      <Project>{352197e1-395e-4d07-9844-2c8918016303}</Project>
+      <Name>DoorofSoul.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
+      <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
+      <Name>DoorofSoul.Protocol.Communication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

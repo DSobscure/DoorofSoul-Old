@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication
 {
-    public enum EventCode
+    public enum EventCode : byte
     {
     }
 }

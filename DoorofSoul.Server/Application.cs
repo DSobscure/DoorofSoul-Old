@@ -14,23 +14,31 @@ namespace DoorofSoul.Server
     public class Application : ApplicationBase
     {
         private static Application instance;
-        public static Application Instance { get { return instance; } }
+        public static Application ServerInstance { get { return instance; } }
 
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
         protected override void Setup()
         {
-            throw new NotImplementedException();
+            instance = this;
+            ///set log
+            log4net.GlobalContext.Properties["Photon:ApplicationLogPath"] = Path.Combine(this.ApplicationPath, "log");
+            FileInfo file = new FileInfo(Path.Combine(this.BinaryPath, "log4net.config"));
+            if (file.Exists)
+            {
+                LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
+                XmlConfigurator.ConfigureAndWatch(file);
+            }
         }
 
         protected override void TearDown()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {
-            throw new NotImplementedException();
+            return new Peer(initRequest);
         }
     }
 }

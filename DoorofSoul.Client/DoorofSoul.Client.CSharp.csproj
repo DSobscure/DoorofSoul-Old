@@ -61,6 +61,21 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="ExitGamesLibs">
+      <HintPath>Assets\Plugins\DLL\ExitGamesLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="DoorofSoul.Protocol.Communication">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Communication.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="DoorofSoul.Client.CSharp.Plugins.csproj">
+      <Project>{BA23617C-B8FD-8904-022F-1026E9CC6C2E}</Project>
+      <Name>DoorofSoul.Client.CSharp.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Test.cs" />

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication
 {
-    public enum ErrorCode
+    public enum ErrorCode : short
     {
         NoError,
     }

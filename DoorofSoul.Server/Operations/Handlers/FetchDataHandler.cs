@@ -45,9 +45,9 @@ namespace DoorofSoul.Server.Operations.Handlers
                     { (byte)InformDataEventParameterCode.ReturnCode, errorCode },
                     { (byte)InformDataEventParameterCode.Parameters, new Dictionary<byte, object>
                     {
-                        { (byte)InformFetchDataError.FetchDataCode, fetchCode },
-                        { (byte)InformFetchDataError.DebugMessage, debugMessage },
-                        { (byte)InformFetchDataError.ErrorMessage, errorMessage }
+                        { (byte)InformFetchDataErrorParameterCode.FetchDataCode, fetchCode },
+                        { (byte)InformFetchDataErrorParameterCode.DebugMessage, debugMessage },
+                        { (byte)InformFetchDataErrorParameterCode.ErrorMessage, errorMessage }
                     }
                     }
                 }

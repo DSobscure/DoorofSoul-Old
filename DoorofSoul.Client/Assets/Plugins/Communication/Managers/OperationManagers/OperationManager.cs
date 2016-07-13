@@ -1,4 +1,4 @@
-﻿namespace DoorofSoul.Client.Managers
+﻿namespace DoorofSoul.Client.Communication.Managers.OperationManagers
 {
     public class OperationManager
     {

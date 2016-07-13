@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -73,20 +75,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\Communication\Handlers\EventHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSystemVersionEventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\EventManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\EventManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\FetchDataOperationManager.cs" />
+    <Compile Include="Assets\Plugins\Communication\EventManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\InformDataEventManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\OperationManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\OperationManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\FetchDataOperationManager.cs" />
+    <Compile Include="Assets\Plugins\Communication\ResponseManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers\ResponseManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\SystemManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\DebugInformManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\SystemInformManager.cs" />
+    <Compile Include="Assets\Plugins\Communication\Managers\VersionManager.cs" />
     <Compile Include="Assets\Plugins\Communication\PhotonService.cs" />
     <Compile Include="Assets\Plugins\Global\Global.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

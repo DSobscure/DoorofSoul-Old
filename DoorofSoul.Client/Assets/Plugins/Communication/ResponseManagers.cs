@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DoorofSoul.Client.Communication.Managers.ResponseManagers;
 
-namespace DoorofSoul.Client.Managers
+namespace DoorofSoul.Client.Communication
 {
     public class ResponseManagers
     {

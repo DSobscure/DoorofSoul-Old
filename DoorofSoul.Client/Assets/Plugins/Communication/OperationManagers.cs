@@ -1,4 +1,6 @@
-﻿namespace DoorofSoul.Client.Managers
+﻿using DoorofSoul.Client.Communication.Managers.OperationManagers;
+
+namespace DoorofSoul.Client.Communication
 {
     public class OperationManagers
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication;
 using ExitGames.Client.Photon;
-using DoorofSoul.Client.Handlers;
+using DoorofSoul.Client.Communication.Handlers;
 
-namespace DoorofSoul.Client.Managers
+namespace DoorofSoul.Client.Communication.Managers.ResponseManagers
 {
     public class ResponseManager
     {

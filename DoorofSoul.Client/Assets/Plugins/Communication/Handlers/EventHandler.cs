@@ -1,25 +1,24 @@
 ﻿using ExitGames.Client.Photon;
 using DoorofSoul.Protocol.Communication;
 
-namespace DoorofSoul.Client.Handlers
+namespace DoorofSoul.Client.Communication.Handlers
 {
     public abstract class EventHandler
     {
-
-        // Use this for initialization
         public virtual bool Handle(EventData eventData)
         {
-            if (CheckError(eventData))
+            string debugMessage;
+            if (CheckParameter(eventData, out debugMessage))
             {
                 return true;
             }
             else
             {
-                Global.SystemManagers.DebugInformManager.DebugInform(string.Format("Event Error On {0}", (EventCode)eventData.Code));
+                Global.SystemManagers.DebugInformManager.DebugInform(string.Format("Event Parameter Error On {0} Debug Message: {1}", (EventCode)eventData.Code, debugMessage));
                 return false;
             }
         }
-        public abstract bool CheckError(EventData eventData);
+        public abstract bool CheckParameter(EventData eventData, out string debugMessage);
     }
 }
 

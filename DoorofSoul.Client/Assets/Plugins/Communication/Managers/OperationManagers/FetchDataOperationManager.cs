@@ -2,7 +2,7 @@
 using DoorofSoul.Protocol.Communication.OperationParameters;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Client.Managers
+namespace DoorofSoul.Client.Communication.Managers.OperationManagers
 {
     public class FetchDataOperationManager
     {
@@ -18,7 +18,7 @@ namespace DoorofSoul.Client.Managers
 
         public void FetchSystemVersion()
         {
-            SendOperation(FetchDataCode.Version, new Dictionary<byte, object>());
+            SendOperation(FetchDataCode.SystemVersion, new Dictionary<byte, object>());
         }
     }
 }

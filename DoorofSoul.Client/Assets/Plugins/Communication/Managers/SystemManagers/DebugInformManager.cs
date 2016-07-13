@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoorofSoul.Client.Managers
+namespace DoorofSoul.Client.Communication.Managers.SystemManagers
 {
     public class DebugInformManager
     {
@@ -21,7 +21,7 @@ namespace DoorofSoul.Client.Managers
             }
             else
             {
-                throw new NullReferenceException();
+                Global.SystemManagers.DebugInformManager.DebugInform("DebugInform Event is null");
             }
         }
     }

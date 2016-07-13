@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication.InformDataParameters
 {
-    public enum InformFetchDataError : byte
+    public enum InformFetchDataErrorParameterCode : byte
     {
         FetchDataCode,
         DebugMessage,

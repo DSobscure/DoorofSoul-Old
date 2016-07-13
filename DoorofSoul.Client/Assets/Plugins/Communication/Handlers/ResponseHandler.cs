@@ -1,7 +1,7 @@
 ﻿using ExitGames.Client.Photon;
 using DoorofSoul.Protocol.Communication;
 
-namespace DoorofSoul.Client.Handlers
+namespace DoorofSoul.Client.Communication.Handlers
 {
     public abstract class ResponseHandler
     {

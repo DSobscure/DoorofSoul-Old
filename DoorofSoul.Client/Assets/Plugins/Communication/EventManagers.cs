@@ -5,7 +5,7 @@ namespace DoorofSoul.Client.Communication
 {
     public class EventManagers
     {
-        public readonly EventManager EventManager = new EventManager();
         public readonly InformDataEventManager InformDataEventManager = new InformDataEventManager();
+        public readonly EventManager EventManager = new EventManager();
     }
 }

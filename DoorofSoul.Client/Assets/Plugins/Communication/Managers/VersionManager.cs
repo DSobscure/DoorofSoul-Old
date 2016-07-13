@@ -29,7 +29,19 @@ namespace DoorofSoul.Client.Communication.Managers
 
         public VersionManager()
         {
-            LocalClientVersion = "Test 0.0.1";
+            LocalClientVersion = "Test 0.0.2";
+        }
+
+        public bool ClientVersionCheck()
+        {
+            if(CurrentClientVersion != LocalClientVersion)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         #region current server version change

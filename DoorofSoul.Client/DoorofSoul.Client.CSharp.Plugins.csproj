@@ -78,6 +78,8 @@
     <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSystemVersionEventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Languages\ChineseDictionary.cs" />
+    <Compile Include="Assets\Plugins\Communication\LauguageDictionary.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\EventManager.cs" />
     <Compile Include="Assets\Plugins\Communication\EventManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\InformDataEventManager.cs" />

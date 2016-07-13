@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Client.Communication.Handlers;
+using DoorofSoul.Client.Communication.Handlers.InformDataEventHandlers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataParameters;
@@ -16,7 +17,7 @@ namespace DoorofSoul.Client.Communication.Managers.EventManagers
         {
             informTable = new Dictionary<InformDataCode, InformDataEventHandler>
             {
-
+                { InformDataCode.SystemVersion, new  InformSystemVersionEventHandler()}
             };
         }
         public override bool CheckParameter(EventData eventData, out string debugMessage)

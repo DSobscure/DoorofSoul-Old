@@ -13,7 +13,7 @@ namespace DoorofSoul.Client.Communication.Managers.EventManagers
         {
             eventTable = new Dictionary<EventCode, EventHandler>
             {
-                { EventCode.InformData, Global.EventManagers.InformDataEventManager }
+                
             };
         }
 
@@ -28,6 +28,11 @@ namespace DoorofSoul.Client.Communication.Managers.EventManagers
             {
                 Global.SystemManagers.DebugInformManager.DebugInform(string.Format("Unknow Event: {0}", eventCode));
             }
+        }
+
+        public void BindManagers()
+        {
+            eventTable.Add(EventCode.InformData, Global.EventManagers.InformDataEventManager);
         }
     }
 }

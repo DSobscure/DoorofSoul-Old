@@ -3,10 +3,23 @@ using DoorofSoul.Client.Communication.Managers;
 
 public static class Global
 {
-    public static readonly OperationManagers OperationManagers = new OperationManagers();
-    public static readonly ResponseManagers ResponseManagers = new ResponseManagers();
-    public static readonly EventManagers EventManagers = new EventManagers();
-    public static readonly SystemManagers SystemManagers = new SystemManagers();
-    public static readonly VersionManager VersionManager = new VersionManager();
-    public static readonly PhotonService PhotonService = new PhotonService("DoorofSoul.Server", "doorofsoul.duckdns.org", 5055);
+    public static readonly OperationManagers OperationManagers;
+    public static readonly ResponseManagers ResponseManagers;
+    public static readonly EventManagers EventManagers;
+    public static readonly SystemManagers SystemManagers;
+    public static readonly VersionManager VersionManager;
+    public static readonly PhotonService PhotonService;
+
+    static Global()
+    {
+        OperationManagers = new OperationManagers();
+        ResponseManagers = new ResponseManagers();
+        EventManagers = new EventManagers();
+        SystemManagers = new SystemManagers();
+        VersionManager = new VersionManager();
+        PhotonService = new PhotonService("DoorofSoul.Server", "doorofsoul.duckdns.org", 5055);
+
+        EventManagers.EventManager.BindManagers();
+        SystemManagers.UsingLauguage = DoorofSoul.Protocol.Communication.SupportLauguages.Chinese_Traditional;
+    }
 }

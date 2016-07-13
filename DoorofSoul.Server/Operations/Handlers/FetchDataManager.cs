@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationParameters;
+using DoorofSoul.Server.Operations.Handlers.FetchDataHandlers;
 using Photon.SocketServer;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
             fetchTable = new Dictionary<FetchDataCode, FetchDataHandler>
             {
-
+                { FetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) }
             };
         }
 

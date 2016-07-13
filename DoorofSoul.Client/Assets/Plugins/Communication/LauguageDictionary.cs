@@ -1,8 +1,8 @@
-﻿using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Server.Languages;
+﻿using DoorofSoul.Client.Communication.Languages;
+using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Server
+namespace DoorofSoul.Client.Communication
 {
     public class LauguageDictionarySelector
     {
@@ -14,7 +14,7 @@ namespace DoorofSoul.Server
         {
             get
             {
-                if(lauguageDictionarys.ContainsKey(key))
+                if (lauguageDictionarys.ContainsKey(key))
                 {
                     return lauguageDictionarys[key];
                 }
@@ -45,7 +45,7 @@ namespace DoorofSoul.Server
         {
             get
             {
-                if(dictionary.ContainsKey(key))
+                if (dictionary.ContainsKey(key))
                 {
                     return dictionary[key];
                 }

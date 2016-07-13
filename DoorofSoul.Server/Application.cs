@@ -8,6 +8,7 @@ using log4net.Config;
 using ExitGames.Logging.Log4Net;
 using ExitGames.Logging;
 using System.IO;
+using DoorofSoul.Server.Config;
 
 namespace DoorofSoul.Server
 {
@@ -15,20 +16,15 @@ namespace DoorofSoul.Server
     {
         private static Application instance;
         public static Application ServerInstance { get { return instance; } }
-
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+
+        public VersionConfiguration VersionConfiguration { get; set; }
 
         protected override void Setup()
         {
             instance = this;
-            ///set log
-            log4net.GlobalContext.Properties["Photon:ApplicationLogPath"] = Path.Combine(this.ApplicationPath, "log");
-            FileInfo file = new FileInfo(Path.Combine(this.BinaryPath, "log4net.config"));
-            if (file.Exists)
-            {
-                LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
-                XmlConfigurator.ConfigureAndWatch(file);
-            }
+            SetupLog();
+            SetupConfiguration();
             Log.Info("Server Setup Successiful.......");
         }
 
@@ -40,6 +36,21 @@ namespace DoorofSoul.Server
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {
             return new Peer(initRequest);
+        }
+
+        protected void SetupLog()
+        {
+            log4net.GlobalContext.Properties["Photon:ApplicationLogPath"] = Path.Combine(this.ApplicationPath, "log");
+            FileInfo file = new FileInfo(Path.Combine(this.BinaryPath, "log4net.config"));
+            if (file.Exists)
+            {
+                LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
+                XmlConfigurator.ConfigureAndWatch(file);
+            }
+        }
+        protected void SetupConfiguration()
+        {
+            VersionConfiguration = VersionConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "version.config"));
         }
     }
 }

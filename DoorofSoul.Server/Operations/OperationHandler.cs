@@ -20,9 +20,18 @@ namespace DoorofSoul.Server.Operations
 
         public virtual bool Handle(OperationRequest operationRequest)
         {
-            return false;
+            string debugMessage;
+            if(CheckParameter(operationRequest.Parameters, out debugMessage))
+            {
+                return true;
+            }
+            else
+            {
+                SendError(operationRequest.OperationCode, ErrorCode.ParameterError, debugMessage, LauguageDictionarySelector.Instance[peer.UsingLanguage]["Operation Parameter Error"]);
+                return false;
+            }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter);
+        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
         public void SendError(byte operationCode, ErrorCode errorCode, string debugMessage, string errorMessage)
         {
             OperationResponse response = new OperationResponse(operationCode)

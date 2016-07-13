@@ -8,5 +8,7 @@ namespace DoorofSoul.Protocol.Communication
     public enum ErrorCode : short
     {
         NoError,
+        ParameterError,
+        InvalidOperation
     }
 }

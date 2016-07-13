@@ -5,8 +5,9 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication
 {
-    public enum OperationCode : byte
+    public enum InformDataCode : byte
     {
-        FetchData
+        FetchDataError,
+        SystemVersion
     }
 }

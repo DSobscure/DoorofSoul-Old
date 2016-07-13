@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoorofSoul.Protocol.Communication;
 using Photon.SocketServer;
+using DoorofSoul.Server.Operations.Handlers;
 
 namespace DoorofSoul.Server.Operations
 {
@@ -18,7 +19,7 @@ namespace DoorofSoul.Server.Operations
             this.peer = peer;
             operationTable = new Dictionary<OperationCode, OperationHandler>
             {
-
+                { OperationCode.FetchData, new FetchDataManager(peer) }
             };
         }
 

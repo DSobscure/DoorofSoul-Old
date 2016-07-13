@@ -7,5 +7,6 @@ namespace DoorofSoul.Protocol.Communication
 {
     public enum EventCode : byte
     {
+        InformData
     }
 }

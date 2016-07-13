@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\DoorofSoul.Server\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="Config\VersionConfiguration.cs" />
+    <Compile Include="Languages\ChineseDictionary.cs" />
+    <Compile Include="LauguageDictionary.cs" />
+    <Compile Include="Operations\Handlers\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSystemVersionHandler.cs" />
+    <Compile Include="Operations\Handlers\FetchDataManager.cs" />
     <Compile Include="Operations\OperationHandler.cs" />
     <Compile Include="Operations\OperationManager.cs" />
     <Compile Include="Peer.cs" />
@@ -72,6 +78,7 @@
       <Name>DoorofSoul.Protocol.Communication</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

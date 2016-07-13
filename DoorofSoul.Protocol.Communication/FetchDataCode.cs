@@ -5,8 +5,8 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication
 {
-    public enum OperationCode : byte
+    public enum FetchDataCode : short
     {
-        FetchData
+        SystemVersion
     }
 }

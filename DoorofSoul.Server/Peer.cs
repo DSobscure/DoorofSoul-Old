@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
 using DoorofSoul.Server.Operations;
+using DoorofSoul.Protocol.Communication;
 
 namespace DoorofSoul.Server
 {
@@ -13,6 +14,7 @@ namespace DoorofSoul.Server
     {
         public Guid Guid { get; }
         protected OperationManager operationManager;
+        public SupportLauguages UsingLanguage { get; protected set; }
 
 
         public Peer(InitRequest initRequest) : base(initRequest)
@@ -20,6 +22,7 @@ namespace DoorofSoul.Server
             Guid = Guid.NewGuid();
             operationManager = new OperationManager(this);
             Application.Log.Info("new connection");
+            UsingLanguage = SupportLauguages.Chinese_Traditional;
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)

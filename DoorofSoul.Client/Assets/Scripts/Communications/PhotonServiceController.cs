@@ -49,12 +49,12 @@ public class PhotonServiceController : MonoBehaviour, IEventProvider
 
     public void EraseEvents()
     {
-        Global.SystemManagers.SystemInformManager.EraseConnectChangeFunction(OnConnectChange);
+        Global.SystemManagers.SystemInformManager.OnConnectChange -= OnConnectChange;
     }
 
     public void RegisterEvents()
     {
-        Global.SystemManagers.SystemInformManager.RegisterConnectChangeFunction(OnConnectChange);
+        Global.SystemManagers.SystemInformManager.OnConnectChange += OnConnectChange;
     }
 
     private void OnConnectChange(bool connected)

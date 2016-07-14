@@ -15,12 +15,12 @@ public class DebugController : MonoBehaviour, IEventProvider
 
     public void EraseEvents()
     {
-        Global.SystemManagers.DebugInformManager.EraseDebugInformFunction(OnDebugInform);
+        Global.SystemManagers.DebugInformManager.OnDebugInform -= OnDebugInform;
     }
 
     public void RegisterEvents()
     {
-        Global.SystemManagers.DebugInformManager.RegisterDebugInformFunction(OnDebugInform);
+        Global.SystemManagers.DebugInformManager.OnDebugInform += OnDebugInform;
     }
 
     private void OnDebugInform(string message)

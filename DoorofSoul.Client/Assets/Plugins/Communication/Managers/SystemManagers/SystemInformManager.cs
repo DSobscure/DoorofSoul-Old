@@ -6,13 +6,10 @@ namespace DoorofSoul.Client.Communication.Managers.SystemManagers
     {
         #region Connect Change
         private event Action<bool> onConnectChange;
-        public void RegisterConnectChangeFunction(Action<bool> changeFunction)
+        public event Action<bool> OnConnectChange
         {
-            onConnectChange += changeFunction;
-        }
-        public void EraseConnectChangeFunction(Action<bool> changeFunction)
-        {
-            onConnectChange -= changeFunction;
+            add { onConnectChange += value; }
+            remove { onConnectChange -= value; }
         }
         public void ConnectChange(bool connectStatus)
         {
@@ -29,13 +26,10 @@ namespace DoorofSoul.Client.Communication.Managers.SystemManagers
 
         #region Error Inform
         private event Action<string> onErrorInform;
-        public void RegisterErrorInformFunction(Action<string> informFunction)
+        public event Action<string> OnErrorInform
         {
-            onErrorInform += informFunction;
-        }
-        public void EraseErrorInformFunction(Action<string> informFunction)
-        {
-            onErrorInform -= informFunction;
+            add { onErrorInform += value; }
+            remove { onErrorInform -= value; }
         }
         public void ErrorInform(string errorMessage)
         {

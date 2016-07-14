@@ -5,13 +5,10 @@ namespace DoorofSoul.Client.Communication.Managers.SystemManagers
     public class DebugInformManager
     {
         private event Action<string> onDebugInform;
-        public void RegisterDebugInformFunction(Action<string> informFunction)
+        public event Action<string> OnDebugInform
         {
-            onDebugInform += informFunction;
-        }
-        public void EraseDebugInformFunction(Action<string> informFunction)
-        {
-            onDebugInform -= informFunction;
+            add{ onDebugInform += value; }
+            remove { onDebugInform -= value; }
         }
         public void DebugInform(string message)
         {

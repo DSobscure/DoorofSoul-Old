@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Communications\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\Systems\DebugController.cs" />
+    <Compile Include="Assets\Scripts\Systems\ErrorInformController.cs" />
     <Compile Include="Assets\Scripts\Systems\SystemVersionController.cs" />
     <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\Uis\ErrorInformPanel.cs" />

@@ -19,12 +19,14 @@ namespace DoorofSoul.Server
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
         public VersionConfiguration VersionConfiguration { get; set; }
+        private PlayerFactory playerFactory;
 
         protected override void Setup()
         {
             instance = this;
             SetupLog();
             SetupConfiguration();
+            playerFactory = new PlayerFactory();
             Log.Info("Server Setup Successiful.......");
         }
 
@@ -35,7 +37,13 @@ namespace DoorofSoul.Server
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {
-            return new Peer(initRequest);
+            ServerPlayer player;
+            Peer peer = new Peer(initRequest, out player);
+            while(!playerFactory.PlayerConnect(player))
+            {
+                peer = new Peer(initRequest, out player);
+            }
+            return peer;
         }
 
         protected void SetupLog()

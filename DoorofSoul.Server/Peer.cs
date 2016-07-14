@@ -13,16 +13,16 @@ namespace DoorofSoul.Server
     public class Peer : ClientPeer
     {
         public Guid Guid { get; }
+        public SupportLauguages UsingLanguage { get { return player.UsingLanguage; } }
         protected OperationManager operationManager;
-        public SupportLauguages UsingLanguage { get; protected set; }
+        protected ServerPlayer player;
 
 
-        public Peer(InitRequest initRequest) : base(initRequest)
+        public Peer(InitRequest initRequest, out ServerPlayer player) : base(initRequest)
         {
             Guid = Guid.NewGuid();
             operationManager = new OperationManager(this);
-            Application.Log.Info("new connection");
-            UsingLanguage = SupportLauguages.Chinese_Traditional;
+            player = new ServerPlayer(this);
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)

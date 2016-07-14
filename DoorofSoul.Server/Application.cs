@@ -9,6 +9,7 @@ using ExitGames.Logging.Log4Net;
 using ExitGames.Logging;
 using System.IO;
 using DoorofSoul.Server.Config;
+using DoorofSoul.Server.Databases;
 
 namespace DoorofSoul.Server
 {
@@ -18,7 +19,7 @@ namespace DoorofSoul.Server
         public static Application ServerInstance { get { return instance; } }
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
-        public VersionConfiguration VersionConfiguration { get; set; }
+        public SystemConfiguration SystemConfiguration { get; set; }
         private PlayerFactory playerFactory;
 
         protected override void Setup()
@@ -26,7 +27,9 @@ namespace DoorofSoul.Server
             instance = this;
             SetupLog();
             SetupConfiguration();
+            SetupDatabase();
             playerFactory = new PlayerFactory();
+
             Log.Info("Server Setup Successiful.......");
         }
 
@@ -58,7 +61,13 @@ namespace DoorofSoul.Server
         }
         protected void SetupConfiguration()
         {
-            VersionConfiguration = VersionConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "version.config"));
+            SystemConfiguration = SystemConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "system.config"));
+        }
+
+        protected void SetupDatabase()
+        {
+            DataBase.Initial(new MySQLDatabase());
+            DataBase.Instance.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database);
         }
     }
 }

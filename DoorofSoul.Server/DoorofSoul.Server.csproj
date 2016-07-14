@@ -39,6 +39,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Photon.SocketServer">
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
     </Reference>
@@ -57,7 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="Config\VersionConfiguration.cs" />
+    <Compile Include="Config\SystemConfiguration.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="DatabaseElements\AuthenticationManager.cs" />
+    <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
+    <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLPlayerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\PlayerRepository.cs" />
+    <Compile Include="DatabaseElements\RepositoryManager.cs" />
+    <Compile Include="Databases\MySQLDatabase.cs" />
     <Compile Include="Languages\ChineseDictionary.cs" />
     <Compile Include="LauguageDictionary.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandler.cs" />

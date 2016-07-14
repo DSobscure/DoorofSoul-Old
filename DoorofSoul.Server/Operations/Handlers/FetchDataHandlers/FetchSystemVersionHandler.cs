@@ -33,8 +33,8 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                 {
                     var result = new Dictionary<byte, object>
                     {
-                        { (byte)InformSystemVersionParameterCode.CurrentServerVersion, Application.ServerInstance.VersionConfiguration.ServerVersion },
-                        { (byte)InformSystemVersionParameterCode.CurrentClientVersion, Application.ServerInstance.VersionConfiguration.ClientVersion }
+                        { (byte)InformSystemVersionParameterCode.CurrentServerVersion, Application.ServerInstance.SystemConfiguration.ServerVersion },
+                        { (byte)InformSystemVersionParameterCode.CurrentClientVersion, Application.ServerInstance.SystemConfiguration.ClientVersion }
                     };
                     SendEvent((byte)InformDataCode.SystemVersion, result);
                     return true;

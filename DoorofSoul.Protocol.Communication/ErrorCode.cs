@@ -9,6 +9,7 @@ namespace DoorofSoul.Protocol.Communication
     {
         NoError,
         ParameterError,
-        InvalidOperation
+        InvalidOperation,
+        PermissionDeny
     }
 }

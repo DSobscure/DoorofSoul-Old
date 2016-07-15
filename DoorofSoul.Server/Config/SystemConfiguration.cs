@@ -4,24 +4,32 @@ using System.Xml.Serialization;
 
 namespace DoorofSoul.Server.Config
 {
-    public class VersionConfiguration
+    public class SystemConfiguration
     {
         [XmlElement]
         public string ServerVersion { get; set; }
         [XmlElement]
         public string ClientVersion { get; set; }
+        [XmlElement]
+        public string DatabaseHostname { get; set; }
+        [XmlElement]
+        public string DatabaseUsername { get; set; }
+        [XmlElement]
+        public string DatabasePassword { get; set; }
+        [XmlElement]
+        public string Database { get; set; }
 
-        public VersionConfiguration() { }
-        public static VersionConfiguration Load(string filePath)
+        public SystemConfiguration() { }
+        public static SystemConfiguration Load(string filePath)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(VersionConfiguration));
+            XmlSerializer serializer = new XmlSerializer(typeof(SystemConfiguration));
             if (File.Exists(filePath))
             {
                 using (XmlReader reader = XmlReader.Create(filePath))
                 {
                     if (serializer.CanDeserialize(reader))
                     {
-                        return (VersionConfiguration)serializer.Deserialize(reader);
+                        return (SystemConfiguration)serializer.Deserialize(reader);
                     }
                     else
                     {
@@ -32,10 +40,14 @@ namespace DoorofSoul.Server.Config
             }
             else
             {
-                VersionConfiguration versionConfiguration = new VersionConfiguration
+                SystemConfiguration versionConfiguration = new SystemConfiguration
                 {
                     ServerVersion = "not set",
-                    ClientVersion = "not set"
+                    ClientVersion = "not set",
+                    DatabaseHostname = "not set",
+                    DatabaseUsername = "not set",
+                    DatabasePassword = "not set",
+                    Database = "not set"
                 };
                 using (XmlWriter writer = XmlWriter.Create(filePath))
                 {

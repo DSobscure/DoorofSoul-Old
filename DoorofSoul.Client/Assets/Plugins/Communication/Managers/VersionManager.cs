@@ -29,7 +29,7 @@ namespace DoorofSoul.Client.Communication.Managers
 
         public VersionManager()
         {
-            LocalClientVersion = "Test 0.0.2";
+            LocalClientVersion = "Test 0.0.1";
         }
 
         public bool ClientVersionCheck()

@@ -51,8 +51,10 @@
     <Compile Include="InformDataParameters\InformSystemVersionParameterCode.cs" />
     <Compile Include="OperationCode.cs" />
     <Compile Include="OperationParameters\FetchDataOperationParameterCode.cs" />
+    <Compile Include="OperationParameters\PlayerLoginOperationParameterCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseParameters\OperationErrorResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\PlayerLoginResponseParameterCode.cs" />
     <Compile Include="SupportLauguages.cs" />
   </ItemGroup>
   <ItemGroup />

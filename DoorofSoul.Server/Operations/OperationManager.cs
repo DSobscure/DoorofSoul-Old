@@ -19,7 +19,9 @@ namespace DoorofSoul.Server.Operations
             this.peer = peer;
             operationTable = new Dictionary<OperationCode, OperationHandler>
             {
-                { OperationCode.FetchData, new FetchDataManager(peer) }
+                { OperationCode.FetchData, new FetchDataManager(peer) },
+                { OperationCode.PlayerLogin, new PlayerLoginHandler(peer) },
+                { OperationCode.PlayerLogout, new PlayerLogoutHandler(peer) },
             };
         }
 

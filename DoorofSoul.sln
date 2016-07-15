@@ -8,9 +8,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Server", "DoorofSoul.Server\DoorofSoul.Server.csproj", "{ED7BD8B1-C3AE-4868-836D-E7CB63154188}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3E824C64-DF4C-4504-B478-F594B7DB3244} = {3E824C64-DF4C-4504-B478-F594B7DB3244}
+		{28E98488-B39A-471D-AE89-740F9C09F7D8} = {28E98488-B39A-471D-AE89-740F9C09F7D8}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Library", "DoorofSoul.Library\DoorofSoul.Library.csproj", "{352197E1-395E-4D07-9844-2C8918016303}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28E98488-B39A-471D-AE89-740F9C09F7D8} = {28E98488-B39A-471D-AE89-740F9C09F7D8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Client.CSharp", "DoorofSoul.Client\DoorofSoul.Client.CSharp.csproj", "{F0242B79-61DB-D2E0-BCA2-B8E26CB4898B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Client.CSharp.Pl
 		{3E824C64-DF4C-4504-B478-F594B7DB3244} = {3E824C64-DF4C-4504-B478-F594B7DB3244}
 		{352197E1-395E-4D07-9844-2C8918016303} = {352197E1-395E-4D07-9844-2C8918016303}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Library.General", "DoorofSoul.Library.General\DoorofSoul.Library.General.csproj", "{28E98488-B39A-471D-AE89-740F9C09F7D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +56,10 @@ Global
 		{BA23617C-B8FD-8904-022F-1026E9CC6C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA23617C-B8FD-8904-022F-1026E9CC6C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA23617C-B8FD-8904-022F-1026E9CC6C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E98488-B39A-471D-AE89-740F9C09F7D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E98488-B39A-471D-AE89-740F9C09F7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E98488-B39A-471D-AE89-740F9C09F7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E98488-B39A-471D-AE89-740F9C09F7D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

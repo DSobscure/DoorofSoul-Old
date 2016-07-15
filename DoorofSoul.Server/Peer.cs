@@ -15,7 +15,7 @@ namespace DoorofSoul.Server
         public Guid Guid { get; }
         public SupportLauguages UsingLanguage { get { return player.UsingLanguage; } }
         protected OperationManager operationManager;
-        protected ServerPlayer player;
+        internal ServerPlayer player;
 
 
         public Peer(InitRequest initRequest, out ServerPlayer player) : base(initRequest)
@@ -27,7 +27,8 @@ namespace DoorofSoul.Server
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            
+            Application.Log.InfoFormat("Player Disconnect from: {0} because: {1}", RemoteIPAddress, reasonDetail);
+            Application.ServerInstance.PlayerDisconnect(player);
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)

@@ -1,17 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using DoorofSoul.Server.DatabaseElements.Authentications;
+using MySql.Data.MySqlClient;
 
 namespace DoorofSoul.Server.DatabaseElements.Authentications.MySQL
 {
     public class MySQLPlayerAuthentication : PlayerAuthentication
     {
-        public override bool LoginCheck(string account, string password, string answerOfLife)
+        public override bool LoginCheck(string account, string password)
         {
-            throw new NotImplementedException();
+            using (MySqlCommand command = new MySqlCommand("SELECT 1 FROM players WHERE Account = @account and PasswordHash = @passwordHash;", DataBase.Instance.Connection as MySqlConnection))
+            {
+                SHA512 sha512 = new SHA512CryptoServiceProvider();
+                string passwordHash = Convert.ToBase64String(sha512.ComputeHash(Encoding.Default.GetBytes(password)));
+
+                command.Parameters.AddWithValue("@account", account);
+                command.Parameters.AddWithValue("@passwordHash", passwordHash);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 }

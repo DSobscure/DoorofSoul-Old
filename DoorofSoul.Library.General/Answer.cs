@@ -7,5 +7,6 @@ namespace DoorofSoul.Library.General
 {
     public class Answer
     {
+        public int AnswerID { get; protected set; }
     }
 }

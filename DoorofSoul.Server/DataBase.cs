@@ -18,7 +18,15 @@ namespace DoorofSoul.Server
         }
 
         protected DbConnection connection;
-        public DbConnection Connection { get { return connection; } }
+        public DbConnection Connection
+        {
+            get
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+                return connection;
+            }
+        }
 
         public abstract bool Connect(string hostName, string userName, string password, string database);
 

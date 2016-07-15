@@ -22,6 +22,7 @@ namespace DoorofSoul.Server
         public ServerPlayer(Peer peer)
         {
             this.peer = peer;
+            LastConnectedIPAddress = peer.RemoteIPAddress;
         }
     }
 }

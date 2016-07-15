@@ -72,6 +72,8 @@
     <Compile Include="Operations\Handlers\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSystemVersionHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataManager.cs" />
+    <Compile Include="Operations\Handlers\PlayerLoginHandler.cs" />
+    <Compile Include="Operations\Handlers\PlayerLogoutHandler.cs" />
     <Compile Include="Operations\OperationHandler.cs" />
     <Compile Include="Operations\OperationManager.cs" />
     <Compile Include="Peer.cs" />

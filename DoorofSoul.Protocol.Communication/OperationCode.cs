@@ -7,6 +7,8 @@ namespace DoorofSoul.Protocol.Communication
 {
     public enum OperationCode : byte
     {
-        FetchData
+        FetchData,
+        PlayerLogin,
+        PlayerLogout
     }
 }

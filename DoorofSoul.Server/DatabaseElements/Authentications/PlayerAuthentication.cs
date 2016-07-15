@@ -8,6 +8,6 @@ namespace DoorofSoul.Server.DatabaseElements.Authentications
 {
     public abstract class PlayerAuthentication
     {
-        public abstract bool LoginCheck(string account, string password, string answerOfLife);
+        public abstract bool LoginCheck(string account, string password);
     }
 }

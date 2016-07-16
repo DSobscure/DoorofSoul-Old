@@ -1,5 +1,7 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using System.Net;
+using System.Collections.Generic;
+using System;
 
 namespace DoorofSoul.Library.General
 {
@@ -47,6 +49,8 @@ namespace DoorofSoul.Library.General
             LastConnectedIPAddress = player.LastConnectedIPAddress;
             AnswerID = player.AnswerID;
         }
+
+        public Action<EventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
 
         public bool ActiveAnswer(Answer answer)
         {

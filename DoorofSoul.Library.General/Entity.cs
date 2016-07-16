@@ -8,6 +8,7 @@ namespace DoorofSoul.Library.General
     public class Entity
     {
         public int EntityID { get; protected set; }
+        public string EntityName { get; protected set; }
         public int LocatedSceneID { get; set; }
         public Scene LocatedScene { get; set; }
 
@@ -55,9 +56,10 @@ namespace DoorofSoul.Library.General
             protected set { spaceProperties.mass = value; }
         }
 
-        public Entity(int entityID, int locatedSceneID, EntitySpaceProperties spaceProperties)
+        public Entity(int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
         {
             EntityID = entityID;
+            EntityName = entityName;
             LocatedSceneID = locatedSceneID;
             this.spaceProperties = spaceProperties;
         }

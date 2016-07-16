@@ -9,11 +9,11 @@ namespace DoorofSoul.Library.General
     public class Container : Entity
     {
         public int ContainerID { get; protected set; }
-        public string ContainerName { get; set; }
         protected Dictionary<int, Soul> soulDictionary;
 
-        public Container(int containerID, string containerName, int entityID, int locatedSceneID, EntitySpaceProperties spaceProperties) : base(entityID, locatedSceneID, spaceProperties)
+        public Container(int containerID, int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties) : base(entityID, entityName, locatedSceneID, spaceProperties)
         {
+            ContainerID = containerID;
             soulDictionary = new Dictionary<int, Soul>();
         }
     }

@@ -8,7 +8,17 @@ namespace DoorofSoul.Library.General
     public class Scene
     {
         public int SceneID { get; protected set; }
+        public string SceneName { get; protected set; }
+        public int WorldID { get; protected set; }
         protected Dictionary<int, Entity> entityDictionary;
+
+        public Scene(int sceneID, string sceneName, int worldID)
+        {
+            SceneID = sceneID;
+            SceneName = sceneName;
+            WorldID = worldID;
+            entityDictionary = new Dictionary<int, Entity>();
+        }
 
         public void EntityEnter(Entity entity)
         {

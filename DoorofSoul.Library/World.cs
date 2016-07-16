@@ -9,12 +9,15 @@ namespace DoorofSoul.Library
 {
     public class World
     {
-        public int WorldID { get; set; }
+        public int WorldID { get; protected set; }
+        public string WorldName { get; protected set; }
         protected Dictionary<int, Entity> entityDictionary;
         protected Dictionary<int, Scene> sceneDictionary;
 
-        public World()
+        public World(int worldID, string worldName)
         {
+            WorldID = worldID;
+            WorldName = worldName;
             entityDictionary = new Dictionary<int, Entity>();
             sceneDictionary = new Dictionary<int, Scene>();
         }

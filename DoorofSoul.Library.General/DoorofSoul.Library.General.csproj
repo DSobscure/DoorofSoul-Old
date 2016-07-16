@@ -43,9 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="DSVector3.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="EntityProperties.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="Soul.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,17 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
 namespace DoorofSoul.Library.General
 {
     public class Entity
     {
-        private Vector3 position;
-        public Vector3 Position
+        public int EntityID { get; protected set; }
+        public int LocatedSceneID { get; set; }
+        public Scene LocatedScene { get; set; }
+
+        protected EntitySpaceProperties spaceProperties;
+
+        public DSVector3 Position
         {
-            get { return position; }
-            set { position = value; }
+            get { return spaceProperties.position; }
+            protected set { spaceProperties.position = value; }
+        }
+        public DSVector3 Rotation
+        {
+            get { return spaceProperties.rotation; }
+            protected set { spaceProperties.rotation = value; }
+        }
+        public DSVector3 Scale
+        {
+            get { return spaceProperties.scale; }
+            protected set { spaceProperties.scale = value; }
+        }
+
+        public DSVector3 Velocity
+        {
+            get { return spaceProperties.velocity; }
+            protected set { spaceProperties.velocity = value; }
+        }
+        public DSVector3 MaxVelocity
+        {
+            get { return spaceProperties.maxVelocity; }
+            protected set { spaceProperties.maxVelocity = value; }
+        }
+        public DSVector3 AngularVelocity
+        {
+            get { return spaceProperties.angularVelocity; }
+            protected set { spaceProperties.angularVelocity = value; }
+        }
+        public DSVector3 MaxAngularVelocity
+        {
+            get { return spaceProperties.maxAngularVelocity; }
+            protected set { spaceProperties.maxAngularVelocity = value; }
+        }
+        public float Mass
+        {
+            get { return spaceProperties.mass; }
+            protected set { spaceProperties.mass = value; }
+        }
+
+        public Entity(int entityID, int locatedSceneID, EntitySpaceProperties spaceProperties)
+        {
+            EntityID = entityID;
+            LocatedSceneID = locatedSceneID;
+            this.spaceProperties = spaceProperties;
         }
     }
 }

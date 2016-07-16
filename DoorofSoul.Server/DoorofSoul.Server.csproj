@@ -63,8 +63,14 @@
     <Compile Include="DatabaseElements\AuthenticationManager.cs" />
     <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
     <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
+    <Compile Include="DatabaseElements\Repositories\AnswerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ContainerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\EntityRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQL\MySQLPlayerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\PlayerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\SceneRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\SoulRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\WorldRepository.cs" />
     <Compile Include="DatabaseElements\RepositoryManager.cs" />
     <Compile Include="Databases\MySQLDatabase.cs" />
     <Compile Include="Languages\ChineseDictionary.cs" />

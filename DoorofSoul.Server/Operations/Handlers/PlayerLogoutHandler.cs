@@ -31,11 +31,14 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
             if(base.Handle(operationRequest))
             {
-                Application.ServerInstance.PlayerLogout(peer.player);
+                Application.ServerInstance.PlayerLogout(peer.Player);
+                Dictionary<byte, object> parameters = new Dictionary<byte, object>();
+                SendResponse(operationRequest.OperationCode, parameters);
                 return true;
             }
             else
             {
+                SendError(operationRequest.OperationCode, Protocol.Communication.ErrorCode.InvalidOperation, "Logout Failed", LauguageDictionarySelector.Instance[peer.UsingLanguage]["Logout Failed"]);
                 return false;
             }
         }

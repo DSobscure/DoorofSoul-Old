@@ -33,16 +33,16 @@ namespace DoorofSoul.Server.Operations.Handlers
                 string debugMessage, errorMessage;
                 string account = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Account];
                 string password = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Password];
-                bool result = Application.ServerInstance.PlayerLogin(peer.player, account, password, out debugMessage, out errorMessage);
+                bool result = Application.ServerInstance.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
                 if(result)
                 {
                     Dictionary<byte, object> parameters = new Dictionary<byte, object>
                     {
-                        { (byte)PlayerLoginResponseParameterCode.PlayerID, peer.player.PlayerID },
-                        { (byte)PlayerLoginResponseParameterCode.Account, peer.player.Account },
-                        { (byte)PlayerLoginResponseParameterCode.Nickname, peer.player.Nickname },
-                        { (byte)PlayerLoginResponseParameterCode.UsingLanguageCode, (byte)peer.player.UsingLanguage },
-                        { (byte)PlayerLoginResponseParameterCode.AnswerID, peer.player.AnswerID }
+                        { (byte)PlayerLoginResponseParameterCode.PlayerID, peer.Player.PlayerID },
+                        { (byte)PlayerLoginResponseParameterCode.Account, peer.Player.Account },
+                        { (byte)PlayerLoginResponseParameterCode.Nickname, peer.Player.Nickname },
+                        { (byte)PlayerLoginResponseParameterCode.UsingLanguageCode, (byte)peer.Player.UsingLanguage },
+                        { (byte)PlayerLoginResponseParameterCode.AnswerID, peer.Player.AnswerID }
                     };
                     SendResponse(operationRequest.OperationCode, parameters);
                 }

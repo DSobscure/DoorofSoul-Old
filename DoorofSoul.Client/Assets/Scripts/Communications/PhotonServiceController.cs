@@ -62,7 +62,7 @@ public class PhotonServiceController : MonoBehaviour, IEventProvider
         if(connected)
         {
             Global.SystemManagers.DebugInformManager.DebugInform("Connected");
-            Global.OperationManagers.OperationManager.FetchDataOperationManager.FetchSystemVersion();
+            Global.OperationManagers.FetchDataOperationManager.FetchSystemVersion();
         }
         else
         {

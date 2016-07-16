@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using ExitGames.Client.Photon;
 using System;
+using System.Net;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Client.Communication

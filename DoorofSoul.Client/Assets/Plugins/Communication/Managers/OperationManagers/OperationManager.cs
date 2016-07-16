@@ -1,7 +1,29 @@
-﻿namespace DoorofSoul.Client.Communication.Managers.OperationManagers
+﻿using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.OperationParameters;
+using System.Collections.Generic;
+
+namespace DoorofSoul.Client.Communication.Managers.OperationManagers
 {
     public class OperationManager
     {
-        public readonly FetchDataOperationManager FetchDataOperationManager = new FetchDataOperationManager();
+        public static void SendOperation(OperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Global.PhotonService.SendOperation(operationCode, parameters);
+        }
+
+        public void PlayerLogin(string account, string password)
+        {
+            var parameters = new Dictionary<byte, object>
+            {
+                { (byte)PlayerLoginOperationParameterCode.Account, account },
+                { (byte)PlayerLoginOperationParameterCode.Password, password }
+            };
+            SendOperation(OperationCode.PlayerLogin, parameters);
+        }
+        public void PlayerLogout()
+        {
+            var parameters = new Dictionary<byte, object>();
+            SendOperation(OperationCode.PlayerLogout, parameters);
+        }
     }
 }

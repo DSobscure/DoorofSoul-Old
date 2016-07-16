@@ -6,9 +6,7 @@ using DoorofSoul.Client.Interfaces;
 public class ErrorInformController : MonoBehaviour, IEventProvider
 {
     [SerializeField]
-    private ErrorInformPanel errorInformPanel;
-    [SerializeField]
-    private Canvas canvas;
+    private ErrorInformPanel errorInformPanelPrefab;
 
     void Awake()
     {
@@ -31,8 +29,8 @@ public class ErrorInformController : MonoBehaviour, IEventProvider
 
     private void ErrorInform(string errorMessage)
     {
-        errorInformPanel = Instantiate(errorInformPanel);
-        errorInformPanel.transform.SetParent(canvas.transform);
-        errorInformPanel.ShowMessage(errorMessage);
+        var panel = Instantiate(errorInformPanelPrefab);
+        panel.transform.SetParent(GameObject.Find("Canvas").transform);
+        panel.ShowMessage(errorMessage);
     }
 }

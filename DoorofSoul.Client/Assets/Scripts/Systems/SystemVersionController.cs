@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Communication;
+using UnityEngine.SceneManagement;
 
 public class SystemVersionController : MonoBehaviour, IEventProvider
 {
@@ -40,6 +41,10 @@ public class SystemVersionController : MonoBehaviour, IEventProvider
         if(!Global.VersionManager.ClientVersionCheck())
         {
             Global.SystemManagers.SystemInformManager.ErrorInform(LauguageDictionarySelector.Instance[Global.SystemManagers.UsingLauguage]["Client Version Inconsistent"]);
+        }
+        else
+        {
+            SceneManager.LoadScene("PlayerLoginScene");
         }
     }
 }

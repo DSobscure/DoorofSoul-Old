@@ -49,7 +49,7 @@ namespace DoorofSoul.Server.DatabaseElements.Repositories.MySQL
                         string account = reader.GetString(0);
                         string nickname = reader.IsDBNull(1) ? null : reader.GetString(1);
                         SupportLauguages usingLanguage = (SupportLauguages)reader.GetByte(2);
-                        IPAddress lastConnectedIPAddress = reader.IsDBNull(3) ? null : IPAddress.Parse(reader.GetString(3));
+                        IPAddress lastConnectedIPAddress = reader.IsDBNull(3) ? IPAddress.None : IPAddress.Parse(reader.GetString(3));
                         int answerID = reader.GetInt32(4);
                         return new Player(playerID, account, nickname, usingLanguage, lastConnectedIPAddress, answerID);
                     }

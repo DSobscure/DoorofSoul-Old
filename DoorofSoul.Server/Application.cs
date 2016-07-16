@@ -37,7 +37,7 @@ namespace DoorofSoul.Server
 
         protected override void TearDown()
         {
-            
+            DataBase.Instance.Dispose();
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
@@ -86,14 +86,14 @@ namespace DoorofSoul.Server
                 }
                 else
                 {
-                    debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account, player.RemoteIPAddress);
+                    debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
                     errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
                     return false;
                 }
             }
             else
             {
-                debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account, player.RemoteIPAddress);
+                debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account ?? "", player?.LastConnectedIPAddress?.ToString() ?? "");
                 errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
                 return false;
             }

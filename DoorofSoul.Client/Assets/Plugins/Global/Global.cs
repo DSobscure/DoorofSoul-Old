@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Client.Communication;
 using DoorofSoul.Client.Communication.Managers;
+using DoorofSoul.Library.General;
 
 public static class Global
 {
@@ -9,6 +10,8 @@ public static class Global
     public static readonly SystemManagers SystemManagers;
     public static readonly VersionManager VersionManager;
     public static readonly PhotonService PhotonService;
+
+    public static Player Player { get; set; }
 
     static Global()
     {

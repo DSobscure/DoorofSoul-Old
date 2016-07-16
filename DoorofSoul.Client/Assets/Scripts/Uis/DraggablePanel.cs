@@ -8,17 +8,19 @@ public class DraggablePanel : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     private Vector3 originMousePosition;
     private Vector3 originPosition;
     private RectTransform self;
+    private CanvasScaler canvasScaler;
 
     void Start()
     {
         self = GetComponent<RectTransform>();
+        canvasScaler = GameObject.Find("Canvas").GetComponent<CanvasScaler>();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (canDrag)
         {
-            Vector3 newPosition = originPosition + Input.mousePosition - originMousePosition;
+            Vector3 newPosition = originPosition + Input.mousePosition * canvasScaler.referenceResolution.y / Screen.height - originMousePosition;
             if (newPosition.x < -Screen.width / 2 + self.rect.width / 2)
                 newPosition.x = -Screen.width / 2 + self.rect.width / 2;
             else if (newPosition.x > Screen.width / 2 - self.rect.width / 2)
@@ -34,7 +36,7 @@ public class DraggablePanel : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     public void OnPointerDown(PointerEventData eventData)
     {
         canDrag = true;
-        originMousePosition = Input.mousePosition;
+        originMousePosition = Input.mousePosition * canvasScaler.referenceResolution.y / Screen.height;
         originPosition = self.localPosition;
     }
 

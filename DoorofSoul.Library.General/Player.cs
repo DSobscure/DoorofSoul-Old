@@ -17,6 +17,16 @@ namespace DoorofSoul.Library.General
 
         public Player()
         {
+            UsingLanguage = SupportLauguages.Chinese_Traditional;
+        }
+        public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
+        {
+            PlayerID = playerID;
+            Account = account;
+            Nickname = nickname;
+            UsingLanguage = usingLanguage;
+            LastConnectedIPAddress = lastConnectedIPAddress;
+            AnswerID = answerID;
         }
 
         public void LoadPlayer(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)

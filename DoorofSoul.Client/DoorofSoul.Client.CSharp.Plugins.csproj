@@ -72,30 +72,35 @@
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
+    <Reference Include="DoorofSoul.Library.General">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Library.General.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\Communication\EventManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\EventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSystemVersionEventHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLoginResponseHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLogoutResponseHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Languages\ChineseDictionary.cs" />
     <Compile Include="Assets\Plugins\Communication\LauguageDictionary.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\EventManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\EventManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\InformDataEventManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\OperationManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\OperationManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\FetchDataOperationManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\ResponseManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\OperationManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers\ResponseManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\SystemManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers\UIResponseManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\DebugInformManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\SystemInformManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\VersionManager.cs" />
+    <Compile Include="Assets\Plugins\Communication\OperationManagers.cs" />
     <Compile Include="Assets\Plugins\Communication\PhotonService.cs" />
+    <Compile Include="Assets\Plugins\Communication\ResponseManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\SystemManagers.cs" />
     <Compile Include="Assets\Plugins\Global\Global.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

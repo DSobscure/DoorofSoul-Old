@@ -11,7 +11,7 @@ namespace DoorofSoul.Client.Communication.Handlers.InformDataEventHandlers
         {
             if(parameters.Count != 2)
             {
-                debugMessage = string.Format("Inform System Version Event Parameter Error, Parameter Code: {0}", parameters.Count);
+                debugMessage = string.Format("Inform System Version Event Parameter Error, Parameter Count: {0}", parameters.Count);
                 return false;
             }
             else
@@ -35,7 +35,7 @@ namespace DoorofSoul.Client.Communication.Handlers.InformDataEventHandlers
                 }
                 catch(InvalidCastException ex)
                 {
-                    Global.SystemManagers.DebugInformManager.DebugInform("Inform System Version Event Cast Error");
+                    Global.SystemManagers.DebugInformManager.DebugInform("Inform System Version Event Parameter Cast Error");
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.Message);
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.StackTrace);
                     return false;

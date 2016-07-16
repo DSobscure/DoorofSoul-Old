@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DoorofSoul.Server.DatabaseElements;
+﻿using DoorofSoul.Server.DatabaseElements;
 using System.Data.Common;
+using System;
 
 namespace DoorofSoul.Server
 {
-    public abstract class DataBase
+    public abstract class DataBase : IDisposable
     {
         protected static DataBase instance;
         public static DataBase Instance { get { return instance; } }
@@ -28,7 +24,17 @@ namespace DoorofSoul.Server
             }
         }
 
+        protected DataBase()
+        {
+            AuthenticationManager = new AuthenticationManager();
+            RepositoryManager = new RepositoryManager();
+        }
         public abstract bool Connect(string hostName, string userName, string password, string database);
+
+        public void Dispose()
+        {
+            connection.Close();
+        }
 
         public AuthenticationManager AuthenticationManager { get; protected set; }
         public RepositoryManager RepositoryManager { get; protected set; }

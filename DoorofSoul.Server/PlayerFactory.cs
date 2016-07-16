@@ -29,7 +29,7 @@ namespace DoorofSoul.Server
             else
             {
                 connectedPlayers.Add(player.Guid, player);
-                Application.Log.InfoFormat("Player Guid: {0} Connect from {1}", player.Guid, player.RemoteIPAddress);
+                Application.Log.InfoFormat("Player Guid: {0} Connect from {1}", player.Guid, player.LastConnectedIPAddress);
                 return true;
             }
         }
@@ -38,7 +38,7 @@ namespace DoorofSoul.Server
             if(connectedPlayers.ContainsKey(player.Guid))
             {
                 connectedPlayers.Remove(player.Guid);
-                Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.RemoteIPAddress);
+                Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.LastConnectedIPAddress);
             }
             PlayerOffline(player);
         }
@@ -95,7 +95,7 @@ namespace DoorofSoul.Server
                 {
                     activatedPlayers.Add(player.PlayerID, player);
                 }
-                return false;
+                return true;
             }
         }
         public void PlayerDeactivate(ServerPlayer player)

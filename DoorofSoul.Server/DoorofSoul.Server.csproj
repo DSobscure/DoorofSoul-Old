@@ -66,7 +66,13 @@
     <Compile Include="DatabaseElements\Repositories\AnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ContainerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\EntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLAnswerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLContainerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLEntityRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQL\MySQLPlayerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLSceneRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLSoulRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLWorldRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\PlayerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\SceneRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\SoulRepository.cs" />

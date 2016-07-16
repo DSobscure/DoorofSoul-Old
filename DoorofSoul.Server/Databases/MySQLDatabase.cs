@@ -16,6 +16,12 @@ namespace DoorofSoul.Server.Databases
         {
             AuthenticationManager.PlayerAuthentication = new MySQLPlayerAuthentication();
             RepositoryManager.PlayerRepository = new MySQLPlayerRepository();
+            RepositoryManager.AnswerRepository = new MySQLAnswerRepository();
+            RepositoryManager.SoulRepository = new MySQLSoulRepository();
+            RepositoryManager.ContainerRepository = new MySQLContainerRepository();
+            RepositoryManager.EntityRepository = new MySQLEntityRepository();
+            RepositoryManager.WorldRepository = new MySQLWorldRepository();
+            RepositoryManager.SceneRepository = new MySQLSceneRepository();
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

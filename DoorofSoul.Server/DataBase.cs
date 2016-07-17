@@ -23,11 +23,15 @@ namespace DoorofSoul.Server
                 return connection;
             }
         }
+        public AuthenticationManager AuthenticationManager { get; protected set; }
+        public RepositoryManager RepositoryManager { get; protected set; }
+        public RelationManager RelationManager { get; protected set; }
 
         protected DataBase()
         {
             AuthenticationManager = new AuthenticationManager();
             RepositoryManager = new RepositoryManager();
+            RelationManager = new RelationManager();
         }
         public abstract bool Connect(string hostName, string userName, string password, string database);
 
@@ -35,8 +39,5 @@ namespace DoorofSoul.Server
         {
             connection.Close();
         }
-
-        public AuthenticationManager AuthenticationManager { get; protected set; }
-        public RepositoryManager RepositoryManager { get; protected set; }
     }
 }

@@ -63,6 +63,9 @@
     <Compile Include="DatabaseElements\AuthenticationManager.cs" />
     <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
     <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
+    <Compile Include="DatabaseElements\RelationManager.cs" />
+    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_SoulID_ContainerID_Relation.cs" />
+    <Compile Include="DatabaseElements\Relations\SoulID_ContainerID_Relation.cs" />
     <Compile Include="DatabaseElements\Repositories\AnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ContainerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\EntityRepository.cs" />

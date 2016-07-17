@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DoorofSoul.Server;
 using DoorofSoul.Server.DatabaseElements.Authentications.MySQL;
 using DoorofSoul.Server.DatabaseElements.Repositories.MySQL;
+using DoorofSoul.Server.DatabaseElements.Relations.MySQL;
 using MySql.Data.MySqlClient;
 
 namespace DoorofSoul.Server.Databases
@@ -16,6 +17,14 @@ namespace DoorofSoul.Server.Databases
         {
             AuthenticationManager.PlayerAuthentication = new MySQLPlayerAuthentication();
             RepositoryManager.PlayerRepository = new MySQLPlayerRepository();
+            RepositoryManager.AnswerRepository = new MySQLAnswerRepository();
+            RepositoryManager.SoulRepository = new MySQLSoulRepository();
+            RepositoryManager.ContainerRepository = new MySQLContainerRepository();
+            RepositoryManager.EntityRepository = new MySQLEntityRepository();
+            RepositoryManager.WorldRepository = new MySQLWorldRepository();
+            RepositoryManager.SceneRepository = new MySQLSceneRepository();
+
+            RelationManager.SoulID_ContainerID_Relation = new MySQL_SoulID_ContainerID_Relation();
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

@@ -39,7 +39,6 @@
     <Reference Include="log4net">
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Photon.SocketServer">
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
     </Reference>
@@ -59,31 +58,11 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Config\SystemConfiguration.cs" />
-    <Compile Include="DataBase.cs" />
-    <Compile Include="DatabaseElements\AuthenticationManager.cs" />
-    <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
-    <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
-    <Compile Include="DatabaseElements\RelationManager.cs" />
-    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_SoulID_ContainerID_Relation.cs" />
-    <Compile Include="DatabaseElements\Relations\SoulID_ContainerID_Relation.cs" />
-    <Compile Include="DatabaseElements\Repositories\AnswerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\ContainerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\EntityRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLAnswerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLContainerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLEntityRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLPlayerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLSceneRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLSoulRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLWorldRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\PlayerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\SceneRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\SoulRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\WorldRepository.cs" />
-    <Compile Include="DatabaseElements\RepositoryManager.cs" />
-    <Compile Include="Databases\MySQLDatabase.cs" />
     <Compile Include="Languages\ChineseDictionary.cs" />
     <Compile Include="LauguageDictionary.cs" />
+    <Compile Include="Operations\Handlers\ActivateSoulHandler.cs" />
+    <Compile Include="Operations\Handlers\CreateSoulHandler.cs" />
+    <Compile Include="Operations\Handlers\DeleteSoulHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSystemVersionHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataManager.cs" />
@@ -97,6 +76,10 @@
     <Compile Include="ServerPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoorofSoul.Database\DoorofSoul.Database.csproj">
+      <Project>{d03ef50d-28c2-4c75-8f24-8dc094680e05}</Project>
+      <Name>DoorofSoul.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoorofSoul.Library.General\DoorofSoul.Library.General.csproj">
       <Project>{28e98488-b39a-471d-ae89-740f9c09f7d8}</Project>
       <Name>DoorofSoul.Library.General</Name>

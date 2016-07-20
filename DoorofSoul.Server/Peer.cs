@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Server.Operations;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
-using DoorofSoul.Server.Operations;
-using DoorofSoul.Protocol.Communication;
+using System;
 
 namespace DoorofSoul.Server
 {

@@ -11,8 +11,15 @@ namespace DoorofSoul.Library.General
         public Player Player { get; protected set; }
         protected Dictionary<int, Soul> soulDictionary;
         public IEnumerable<Soul> Souls { get { return soulDictionary.Values; } }
+        public int SoulCount { get { return soulDictionary.Count; } }
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
+        public int ContainerCount { get { return containerDictionary.Count; } }
+
+        private event Action<Answer> onLoadSouls;
+        public event Action<Answer> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
+        private event Action<Answer> onLoadContainers;
+        public event Action<Answer> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
 
         public Answer(int answerID, Player player)
         {
@@ -21,15 +28,24 @@ namespace DoorofSoul.Library.General
             soulDictionary = new Dictionary<int, Soul>();
             containerDictionary = new Dictionary<int, Container>();
         }
+        public void ClearSouls()
+        {
+            soulDictionary.Clear();
+        }
         public void LoadSouls(List<Soul> souls)
         {
-            foreach(Soul soul in souls)
+            foreach (Soul soul in souls)
             {
-                if(!soulDictionary.ContainsKey(soul.SoulID))
+                if(!soulDictionary.ContainsKey(soul.SoulID) && soul.AnswerID == AnswerID)
                 {
                     soulDictionary.Add(soul.SoulID, soul);
                 }
             }
+            onLoadSouls?.Invoke(this);
+        }
+        public void ClearContainers()
+        {
+            containerDictionary.Clear();
         }
         public void LoadContainers(List<Container> containers)
         {
@@ -40,6 +56,7 @@ namespace DoorofSoul.Library.General
                     containerDictionary.Add(container.ContainerID, container);
                 }
             }
+            onLoadContainers?.Invoke(this);
         }
     }
 }

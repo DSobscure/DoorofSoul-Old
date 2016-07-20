@@ -46,14 +46,7 @@ namespace DoorofSoul.Client.Communication.Managers
 
         #region current server version change
         private event Action<string> onCurrentServerVersionChange;
-        public void RegisterCurrentServerVersionChangeFunction(Action<string> changeFunction)
-        {
-            onCurrentServerVersionChange += changeFunction;
-        }
-        public void EraseCurrentServerVersionChangeFunction(Action<string> changeFunction)
-        {
-            onCurrentServerVersionChange -= changeFunction;
-        }
+        public event Action<string> OnCurrentServerVersionChange { add { onCurrentServerVersionChange += value; } remove { onCurrentServerVersionChange -= value; } }
         private void CurrentServerVersionChange(string version)
         {
             if(onCurrentServerVersionChange != null)
@@ -69,14 +62,7 @@ namespace DoorofSoul.Client.Communication.Managers
 
         #region current client version change
         private event Action<string> onCurrentClientVersionChange;
-        public void RegisterCurrentClientVersionChangeFunction(Action<string> changeFunction)
-        {
-            onCurrentClientVersionChange += changeFunction;
-        }
-        public void EraseCurrentClientVersionChangeFunction(Action<string> changeFunction)
-        {
-            onCurrentClientVersionChange -= changeFunction;
-        }
+        public event Action<string> OnCurrentClientVersionChange { add { onCurrentClientVersionChange += value; } remove { onCurrentClientVersionChange -= value; } }
         private void CurrentClientVersionChange(string version)
         {
             if (onCurrentClientVersionChange != null)

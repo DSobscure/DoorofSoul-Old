@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Photon.SocketServer;
-using log4net.Config;
-using ExitGames.Logging.Log4Net;
-using ExitGames.Logging;
-using System.IO;
+﻿using DoorofSoul.Library;
 using DoorofSoul.Server.Config;
-using DoorofSoul.Server.Databases;
-using DoorofSoul.Library;
+using DoorofSoul.Database;
+using ExitGames.Logging;
+using ExitGames.Logging.Log4Net;
+using log4net.Config;
+using Photon.SocketServer;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace DoorofSoul.Server
 {
@@ -68,7 +64,7 @@ namespace DoorofSoul.Server
 
         protected void SetupDatabase()
         {
-            DataBase.Initial(new MySQLDatabase());
+            DataBase.Initial(new MySQLDatabase(Log));
             DataBase.Instance.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database);
         }
 

@@ -55,13 +55,30 @@ namespace DoorofSoul.Library.General
             get { return SpaceProperties.mass; }
             protected set { SpaceProperties.mass = value; }
         }
-
+        private event Action<Entity> onEntityTranformChange;
+        public event Action<Entity> OnEntityTranformChange { add { onEntityTranformChange += value; } remove { onEntityTranformChange -= value; } }
+        private event Action<Entity> onEntityVelocityChange;
+        public event Action<Entity> OnEntityVelocityChange { add { onEntityVelocityChange += value; } remove { onEntityVelocityChange -= value; } }
         public Entity(int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
         {
             EntityID = entityID;
             EntityName = entityName;
             LocatedSceneID = locatedSceneID;
             this.SpaceProperties = spaceProperties;
+        }
+
+        public void UpdateEntityTransform(DSVector3 position, DSVector3 rotation, DSVector3 scale)
+        {
+            Position = position;
+            Rotation = rotation;
+            Scale = scale;
+            onEntityTranformChange?.Invoke(this);
+        }
+        public void UpdateEntityVelocity(DSVector3 velocity, DSVector3 angularVelocity)
+        {
+            Velocity = velocity;
+            AngularVelocity = angularVelocity;
+            onEntityVelocityChange?.Invoke(this);
         }
     }
 }

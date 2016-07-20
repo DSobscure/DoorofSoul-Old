@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoorofSoul.Library.General
 {
-    public struct EntitySpaceProperties
+    public class EntitySpaceProperties
     {
         public DSVector3 position;
         public DSVector3 rotation;

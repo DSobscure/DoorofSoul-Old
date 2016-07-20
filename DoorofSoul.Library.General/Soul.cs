@@ -12,6 +12,8 @@ namespace DoorofSoul.Library.General
         protected Answer answer;
         public string SoulName { get; set; }
         protected Dictionary<int, Container> containerDictionary;
+        public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
+        public int ContainerCount { get { return containerDictionary.Count; } }
 
         public Soul(int soulID, int answerID, string soulName)
         {

@@ -7,6 +7,9 @@ namespace DoorofSoul.Protocol.Communication
 {
     public enum FetchDataCode : short
     {
-        SystemVersion
+        SystemVersion,
+        Souls,
+        Containers,
+        SoulContainerConnections
     }
 }

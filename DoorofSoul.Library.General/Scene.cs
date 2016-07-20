@@ -11,6 +11,7 @@ namespace DoorofSoul.Library.General
         public string SceneName { get; protected set; }
         public int WorldID { get; protected set; }
         protected Dictionary<int, Entity> entityDictionary;
+        public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
 
         public Scene(int sceneID, string sceneName, int worldID)
         {
@@ -36,6 +37,14 @@ namespace DoorofSoul.Library.General
                 entityDictionary.Remove(entity.EntityID);
                 entity.LocatedSceneID = -1;
                 entity.LocatedScene = null;
+            }
+        }
+        public void UpdateEntitySpaceProperties(int entityID, EntitySpaceProperties spaceProperties)
+        {
+            if(entityDictionary.ContainsKey(entityID))
+            {
+                entityDictionary[entityID].UpdateEntityTransform(spaceProperties.position, spaceProperties.rotation, spaceProperties.scale);
+                entityDictionary[entityID].UpdateEntityVelocity(spaceProperties.velocity, spaceProperties.angularVelocity);
             }
         }
     }

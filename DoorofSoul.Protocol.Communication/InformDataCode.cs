@@ -8,6 +8,12 @@ namespace DoorofSoul.Protocol.Communication
     public enum InformDataCode : byte
     {
         FetchDataError,
-        SystemVersion
+        SystemVersion,
+        Soul,
+        Container,
+        SoulContainerConnection,
+        SceneEntityInformation,
+        EntityTransform,
+        EntityVelocity
     }
 }

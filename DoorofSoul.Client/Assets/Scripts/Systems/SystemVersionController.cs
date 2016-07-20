@@ -22,14 +22,14 @@ public class SystemVersionController : MonoBehaviour, IEventProvider
 
     public void EraseEvents()
     {
-        Global.VersionManager.EraseCurrentServerVersionChangeFunction(CurrentServerVersionChange);
-        Global.VersionManager.EraseCurrentClientVersionChangeFunction(CurrentClientVersionChange);
+        Global.VersionManager.OnCurrentServerVersionChange -= CurrentServerVersionChange;
+        Global.VersionManager.OnCurrentClientVersionChange -= CurrentClientVersionChange;
     }
 
     public void RegisterEvents()
     {
-        Global.VersionManager.RegisterCurrentServerVersionChangeFunction(CurrentServerVersionChange);
-        Global.VersionManager.RegisterCurrentClientVersionChangeFunction(CurrentClientVersionChange);
+        Global.VersionManager.OnCurrentServerVersionChange += CurrentServerVersionChange;
+        Global.VersionManager.OnCurrentClientVersionChange += CurrentClientVersionChange;
     }
 
     private void CurrentServerVersionChange(string version)

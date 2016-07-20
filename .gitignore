@@ -225,6 +225,7 @@ pip-log.txt
 *.prefab
 Temp/
 metadata/
+Standard Assets
 
 ##secret
 .config

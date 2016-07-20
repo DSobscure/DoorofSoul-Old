@@ -22,6 +22,9 @@ namespace DoorofSoul.Server.Operations
                 { OperationCode.FetchData, new FetchDataManager(peer) },
                 { OperationCode.PlayerLogin, new PlayerLoginHandler(peer) },
                 { OperationCode.PlayerLogout, new PlayerLogoutHandler(peer) },
+                { OperationCode.CreateSoul, new CreateSoulHandler(peer) },
+                { OperationCode.DeleteSoul, new DeleteSoulHandler(peer) },
+                { OperationCode.ActivateSoul, new ActivateSoulHandler(peer) },
             };
         }
 

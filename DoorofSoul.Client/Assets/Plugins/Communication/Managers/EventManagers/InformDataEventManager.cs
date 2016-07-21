@@ -17,7 +17,11 @@ namespace DoorofSoul.Client.Communication.Managers.EventManagers
         {
             informTable = new Dictionary<InformDataCode, InformDataEventHandler>
             {
-                { InformDataCode.SystemVersion, new  InformSystemVersionEventHandler()}
+                { InformDataCode.SystemVersion, new  InformSystemVersionEventHandler()},
+                { InformDataCode.Answer, new  InformAnswerEventHandler()},
+                { InformDataCode.Soul, new  InformSoulEventHandler()},
+                { InformDataCode.Container, new  InformContainerEventHandler()},
+                { InformDataCode.SoulContainerConnection, new  InformSoulContainerConnectionEventHandler()}
             };
         }
         public override bool CheckParameter(EventData eventData, out string debugMessage)

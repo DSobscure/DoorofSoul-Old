@@ -8,7 +8,7 @@ namespace DoorofSoul.Client.HelpFunctions
         {
             foreach (Transform child in transform)
             {
-                Object.Destroy(child);
+                Object.Destroy(child.gameObject);
             }
         }
     }

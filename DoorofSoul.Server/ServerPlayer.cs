@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication;
 using Photon.SocketServer;
+using System.Net;
 
 namespace DoorofSoul.Server
 {
@@ -23,6 +24,12 @@ namespace DoorofSoul.Server
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
             SendEvent = SendServerEvent;
+        }
+        public void RelifeWithNewPlayer(ServerPlayer newPlayer)
+        {
+            peer = newPlayer.peer;
+            peer.RelifeWithOldPlayer(this);
+            LastConnectedIPAddress = peer.RemoteIPAddress;
         }
 
         public void SendServerEvent(EventCode eventCode, Dictionary<byte, object> parameters)

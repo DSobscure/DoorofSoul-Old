@@ -9,7 +9,7 @@ public class SoulsPanelTest : MonoBehaviour
 	void Awake ()
     {
         Global.Player = new Player(1, "測試帳號", "測試暱稱", DoorofSoul.Protocol.Communication.SupportLauguages.Chinese_Traditional, null, 1);
-        Global.Player.ActiveAnswer(new Answer(1, Global.Player));
+        Global.Player.ActiveAnswer(new Answer(1, 3, Global.Player));
         Global.Player.Answer.LoadSouls(new List<Soul>
         {
             new Soul(1, 1, "測試1"),

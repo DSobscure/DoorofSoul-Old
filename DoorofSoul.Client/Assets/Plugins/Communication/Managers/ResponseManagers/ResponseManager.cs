@@ -18,6 +18,8 @@ namespace DoorofSoul.Client.Communication.Managers.ResponseManagers
             {
                 { OperationCode.PlayerLogin, new PlayerLoginResponseHandler() },
                 { OperationCode.PlayerLogout, new PlayerLogoutResponseHandler() },
+                { OperationCode.CreateSoul, new CreateSoulResponseHandler() },
+                { OperationCode.DeleteSoul, new DeleteSoulResponseHandler() },
             };
         }
 

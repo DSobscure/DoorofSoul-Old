@@ -31,7 +31,7 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
             if(base.Handle(operationRequest))
             {
-                Application.ServerInstance.PlayerLogout(peer.Player);
+                Application.ServerInstance.PlayerFactory.PlayerLogout(peer.Player);
                 Dictionary<byte, object> parameters = new Dictionary<byte, object>();
                 SendResponse(operationRequest.OperationCode, parameters);
                 return true;

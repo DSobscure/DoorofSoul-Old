@@ -48,6 +48,7 @@
     <Compile Include="FetchDataCode.cs" />
     <Compile Include="FetchDataParameters\FetchSystemVersionParameterCode.cs" />
     <Compile Include="InformDataCode.cs" />
+    <Compile Include="InformDataParameters\InformAnswerParameterCode.cs" />
     <Compile Include="InformDataParameters\InformContainerParameterCode.cs" />
     <Compile Include="InformDataParameters\InformEntityTransformParameterCode.cs" />
     <Compile Include="InformDataParameters\InformEntityVelocityParameterCode.cs" />

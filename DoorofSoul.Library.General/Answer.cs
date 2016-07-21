@@ -15,15 +15,17 @@ namespace DoorofSoul.Library.General
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
+        public int SoulCountLimit { get; protected set; }
 
         private event Action<Answer> onLoadSouls;
         public event Action<Answer> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
         private event Action<Answer> onLoadContainers;
         public event Action<Answer> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
 
-        public Answer(int answerID, Player player)
+        public Answer(int answerID, int soulCountLimit, Player player)
         {
             AnswerID = answerID;
+            SoulCountLimit = soulCountLimit;
             Player = player;
             soulDictionary = new Dictionary<int, Soul>();
             containerDictionary = new Dictionary<int, Container>();
@@ -32,22 +34,48 @@ namespace DoorofSoul.Library.General
         {
             soulDictionary.Clear();
         }
-        public void LoadSouls(List<Soul> souls)
+        public virtual void LoadSouls(List<Soul> souls)
         {
-            foreach (Soul soul in souls)
+            if(SoulCount + souls.Count <= SoulCountLimit)
             {
-                if(!soulDictionary.ContainsKey(soul.SoulID) && soul.AnswerID == AnswerID)
+                foreach (Soul soul in souls)
                 {
-                    soulDictionary.Add(soul.SoulID, soul);
+                    if (!soulDictionary.ContainsKey(soul.SoulID) && soul.AnswerID == AnswerID)
+                    {
+                        soulDictionary.Add(soul.SoulID, soul);
+                    }
                 }
+                onLoadSouls?.Invoke(this);
             }
-            onLoadSouls?.Invoke(this);
         }
+        public bool ContainsSoul(int soulID)
+        {
+            return soulDictionary.ContainsKey(soulID);
+        }
+        public Soul FindSoul(int soulID)
+        {
+            if (ContainsSoul(soulID))
+            {
+                return soulDictionary[soulID];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void RemoveSoul(int soulID)
+        {
+            if(soulDictionary.ContainsKey(soulID))
+            {
+                soulDictionary.Remove(soulID);
+            }
+        }
+
         public void ClearContainers()
         {
             containerDictionary.Clear();
         }
-        public void LoadContainers(List<Container> containers)
+        public virtual void LoadContainers(List<Container> containers)
         {
             foreach(Container container in containers)
             {
@@ -57,6 +85,28 @@ namespace DoorofSoul.Library.General
                 }
             }
             onLoadContainers?.Invoke(this);
+        }
+        public bool ContainsContainer(int containerID)
+        {
+            return containerDictionary.ContainsKey(containerID);
+        }
+        public Container FindContainer(int containerID)
+        {
+            if (ContainsContainer(containerID))
+            {
+                return containerDictionary[containerID];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void RemoveContainer(int containerID)
+        {
+            if (containerDictionary.ContainsKey(containerID))
+            {
+                containerDictionary.Remove(containerID);
+            }
         }
     }
 }

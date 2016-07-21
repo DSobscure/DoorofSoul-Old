@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using DoorofSoul.Library.General;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.HelpFunctions;
+using DoorofSoul.Client.Communication;
 
 public class SoulsPanelController : MonoBehaviour, IEventProvider
 {
     [SerializeField]
     private SoulPanel soulPanelPrefab;
-    [SerializeField]
     private RectTransform soulsPanel;
+    private Text answerIDText;
+    private Text soulCountLimitText;
 
     void Awake()
     {
@@ -16,6 +19,11 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
     }
     void Start()
     {
+        soulsPanel = GameObject.Find("SoulsPanel").GetComponent<RectTransform>();
+        answerIDText = GameObject.Find("AnswerIDText").GetComponent<Text>();
+        soulCountLimitText = GameObject.Find("SoulCountLimitText").GetComponent<Text>();
+        answerIDText.text = Global.Player.Answer.AnswerID.ToString();
+        soulCountLimitText.text = string.Format("{0}: {1}", LauguageDictionarySelector.Instance[Global.SystemManagers.UsingLauguage]["SoulCountLimit"], Global.Player.Answer.SoulCountLimit);
         ShowSouls(Global.Player.Answer);
     }
     void OnDestroy()

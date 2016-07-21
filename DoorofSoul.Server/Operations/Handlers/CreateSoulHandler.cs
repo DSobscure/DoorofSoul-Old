@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication.OperationParameters;
+using DoorofSoul.Library;
 
 namespace DoorofSoul.Server.Operations.Handlers
 {
@@ -31,24 +32,29 @@ namespace DoorofSoul.Server.Operations.Handlers
             {
                 string debugMessage, errorMessage;
                 string soulName = (string)operationRequest.Parameters[(byte)CreateSoulOperationParameterCode.SoulName];
-                bool result = Application.ServerInstance.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
-                if (result)
+                if (peer.Player.Answer.SoulCount < peer.Player.Answer.SoulCountLimit)
                 {
-                    Dictionary<byte, object> parameters = new Dictionary<byte, object>
+                    if (Hexagram.Instance.Throne.CreateSoul(peer.Player.Answer.AnswerID, soulName))
                     {
-                        { (byte)PlayerLoginResponseParameterCode.PlayerID, peer.Player.PlayerID },
-                        { (byte)PlayerLoginResponseParameterCode.Account, peer.Player.Account },
-                        { (byte)PlayerLoginResponseParameterCode.Nickname, peer.Player.Nickname },
-                        { (byte)PlayerLoginResponseParameterCode.UsingLanguageCode, (byte)peer.Player.UsingLanguage },
-                        { (byte)PlayerLoginResponseParameterCode.AnswerID, peer.Player.AnswerID }
-                    };
-                    SendResponse(operationRequest.OperationCode, parameters);
+                        Dictionary<byte, object> parameters = new Dictionary<byte, object>();
+                        SendResponse(operationRequest.OperationCode, parameters);
+                        return true;
+                    }
+                    else
+                    {
+                        debugMessage = string.Format("Soul Create Error AnswerID: {0}", peer.Player.Answer.AnswerID);
+                        errorMessage = LauguageDictionarySelector.Instance[peer.UsingLanguage]["Create Soul Error"];
+                        SendError(operationRequest.OperationCode, Protocol.Communication.ErrorCode.Fail, debugMessage, errorMessage);
+                        return false;
+                    }
                 }
                 else
                 {
+                    debugMessage = string.Format("Soul Create Permission Deny AnswerID: {0}", peer.Player.Answer.AnswerID);
+                    errorMessage = LauguageDictionarySelector.Instance[peer.UsingLanguage]["Permission Deny"];
                     SendError(operationRequest.OperationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage, errorMessage);
+                    return false;
                 }
-                return result;
             }
             else
             {

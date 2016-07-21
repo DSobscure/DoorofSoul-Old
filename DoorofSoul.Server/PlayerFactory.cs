@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library;
+using DoorofSoul.Database;
 
 namespace DoorofSoul.Server
 {
@@ -33,7 +34,7 @@ namespace DoorofSoul.Server
                 return true;
             }
         }
-        public void PlayerDisconnect(ServerPlayer player)
+        public async void PlayerDisconnect(ServerPlayer player)
         {
             if(connectedPlayers.ContainsKey(player.Guid))
             {
@@ -41,18 +42,64 @@ namespace DoorofSoul.Server
                 Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.LastConnectedIPAddress);
             }
             PlayerOffline(player);
+            await Task.Delay(60000);
+            if (!player.IsOnline)
+            {
+                PlayerDeactivate(player);
+            }
+        }
+
+        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out string errorMessage)
+        {
+            int playerID;
+            if (DataBase.Instance.RepositoryManager.PlayerRepository.Contains(account, out playerID))
+            {
+                if (DataBase.Instance.AuthenticationManager.PlayerAuthentication.LoginCheck(account, password))
+                {
+                    debugMessage = null;
+                    errorMessage = null;
+                    player.LoadPlayer(DataBase.Instance.RepositoryManager.PlayerRepository.Find(playerID));
+                    return PlayerOnline(player);
+                }
+                else
+                {
+                    debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
+                    errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                    return false;
+                }
+            }
+            else
+            {
+                debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account ?? "", player?.LastConnectedIPAddress?.ToString() ?? "");
+                errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                return false;
+            }
+        }
+        public void PlayerLogout(ServerPlayer player)
+        {
+            PlayerDisconnect(player);
+            PlayerDeactivate(player);
         }
 
         public bool PlayerOnline(ServerPlayer player)
         {
+            if(activatedPlayers.ContainsKey(player.PlayerID))
+            {
+                ServerPlayer originPlayer = activatedPlayers[player.PlayerID];
+                originPlayer.RelifeWithNewPlayer(player);
+                connectedPlayers.Remove(player.Guid);
+                connectedPlayers.Add(originPlayer.Guid, originPlayer);
+                player = originPlayer;
+            }
+
             if (player.IsOnline)
             {
                 return false;
             }
-            else if(player.IsActivated)
+            else if (player.IsActivated)
             {
                 player.IsOnline = true;
-                if(!onlinedPlayers.ContainsKey(player.PlayerID))
+                if (!onlinedPlayers.ContainsKey(player.PlayerID))
                 {
                     onlinedPlayers.Add(player.PlayerID, player);
                 }
@@ -95,6 +142,7 @@ namespace DoorofSoul.Server
                 {
                     activatedPlayers.Add(player.PlayerID, player);
                 }
+                Hexagram.Instance.Throne.ProjectPlayer(player);
                 return true;
             }
         }
@@ -109,6 +157,7 @@ namespace DoorofSoul.Server
                 }
                 Application.Log.InfoFormat("PlayerID: {0} Deactivate", player.PlayerID);
                 DataBase.Instance.RepositoryManager.PlayerRepository.Save(player);
+                Hexagram.Instance.Throne.ExtractPlayer(player);
             }
         }
     }

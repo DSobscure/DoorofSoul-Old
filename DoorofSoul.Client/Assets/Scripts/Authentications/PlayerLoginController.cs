@@ -26,7 +26,6 @@ public class PlayerLoginController : MonoBehaviour, IEventProvider
 
     private void PlayerLogin(Player player)
     {
-        Global.Player = player;
-        SceneManager.LoadScene("PlayerAnswerScene");
+        SceneManager.LoadScene("PlayerScene");
     }
 }

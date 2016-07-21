@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ExitGames.Client.Photon;
+﻿using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.ResponseParameters;
-using DoorofSoul.Library.General;
+using ExitGames.Client.Photon;
+using System;
 using System.Net;
 
 namespace DoorofSoul.Client.Communication.Handlers.ResponseHandlers
@@ -74,6 +71,7 @@ namespace DoorofSoul.Client.Communication.Handlers.ResponseHandlers
                     IPAddress lastConnectedIPAddress = IPAddress.None;
                     int answerID = (int)operationResponse.Parameters[(byte)PlayerLoginResponseParameterCode.AnswerID];
                     Player player = new Player(playerID, account, nickname, usingLanguage, lastConnectedIPAddress, answerID);
+                    Global.Player = player;
                     Global.ResponseManagers.ResponseManager.PlayerLogin(player);
                     return true;
                 }

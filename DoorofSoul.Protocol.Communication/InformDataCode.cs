@@ -9,6 +9,7 @@ namespace DoorofSoul.Protocol.Communication
     {
         FetchDataError,
         SystemVersion,
+        Answer,
         Soul,
         Container,
         SoulContainerConnection,

@@ -35,13 +35,13 @@ namespace DoorofSoul.Library
         }
         public void EntityExit(Entity entity)
         {
-            if (entityDictionary.ContainsKey(entity.EntityID))
-            {
-                entityDictionary.Remove(entity.EntityID);
-            }
             if (sceneDictionary.ContainsKey(entity.LocatedSceneID))
             {
                 sceneDictionary[entity.LocatedSceneID].EntityExit(entity);
+            }
+            if (entityDictionary.ContainsKey(entity.EntityID))
+            {
+                entityDictionary.Remove(entity.EntityID);
             }
         }
     }

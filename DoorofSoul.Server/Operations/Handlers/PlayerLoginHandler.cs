@@ -33,7 +33,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                 string debugMessage, errorMessage;
                 string account = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Account];
                 string password = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Password];
-                bool result = Application.ServerInstance.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
+                bool result = Application.ServerInstance.PlayerFactory.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
                 if(result)
                 {
                     Dictionary<byte, object> parameters = new Dictionary<byte, object>

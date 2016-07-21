@@ -19,8 +19,8 @@ namespace DoorofSoul.Database
         {
             get
             {
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
+                connection.Close();
+                connection.Open();
                 return connection;
             }
         }

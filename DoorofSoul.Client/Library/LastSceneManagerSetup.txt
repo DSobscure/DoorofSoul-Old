@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Worlds/Knowledge/BasicFunctionTestScene.unity
+- path: Assets/Scenes/SystemInitialScene.unity
   isLoaded: 1
   isActive: 1

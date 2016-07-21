@@ -25,12 +25,17 @@ namespace DoorofSoul.Server
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
             Application.Log.InfoFormat("Player Disconnect from: {0} because: {1}", RemoteIPAddress, reasonDetail);
-            Application.ServerInstance.PlayerDisconnect(Player);
+            Application.ServerInstance.PlayerFactory.PlayerDisconnect(Player);
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
             operationManager.Operate(operationRequest);
+        }
+
+        public void RelifeWithOldPlayer(ServerPlayer old)
+        {
+            Player = old;
         }
     }
 }

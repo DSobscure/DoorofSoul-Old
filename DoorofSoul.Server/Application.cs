@@ -17,8 +17,8 @@ namespace DoorofSoul.Server
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
         public SystemConfiguration SystemConfiguration { get; set; }
-        private PlayerFactory playerFactory;
-        private Hexagram hexagram;
+        public PlayerFactory PlayerFactory { get; protected set; }
+
 
         protected override void Setup()
         {
@@ -26,8 +26,7 @@ namespace DoorofSoul.Server
             SetupLog();
             SetupConfiguration();
             SetupDatabase();
-            playerFactory = new PlayerFactory();
-            hexagram = new Hexagram();
+            PlayerFactory = new PlayerFactory();
             Log.Info("Server Setup Successiful.......");
         }
 
@@ -40,7 +39,7 @@ namespace DoorofSoul.Server
         {
             ServerPlayer player;
             Peer peer = new Peer(initRequest, out player);
-            while(!playerFactory.PlayerConnect(player))
+            while(!PlayerFactory.PlayerConnect(player))
             {
                 peer = new Peer(initRequest, out player);
             }
@@ -66,47 +65,6 @@ namespace DoorofSoul.Server
         {
             DataBase.Initial(new MySQLDatabase(Log));
             DataBase.Instance.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database);
-        }
-
-        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out string errorMessage)
-        {
-            int playerID;
-            if(DataBase.Instance.RepositoryManager.PlayerRepository.Contains(account, out playerID))
-            {
-                if(DataBase.Instance.AuthenticationManager.PlayerAuthentication.LoginCheck(account, password))
-                {
-                    debugMessage = null;
-                    errorMessage = null;
-                    player.LoadPlayer(DataBase.Instance.RepositoryManager.PlayerRepository.Find(playerID));
-                    return playerFactory.PlayerOnline(player);
-                }
-                else
-                {
-                    debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
-                    errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
-                    return false;
-                }
-            }
-            else
-            {
-                debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account ?? "", player?.LastConnectedIPAddress?.ToString() ?? "");
-                errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
-                return false;
-            }
-        }
-        public void PlayerLogout(ServerPlayer player)
-        {
-            playerFactory.PlayerDisconnect(player);
-            playerFactory.PlayerDeactivate(player);
-        }
-        public async void PlayerDisconnect(ServerPlayer player)
-        {
-            playerFactory.PlayerDisconnect(player);
-            await Task.Delay(60000);
-            if(!player.IsOnline)
-            {
-                playerFactory.PlayerDeactivate(player);
-            }
         }
     }
 }

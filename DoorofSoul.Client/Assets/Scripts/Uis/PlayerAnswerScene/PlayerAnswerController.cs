@@ -4,6 +4,8 @@ public class PlayerAnswerController : MonoBehaviour
 {
     [SerializeField]
     private CreateSoulPanel createSoulPanel;
+
+
     public void CreateSoul()
     {
         Global.OperationManagers.OperationManager.CreateSoul(createSoulPanel.SoulName);

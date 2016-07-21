@@ -16,6 +16,8 @@ namespace DoorofSoul.Library.General
         public bool IsOnline { get; set; }
         public bool IsActivated { get; set; }
         public Answer Answer { get; protected set; }
+        private event Action<Answer> onActiveAnswer;
+        public event Action<Answer> OnActiveAnswer { add { onActiveAnswer += value; } remove { onActiveAnswer -= value; } }
 
         public Player()
         {
@@ -46,7 +48,6 @@ namespace DoorofSoul.Library.General
             Account = player.Account;
             Nickname = player.Nickname;
             UsingLanguage = player.UsingLanguage;
-            LastConnectedIPAddress = player.LastConnectedIPAddress;
             AnswerID = player.AnswerID;
         }
 
@@ -57,6 +58,7 @@ namespace DoorofSoul.Library.General
             if(answer.AnswerID == AnswerID)
             {
                 Answer = answer;
+                onActiveAnswer?.Invoke(Answer);
                 return true;
             }
             else

@@ -89,20 +89,14 @@
     <Compile Include="Assets\Scripts\Tests\UI\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\Uis\ErrorInformPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\InputNavigationController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\CreateSoulPanel.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\DeleteSoulPanelController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\PlayerAnswerController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulsPanelController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerLoginUI.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
-    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
+    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\InputNavigationController.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginUI.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerScene\PlayerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

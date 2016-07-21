@@ -8,7 +8,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override Answer Find(int answerID, Player correspondingPlayer)
         {
             string sqlString = @"SELECT  
-                AnswerID
+                SoulCountLimit
                 from Answers WHERE AnswerID = @answerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -17,7 +17,10 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 {
                     if (reader.Read())
                     {
-                        return new Answer(answerID, correspondingPlayer);
+                        int soulCountLimit = reader.GetInt32(0);
+                        Answer answer = new Answer(answerID, soulCountLimit, correspondingPlayer);
+                        correspondingPlayer.ActiveAnswer(answer);
+                        return answer;
                     }
                     else
                     {
@@ -30,10 +33,11 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override void Save(Answer answer)
         {
             string sqlString = @"UPDATE Answers SET 
-                
+                SoulCountLimit = @soulCountLimit
                 WHERE AnswerID = @answerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
+                command.Parameters.AddWithValue("@soulCountLimit", answer.SoulCountLimit);
                 command.Parameters.AddWithValue("@answerID", answer.AnswerID);
                 if (command.ExecuteNonQuery() <= 0)
                 {

@@ -13,7 +13,11 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
             fetchTable = new Dictionary<FetchDataCode, FetchDataHandler>
             {
-                { FetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) }
+                { FetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) },
+                { FetchDataCode.Answer, new FetchAnswerHandler(peer) },
+                { FetchDataCode.Souls, new FetchSoulsHandler(peer) },
+                { FetchDataCode.Containers, new FetchContainersHandler(peer) },
+                { FetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) }
             };
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication.OperationParameters;
+using DoorofSoul.Library;
 
 namespace DoorofSoul.Server.Operations.Handlers
 {
@@ -30,26 +31,30 @@ namespace DoorofSoul.Server.Operations.Handlers
             if (base.Handle(operationRequest))
             {
                 string debugMessage, errorMessage;
-                string account = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Account];
-                string password = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Password];
-                bool result = Application.ServerInstance.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
-                if (result)
+                int soulID = (int)operationRequest.Parameters[(byte)ActivateSoulOperationParameterCode.SoulID];
+                if (peer.Player.Answer.ContainsSoul(soulID))
                 {
-                    Dictionary<byte, object> parameters = new Dictionary<byte, object>
+                    if (Hexagram.Instance.Throne.ActiveSoul(soulID))
                     {
-                        { (byte)PlayerLoginResponseParameterCode.PlayerID, peer.Player.PlayerID },
-                        { (byte)PlayerLoginResponseParameterCode.Account, peer.Player.Account },
-                        { (byte)PlayerLoginResponseParameterCode.Nickname, peer.Player.Nickname },
-                        { (byte)PlayerLoginResponseParameterCode.UsingLanguageCode, (byte)peer.Player.UsingLanguage },
-                        { (byte)PlayerLoginResponseParameterCode.AnswerID, peer.Player.AnswerID }
-                    };
-                    SendResponse(operationRequest.OperationCode, parameters);
+                        Dictionary<byte, object> parameters = new Dictionary<byte, object>();
+                        SendResponse(operationRequest.OperationCode, parameters);
+                        return true;
+                    }
+                    else
+                    {
+                        debugMessage = string.Format("Soul Activate Error SoulID: {0}, AnswerID: {1}", soulID, peer.Player.Answer.AnswerID);
+                        errorMessage = LauguageDictionarySelector.Instance[peer.UsingLanguage]["Activate Soul Error"];
+                        SendError(operationRequest.OperationCode, Protocol.Communication.ErrorCode.Fail, debugMessage, errorMessage);
+                        return false;
+                    }
                 }
                 else
                 {
+                    debugMessage = string.Format("Soul Activate Permission Deny SoulID: {0}, AnswerID: {1}", soulID, peer.Player.Answer.AnswerID);
+                    errorMessage = LauguageDictionarySelector.Instance[peer.UsingLanguage]["Permission Deny"];
                     SendError(operationRequest.OperationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage, errorMessage);
+                    return false;
                 }
-                return result;
             }
             else
             {

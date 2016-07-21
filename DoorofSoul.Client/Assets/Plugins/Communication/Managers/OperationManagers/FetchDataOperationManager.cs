@@ -20,5 +20,21 @@ namespace DoorofSoul.Client.Communication.Managers.OperationManagers
         {
             SendOperation(FetchDataCode.SystemVersion, new Dictionary<byte, object>());
         }
+        public void FetchAnswer()
+        {
+            SendOperation(FetchDataCode.Answer, new Dictionary<byte, object>());
+        }
+        public void FetchSouls()
+        {
+            SendOperation(FetchDataCode.Souls, new Dictionary<byte, object>());
+        }
+        public void FetchContainers()
+        {
+            SendOperation(FetchDataCode.Containers, new Dictionary<byte, object>());
+        }
+        public void FetchSoulContainerConnections()
+        {
+            SendOperation(FetchDataCode.SoulContainerConnections, new Dictionary<byte, object>());
+        }
     }
 }

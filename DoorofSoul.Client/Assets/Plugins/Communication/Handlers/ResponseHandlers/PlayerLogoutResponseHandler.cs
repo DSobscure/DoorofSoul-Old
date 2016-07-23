@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ExitGames.Client.Photon;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.ResponseParameters;
+using ExitGames.Client.Photon;
+using System;
 
 namespace DoorofSoul.Client.Communication.Handlers.ResponseHandlers
 {

@@ -1,8 +1,10 @@
-﻿using Photon.SocketServer;
-using System;
-using System.Collections.Generic;
+﻿using DoorofSoul.Library;
+using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication.OperationParameters;
-using DoorofSoul.Library;
+using DoorofSoul.Protocol.Communication.ResponseParameters;
+using Photon.SocketServer;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DoorofSoul.Server.Operations.Handlers
 {
@@ -36,7 +38,22 @@ namespace DoorofSoul.Server.Operations.Handlers
                 {
                     if (Hexagram.Instance.Throne.ActiveSoul(soulID))
                     {
-                        Dictionary<byte, object> parameters = new Dictionary<byte, object>();
+                        Soul soul = peer.Player.Answer.FindSoul(soulID);
+                        Container defaultContainer = soul.Containers.FirstOrDefault();
+                        int sceneID;
+                        if(defaultContainer == null)
+                        {
+                            sceneID = 1;
+                        }
+                        else
+                        {
+                            sceneID = defaultContainer.LocatedSceneID;
+                        }
+                        Dictionary<byte, object> parameters = new Dictionary<byte, object>
+                        {
+                            { (byte)ActiveSoulResponseParameterCode.SoulID, soulID },
+                            { (byte)ActiveSoulResponseParameterCode.SceneID, sceneID }
+                        };
                         SendResponse(operationRequest.OperationCode, parameters);
                         return true;
                     }

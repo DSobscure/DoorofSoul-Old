@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication;
-using ExitGames.Client.Photon;
-using DoorofSoul.Client.Communication.Handlers;
+﻿using DoorofSoul.Client.Communication.Handlers;
 using DoorofSoul.Client.Communication.Handlers.ResponseHandlers;
 using DoorofSoul.Library.General;
+using DoorofSoul.Protocol.Communication;
+using ExitGames.Client.Photon;
 using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Client.Communication.Managers.ResponseManagers
 {
@@ -16,10 +16,12 @@ namespace DoorofSoul.Client.Communication.Managers.ResponseManagers
         {
             responseTable = new Dictionary<OperationCode, ResponseHandler>
             {
+                { OperationCode.FetchData, new FetchDataResponseHandler() },
                 { OperationCode.PlayerLogin, new PlayerLoginResponseHandler() },
                 { OperationCode.PlayerLogout, new PlayerLogoutResponseHandler() },
                 { OperationCode.CreateSoul, new CreateSoulResponseHandler() },
                 { OperationCode.DeleteSoul, new DeleteSoulResponseHandler() },
+                { OperationCode.ActivateSoul, new ActivateSoulResponseHandler() },
             };
         }
 
@@ -74,7 +76,6 @@ namespace DoorofSoul.Client.Communication.Managers.ResponseManagers
             }
         }
         #endregion
-
     }
 }
 

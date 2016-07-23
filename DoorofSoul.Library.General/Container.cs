@@ -10,6 +10,7 @@ namespace DoorofSoul.Library.General
     {
         public int ContainerID { get; protected set; }
         protected Dictionary<int, Soul> soulDictionary;
+        public IEnumerable<Soul> Souls { get { return soulDictionary.Values; } }
         public bool IsEmptyContainer { get { return soulDictionary.Count == 0; } }
 
         public Container(int containerID, int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties) : base(entityID, entityName, locatedSceneID, spaceProperties)

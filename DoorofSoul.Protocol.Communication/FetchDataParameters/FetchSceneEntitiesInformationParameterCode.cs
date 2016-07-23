@@ -5,7 +5,8 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication.FetchDataParameters
 {
-    public enum FetchSystemVersionParameterCode : byte
+    public enum FetchSceneEntitiesInformationParameterCode : byte
     {
+        SceneID
     }
 }

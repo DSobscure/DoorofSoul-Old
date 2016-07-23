@@ -33,6 +33,7 @@ namespace DoorofSoul.Library.General
         public void ClearSouls()
         {
             soulDictionary.Clear();
+            onLoadSouls?.Invoke(this);
         }
         public virtual void LoadSouls(List<Soul> souls)
         {
@@ -68,12 +69,14 @@ namespace DoorofSoul.Library.General
             if(soulDictionary.ContainsKey(soulID))
             {
                 soulDictionary.Remove(soulID);
+                onLoadSouls?.Invoke(this);
             }
         }
 
         public void ClearContainers()
         {
             containerDictionary.Clear();
+            onLoadContainers?.Invoke(this);
         }
         public virtual void LoadContainers(List<Container> containers)
         {
@@ -106,6 +109,7 @@ namespace DoorofSoul.Library.General
             if (containerDictionary.ContainsKey(containerID))
             {
                 containerDictionary.Remove(containerID);
+                onLoadContainers?.Invoke(this);
             }
         }
     }

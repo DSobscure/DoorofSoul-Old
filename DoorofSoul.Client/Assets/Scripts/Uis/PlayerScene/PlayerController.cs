@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour, IEventProvider
     void Awake()
     {
         RegisterEvents();
-    }
+    }   
     void Start()
     {
         Global.OperationManagers.FetchDataOperationManager.FetchAnswer();

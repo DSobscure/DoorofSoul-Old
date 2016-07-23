@@ -42,7 +42,7 @@ namespace DoorofSoul.Server
                 Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.LastConnectedIPAddress);
             }
             PlayerOffline(player);
-            await Task.Delay(60000);
+            //await Task.Delay(60000);
             if (!player.IsOnline)
             {
                 PlayerDeactivate(player);

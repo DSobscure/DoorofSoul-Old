@@ -11,6 +11,7 @@ namespace DoorofSoul.Protocol.Communication
         ParameterError,
         InvalidOperation,
         PermissionDeny,
-        Fail
+        Fail,
+        NotExist
     }
 }

@@ -26,6 +26,7 @@ namespace DoorofSoul.Server
             SetupLog();
             SetupConfiguration();
             SetupDatabase();
+            SetupHexagram();
             PlayerFactory = new PlayerFactory();
             Log.Info("Server Setup Successiful.......");
         }
@@ -65,6 +66,10 @@ namespace DoorofSoul.Server
         {
             DataBase.Initial(new MySQLDatabase(Log));
             DataBase.Instance.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database);
+        }
+        protected void SetupHexagram()
+        {
+            Hexagram.Initial(Log);
         }
     }
 }

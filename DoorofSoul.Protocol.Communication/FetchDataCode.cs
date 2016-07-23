@@ -6,6 +6,8 @@
         Answer,
         Souls,
         Containers,
-        SoulContainerConnections
+        SoulContainerConnections,
+        Scene,
+        SceneEntitiesInformation,
     }
 }

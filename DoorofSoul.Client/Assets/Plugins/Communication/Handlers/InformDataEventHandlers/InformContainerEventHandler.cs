@@ -83,7 +83,7 @@ namespace DoorofSoul.Client.Communication.Handlers.InformDataEventHandlers
                 }
                 catch (InvalidCastException ex)
                 {
-                    Global.SystemManagers.DebugInformManager.DebugInform("Inform System Version Event Parameter Cast Error");
+                    Global.SystemManagers.DebugInformManager.DebugInform("Inform Container Event Parameter Cast Error");
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.Message);
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.StackTrace);
                     return false;

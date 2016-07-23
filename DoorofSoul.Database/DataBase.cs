@@ -27,6 +27,7 @@ namespace DoorofSoul.Database
         public AuthenticationManager AuthenticationManager { get; protected set; }
         public RepositoryManager RepositoryManager { get; protected set; }
         public RelationManager RelationManager { get; protected set; }
+        public ILogger Log { get; protected set; }
 
         protected DataBase(ILogger log)
         {
@@ -42,6 +43,6 @@ namespace DoorofSoul.Database
             connection.Close();
         }
 
-        public ILogger Log { get; protected set; }
+        
     }
 }

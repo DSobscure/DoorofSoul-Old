@@ -30,7 +30,7 @@ namespace DoorofSoul.Library
             if (!answerDictionary.ContainsKey(answer.AnswerID))
             {
                 answerDictionary.Add(answer.AnswerID, answer);
-                answer.LoadSouls(DataBase.Instance.RepositoryManager.SoulRepository.ListOfAnswer(answer.AnswerID));
+                answer.LoadSouls(DataBase.Instance.RepositoryManager.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
                     ProjectSoul(soul);
@@ -43,6 +43,7 @@ namespace DoorofSoul.Library
             {
                 soulDictionary.Add(soul.SoulID, soul);
                 List<int> containerIDs = DataBase.Instance.RelationManager.SoulID_ContainerID_Relation.GetContainerIDs(soul.SoulID);
+                List<Container> containers = new List<Container>();
                 foreach (int containerID in containerIDs)
                 {
                     Container container;
@@ -53,10 +54,14 @@ namespace DoorofSoul.Library
                     else
                     {
                         container = DataBase.Instance.RepositoryManager.ContainerRepository.Find(containerID);
+                        containerDictionary.Add(containerID, container);
                     }
                     soul.LinkContainer(container);
                     container.LinkSoul(soul);
+                    containers.Add(container);
                 }
+                Answer answer = answerDictionary[soul.AnswerID];
+                answer.LoadContainers(containers);
             }
         }
         public bool ActiveSoul(int soulID)
@@ -68,6 +73,8 @@ namespace DoorofSoul.Library
                 foreach(Container container in soul.Containers)
                 {
                     ProjectContainer(container);
+                    container.LocatedScene.OnEntityEnter += soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
+                    container.LocatedScene.OnEntityExit += soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                 }
                 return true;
             }
@@ -81,8 +88,9 @@ namespace DoorofSoul.Library
             if (!containerDictionary.ContainsKey(container.ContainerID))
             {
                 containerDictionary.Add(container.ContainerID, container);
-                Hexagram.Instance.Nature.ProjectEntity(container);
+                
             }
+            Hexagram.Instance.Nature.ProjectEntity(container);
         }
 
         public void ExtractPlayer(Player player)
@@ -113,13 +121,16 @@ namespace DoorofSoul.Library
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
-                    soul.UnlinkContainer(container);
-                    if(container.IsEmptyContainer)
+                    Scene locatedScene = container.LocatedScene;
+                    if (container.IsEmptyContainer)
                     {
                         ExtractContainer(container);
                         DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
                     }
+                    locatedScene.OnEntityEnter -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
+                    locatedScene.OnEntityExit -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                 }
+                soul.UnlinkAllContainers();
                 DeactiveSoul(soul.SoulID);
                 soulDictionary.Remove(soul.SoulID);
             }
@@ -150,8 +161,13 @@ namespace DoorofSoul.Library
             if(answerDictionary.ContainsKey(answerID))
             {
                 Answer answer = answerDictionary[answerID];
-                Soul soul = DataBase.Instance.RepositoryManager.SoulRepository.Create(answerID, soulName);
+                Soul soul = DataBase.Instance.RepositoryManager.SoulRepository.Create(answer, soulName);
                 answer.LoadSouls(new List<Soul> { soul });
+                Container defaultContainer = DataBase.Instance.RepositoryManager.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
+                {
+                    scale = new DSVector3 { x = 1, y = 1, z = 1 },
+                });
+                DataBase.Instance.RelationManager.SoulID_ContainerID_Relation.Link_Soul_Container(soul.SoulID, defaultContainer.ContainerID);
                 ProjectSoul(soul);
                 return true;
             }

@@ -21,7 +21,10 @@ namespace DoorofSoul.Client.Communication.Managers.EventManagers
                 { InformDataCode.Answer, new  InformAnswerEventHandler()},
                 { InformDataCode.Soul, new  InformSoulEventHandler()},
                 { InformDataCode.Container, new  InformContainerEventHandler()},
-                { InformDataCode.SoulContainerConnection, new  InformSoulContainerConnectionEventHandler()}
+                { InformDataCode.SoulContainerConnection, new  InformSoulContainerConnectionEventHandler()},
+                { InformDataCode.Scene, new  InformSceneEventHandler()},
+                { InformDataCode.SceneEntityEnter, new  InformSceneEntityEnterEventHandler()},
+                { InformDataCode.SceneEntityExit, new  InformSceneEntityExitEventHandler()},
             };
         }
         public override bool CheckParameter(EventData eventData, out string debugMessage)

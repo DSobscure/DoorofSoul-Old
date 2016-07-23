@@ -12,6 +12,7 @@ namespace DoorofSoul.Server
 {
     public class ServerPlayer : Player
     {
+
         public Guid Guid
         {
             get { return peer.Guid; }
@@ -19,7 +20,7 @@ namespace DoorofSoul.Server
 
         protected Peer peer;
 
-        public ServerPlayer(Peer peer)
+        public ServerPlayer(Peer peer) : base()
         {
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
@@ -32,7 +33,7 @@ namespace DoorofSoul.Server
             LastConnectedIPAddress = peer.RemoteIPAddress;
         }
 
-        public void SendServerEvent(EventCode eventCode, Dictionary<byte, object> parameters)
+        private void SendServerEvent(EventCode eventCode, Dictionary<byte, object> parameters)
         {
             EventData eventData = new EventData
             {

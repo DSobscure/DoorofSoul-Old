@@ -29,8 +29,11 @@ public class ErrorInformController : MonoBehaviour, IEventProvider
 
     private void ErrorInform(string errorMessage)
     {
-        var panel = Instantiate(errorInformPanelPrefab);
-        panel.transform.SetParent(GameObject.Find("Canvas").transform);
-        panel.ShowMessage(errorMessage);
+        if(errorMessage != null)
+        {
+            var panel = Instantiate(errorInformPanelPrefab);
+            panel.transform.SetParent(GameObject.Find("Canvas").transform);
+            panel.ShowMessage(errorMessage);
+        }
     }
 }

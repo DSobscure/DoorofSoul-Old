@@ -6,21 +6,21 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLSoulRepository : SoulRepository
     {
-        public override Soul Create(int answerID, string soulName)
+        public override Soul Create(Answer answer, string soulName)
         {
             string sqlString = @"INSERT INTO Souls 
                 (AnswerID, SoulName) VALUES (@answerID, @soulName) ;
                 SELECT LAST_INSERT_ID();";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
-                command.Parameters.AddWithValue("@answerID", answerID);
+                command.Parameters.AddWithValue("@answerID", answer.AnswerID);
                 command.Parameters.AddWithValue("@soulName", soulName);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         int soulID = reader.GetInt32(0);
-                        return Find(soulID);
+                        return Find(soulID, answer);
                     }
                     else
                     {
@@ -44,7 +44,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override Soul Find(int soulID)
+        public override Soul Find(int soulID, Answer answer)
         {
             string sqlString = @"SELECT  
                 AnswerID, SoulName
@@ -58,7 +58,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     {
                         int answerID = reader.GetInt32(0);
                         string soulName = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                        return new Soul(soulID, answerID, soulName);
+                        return new Soul(soulID, answer, soulName);
                     }
                     else
                     {
@@ -68,36 +68,14 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override List<Soul> List()
-        {
-            string sqlString = @"SELECT  
-                SoulID, AnswerID, SoulName
-                from Souls;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
-            {
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    List<Soul> souls = new List<Soul>();
-                    while (reader.Read())
-                    {
-                        int soulID = reader.GetInt32(0);
-                        int answerID = reader.GetInt32(1);
-                        string soulName = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                        souls.Add(new Soul(soulID, answerID, soulName));
-                    }
-                    return souls;
-                }
-            }
-        }
-
-        public override List<Soul> ListOfAnswer(int answerID)
+        public override List<Soul> ListOfAnswer(Answer answer)
         {
             string sqlString = @"SELECT  
                 SoulID, SoulName
                 from Souls Where AnswerID = @answerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
-                command.Parameters.AddWithValue("answerID", answerID);
+                command.Parameters.AddWithValue("answerID", answer.AnswerID);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     List<Soul> souls = new List<Soul>();
@@ -105,7 +83,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     {
                         int soulID = reader.GetInt32(0);
                         string soulName = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                        souls.Add(new Soul(soulID, answerID, soulName));
+                        souls.Add(new Soul(soulID, answer, soulName));
                     }
                     return souls;
                 }

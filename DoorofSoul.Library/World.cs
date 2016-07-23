@@ -22,6 +22,14 @@ namespace DoorofSoul.Library
             sceneDictionary = new Dictionary<int, Scene>();
         }
 
+        public void LoadScenes(List<Scene> sceneList)
+        {
+            foreach (Scene scene in sceneList)
+            {
+                sceneDictionary.Add(scene.SceneID, scene);
+            }
+        }
+
         public void EntityEnter(Entity entity)
         {
             if(!entityDictionary.ContainsKey(entity.EntityID))
@@ -37,7 +45,7 @@ namespace DoorofSoul.Library
         {
             if (sceneDictionary.ContainsKey(entity.LocatedSceneID))
             {
-                sceneDictionary[entity.LocatedSceneID].EntityExit(entity);
+                sceneDictionary[entity.LocatedSceneID].EntityExit(entity.EntityID);
             }
             if (entityDictionary.ContainsKey(entity.EntityID))
             {

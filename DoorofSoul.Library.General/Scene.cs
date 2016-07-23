@@ -13,6 +13,12 @@ namespace DoorofSoul.Library.General
         protected Dictionary<int, Entity> entityDictionary;
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
 
+        private event Action<Entity> onEntityEnter;
+        public event Action<Entity> OnEntityEnter { add { onEntityEnter += value; } remove { onEntityEnter -= value; } }
+
+        private event Action<Entity> onEntityExit;
+        public event Action<Entity> OnEntityExit { add { onEntityExit += value; } remove { onEntityExit -= value; } }
+
         public Scene(int sceneID, string sceneName, int worldID)
         {
             SceneID = sceneID;
@@ -28,13 +34,16 @@ namespace DoorofSoul.Library.General
                 entityDictionary.Add(entity.EntityID, entity);
                 entity.LocatedSceneID = SceneID;
                 entity.LocatedScene = this;
+                onEntityEnter?.Invoke(entity);
             }
         }
-        public void EntityExit(Entity entity)
+        public void EntityExit(int entityID)
         {
-            if (entityDictionary.ContainsKey(entity.EntityID))
+            if (entityDictionary.ContainsKey(entityID))
             {
+                Entity entity = entityDictionary[entityID];
                 entityDictionary.Remove(entity.EntityID);
+                onEntityExit?.Invoke(entity);
                 entity.LocatedSceneID = -1;
                 entity.LocatedScene = null;
             }

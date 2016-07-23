@@ -225,7 +225,8 @@ pip-log.txt
 *.prefab
 Temp/
 metadata/
-Standard Assets
+Standard Assets/
+ShaderCache/
 
 ##secret
 .config

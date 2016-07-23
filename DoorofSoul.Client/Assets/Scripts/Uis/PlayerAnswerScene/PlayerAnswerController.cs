@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using DoorofSoul.Client.Interfaces;
+using UnityEngine.SceneManagement;
+using System.Linq;
+using DoorofSoul.Library.General;
 
 public class PlayerAnswerController : MonoBehaviour
 {
     [SerializeField]
     private CreateSoulPanel createSoulPanel;
-
 
     public void CreateSoul()
     {

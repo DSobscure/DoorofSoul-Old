@@ -13,7 +13,9 @@ namespace DoorofSoul.Protocol.Communication
         Soul,
         Container,
         SoulContainerConnection,
-        SceneEntityInformation,
+        Scene,
+        SceneEntityEnter,
+        SceneEntityExit,
         EntityTransform,
         EntityVelocity
     }

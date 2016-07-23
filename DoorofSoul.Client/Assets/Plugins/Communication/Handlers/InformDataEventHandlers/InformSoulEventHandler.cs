@@ -30,12 +30,19 @@ namespace DoorofSoul.Client.Communication.Handlers.InformDataEventHandlers
                     int soulID = (int)parameters[(byte)InformSoulParameterCode.SoulID];
                     int answerID = (int)parameters[(byte)InformSoulParameterCode.AnswerID];
                     string soulName = (string)parameters[(byte)InformSoulParameterCode.SoulName];
-                    Global.Player.Answer.LoadSouls(new List<Soul> { new Soul(soulID, answerID, soulName) });
-                    return true;
+                    if(Global.Player.Answer.AnswerID == answerID)
+                    {
+                        Global.Player.Answer.LoadSouls(new List<Soul> { new Soul(soulID, Global.Player.Answer, soulName) });
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 catch (InvalidCastException ex)
                 {
-                    Global.SystemManagers.DebugInformManager.DebugInform("Inform System Version Event Parameter Cast Error");
+                    Global.SystemManagers.DebugInformManager.DebugInform("Inform Soul Event Parameter Cast Error");
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.Message);
                     Global.SystemManagers.DebugInformManager.DebugInform(ex.StackTrace);
                     return false;

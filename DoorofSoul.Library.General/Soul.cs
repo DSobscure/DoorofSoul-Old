@@ -9,17 +9,18 @@ namespace DoorofSoul.Library.General
     {
         public int SoulID { get; protected set; }
         public int AnswerID { get; protected set; }
-        protected Answer answer;
+        public Answer Answer { get; protected set; }
         public string SoulName { get; set; }
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
         public bool IsActive { get; set; }
 
-        public Soul(int soulID, int answerID, string soulName)
+        public Soul(int soulID, Answer answer, string soulName)
         {
             SoulID = soulID;
-            AnswerID = answerID;
+            AnswerID = answer.AnswerID;
+            Answer = answer;
             SoulName = soulName;
             containerDictionary = new Dictionary<int, Container>();
         }
@@ -36,6 +37,10 @@ namespace DoorofSoul.Library.General
             {
                 containerDictionary.Remove(container.ContainerID);
             }
+        }
+        public void UnlinkAllContainers()
+        {
+            containerDictionary.Clear();
         }
     }
 }

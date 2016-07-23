@@ -17,7 +17,9 @@ namespace DoorofSoul.Server.Operations.Handlers
                 { FetchDataCode.Answer, new FetchAnswerHandler(peer) },
                 { FetchDataCode.Souls, new FetchSoulsHandler(peer) },
                 { FetchDataCode.Containers, new FetchContainersHandler(peer) },
-                { FetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) }
+                { FetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) },
+                { FetchDataCode.Scene, new FetchSceneHandler(peer) },
+                { FetchDataCode.SceneEntitiesInformation, new FetchSceneEntitiesInformationHandler(peer) },
             };
         }
 
@@ -34,7 +36,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                 }
                 else
                 {
-                    debugMessage = "fetch operation not exist";
+                    debugMessage = string.Format("fetch operation not exist fetch code: {0}", fetchCode);
                     SendError(operationRequest.OperationCode, ErrorCode.InvalidOperation, debugMessage, LauguageDictionarySelector.Instance[peer.UsingLanguage]["Not Existed Fetch Operation"]);
                     return false;
                 }

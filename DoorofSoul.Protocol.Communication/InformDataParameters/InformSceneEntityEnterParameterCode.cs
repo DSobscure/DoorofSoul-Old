@@ -5,10 +5,11 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication.InformDataParameters
 {
-    public enum InformSceneEntityInformationParameterCode : byte
+    public enum InformSceneEntityEnterParameterCode : byte
     {
         EntityID,
         EntityName,
+        LocatedSceneID,
         PositionX,
         PositionY,
         PositionZ,

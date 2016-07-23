@@ -66,6 +66,8 @@
     <Compile Include="Operations\Handlers\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchAnswerHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchContainersHandler.cs" />
+    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSceneEntitiesInformationHandler.cs" />
+    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSceneHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSoulContainerConnectionsHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSoulsHandler.cs" />
     <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSystemVersionHandler.cs" />

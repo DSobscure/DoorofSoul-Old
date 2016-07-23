@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Client.Communication;
 using DoorofSoul.Client.Communication.Managers;
+using DoorofSoul.Client.Scene;
 using DoorofSoul.Library.General;
 
 public static class Global
@@ -10,6 +11,7 @@ public static class Global
     public static readonly SystemManagers SystemManagers;
     public static readonly VersionManager VersionManager;
     public static readonly PhotonService PhotonService;
+    public static readonly ScenesManager ScenesManager;
 
     public static Player Player { get; set; }
 
@@ -20,6 +22,7 @@ public static class Global
         EventManagers = new EventManagers();
         SystemManagers = new SystemManagers();
         VersionManager = new VersionManager();
+        ScenesManager = new ScenesManager();
         PhotonService = new PhotonService("DoorofSoul.Server", "doorofsoul.duckdns.org", 5055);
 
         EventManagers.EventManager.BindManagers();

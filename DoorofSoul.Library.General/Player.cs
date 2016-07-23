@@ -2,6 +2,7 @@
 using System.Net;
 using System.Collections.Generic;
 using System;
+using DoorofSoul.Library.General.Events;
 
 namespace DoorofSoul.Library.General
 {
@@ -19,9 +20,12 @@ namespace DoorofSoul.Library.General
         private event Action<Answer> onActiveAnswer;
         public event Action<Answer> OnActiveAnswer { add { onActiveAnswer += value; } remove { onActiveAnswer -= value; } }
 
+        public PlayerEventManagers PlayerEventManager { get; protected set; }
+
         public Player()
         {
             UsingLanguage = SupportLauguages.Chinese_Traditional;
+            PlayerEventManager = new PlayerEventManagers(this);
         }
         public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
         {

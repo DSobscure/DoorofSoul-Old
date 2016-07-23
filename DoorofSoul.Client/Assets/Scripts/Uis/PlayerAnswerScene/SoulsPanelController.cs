@@ -62,6 +62,8 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
             rect.localPosition = Vector3.zero;
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
             soulPanel.Show(soul);
+            int soulID = soul.SoulID;
+            soulPanel.SetButton("連結", () => { Global.OperationManagers.OperationManager.ActivateSoul(soulID); });
             counter++;
         }
     }

@@ -29,7 +29,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -41,10 +41,10 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                         {
                             var result = new Dictionary<byte, object>
                             {
-                                { (byte)InformSoulContainerConnectionParameterCode.SoulID, soul.SoulID },
-                                { (byte)InformSoulContainerConnectionParameterCode.ContainerID, container.ContainerID }
+                                { (byte)InformSoulContainerLinkParameterCode.SoulID, soul.SoulID },
+                                { (byte)InformSoulContainerLinkParameterCode.ContainerID, container.ContainerID }
                             };
-                            SendEvent((byte)InformDataCode.SoulContainerConnection, result);
+                            SendEvent((byte)PlayerInformDataCode.SoulContainerConnection, result);
                         }
                     }
                     return true;

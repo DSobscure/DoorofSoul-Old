@@ -24,7 +24,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                 return true;
             }
         }
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if(base.Handle(fetchCode, parameter))
             {
@@ -35,7 +35,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                         { (byte)InformAnswerParameterCode.AnswerID, peer.Player.Answer.AnswerID },
                         { (byte)InformAnswerParameterCode.SoulCountLimit, peer.Player.Answer.SoulCountLimit }
                     };
-                    SendEvent((byte)InformDataCode.Answer, result);
+                    SendEvent((byte)PlayerInformDataCode.Answer, result);
                     return true;
                 }
                 catch (InvalidCastException ex)

@@ -8,18 +8,18 @@ namespace DoorofSoul.Server.Operations.Handlers
 {
     public class FetchDataManager : OperationHandler
     {
-        protected readonly Dictionary<FetchDataCode, FetchDataHandler> fetchTable;
+        protected readonly Dictionary<PlayerFetchDataCode, FetchDataHandler> fetchTable;
         public FetchDataManager(Peer peer) : base(peer)
         {
-            fetchTable = new Dictionary<FetchDataCode, FetchDataHandler>
+            fetchTable = new Dictionary<PlayerFetchDataCode, FetchDataHandler>
             {
-                { FetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) },
-                { FetchDataCode.Answer, new FetchAnswerHandler(peer) },
-                { FetchDataCode.Souls, new FetchSoulsHandler(peer) },
-                { FetchDataCode.Containers, new FetchContainersHandler(peer) },
-                { FetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) },
-                { FetchDataCode.Scene, new FetchSceneHandler(peer) },
-                { FetchDataCode.SceneEntitiesInformation, new FetchSceneEntitiesInformationHandler(peer) },
+                { PlayerFetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) },
+                { PlayerFetchDataCode.Answer, new FetchAnswerHandler(peer) },
+                { PlayerFetchDataCode.Souls, new FetchSoulsHandler(peer) },
+                { PlayerFetchDataCode.Containers, new FetchContainersHandler(peer) },
+                { PlayerFetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) },
+                { PlayerFetchDataCode.Scene, new FetchSceneHandler(peer) },
+                { PlayerFetchDataCode.SceneEntitiesInformation, new FetchSceneEntitiesInformationHandler(peer) },
             };
         }
 
@@ -28,8 +28,8 @@ namespace DoorofSoul.Server.Operations.Handlers
             if(base.Handle(operationRequest))
             {
                 string debugMessage;
-                FetchDataCode fetchCode = (FetchDataCode)operationRequest.Parameters[(byte)FetchDataOperationParameterCode.FetchDataCode];
-                Dictionary<byte, object> parameters = (Dictionary<byte, object>)operationRequest.Parameters[(byte)FetchDataOperationParameterCode.Parameters];
+                PlayerFetchDataCode fetchCode = (PlayerFetchDataCode)operationRequest.Parameters[(byte)FetchDataParameterCode.FetchDataCode];
+                Dictionary<byte, object> parameters = (Dictionary<byte, object>)operationRequest.Parameters[(byte)FetchDataParameterCode.Parameters];
                 if (fetchTable.ContainsKey(fetchCode))
                 {
                     return fetchTable[fetchCode].Handle(fetchCode, parameters);

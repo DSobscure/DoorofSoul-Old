@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.EventParameters.Player;
+using DoorofSoul.Protocol.Communication.OperationParameters.Player;
+using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Events.Managers;
 
 namespace DoorofSoul.Library.General
 {
@@ -22,6 +27,41 @@ namespace DoorofSoul.Library.General
         private event Action<Answer> onLoadContainers;
         public event Action<Answer> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
 
+        #region communication
+        public AnswerEventManager AnswerEventManager { get; protected set; }
+        public AnswerOperationManager AnswerOperationManager { get; protected set; }
+        public void SendEvent(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerEventParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)AnswerEventParameterCode.Parameters, parameters }
+            };
+            Player.SendEvent(PlayerEventCode.AnswerEvent, eventData);
+        }
+        public void SendResponse(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerOperationParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)AnswerOperationParameterCode.Parameters, parameters }
+            };
+            Player.SendResponse(PlayerOperationCode.AnswerOperation, operationData);
+        }
+        public void SendError(AnswerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerOperationParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)AnswerOperationParameterCode.Parameters, parameters }
+            };
+            Player.SendError(PlayerOperationCode.AnswerOperation, errorCode, debugMessage, operationData);
+        }
+        #endregion
+
         public Answer(int answerID, int soulCountLimit, Player player)
         {
             AnswerID = answerID;
@@ -29,7 +69,10 @@ namespace DoorofSoul.Library.General
             Player = player;
             soulDictionary = new Dictionary<int, Soul>();
             containerDictionary = new Dictionary<int, Container>();
+            AnswerOperationManager = new AnswerOperationManager(this);
+            AnswerEventManager = new AnswerEventManager(this);
         }
+
         public void ClearSouls()
         {
             soulDictionary.Clear();

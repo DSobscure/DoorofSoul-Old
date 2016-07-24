@@ -28,7 +28,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -42,33 +42,33 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                         {
                             var result = new Dictionary<byte, object>
                             {
-                                { (byte)InformSceneEntityEnterParameterCode.EntityID, entity.EntityID },
-                                { (byte)InformSceneEntityEnterParameterCode.EntityName, entity.EntityName },
-                                { (byte)InformSceneEntityEnterParameterCode.LocatedSceneID, entity.LocatedSceneID },
-                                { (byte)InformSceneEntityEnterParameterCode.PositionX, entity.Position.x },
-                                { (byte)InformSceneEntityEnterParameterCode.PositionY, entity.Position.y },
-                                { (byte)InformSceneEntityEnterParameterCode.PositionZ, entity.Position.z },
-                                { (byte)InformSceneEntityEnterParameterCode.RotationX, entity.Rotation.x },
-                                { (byte)InformSceneEntityEnterParameterCode.RotationY, entity.Rotation.y },
-                                { (byte)InformSceneEntityEnterParameterCode.RotationZ, entity.Rotation.z },
-                                { (byte)InformSceneEntityEnterParameterCode.ScaleX, entity.Scale.x },
-                                { (byte)InformSceneEntityEnterParameterCode.ScaleY, entity.Scale.y },
-                                { (byte)InformSceneEntityEnterParameterCode.ScaleZ, entity.Scale.z },
-                                { (byte)InformSceneEntityEnterParameterCode.VelocityX, entity.Velocity.x },
-                                { (byte)InformSceneEntityEnterParameterCode.VelocityY, entity.Velocity.y },
-                                { (byte)InformSceneEntityEnterParameterCode.VelocityZ, entity.Velocity.z },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxVelocityX, entity.MaxVelocity.x },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxVelocityY, entity.MaxVelocity.y },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxVelocityZ, entity.MaxVelocity.z },
-                                { (byte)InformSceneEntityEnterParameterCode.AngularVelocityX, entity.AngularVelocity.x },
-                                { (byte)InformSceneEntityEnterParameterCode.AngularVelocityY, entity.AngularVelocity.y },
-                                { (byte)InformSceneEntityEnterParameterCode.AngularVelocityZ, entity.AngularVelocity.z },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxAngularVelocityX, entity.MaxAngularVelocity.x },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxAngularVelocityY, entity.MaxAngularVelocity.y },
-                                { (byte)InformSceneEntityEnterParameterCode.MaxAngularVelocityZ, entity.MaxAngularVelocity.z },
-                                { (byte)InformSceneEntityEnterParameterCode.Mass, entity.Mass },
+                                { (byte)InformEntityEnterParameterCode.EntityID, entity.EntityID },
+                                { (byte)InformEntityEnterParameterCode.EntityName, entity.EntityName },
+                                { (byte)InformEntityEnterParameterCode.LocatedSceneID, entity.LocatedSceneID },
+                                { (byte)InformEntityEnterParameterCode.PositionX, entity.Position.x },
+                                { (byte)InformEntityEnterParameterCode.PositionY, entity.Position.y },
+                                { (byte)InformEntityEnterParameterCode.PositionZ, entity.Position.z },
+                                { (byte)InformEntityEnterParameterCode.RotationX, entity.Rotation.x },
+                                { (byte)InformEntityEnterParameterCode.RotationY, entity.Rotation.y },
+                                { (byte)InformEntityEnterParameterCode.RotationZ, entity.Rotation.z },
+                                { (byte)InformEntityEnterParameterCode.ScaleX, entity.Scale.x },
+                                { (byte)InformEntityEnterParameterCode.ScaleY, entity.Scale.y },
+                                { (byte)InformEntityEnterParameterCode.ScaleZ, entity.Scale.z },
+                                { (byte)InformEntityEnterParameterCode.VelocityX, entity.Velocity.x },
+                                { (byte)InformEntityEnterParameterCode.VelocityY, entity.Velocity.y },
+                                { (byte)InformEntityEnterParameterCode.VelocityZ, entity.Velocity.z },
+                                { (byte)InformEntityEnterParameterCode.MaxVelocityX, entity.MaxVelocity.x },
+                                { (byte)InformEntityEnterParameterCode.MaxVelocityY, entity.MaxVelocity.y },
+                                { (byte)InformEntityEnterParameterCode.MaxVelocityZ, entity.MaxVelocity.z },
+                                { (byte)InformEntityEnterParameterCode.AngularVelocityX, entity.AngularVelocity.x },
+                                { (byte)InformEntityEnterParameterCode.AngularVelocityY, entity.AngularVelocity.y },
+                                { (byte)InformEntityEnterParameterCode.AngularVelocityZ, entity.AngularVelocity.z },
+                                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityX, entity.MaxAngularVelocity.x },
+                                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityY, entity.MaxAngularVelocity.y },
+                                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityZ, entity.MaxAngularVelocity.z },
+                                { (byte)InformEntityEnterParameterCode.Mass, entity.Mass },
                             };
-                            SendEvent((byte)InformDataCode.SceneEntityEnter, result);
+                            SendEvent((byte)PlayerInformDataCode.SceneEntityEnter, result);
                         }
                         return true;
                     }

@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Language;
 using DoorofSoul.Server.Operations;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;

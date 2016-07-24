@@ -28,7 +28,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -44,7 +44,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                             { (byte)InformSceneParameterCode.SceneName, scene.SceneName },
                             { (byte)InformSceneParameterCode.WorldID, scene.WorldID }
                         };
-                        SendEvent((byte)InformDataCode.Scene, result);
+                        SendEvent((byte)PlayerInformDataCode.Scene, result);
                         return true;
                     }
                     else

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Photon.SocketServer;
-using DoorofSoul.Protocol.Communication.OperationParameters;
-using DoorofSoul.Protocol.Communication.ResponseParameters;
+using DoorofSoul.Protocol.Communication.OperationParameters.Player;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
 
 namespace DoorofSoul.Server.Operations.Handlers
 {
@@ -31,18 +31,18 @@ namespace DoorofSoul.Server.Operations.Handlers
             if(base.Handle(operationRequest))
             {
                 string debugMessage, errorMessage;
-                string account = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Account];
-                string password = (string)operationRequest.Parameters[(byte)PlayerLoginOperationParameterCode.Password];
+                string account = (string)operationRequest.Parameters[(byte)LoginParameterCode.Account];
+                string password = (string)operationRequest.Parameters[(byte)LoginParameterCode.Password];
                 bool result = Application.ServerInstance.PlayerFactory.PlayerLogin(peer.Player, account, password, out debugMessage, out errorMessage);
                 if(result)
                 {
                     Dictionary<byte, object> parameters = new Dictionary<byte, object>
                     {
-                        { (byte)PlayerLoginResponseParameterCode.PlayerID, peer.Player.PlayerID },
-                        { (byte)PlayerLoginResponseParameterCode.Account, peer.Player.Account },
-                        { (byte)PlayerLoginResponseParameterCode.Nickname, peer.Player.Nickname },
-                        { (byte)PlayerLoginResponseParameterCode.UsingLanguageCode, (byte)peer.Player.UsingLanguage },
-                        { (byte)PlayerLoginResponseParameterCode.AnswerID, peer.Player.AnswerID }
+                        { (byte)LoginResponseParameterCode.PlayerID, peer.Player.PlayerID },
+                        { (byte)LoginResponseParameterCode.Account, peer.Player.Account },
+                        { (byte)LoginResponseParameterCode.Nickname, peer.Player.Nickname },
+                        { (byte)LoginResponseParameterCode.UsingLanguageCode, (byte)peer.Player.UsingLanguage },
+                        { (byte)LoginResponseParameterCode.AnswerID, peer.Player.AnswerID }
                     };
                     SendResponse(operationRequest.OperationCode, parameters);
                 }

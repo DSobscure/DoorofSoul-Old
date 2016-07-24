@@ -20,7 +20,7 @@ namespace DoorofSoul.Server.Operations.Handlers
             this.peer = peer;
         }
 
-        public virtual bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public virtual bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             string debugMessage;
             if (CheckParameter(parameter, out debugMessage))
@@ -41,7 +41,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                 Code = (byte)EventCode.InformData,
                 Parameters = new Dictionary<byte, object>
                 {
-                    { (byte)InformDataEventParameterCode.InformCode, InformDataCode.FetchDataError },
+                    { (byte)InformDataEventParameterCode.InformCode, PlayerInformDataCode.FetchDataError },
                     { (byte)InformDataEventParameterCode.ReturnCode, errorCode },
                     { (byte)InformDataEventParameterCode.Parameters, new Dictionary<byte, object>
                     {
@@ -52,7 +52,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                     }
                 }
             };
-            Application.Log.ErrorFormat("Error On Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", (FetchDataCode)fetchCode, errorCode, debugMessage);
+            Application.Log.ErrorFormat("Error On Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", (PlayerFetchDataCode)fetchCode, errorCode, debugMessage);
             peer.SendEvent(eventData, new SendParameters());
         }
         public void SendEvent(byte informCode, Dictionary<byte, object> parameter)

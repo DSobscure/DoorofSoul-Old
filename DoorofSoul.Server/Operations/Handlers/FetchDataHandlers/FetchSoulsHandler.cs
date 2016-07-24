@@ -26,7 +26,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                             { (byte)InformSoulParameterCode.AnswerID, soul.AnswerID },
                             { (byte)InformSoulParameterCode.SoulName, soul.SoulName }
                         };
-                        SendEvent((byte)InformDataCode.Soul, result);
+                        SendEvent((byte)PlayerInformDataCode.Soul, result);
                     }
                     return true;
                 }

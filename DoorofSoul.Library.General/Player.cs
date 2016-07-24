@@ -1,13 +1,19 @@
-﻿using DoorofSoul.Protocol.Communication;
-using System.Net;
-using System.Collections.Generic;
+﻿using DoorofSoul.Library.General.Events;
+using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Language;
 using System;
-using DoorofSoul.Library.General.Events;
+using System.Collections.Generic;
+using System.Net;
 
 namespace DoorofSoul.Library.General
 {
     public class Player
     {
+        #region properties
         public int PlayerID { get; protected set; }
         public string Account { get; protected set; }
         public string Nickname { get; protected set; }
@@ -17,15 +23,28 @@ namespace DoorofSoul.Library.General
         public bool IsOnline { get; set; }
         public bool IsActivated { get; set; }
         public Answer Answer { get; protected set; }
+        #endregion
+
+        #region events
         private event Action<Answer> onActiveAnswer;
         public event Action<Answer> OnActiveAnswer { add { onActiveAnswer += value; } remove { onActiveAnswer -= value; } }
+        #endregion
 
-        public PlayerEventManagers PlayerEventManager { get; protected set; }
+        #region communication
+        public PlayerEventManagers PlayerEventManagers { get; protected set; }
+        public PlayerEventManager PlayerEventManager { get; protected set; }
+        public PlayerOperationManager PlayerOperationManager { get; protected set; }
+        public Action<PlayerEventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
+        public Action<PlayerOperationCode, Dictionary<byte, object>> SendResponse { get; protected set; }
+        public Action<PlayerOperationCode, ErrorCode, string, Dictionary<byte, object>> SendError { get; protected set; }
+        #endregion
 
         public Player()
         {
             UsingLanguage = SupportLauguages.Chinese_Traditional;
             PlayerEventManager = new PlayerEventManagers(this);
+            PlayerEventManager = new PlayerEventManager(this);
+            PlayerOperationManager = new PlayerOperationManager(this);
         }
         public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
         {
@@ -54,8 +73,6 @@ namespace DoorofSoul.Library.General
             UsingLanguage = player.UsingLanguage;
             AnswerID = player.AnswerID;
         }
-
-        public Action<EventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
 
         public bool ActiveAnswer(Answer answer)
         {

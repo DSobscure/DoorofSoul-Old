@@ -90,7 +90,7 @@ namespace DoorofSoul.Library
                 containerDictionary.Add(container.ContainerID, container);
                 
             }
-            Hexagram.Instance.Nature.ProjectEntity(container);
+            Hexagram.Instance.Nature.ProjectContainer(container);
         }
 
         public void ExtractPlayer(Player player)
@@ -121,14 +121,17 @@ namespace DoorofSoul.Library
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
-                    Scene locatedScene = container.LocatedScene;
-                    if (container.IsEmptyContainer)
+                    if(soul.IsActive)
                     {
-                        ExtractContainer(container);
-                        DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
+                        Scene locatedScene = container.Entity.LocatedScene;
+                        if (container.IsEmptyContainer)
+                        {
+                            ExtractContainer(container);
+                            DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
+                        }
+                        locatedScene.OnEntityEnter -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
+                        locatedScene.OnEntityExit -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                     }
-                    locatedScene.OnEntityEnter -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
-                    locatedScene.OnEntityExit -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                 }
                 soul.UnlinkAllContainers();
                 DeactiveSoul(soul.SoulID);
@@ -151,7 +154,7 @@ namespace DoorofSoul.Library
         {
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
-                Hexagram.Instance.Nature.ExtractEntity(container);
+                Hexagram.Instance.Nature.ExtractContainer(container);
                 containerDictionary.Remove(container.ContainerID);
             }
         }

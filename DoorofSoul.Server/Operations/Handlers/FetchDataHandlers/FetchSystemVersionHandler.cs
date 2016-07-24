@@ -25,7 +25,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -36,7 +36,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                         { (byte)InformSystemVersionParameterCode.CurrentServerVersion, Application.ServerInstance.SystemConfiguration.ServerVersion },
                         { (byte)InformSystemVersionParameterCode.CurrentClientVersion, Application.ServerInstance.SystemConfiguration.ClientVersion }
                     };
-                    SendEvent((byte)InformDataCode.SystemVersion, result);
+                    SendEvent((byte)PlayerInformDataCode.SystemVersion, result);
                     return true;
                 }
                 catch(InvalidCastException ex)

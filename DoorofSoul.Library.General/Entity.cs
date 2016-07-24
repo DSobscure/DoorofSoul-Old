@@ -1,12 +1,17 @@
-﻿using System;
+﻿using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters.Scene;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DoorofSoul.Library.General
 {
     public class Entity
     {
+        #region properties
         public int EntityID { get; protected set; }
         public string EntityName { get; protected set; }
         public int LocatedSceneID { get; set; }
@@ -55,16 +60,57 @@ namespace DoorofSoul.Library.General
             get { return SpaceProperties.mass; }
             protected set { SpaceProperties.mass = value; }
         }
+        #endregion
+        #region events
         private event Action<Entity> onEntityTranformChange;
         public event Action<Entity> OnEntityTranformChange { add { onEntityTranformChange += value; } remove { onEntityTranformChange -= value; } }
         private event Action<Entity> onEntityVelocityChange;
         public event Action<Entity> OnEntityVelocityChange { add { onEntityVelocityChange += value; } remove { onEntityVelocityChange -= value; } }
+        #endregion
+
+        #region communication
+        public EntityEventManager EntityEventManager { get; protected set; }
+        public EntityOperationManager EntityOperationManager { get; protected set; }
+        public void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)EntityEventParameterCode.EntityID, EntityID },
+                { (byte)EntityEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)EntityEventParameterCode.Parameters, parameters }
+            };
+            LocatedScene.SendEvent(SceneEventCode.EntityEvent, eventData);
+        }
+        public void SendResponse(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)EntityOperationParameterCode.EntityID, EntityID },
+                { (byte)EntityOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)EntityOperationParameterCode.Parameters, parameters }
+            };
+            LocatedScene.SendResponse(SceneOperationCode.EntityOperation, operationData);
+        }
+        public void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)EntityOperationParameterCode.EntityID, EntityID },
+                { (byte)EntityOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)EntityOperationParameterCode.Parameters, parameters }
+            };
+            LocatedScene.SendError(SceneOperationCode.EntityOperation, errorCode, debugMessage, operationData);
+        }
+        #endregion
+
         public Entity(int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
         {
             EntityID = entityID;
             EntityName = entityName;
             LocatedSceneID = locatedSceneID;
-            this.SpaceProperties = spaceProperties;
+            SpaceProperties = spaceProperties;
+            EntityEventManager = new EntityEventManager(this);
+            EntityOperationManager = new EntityOperationManager(this);
         }
 
         public void UpdateEntityTransform(DSVector3 position, DSVector3 rotation, DSVector3 scale)

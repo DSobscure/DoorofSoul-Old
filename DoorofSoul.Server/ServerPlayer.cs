@@ -7,6 +7,8 @@ using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication;
 using Photon.SocketServer;
 using System.Net;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 
 namespace DoorofSoul.Server
 {
@@ -25,6 +27,8 @@ namespace DoorofSoul.Server
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
             SendEvent = SendServerEvent;
+            SendResponse = SendServerResponse;
+            SendError = SendServerError;
         }
         public void RelifeWithNewPlayer(ServerPlayer newPlayer)
         {
@@ -33,7 +37,7 @@ namespace DoorofSoul.Server
             LastConnectedIPAddress = peer.RemoteIPAddress;
         }
 
-        private void SendServerEvent(EventCode eventCode, Dictionary<byte, object> parameters)
+        private void SendServerEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             EventData eventData = new EventData
             {
@@ -41,6 +45,23 @@ namespace DoorofSoul.Server
                 Parameters = parameters
             };
             peer.SendEvent(eventData, new SendParameters());
+        }
+        private void SendServerResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            OperationResponse response = new OperationResponse((byte)operationCode, parameters)
+            {
+                ReturnCode = (short)ErrorCode.NoError
+            };
+            peer.SendOperationResponse(response, new SendParameters());
+        }
+        private void SendServerError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            OperationResponse response = new OperationResponse((byte)operationCode, parameters)
+            {
+                ReturnCode = (short)errorCode,
+                DebugMessage = debugMessage
+            };
+            peer.SendOperationResponse(response, new SendParameters());
         }
     }
 }

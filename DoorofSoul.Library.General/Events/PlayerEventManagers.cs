@@ -5,7 +5,7 @@ using System.Text;
 using DoorofSoul.Library.General.Events.Managers;
 
 namespace DoorofSoul.Library.General.Events
-{
+{ 
     public class PlayerEventManagers
     {
         protected Player player;

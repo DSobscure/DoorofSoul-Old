@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library;
+﻿using DoorofSoul.Library.General;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 

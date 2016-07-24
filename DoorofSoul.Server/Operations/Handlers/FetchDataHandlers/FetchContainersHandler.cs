@@ -26,7 +26,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
             }
         }
 
-        public override bool Handle(FetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -63,7 +63,7 @@ namespace DoorofSoul.Server.Operations.Handlers.FetchDataHandlers
                             { (byte)InformContainerParameterCode.MaxAngularVelocityZ, container.MaxAngularVelocity.z },
                             { (byte)InformContainerParameterCode.Mass, container.Mass },
                         };
-                        SendEvent((byte)InformDataCode.Container, result);
+                        SendEvent((byte)PlayerInformDataCode.Container, result);
                     }
                     return true;
                 }

@@ -58,8 +58,6 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Config\SystemConfiguration.cs" />
-    <Compile Include="Languages\ChineseDictionary.cs" />
-    <Compile Include="LauguageDictionary.cs" />
     <Compile Include="Operations\Handlers\ActivateSoulHandler.cs" />
     <Compile Include="Operations\Handlers\CreateSoulHandler.cs" />
     <Compile Include="Operations\Handlers\DeleteSoulHandler.cs" />
@@ -74,8 +72,7 @@
     <Compile Include="Operations\Handlers\FetchDataManager.cs" />
     <Compile Include="Operations\Handlers\PlayerLoginHandler.cs" />
     <Compile Include="Operations\Handlers\PlayerLogoutHandler.cs" />
-    <Compile Include="Operations\OperationHandler.cs" />
-    <Compile Include="Operations\OperationManager.cs" />
+    <Compile Include="OperationManager.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PlayerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +94,10 @@
     <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
       <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
       <Name>DoorofSoul.Protocol.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
+      <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
+      <Name>DoorofSoul.Protocol.Language</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

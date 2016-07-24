@@ -7,6 +7,24 @@ namespace DoorofSoul.Library
 {
     public class Nature
     {
+        #region Container
+        private Dictionary<int, Container> containerDictionary;
+        public bool ContainsContainer(int container)
+        {
+            return containerDictionary.ContainsKey(container);
+        }
+        public Container FindContainer(int container)
+        {
+            if (ContainsContainer(container))
+            {
+                return containerDictionary[container];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
         #region Entity
         private Dictionary<int, Entity> entityDictionary;
         public bool ContainsEntity(int entityID)
@@ -85,6 +103,30 @@ namespace DoorofSoul.Library
             }
         }
 
+        public void ProjectContainer(Container container)
+        {
+            if (!ContainsContainer(container.ContainerID))
+            {
+                containerDictionary.Add(container.ContainerID, container);
+                if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
+                {
+                    Scene scene = sceneDictionary[container.Entity.LocatedSceneID];
+                    if (worldDictionary.ContainsKey(scene.WorldID))
+                    {
+                        worldDictionary[scene.WorldID].ContainerEnter(container);
+                        ProjectEntity(container.Entity);
+                    }
+                    else
+                    {
+                        Hexagram.Instance.Log.ErrorFormat("Hexagram: World Not Exist WorldID: {0}", scene.WorldID);
+                    }
+                }
+                else
+                {
+                    Hexagram.Instance.Log.ErrorFormat("Hexagram: Scene Not Exist SceneID: {0}", container.Entity.LocatedSceneID);
+                }
+            }
+        }
         public void ProjectEntity(Entity entity)
         {
             if (!entityDictionary.ContainsKey(entity.EntityID))
@@ -106,6 +148,18 @@ namespace DoorofSoul.Library
                 {
                     Hexagram.Instance.Log.ErrorFormat("Hexagram: Scene Not Exist SceneID: {0}", entity.LocatedSceneID);
                 }
+            }
+        }
+        public void ExtractContainer(Container container)
+        {
+            if (containerDictionary.ContainsKey(container.ContainerID))
+            {
+                if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
+                {
+                    worldDictionary[container.Entity.LocatedScene.WorldID].ContainerExit(container);
+                    ExtractEntity(container.Entity);
+                }
+                containerDictionary.Remove(container.ContainerID);
             }
         }
         public void ExtractEntity(Entity entity)

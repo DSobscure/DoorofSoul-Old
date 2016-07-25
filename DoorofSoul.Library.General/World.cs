@@ -9,7 +9,7 @@ using DoorofSoul.Protocol.Communication.OperationCodes;
 
 namespace DoorofSoul.Library.General
 {
-    public class World
+    public abstract class World
     {
         public int WorldID { get; protected set; }
         public string WorldName { get; protected set; }
@@ -19,9 +19,10 @@ namespace DoorofSoul.Library.General
         #region communication
         public WorldEventManager WorldEventManager { get; protected set; }
         public WorldOperationManager WorldOperationManager { get; protected set; }
-        public Action<WorldEventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
-        public Action<WorldOperationCode, Dictionary<byte, object>> SendResponse { get; protected set; }
-        public Action<WorldOperationCode, ErrorCode, string, Dictionary<byte, object>> SendError { get; protected set; }
+        public abstract void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void FetchScene(int sceneID, out Scene scene);
         #endregion
 
         public World(int worldID, string worldName)

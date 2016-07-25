@@ -10,7 +10,7 @@ using DoorofSoul.Library.General.Events.Managers;
 
 namespace DoorofSoul.Library.General
 {
-    public class Answer
+    public abstract class Answer
     {
         public int AnswerID { get; protected set; }
         public Player Player { get; protected set; }
@@ -60,6 +60,10 @@ namespace DoorofSoul.Library.General
             };
             Player.SendError(PlayerOperationCode.AnswerOperation, errorCode, debugMessage, operationData);
         }
+
+        public abstract bool DeleteSoul(int soulID);
+        public abstract bool CreateSoul(string soulName);
+        public abstract bool ActiveSoul(int soulID);
         #endregion
 
         public Answer(int answerID, int soulCountLimit, Player player)

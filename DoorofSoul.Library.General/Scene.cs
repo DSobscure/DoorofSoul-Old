@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.EventParameters.World;
+using DoorofSoul.Protocol.Communication.OperationParameters.World;
 using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 
@@ -14,6 +16,7 @@ namespace DoorofSoul.Library.General
         public int SceneID { get; protected set; }
         public string SceneName { get; protected set; }
         public int WorldID { get; protected set; }
+        public World World { get; protected set; }
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         protected Dictionary<int, Entity> entityDictionary;
@@ -37,9 +40,36 @@ namespace DoorofSoul.Library.General
         #region communication
         public SceneEventManager SceneEventManager { get; protected set; }
         public SceneOperationManager SceneOperationManager { get; protected set; }
-        public Action<SceneEventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
-        public Action<SceneOperationCode, Dictionary<byte, object>> SendResponse { get; protected set; }
-        public Action<SceneOperationCode, ErrorCode, string, Dictionary<byte, object>> SendError { get; protected set; }
+        public void SendEvent(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)SceneEventParameterCode.SceneID, SceneID },
+                { (byte)SceneEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)SceneEventParameterCode.Parameters, parameters }
+            };
+            World.SendEvent(WorldEventCode.SceneEvent, eventData);
+        }
+        public void SendResponse(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)SceneOperationParameterCode.SceneID, SceneID },
+                { (byte)SceneOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)SceneOperationParameterCode.Parameters, parameters }
+            };
+            World.SendResponse(WorldOperationCode.SceneOperation, operationData);
+        }
+        public void SendError(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)SceneOperationParameterCode.SceneID, SceneID },
+                { (byte)SceneOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)SceneOperationParameterCode.Parameters, parameters }
+            };
+            World.SendError(WorldOperationCode.SceneOperation, errorCode, debugMessage, operationData);
+        }
         #endregion
 
         public Scene(int sceneID, string sceneName, int worldID)
@@ -50,6 +80,10 @@ namespace DoorofSoul.Library.General
             entityDictionary = new Dictionary<int, Entity>();
             SceneEventManager = new SceneEventManager(this);
             SceneOperationManager = new SceneOperationManager(this);
+        }
+        public void BindWorld(World world)
+        {
+            World = world;
         }
 
         public void ContainerEnter(Container container)

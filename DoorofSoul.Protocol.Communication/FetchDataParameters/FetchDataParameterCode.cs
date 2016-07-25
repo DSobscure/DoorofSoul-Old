@@ -1,4 +1,4 @@
-﻿namespace DoorofSoul.Protocol.Communication.OperationParameters
+﻿namespace DoorofSoul.Protocol.Communication.FetchDataParameters
 {
     public enum FetchDataParameterCode : byte
     {

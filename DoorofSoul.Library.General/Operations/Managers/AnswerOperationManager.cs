@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 { AnswerOperationCode.SoulOperation, new SoulOperationResolver(answer) },
                 { AnswerOperationCode.ContainerOperation, new ContainerOperationResolver(answer) },
-                { AnswerOperationCode.FetchData, new FetchDataHandler(answer) },
+                { AnswerOperationCode.FetchData, new FetchDataResolver(answer) },
                 { AnswerOperationCode.CreateSoul, new CreateSoulHandler(answer) },
                 { AnswerOperationCode.DeleteSoul, new DeleteSoulHandler(answer) },
                 { AnswerOperationCode.ActivateSoul, new ActivateSoulHandler(answer) },

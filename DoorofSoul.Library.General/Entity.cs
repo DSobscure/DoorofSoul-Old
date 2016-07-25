@@ -5,6 +5,7 @@ using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Scene;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
+using System;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General

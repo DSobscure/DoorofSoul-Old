@@ -37,6 +37,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
@@ -44,15 +48,33 @@
     <Compile Include="DSVector3.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityProperties.cs" />
+    <Compile Include="Events\Handlers\AnswerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Answer\ContainerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Answer\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Answer\SoulEventResolver.cs" />
+    <Compile Include="Events\Handlers\ContainerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Container\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\EntityEventHandler.cs" />
+    <Compile Include="Events\Handlers\Entity\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\PlayerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Player\AnswerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Player\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\SceneEventHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\ContainerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Scene\EntityEventResolver.cs" />
+    <Compile Include="Events\Handlers\Scene\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\SoulEventHandler.cs" />
+    <Compile Include="Events\Handlers\Soul\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\WorldEventHandler.cs" />
+    <Compile Include="Events\Handlers\World\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\World\SceneEventResolver.cs" />
     <Compile Include="Events\Managers\AnswerEventManager.cs" />
     <Compile Include="Events\Managers\ContainerEventManager.cs" />
     <Compile Include="Events\Managers\EntityEventManager.cs" />
     <Compile Include="Events\Managers\PlayerEventManager.cs" />
-    <Compile Include="Events\Managers\PlayerSceneEventManager.cs" />
     <Compile Include="Events\Managers\SceneEventManager.cs" />
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
-    <Compile Include="Events\PlayerEventManagers.cs" />
     <Compile Include="LibraryLog.cs" />
     <Compile Include="Operations\Handlers\AnswerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\ActivateSoulHandler.cs" />
@@ -60,24 +82,38 @@
     <Compile Include="Operations\Handlers\Answer\CreateSoulHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\DeleteSoulHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchContainersHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchSoulContainerLinksHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchSoulsHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\SoulOperationResolver.cs" />
     <Compile Include="Operations\Handlers\ContainerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Entity\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\PlayerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Player\AnswerOperationResolver.cs" />
     <Compile Include="Operations\Handlers\Player\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchAnswerHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchSystemVersionHandler.cs" />
     <Compile Include="Operations\Handlers\Player\LoginHandler.cs" />
     <Compile Include="Operations\Handlers\Player\LogoutHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchData\FetchEntitiesInformationHandler.cs" />
+    <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\World\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\World\FetchData\FetchSceneHandler.cs" />
     <Compile Include="Operations\Handlers\World\SceneOperationResolver.cs" />
     <Compile Include="Operations\Handlers\SceneOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Scene\ContainerOperationResolver.cs" />
     <Compile Include="Operations\Handlers\Scene\EntityOperationResolver.cs" />
-    <Compile Include="Operations\Handlers\Scene\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\SoulOperationHandler.cs" />
-    <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Soul\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\WorldOperationHandler.cs" />
     <Compile Include="Operations\Managers\AnswerOperationManager.cs" />
     <Compile Include="Operations\Managers\ContainerOperationManager.cs" />
@@ -103,13 +139,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\Handlers\Answer\" />
-    <Folder Include="Events\Handlers\Container\" />
-    <Folder Include="Events\Handlers\Entity\" />
-    <Folder Include="Events\Handlers\Player\" />
-    <Folder Include="Events\Handlers\Scene\" />
-    <Folder Include="Events\Handlers\Soul\" />
-    <Folder Include="Events\Handlers\World\" />
+    <Folder Include="Operations\Handlers\Container\FetchData\" />
+    <Folder Include="Operations\Handlers\Entity\FetchData\" />
+    <Folder Include="Operations\Handlers\Soul\FetchData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

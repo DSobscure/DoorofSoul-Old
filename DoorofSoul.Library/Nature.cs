@@ -99,6 +99,7 @@ namespace DoorofSoul.Library
                 foreach(Scene scene in sceneList)
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
+                    scene.BindWorld(world);
                 }
             }
         }

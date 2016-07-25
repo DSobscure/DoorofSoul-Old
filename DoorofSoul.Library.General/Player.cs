@@ -11,7 +11,7 @@ using System.Net;
 
 namespace DoorofSoul.Library.General
 {
-    public class Player
+    public abstract class Player
     {
         #region properties
         public int PlayerID { get; protected set; }
@@ -31,18 +31,21 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public PlayerEventManagers PlayerEventManagers { get; protected set; }
         public PlayerEventManager PlayerEventManager { get; protected set; }
         public PlayerOperationManager PlayerOperationManager { get; protected set; }
-        public Action<PlayerEventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
-        public Action<PlayerOperationCode, Dictionary<byte, object>> SendResponse { get; protected set; }
-        public Action<PlayerOperationCode, ErrorCode, string, Dictionary<byte, object>> SendError { get; protected set; }
+        public abstract void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+
+        public abstract bool Login(string account, string password, out string debugMessage, out string errorMessage);
+        public abstract void Logout();
+        public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
+        public abstract void FetchAnswer(out Answer answer);
         #endregion
 
         public Player()
         {
             UsingLanguage = SupportLauguages.Chinese_Traditional;
-            PlayerEventManager = new PlayerEventManagers(this);
             PlayerEventManager = new PlayerEventManager(this);
             PlayerOperationManager = new PlayerOperationManager(this);
         }

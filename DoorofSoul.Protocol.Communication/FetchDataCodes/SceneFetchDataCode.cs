@@ -2,6 +2,6 @@
 {
     public enum SceneFetchDataCode : byte
     {
-        EntitiesInformation,
+        Entities,
     }
 }

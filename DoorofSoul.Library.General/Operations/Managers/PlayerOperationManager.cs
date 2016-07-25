@@ -16,7 +16,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             operationTable = new Dictionary<PlayerOperationCode, PlayerOperationHandler>
             {
                 { PlayerOperationCode.AnswerOperation, new AnswerOperationResolver(player) },
-                { PlayerOperationCode.FetchData, new FetchDataHandler(player) },
+                { PlayerOperationCode.FetchData, new FetchDataResolver(player) },
                 { PlayerOperationCode.Login, new LoginHandler(player) },
                 { PlayerOperationCode.Logout, new LogoutHandler(player) },
             };

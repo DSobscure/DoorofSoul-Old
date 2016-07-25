@@ -13,13 +13,13 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
             fetchTable = new Dictionary<PlayerFetchDataCode, FetchDataHandler>
             {
-                { PlayerFetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) },
-                { PlayerFetchDataCode.Answer, new FetchAnswerHandler(peer) },
-                { PlayerFetchDataCode.Souls, new FetchSoulsHandler(peer) },
-                { PlayerFetchDataCode.Containers, new FetchContainersHandler(peer) },
-                { PlayerFetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) },
-                { PlayerFetchDataCode.Scene, new FetchSceneHandler(peer) },
-                { PlayerFetchDataCode.SceneEntitiesInformation, new FetchSceneEntitiesInformationHandler(peer) },
+                //{ PlayerFetchDataCode.SystemVersion, new FetchSystemVersionHandler(peer) },
+                //{ PlayerFetchDataCode.Answer, new FetchAnswerHandler(peer) },
+                //{ PlayerFetchDataCode.Souls, new FetchSoulsHandler(peer) },
+                //{ PlayerFetchDataCode.Containers, new FetchContainersHandler(peer) },
+                //{ PlayerFetchDataCode.SoulContainerConnections, new FetchSoulContainerConnectionsHandler(peer) },
+                //{ PlayerFetchDataCode.Scene, new FetchSceneHandler(peer) },
+                //{ PlayerFetchDataCode.SceneEntitiesInformation, new FetchSceneEntitiesInformationHandler(peer) },
             };
         }
 

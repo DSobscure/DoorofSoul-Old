@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             this.soul = soul;
             operationTable = new Dictionary<SoulOperationCode, SoulOperationHandler>
             {
-                { SoulOperationCode.FetchData, new FetchDataHandler(soul) },
+                { SoulOperationCode.FetchData, new FetchDataResolver(soul) },
             };
         }
 

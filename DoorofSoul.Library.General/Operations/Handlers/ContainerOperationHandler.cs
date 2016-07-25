@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.ResponseParameters;
 using System.Collections.Generic;
@@ -31,12 +32,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         public void SendError(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage, string errorMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object> { { (byte)OperationErrorResponseParameterCode.ErrorMessage, errorMessage } };
-            container.SendError(operationCode, errorCode, debugMessage, parameters);
+            container.SendError(operationCode, errorCode, debugMessage, parameters, ContainerCommunicationChannel.Answer);
             LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         public void SendResponse(ContainerOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            container.SendResponse(operationCode, parameter);
+            container.SendResponse(operationCode, parameter, ContainerCommunicationChannel.Answer);
         }
     }
 }

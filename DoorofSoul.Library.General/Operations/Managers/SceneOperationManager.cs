@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 { SceneOperationCode.ContainerOperation, new ContainerOperationResolver(scene) },
                 { SceneOperationCode.EntityOperation, new EntityOperationResolver(scene) },
-                { SceneOperationCode.FetchData, new FetchDataHandler(scene) },
+                { SceneOperationCode.FetchData, new FetchDataResolver(scene) },
             };
         }
 

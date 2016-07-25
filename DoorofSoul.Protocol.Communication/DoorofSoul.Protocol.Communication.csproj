@@ -66,6 +66,7 @@
     <Compile Include="InformDataCodes\SceneInformDataCode.cs" />
     <Compile Include="InformDataCodes\SoulInformDataCode.cs" />
     <Compile Include="InformDataCodes\WorldInformDataCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformEntityParameterCode.cs" />
     <Compile Include="OperationCodes\AnswerOperationCode.cs" />
     <Compile Include="OperationCodes\ContainerOperationCode.cs" />
     <Compile Include="OperationCodes\EntityOperationCode.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="OperationParameters\Answer\CreateSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\DeleteSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\SoulOperationParameterCode.cs" />
-    <Compile Include="OperationParameters\FetchDataParameterCode.cs" />
+    <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
     <Compile Include="OperationParameters\World\SceneOperationParameterCode.cs" />

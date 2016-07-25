@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             this.entity = entity;
             operationTable = new Dictionary<EntityOperationCode, EntityOperationHandler>
             {
-                { EntityOperationCode.FetchData, new FetchDataHandler(entity) },
+                { EntityOperationCode.FetchData, new FetchDataResolver(entity) },
             };
         }
 

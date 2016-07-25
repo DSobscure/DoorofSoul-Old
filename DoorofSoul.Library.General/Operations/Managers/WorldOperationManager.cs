@@ -16,7 +16,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             operationTable = new Dictionary<WorldOperationCode, WorldOperationHandler>
             {
                 { WorldOperationCode.SceneOperation, new SceneOperationResolver(world) },
-                { WorldOperationCode.FetchData, new FetchDataHandler(world) },
+                { WorldOperationCode.FetchData, new FetchDataResolver(world) },
             };
         }
 

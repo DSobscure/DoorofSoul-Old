@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             this.container = container;
             operationTable = new Dictionary<ContainerOperationCode, ContainerOperationHandler>
             {
-                { ContainerOperationCode.FetchData, new FetchDataHandler(container) }
+                { ContainerOperationCode.FetchData, new FetchDataResolver(container) }
             };
         }
 

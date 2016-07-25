@@ -5,11 +5,11 @@ using System.Text;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 
-namespace DoorofSoul.Library.General.Events.Handlers.World.InformData
+namespace DoorofSoul.Library.General.Events.Handlers.Player.InformData
 {
     public class InformSceneHandler : InformDataHandler
     {
-        public InformSceneHandler(General.World world) : base(world)
+        public InformSceneHandler(General.Player player) : base(player)
         {
         }
 
@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.World.InformData
             throw new NotImplementedException();
         }
 
-        public override bool Handle(WorldInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameter)
+        public override bool Handle(PlayerInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameter)
         {
             return base.Handle(informCode, returnCode, parameter);
         }

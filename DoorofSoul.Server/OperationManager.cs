@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DoorofSoul.Protocol.Communication;
 using Photon.SocketServer;
-using DoorofSoul.Server.Operations.Handlers;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 
 namespace DoorofSoul.Server

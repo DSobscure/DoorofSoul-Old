@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channels\ContainerCommunicationChannel.cs" />
+    <Compile Include="Channels\SceneCommunicationChannel.cs" />
     <Compile Include="EventCodes\AnswerEventCode.cs" />
     <Compile Include="EventCodes\ContainerEventCode.cs" />
     <Compile Include="EventCodes\EntityEventCode.cs" />
@@ -74,14 +75,14 @@
     <Compile Include="EventCodes\PlayerEventCode.cs" />
     <Compile Include="EventParameters\InformDataEventParameterCode.cs" />
     <Compile Include="FetchDataCodes\PlayerFetchDataCode.cs" />
-    <Compile Include="FetchDataParameters\World\FetchSceneParameterCode.cs" />
+    <Compile Include="FetchDataParameters\Player\FetchSceneParameterCode.cs" />
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
     <Compile Include="InformDataParameters\Player\InformAnswerParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformContainerParameterCode.cs" />
     <Compile Include="InformDataParameters\InformFetchDataError.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformSceneEntityExitParameterCode.cs" />
-    <Compile Include="InformDataParameters\World\InformSceneParameterCode.cs" />
+    <Compile Include="InformDataParameters\Player\InformSceneParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformSoulContainerConnectionParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformSoulParameterCode.cs" />
     <Compile Include="InformDataParameters\Player\InformSystemVersionParameterCode.cs" />
@@ -112,12 +113,13 @@
     <Folder Include="FetchDataParameters\Answer\" />
     <Folder Include="FetchDataParameters\Container\" />
     <Folder Include="FetchDataParameters\Entity\" />
-    <Folder Include="FetchDataParameters\Player\" />
     <Folder Include="FetchDataParameters\Scene\" />
     <Folder Include="FetchDataParameters\Soul\" />
+    <Folder Include="FetchDataParameters\World\" />
     <Folder Include="InformDataParameters\Container\" />
     <Folder Include="InformDataParameters\Entity\" />
     <Folder Include="InformDataParameters\Soul\" />
+    <Folder Include="InformDataParameters\World\" />
     <Folder Include="OperationParameters\Container\" />
     <Folder Include="OperationParameters\Entity\" />
     <Folder Include="OperationParameters\Soul\" />

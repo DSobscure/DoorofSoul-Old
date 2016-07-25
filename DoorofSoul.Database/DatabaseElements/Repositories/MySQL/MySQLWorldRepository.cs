@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Database.Library;
+using DoorofSoul.Library.General;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
@@ -6,7 +7,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLWorldRepository : WorldRepository
     {
-        public override World Create(string worldName)
+        public override DatabaseWorld Create(string worldName)
         {
             string sqlString = @"INSERT INTO Worlds 
                 (WorldName) VALUES (@worldName) ;
@@ -43,7 +44,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override World Find(int worldID)
+        public override DatabaseWorld Find(int worldID)
         {
             string sqlString = @"SELECT  
                 WorldName
@@ -56,7 +57,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     if (reader.Read())
                     {
                         string worldName = reader.GetString(0);
-                        return new World(worldID, worldName);
+                        return new DatabaseWorld(worldID, worldName);
                     }
                     else
                     {
@@ -66,7 +67,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override List<World> List()
+        public override List<DatabaseWorld> List()
         {
             string sqlString = @"SELECT  
                 WorldID, WorldName
@@ -75,12 +76,12 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             {
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    List<World> worlds = new List<World>();
+                    List<DatabaseWorld> worlds = new List<DatabaseWorld>();
                     while (reader.Read())
                     {
                         int worldID = reader.GetInt32(0);
                         string worldName = reader.GetString(1);
-                        worlds.Add(new World(worldID, worldName));
+                        worlds.Add(new DatabaseWorld(worldID, worldName));
                     }
                     return worlds;
                 }

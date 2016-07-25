@@ -36,11 +36,15 @@ namespace DoorofSoul.Library.General
         public abstract void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters);
         public abstract void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void SendWorldEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
 
         public abstract bool Login(string account, string password, out string debugMessage, out string errorMessage);
         public abstract void Logout();
         public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
         public abstract void FetchAnswer(out Answer answer);
+        public abstract void FetchScene(int sceneID, out Scene scene);
         #endregion
 
         public Player()

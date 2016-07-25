@@ -16,7 +16,6 @@ namespace DoorofSoul.Library.General.Events.Handlers.World
             informTable = new Dictionary<WorldInformDataCode, InformDataHandler>
             {
                 { WorldInformDataCode.FetchDataError, new InformFetchDataErrorHandler(world) },
-                { WorldInformDataCode.Scene, new InformSceneHandler(world) }
             };
         }
 

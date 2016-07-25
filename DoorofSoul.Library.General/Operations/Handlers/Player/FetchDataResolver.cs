@@ -17,7 +17,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             fetchTable = new Dictionary<PlayerFetchDataCode, FetchDataHandler>
             {
                 { PlayerFetchDataCode.SystemVersion, new FetchSystemVersionHandler(player) },
-                { PlayerFetchDataCode.Answer, new FetchAnswerHandler(player) }
+                { PlayerFetchDataCode.Answer, new FetchAnswerHandler(player) },
+                { PlayerFetchDataCode.Scene, new FetchSceneHandler(player) },
             };
         }
 

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.cs" />
+    <Compile Include="Library\DatabaseAnswer.cs" />
     <Compile Include="DatabaseElements\AuthenticationManager.cs" />
     <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
     <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="DatabaseElements\Repositories\SoulRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\WorldRepository.cs" />
     <Compile Include="DatabaseElements\RepositoryManager.cs" />
+    <Compile Include="Library\DatabasePlayer.cs" />
+    <Compile Include="Library\DatabaseWorld.cs" />
     <Compile Include="MySQLDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,13 +80,13 @@
       <Project>{28e98488-b39a-471d-ae89-740f9c09f7d8}</Project>
       <Name>DoorofSoul.Library.General</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DoorofSoul.Library\DoorofSoul.Library.csproj">
-      <Project>{352197e1-395e-4d07-9844-2c8918016303}</Project>
-      <Name>DoorofSoul.Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
       <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
       <Name>DoorofSoul.Protocol.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
+      <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
+      <Name>DoorofSoul.Protocol.Language</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

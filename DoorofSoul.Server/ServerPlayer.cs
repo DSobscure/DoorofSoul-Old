@@ -26,9 +26,6 @@ namespace DoorofSoul.Server
         {
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
-            SendEvent = SendServerEvent;
-            SendResponse = SendServerResponse;
-            SendError = SendServerError;
         }
         public void RelifeWithNewPlayer(ServerPlayer newPlayer)
         {
@@ -37,7 +34,7 @@ namespace DoorofSoul.Server
             LastConnectedIPAddress = peer.RemoteIPAddress;
         }
 
-        private void SendServerEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
+        public override void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             EventData eventData = new EventData
             {
@@ -46,7 +43,7 @@ namespace DoorofSoul.Server
             };
             peer.SendEvent(eventData, new SendParameters());
         }
-        private void SendServerResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             OperationResponse response = new OperationResponse((byte)operationCode, parameters)
             {
@@ -54,7 +51,7 @@ namespace DoorofSoul.Server
             };
             peer.SendOperationResponse(response, new SendParameters());
         }
-        private void SendServerError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        public override void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             OperationResponse response = new OperationResponse((byte)operationCode, parameters)
             {
@@ -62,6 +59,46 @@ namespace DoorofSoul.Server
                 DebugMessage = debugMessage
             };
             peer.SendOperationResponse(response, new SendParameters());
+        }
+
+        public override void SendWorldEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SendWorldResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SendWorldError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Login(string account, string password, out string debugMessage, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Logout()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FetchSystemVersion(out string serverVersion, out string clientVersion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FetchAnswer(out Answer answer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FetchScene(int sceneID, out Scene scene)
+        {
+            throw new NotImplementedException();
         }
     }
 }

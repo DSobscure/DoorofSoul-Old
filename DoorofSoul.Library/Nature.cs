@@ -82,6 +82,7 @@ namespace DoorofSoul.Library
 
         public Nature()
         {
+            containerDictionary = new Dictionary<int, Container>();
             entityDictionary = new Dictionary<int, Entity>();
             sceneDictionary = new Dictionary<int, Scene>();
             worldDictionary = new Dictionary<int, World>();
@@ -90,7 +91,8 @@ namespace DoorofSoul.Library
 
         protected void LoadNature()
         {
-            List<World> worldList = DataBase.Instance.RepositoryManager.WorldRepository.List();
+            List<World> worldList = new List<World>();
+            DataBase.Instance.RepositoryManager.WorldRepository.List().ForEach(world => worldList.Add(new HexagramWorld(world)));
             foreach (World world in worldList)
             {
                 worldDictionary.Add(world.WorldID, world);

@@ -73,8 +73,6 @@ namespace DoorofSoul.Library
                 foreach(Container container in soul.Containers)
                 {
                     ProjectContainer(container);
-                    container.LocatedScene.OnEntityEnter += soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
-                    container.LocatedScene.OnEntityExit += soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                 }
                 return true;
             }
@@ -129,8 +127,6 @@ namespace DoorofSoul.Library
                             ExtractContainer(container);
                             DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
                         }
-                        locatedScene.OnEntityEnter -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityEnter;
-                        locatedScene.OnEntityExit -= soul.Answer.Player.PlayerEventManager.PlayerSceneEventManager.OnSceneEntityExit;
                     }
                 }
                 soul.UnlinkAllContainers();

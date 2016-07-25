@@ -58,20 +58,6 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Config\SystemConfiguration.cs" />
-    <Compile Include="Operations\Handlers\ActivateSoulHandler.cs" />
-    <Compile Include="Operations\Handlers\CreateSoulHandler.cs" />
-    <Compile Include="Operations\Handlers\DeleteSoulHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchAnswerHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchContainersHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSceneEntitiesInformationHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSceneHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSoulContainerConnectionsHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSoulsHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataHandlers\FetchSystemVersionHandler.cs" />
-    <Compile Include="Operations\Handlers\FetchDataManager.cs" />
-    <Compile Include="Operations\Handlers\PlayerLoginHandler.cs" />
-    <Compile Include="Operations\Handlers\PlayerLogoutHandler.cs" />
     <Compile Include="OperationManager.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PlayerFactory.cs" />

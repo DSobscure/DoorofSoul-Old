@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
         {
             fetchTable = new Dictionary<EntityFetchDataCode, FetchDataHandler>
             {
-
+                
             };
         }
 

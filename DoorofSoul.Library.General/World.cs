@@ -13,8 +13,12 @@ namespace DoorofSoul.Library.General
     {
         public int WorldID { get; protected set; }
         public string WorldName { get; protected set; }
+        protected Dictionary<int, Container> containerDictionary;
+        public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         protected Dictionary<int, Entity> entityDictionary;
+        public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         protected Dictionary<int, Scene> sceneDictionary;
+        public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
 
         #region communication
         public WorldEventManager WorldEventManager { get; protected set; }
@@ -22,13 +26,13 @@ namespace DoorofSoul.Library.General
         public abstract void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
         public abstract void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
-        public abstract void FetchScene(int sceneID, out Scene scene);
         #endregion
 
         public World(int worldID, string worldName)
         {
             WorldID = worldID;
             WorldName = worldName;
+            containerDictionary = new Dictionary<int, Container>();
             entityDictionary = new Dictionary<int, Entity>();
             sceneDictionary = new Dictionary<int, Scene>();
             WorldEventManager = new WorldEventManager(this);
@@ -43,6 +47,18 @@ namespace DoorofSoul.Library.General
             }
         }
 
+        public void ContainerEnter(Container container)
+        {
+            if (!containerDictionary.ContainsKey(container.ContainerID))
+            {
+                containerDictionary.Add(container.ContainerID, container);
+                EntityEnter(container.Entity);
+            }
+            if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
+            {
+                sceneDictionary[container.Entity.LocatedSceneID].ContainerEnter(container);
+            }
+        }
         public void EntityEnter(Entity entity)
         {
             if (!entityDictionary.ContainsKey(entity.EntityID))
@@ -52,6 +68,18 @@ namespace DoorofSoul.Library.General
             if (sceneDictionary.ContainsKey(entity.LocatedSceneID))
             {
                 sceneDictionary[entity.LocatedSceneID].EntityEnter(entity);
+            }
+        }
+        public void ContainerExit(Container container)
+        {
+            if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
+            {
+                sceneDictionary[container.Entity.LocatedSceneID].ContainerExit(container.ContainerID);
+            }
+            if (containerDictionary.ContainsKey(container.ContainerID))
+            {
+                containerDictionary.Remove(container.ContainerID);
+                EntityExit(container.Entity);
             }
         }
         public void EntityExit(Entity entity)

@@ -89,7 +89,7 @@
     <Compile Include="Events\Handlers\World\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\World\InformDataResolver.cs" />
     <Compile Include="Events\Handlers\World\InformData\InformFetchDataErrorHandler.cs" />
-    <Compile Include="Events\Handlers\World\InformData\InformSceneHandler.cs" />
+    <Compile Include="Events\Handlers\Player\InformData\InformSceneHandler.cs" />
     <Compile Include="Events\Handlers\World\SceneEventResolver.cs" />
     <Compile Include="Events\Managers\AnswerEventManager.cs" />
     <Compile Include="Events\Managers\ContainerEventManager.cs" />
@@ -129,7 +129,7 @@
     <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataResolver.cs" />
-    <Compile Include="Operations\Handlers\World\FetchData\FetchSceneHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchSceneHandler.cs" />
     <Compile Include="Operations\Handlers\World\SceneOperationResolver.cs" />
     <Compile Include="Operations\Handlers\SceneOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Scene\ContainerOperationResolver.cs" />
@@ -165,6 +165,7 @@
     <Folder Include="Operations\Handlers\Container\FetchData\" />
     <Folder Include="Operations\Handlers\Entity\FetchData\" />
     <Folder Include="Operations\Handlers\Soul\FetchData\" />
+    <Folder Include="Operations\Handlers\World\FetchData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

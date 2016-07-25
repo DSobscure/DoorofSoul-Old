@@ -18,6 +18,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
                 { PlayerInformDataCode.FetchDataError, new InformFetchDataErrorHandler(player) },
                 { PlayerInformDataCode.SystemVersion, new InformSystemVersionHandler(player) },
                 { PlayerInformDataCode.Answer, new InformAnswerErrorHandler(player) },
+                { PlayerInformDataCode.Scene, new InformSceneHandler(player) },
             };
         }
 

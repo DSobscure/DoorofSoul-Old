@@ -5,5 +5,6 @@
         FetchDataError,
         SystemVersion,
         Answer,
+        Scene,
     }
 }

@@ -39,10 +39,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             {
                 string debugMessage;
                 EntityFetchDataCode fetchCode = (EntityFetchDataCode)parameters[(byte)FetchDataParameterCode.FetchDataCode];
-                Dictionary<byte, object> fetchParameters = (Dictionary<byte, object>)parameters[(byte)FetchDataParameterCode.Parameters];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)FetchDataParameterCode.Parameters];
                 if (fetchTable.ContainsKey(fetchCode))
                 {
-                    return fetchTable[fetchCode].Handle(fetchCode, parameters);
+                    return fetchTable[fetchCode].Handle(fetchCode, resolvedParameters);
                 }
                 else
                 {

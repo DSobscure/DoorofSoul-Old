@@ -35,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 {
                     int containerID = (int)parameters[(byte)ContainerOperationParameterCode.ContainerID];
                     ContainerOperationCode resolvedOperationCode = (ContainerOperationCode)parameters[(byte)ContainerOperationParameterCode.OperationCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)ContainerOperationParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)ContainerOperationParameterCode.Parameters];
                     if (scene.ContainsContainer(containerID))
                     {
-                        scene.FindContainer(containerID).ContainerOperationManager.Operate(resolvedOperationCode, resolvedOperationParameters);
+                        scene.FindContainer(containerID).ContainerOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

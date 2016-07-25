@@ -36,10 +36,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 {
                     int answerID = (int)parameters[(byte)AnswerOperationParameterCode.AnswerID];
                     AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationParameterCode.OperationCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationParameterCode.Parameters];
                     if (player.AnswerID == answerID)
                     {
-                        player.Answer.AnswerOperationManager.Operate(resolvedOperationCode, resolvedOperationParameters);
+                        player.Answer.AnswerOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

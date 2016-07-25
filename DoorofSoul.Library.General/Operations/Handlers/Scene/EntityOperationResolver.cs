@@ -35,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 {
                     int entityID = (int)parameters[(byte)EntityOperationParameterCode.EntityID];
                     EntityOperationCode resolvedOperationCode = (EntityOperationCode)parameters[(byte)EntityOperationParameterCode.OperationCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)EntityOperationParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)EntityOperationParameterCode.Parameters];
                     if (scene.ContainsEntity(entityID))
                     {
-                        scene.FindEntity(entityID).EntityOperationManager.Operate(resolvedOperationCode, resolvedOperationParameters);
+                        scene.FindEntity(entityID).EntityOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

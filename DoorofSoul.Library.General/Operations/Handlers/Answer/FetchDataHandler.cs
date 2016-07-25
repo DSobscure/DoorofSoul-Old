@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters;
-using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Language;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {

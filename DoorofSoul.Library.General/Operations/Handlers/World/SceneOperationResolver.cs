@@ -35,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                 {
                     int sceneID = (int)parameters[(byte)SceneOperationParameterCode.SceneID];
                     SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationParameterCode.OperationCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationParameterCode.Parameters];
                     if (world.ContainsScene(sceneID))
                     {
-                        world.FindScene(sceneID).SceneOperationManager.Operate(resolvedOperationCode, resolvedOperationParameters);
+                        world.FindScene(sceneID).SceneOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

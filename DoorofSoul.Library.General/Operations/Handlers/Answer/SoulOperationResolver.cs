@@ -33,10 +33,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                 {
                     int soulID = (int)parameters[(byte)SoulOperationParameterCode.SoulID];
                     SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationParameterCode.OperationCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationParameterCode.Parameters];
                     if (answer.ContainsSoul(soulID))
                     {
-                        answer.FindSoul(soulID).SoulOperationManager.Operate(resolvedOperationCode, resolvedOperationParameters);
+                        answer.FindSoul(soulID).SoulOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

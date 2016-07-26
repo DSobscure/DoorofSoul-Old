@@ -69,6 +69,9 @@
     <Reference Include="DoorofSoul.Protocol.Communication">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Communication.dll</HintPath>
     </Reference>
+    <Reference Include="DoorofSoul.Protocol.Language">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
@@ -92,8 +95,6 @@
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\FetchDataResponseHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLoginResponseHandler.cs" />
     <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLogoutResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Languages\ChineseDictionary.cs" />
-    <Compile Include="Assets\Plugins\Communication\LauguageDictionary.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\EventManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\InformDataEventManager.cs" />
     <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\FetchDataOperationManager.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientAnswer.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientEntity.cs" />
+    <Compile Include="Assets\Plugins\Library.General\ClientPlayer.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientScene.cs" />
     <Compile Include="Assets\Plugins\Scene\ScenesManager.cs" />
   </ItemGroup>

@@ -13,17 +13,17 @@ namespace DoorofSoul.Database.Library
         {
         }
 
-        public override void SendError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }

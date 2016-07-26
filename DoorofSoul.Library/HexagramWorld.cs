@@ -29,27 +29,27 @@ namespace DoorofSoul.Library
         {
         }
 
-        public override void SendError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            foreach(Player player in Players)
-            {
-                player.SendWorldError(operationCode, errorCode, debugMessage, parameters);
-            }
-        }
-
         public override void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             foreach (Player player in Players)
             {
-                player.SendWorldEvent(eventCode, parameters);
+                player.SendWorldEvent(WorldID, eventCode, parameters);
             }
         }
 
-        public override void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             foreach (Player player in Players)
             {
-                player.SendWorldResponse(operationCode, parameters);
+                player.SendWorldOperation(WorldID, operationCode, parameters);
+            }
+        }
+
+        public override void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters)
+        {
+            foreach (Player player in Players)
+            {
+                player.SendWorldResponse(WorldID, operationCode, returnCode, degugMessage, parameters);
             }
         }
     }

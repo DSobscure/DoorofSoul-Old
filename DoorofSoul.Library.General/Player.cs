@@ -1,6 +1,6 @@
-﻿using DoorofSoul.Library.General.Events;
-using DoorofSoul.Library.General.Operations.Managers;
+﻿using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
@@ -33,12 +33,13 @@ namespace DoorofSoul.Library.General
         #region communication
         public PlayerEventManager PlayerEventManager { get; protected set; }
         public PlayerOperationManager PlayerOperationManager { get; protected set; }
+        public PlayerResponseManager PlayerResponseManager { get; protected set; }
         public abstract void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters);
-        public abstract void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters);
-        public abstract void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
-        public abstract void SendWorldEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
-        public abstract void SendWorldResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
-        public abstract void SendWorldError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void SendOperation(PlayerOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void SendWorldEvent(int worldID, WorldEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
 
         public abstract bool Login(string account, string password, out string debugMessage, out string errorMessage);
         public abstract void Logout();
@@ -52,6 +53,7 @@ namespace DoorofSoul.Library.General
             UsingLanguage = SupportLauguages.Chinese_Traditional;
             PlayerEventManager = new PlayerEventManager(this);
             PlayerOperationManager = new PlayerOperationManager(this);
+            PlayerResponseManager = new PlayerResponseManager(this);
         }
         public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
         {
@@ -61,24 +63,6 @@ namespace DoorofSoul.Library.General
             UsingLanguage = usingLanguage;
             LastConnectedIPAddress = lastConnectedIPAddress;
             AnswerID = answerID;
-        }
-
-        public void LoadPlayer(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
-        {
-            PlayerID = playerID;
-            Account = account;
-            Nickname = nickname;
-            UsingLanguage = usingLanguage;
-            LastConnectedIPAddress = lastConnectedIPAddress;
-            AnswerID = answerID;
-        }
-        public void LoadPlayer(Player player)
-        {
-            PlayerID = player.PlayerID;
-            Account = player.Account;
-            Nickname = player.Nickname;
-            UsingLanguage = player.UsingLanguage;
-            AnswerID = player.AnswerID;
         }
 
         public bool ActiveAnswer(Answer answer)

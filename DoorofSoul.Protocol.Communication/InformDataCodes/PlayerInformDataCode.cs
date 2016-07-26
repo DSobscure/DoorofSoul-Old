@@ -2,7 +2,6 @@
 {
     public enum PlayerInformDataCode : byte
     {
-        FetchDataError,
         SystemVersion,
         Answer,
         Scene,

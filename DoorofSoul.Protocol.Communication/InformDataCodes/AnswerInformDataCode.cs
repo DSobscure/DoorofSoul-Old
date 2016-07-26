@@ -2,7 +2,6 @@
 {
     public enum AnswerInformDataCode : byte
     {
-        FetchDataError,
         Soul,
         Container,
         SoulContainerLink,

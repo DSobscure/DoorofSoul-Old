@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Library.General.Events;
+﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
-using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
 {
@@ -23,9 +22,10 @@ namespace DoorofSoul.Library.General
         #region communication
         public WorldEventManager WorldEventManager { get; protected set; }
         public WorldOperationManager WorldOperationManager { get; protected set; }
+        public WorldResponseManager WorldResponseManager { get; protected set; }
         public abstract void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
-        public abstract void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
-        public abstract void SendError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters);
         #endregion
 
         public World(int worldID, string worldName)
@@ -37,6 +37,7 @@ namespace DoorofSoul.Library.General
             sceneDictionary = new Dictionary<int, Scene>();
             WorldEventManager = new WorldEventManager(this);
             WorldOperationManager = new WorldOperationManager(this);
+            WorldResponseManager = new WorldResponseManager(this);
         }
 
         public void LoadScenes(List<Scene> sceneList)

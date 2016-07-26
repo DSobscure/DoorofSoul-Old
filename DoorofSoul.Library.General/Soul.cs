@@ -1,10 +1,12 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Answer;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Answer;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
@@ -25,6 +27,7 @@ namespace DoorofSoul.Library.General
         #region communication
         public SoulEventManager SoulEventManager { get; protected set; }
         public SoulOperationManager SoulOperationManager { get; protected set; }
+        public SoulResponseManager SoulResponseManager { get; protected set; }
         public void SendEvent(SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
@@ -35,7 +38,7 @@ namespace DoorofSoul.Library.General
             };
             Answer.SendEvent(AnswerEventCode.SoulEvent, eventData);
         }
-        public void SendResponse(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        public void SendOperation(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationData = new Dictionary<byte, object>
             {
@@ -43,17 +46,19 @@ namespace DoorofSoul.Library.General
                 { (byte)SoulOperationParameterCode.OperationCode, (byte)operationCode },
                 { (byte)SoulOperationParameterCode.Parameters, parameters }
             };
-            Answer.SendResponse(AnswerOperationCode.SoulOperation, operationData);
+            Answer.SendOperation(AnswerOperationCode.SoulOperation, operationData);
         }
-        public void SendError(SoulOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        public void SendResponse(SoulOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            Dictionary<byte, object> responseData = new Dictionary<byte, object>
             {
-                { (byte)SoulOperationParameterCode.SoulID, SoulID },
-                { (byte)SoulOperationParameterCode.OperationCode, (byte)operationCode },
-                { (byte)SoulOperationParameterCode.Parameters, parameters }
+                { (byte)SoulResponseParameterCode.SoulID, SoulID },
+                { (byte)SoulResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)SoulResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)SoulResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)SoulResponseParameterCode.Parameters, parameters }
             };
-            Answer.SendError(AnswerOperationCode.SoulOperation, errorCode, debugMessage, operationData);
+            Answer.SendResponse(AnswerOperationCode.SoulOperation, ErrorCode.NoError, null, responseData);
         }
         #endregion
 
@@ -66,6 +71,7 @@ namespace DoorofSoul.Library.General
             containerDictionary = new Dictionary<int, Container>();
             SoulEventManager = new SoulEventManager(this);
             SoulOperationManager = new SoulOperationManager(this);
+            SoulResponseManager = new SoulResponseManager(this);
         }
         public void LinkContainer(Container container)
         {

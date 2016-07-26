@@ -2,6 +2,6 @@
 {
     public enum EntityInformDataCode : byte
     {
-        FetchDataError,
+
     }
 }

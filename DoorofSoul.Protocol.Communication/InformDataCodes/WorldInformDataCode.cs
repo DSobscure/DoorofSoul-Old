@@ -7,6 +7,6 @@ namespace DoorofSoul.Protocol.Communication.InformDataCodes
 {
     public enum WorldInformDataCode : byte
     {
-        FetchDataError,
+
     }
 }

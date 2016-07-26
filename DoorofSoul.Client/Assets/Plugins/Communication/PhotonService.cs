@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters;
 using ExitGames.Client.Photon;
 using System;
 using System.Net;
@@ -111,11 +112,35 @@ namespace DoorofSoul.Client.Communication
             }
         }
 
-        public void SendOperation(OperationCode operationCode, Dictionary<byte, object> parameters)
+        public void SendPlayerOperation(PlayerOperationCode operationCode, int playerID, Dictionary<byte, object> parameters)
         {
             if (peer.IsEncryptionAvailable)
             {
-                peer.OpCustom((byte)operationCode, parameters, true, 0, true);
+                Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
+                {
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
+                    { (byte)OperationParameterCode.ID, playerID },
+                    { (byte)OperationParameterCode.Parameters, parameters }
+                };
+                peer.OpCustom((byte)OperationCode.PlayerOperation, operationParameter, true, 0, true);
+            }
+            else
+            {
+                DebugReturn(DebugLevel.WARNING, "Communication Still Not Establish Encryption");
+            }
+        }
+
+        public void SendWorldOperation(WorldOperationCode operationCode, int worldID, Dictionary<byte, object> parameters)
+        {
+            if (peer.IsEncryptionAvailable)
+            {
+                Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
+                {
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
+                    { (byte)OperationParameterCode.ID, worldID },
+                    { (byte)OperationParameterCode.Parameters, parameters }
+                };
+                peer.OpCustom((byte)OperationCode.WorldOperation, operationParameter, true, 0, true);
             }
             else
             {

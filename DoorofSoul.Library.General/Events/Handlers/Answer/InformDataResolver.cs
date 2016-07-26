@@ -15,7 +15,6 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
         {
             informTable = new Dictionary<AnswerInformDataCode, InformDataHandler>
             {
-                { AnswerInformDataCode.FetchDataError, new InformFetchDataErrorHandler(answer) },
                 { AnswerInformDataCode.Soul, new InformSoulHandler(answer) },
                 { AnswerInformDataCode.Container, new InformContainerHandler(answer) },
                 { AnswerInformDataCode.SoulContainerLink, new InformSoulContainerLinkHandler(answer) },

@@ -1,10 +1,12 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Scene;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Scene;
 using System;
 using System.Collections.Generic;
 
@@ -72,6 +74,7 @@ namespace DoorofSoul.Library.General
         #region communication
         public EntityEventManager EntityEventManager { get; protected set; }
         public EntityOperationManager EntityOperationManager { get; protected set; }
+        public EntityResponseManager EntityResponseManager { get; protected set; }
         public void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
@@ -82,25 +85,27 @@ namespace DoorofSoul.Library.General
             };
             LocatedScene.SendEvent(SceneEventCode.EntityEvent, eventData);
         }
-        public void SendResponse(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        public void SendOperation(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
                 { (byte)EntityOperationParameterCode.EntityID, EntityID },
                 { (byte)EntityOperationParameterCode.OperationCode, (byte)operationCode },
                 { (byte)EntityOperationParameterCode.Parameters, parameters }
             };
-            LocatedScene.SendResponse(SceneOperationCode.EntityOperation, operationData);
+            LocatedScene.SendOperation(SceneOperationCode.EntityOperation, eventData);
         }
-        public void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        public void SendResponse(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationData = new Dictionary<byte, object>
             {
-                { (byte)EntityOperationParameterCode.EntityID, EntityID },
-                { (byte)EntityOperationParameterCode.OperationCode, (byte)operationCode },
-                { (byte)EntityOperationParameterCode.Parameters, parameters }
+                { (byte)EntityResponseParameterCode.EntityID, EntityID },
+                { (byte)EntityResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)EntityResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)EntityResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)EntityResponseParameterCode.Parameters, parameters }
             };
-            LocatedScene.SendError(SceneOperationCode.EntityOperation, errorCode, debugMessage, operationData);
+            LocatedScene.SendResponse(SceneOperationCode.EntityOperation, ErrorCode.NoError, null, operationData);
         }
         #endregion
 
@@ -112,6 +117,7 @@ namespace DoorofSoul.Library.General
             SpaceProperties = spaceProperties;
             EntityEventManager = new EntityEventManager(this);
             EntityOperationManager = new EntityOperationManager(this);
+            EntityResponseManager = new EntityResponseManager(this);
         }
 
         public void UpdateEntityTransform(DSVector3 position, DSVector3 rotation, DSVector3 scale)

@@ -42,15 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channels\ContainerCommunicationChannel.cs" />
-    <Compile Include="Channels\SceneCommunicationChannel.cs" />
     <Compile Include="EventCodes\AnswerEventCode.cs" />
     <Compile Include="EventCodes\ContainerEventCode.cs" />
     <Compile Include="EventCodes\EntityEventCode.cs" />
+    <Compile Include="EventCodes\EventCode.cs" />
     <Compile Include="EventCodes\SceneEventCode.cs" />
     <Compile Include="EventCodes\SoulEventCode.cs" />
     <Compile Include="EventCodes\WorldEventCode.cs" />
     <Compile Include="EventParameters\Answer\ContainerEventParameterCode.cs" />
     <Compile Include="EventParameters\Answer\SoulEventParameterCode.cs" />
+    <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\ContainerEventParameterCode.cs" />
@@ -79,13 +80,13 @@
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
     <Compile Include="InformDataParameters\Player\InformAnswerParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformContainerParameterCode.cs" />
-    <Compile Include="InformDataParameters\InformFetchDataError.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformSceneEntityExitParameterCode.cs" />
     <Compile Include="InformDataParameters\Player\InformSceneParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformSoulContainerConnectionParameterCode.cs" />
     <Compile Include="InformDataParameters\Answer\InformSoulParameterCode.cs" />
     <Compile Include="InformDataParameters\Player\InformSystemVersionParameterCode.cs" />
+    <Compile Include="OperationCodes\OperationCode.cs" />
     <Compile Include="OperationCodes\PlayerOperationCode.cs" />
     <Compile Include="OperationCodes\WorldOperationCode.cs" />
     <Compile Include="OperationParameters\Answer\ActivateSoulOperationParameterCode.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="OperationParameters\Answer\DeleteSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\SoulOperationParameterCode.cs" />
     <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
+    <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
     <Compile Include="OperationParameters\World\SceneOperationParameterCode.cs" />
@@ -101,10 +103,18 @@
     <Compile Include="OperationParameters\Scene\EntityOperationParameterCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseParameters\Answer\ActiveSoulResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\Answer\ContainerResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\Answer\SoulResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\FetchDataResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\OperationErrorResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\Player\AnswerResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\Player\PlayerLoginResponseParameterCode.cs" />
     <Compile Include="OperationCodes\SceneOperationCode.cs" />
     <Compile Include="OperationCodes\SoulOperationCode.cs" />
+    <Compile Include="ResponseParameters\ResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\Scene\ContainerResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\Scene\EntityResponseParameterCode.cs" />
+    <Compile Include="ResponseParameters\World\SceneResponseParameterCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EventParameters\Container\" />
@@ -125,9 +135,7 @@
     <Folder Include="OperationParameters\Soul\" />
     <Folder Include="ResponseParameters\Container\" />
     <Folder Include="ResponseParameters\Entity\" />
-    <Folder Include="ResponseParameters\Scene\" />
     <Folder Include="ResponseParameters\Soul\" />
-    <Folder Include="ResponseParameters\World\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

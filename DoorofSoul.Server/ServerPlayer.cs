@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoorofSoul.Database.Library;
+using DoorofSoul.Library;
 using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication;
-using Photon.SocketServer;
-using System.Net;
 using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.ResponseParameters;
+using Photon.SocketServer;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Server
 {
@@ -27,6 +27,15 @@ namespace DoorofSoul.Server
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
         }
+        public void LoadPlayer(DatabasePlayer player)
+        {
+            PlayerID = player.PlayerID;
+            Account = player.Account;
+            Nickname = player.Nickname;
+            UsingLanguage = player.UsingLanguage;
+            LastConnectedIPAddress = player.LastConnectedIPAddress;
+            AnswerID = player.AnswerID;
+        }
         public void RelifeWithNewPlayer(ServerPlayer newPlayer)
         {
             peer = newPlayer.peer;
@@ -36,67 +45,102 @@ namespace DoorofSoul.Server
 
         public override void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)EventParameterCode.EventCode, (byte)eventCode },
+                { (byte)EventParameterCode.ID, PlayerID },
+                { (byte)EventParameterCode.Parameters, parameters }
+            };
             EventData eventData = new EventData
             {
-                Code = (byte)eventCode,
-                Parameters = parameters
+                Code = (byte)EventCode.PlayerEvent,
+                Parameters = eventParameters
             };
             peer.SendEvent(eventData, new SendParameters());
         }
-        public override void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendResponse(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            OperationResponse response = new OperationResponse((byte)operationCode, parameters)
+            Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
+            {
+                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)ResponseParameterCode.ID, PlayerID },
+                { (byte)ResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)ResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)ResponseParameterCode.Parameters, parameters }
+            };
+            OperationResponse response = new OperationResponse((byte)OperationCode.PlayerOperation, responseParameters)
             {
                 ReturnCode = (short)ErrorCode.NoError
             };
             peer.SendOperationResponse(response, new SendParameters());
         }
-        public override void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+
+        public override void SendWorldEvent(int worldID, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            OperationResponse response = new OperationResponse((byte)operationCode, parameters)
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
-                ReturnCode = (short)errorCode,
-                DebugMessage = debugMessage
+                { (byte)EventParameterCode.EventCode, (byte)eventCode },
+                { (byte)EventParameterCode.ID, worldID },
+                { (byte)EventParameterCode.Parameters, parameters }
+            };
+            EventData eventData = new EventData
+            {
+                Code = (byte)EventCode.WorldEvent,
+                Parameters = eventParameters
+            };
+            peer.SendEvent(eventData, new SendParameters());
+        }
+
+        public override void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
+            {
+                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)ResponseParameterCode.ID, worldID },
+                { (byte)ResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)ResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)ResponseParameterCode.Parameters, parameters }
+            };
+            OperationResponse response = new OperationResponse((byte)OperationCode.WorldOperation, responseParameters)
+            {
+                ReturnCode = (short)ErrorCode.NoError
             };
             peer.SendOperationResponse(response, new SendParameters());
         }
 
-        public override void SendWorldEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SendWorldResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SendWorldError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool Login(string account, string password, out string debugMessage, out string errorMessage)
         {
-            throw new NotImplementedException();
+            return Application.ServerInstance.PlayerFactory.PlayerLogin(this, account, password, out debugMessage, out errorMessage);
         }
 
         public override void Logout()
         {
-            throw new NotImplementedException();
+            Application.ServerInstance.PlayerFactory.PlayerLogout(this);
         }
 
         public override void FetchSystemVersion(out string serverVersion, out string clientVersion)
         {
-            throw new NotImplementedException();
+            serverVersion = Application.ServerInstance.SystemConfiguration.ServerVersion;
+            clientVersion = Application.ServerInstance.SystemConfiguration.ClientVersion;
         }
 
         public override void FetchAnswer(out Answer answer)
         {
-            throw new NotImplementedException();
+            answer = Answer;
         }
 
         public override void FetchScene(int sceneID, out Scene scene)
+        {
+            scene = Hexagram.Instance.Nature.FindScene(sceneID);
+        }
+
+        public override void SendOperation(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public override void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }

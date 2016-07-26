@@ -80,5 +80,20 @@ namespace DoorofSoul.Client.Library.General
             incompleteSoulIDContainerIDConnection_SoulKey.Clear();
             incompleteSoulIDContainerIDConnection_ContainerKey.Clear();
         }
+
+        public override bool DeleteSoul(int soulID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CreateSoul(string soulName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool ActiveSoul(int soulID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

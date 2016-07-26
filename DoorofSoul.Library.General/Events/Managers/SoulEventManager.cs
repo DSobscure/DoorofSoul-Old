@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             this.soul = soul;
             eventTable = new Dictionary<SoulEventCode, SoulEventHandler>
             {
-                { SoulEventCode.InformData, new InformDataResolver(soul) }
+                { SoulEventCode.InformData, new InformDataResolver(soul) },
             };
         }
 

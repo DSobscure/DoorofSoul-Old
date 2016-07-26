@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
@@ -23,6 +24,7 @@ namespace DoorofSoul.Library.General
         #region communication
         public ContainerEventManager ContainerEventManager { get; protected set; }
         public ContainerOperationManager ContainerOperationManager { get; protected set; }
+        public ContainerResponseManager ContainerResponseManager { get; protected set; }
         public void SendEvent(ContainerEventCode eventCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch(channel)
@@ -41,7 +43,7 @@ namespace DoorofSoul.Library.General
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("No Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
+                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
                         }
                     }
                     break;
@@ -57,11 +59,11 @@ namespace DoorofSoul.Library.General
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("No Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }
-        public void SendResponse(ContainerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        public void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {
@@ -75,11 +77,11 @@ namespace DoorofSoul.Library.General
                         };
                         if (soulDictionary.Count > 0)
                         {
-                            soulDictionary.First().Value.Answer.SendResponse(AnswerOperationCode.ContainerOperation, operationData);
+                            soulDictionary.First().Value.Answer.SendOperation(AnswerOperationCode.ContainerOperation, operationData);
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("No Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
+                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
                         }
                     }
                     break;
@@ -91,15 +93,15 @@ namespace DoorofSoul.Library.General
                             { (byte)Protocol.Communication.OperationParameters.Scene.ContainerOperationParameterCode.OperationCode, (byte)operationCode },
                             { (byte)Protocol.Communication.OperationParameters.Scene.ContainerOperationParameterCode.Parameters, parameters }
                         };
-                        Entity.LocatedScene.SendResponse(SceneOperationCode.ContainerOperation, operationData);
+                        Entity.LocatedScene.SendOperation(SceneOperationCode.ContainerOperation, operationData);
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("No Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }
-        public void SendError(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        public void SendResponse(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {
@@ -107,17 +109,19 @@ namespace DoorofSoul.Library.General
                     {
                         Dictionary<byte, object> operationData = new Dictionary<byte, object>
                         {
-                            { (byte)Protocol.Communication.OperationParameters.Answer.ContainerOperationParameterCode.ContainerID, ContainerID },
-                            { (byte)Protocol.Communication.OperationParameters.Answer.ContainerOperationParameterCode.OperationCode, (byte)operationCode },
-                            { (byte)Protocol.Communication.OperationParameters.Answer.ContainerOperationParameterCode.Parameters, parameters }
+                            { (byte)Protocol.Communication.ResponseParameters.Answer.ContainerResponseParameterCode.ContainerID, ContainerID },
+                            { (byte)Protocol.Communication.ResponseParameters.Answer.ContainerResponseParameterCode.OperationCode, (byte)operationCode },
+                            { (byte)Protocol.Communication.ResponseParameters.Answer.ContainerResponseParameterCode.ReturnCode, (short)errorCode },
+                            { (byte)Protocol.Communication.ResponseParameters.Answer.ContainerResponseParameterCode.DebugMessage, debugMessage },
+                            { (byte)Protocol.Communication.ResponseParameters.Answer.ContainerResponseParameterCode.Parameters, parameters }
                         };
                         if (soulDictionary.Count > 0)
                         {
-                            soulDictionary.First().Value.Answer.SendError(AnswerOperationCode.ContainerOperation, errorCode, debugMessage, operationData);
+                            soulDictionary.First().Value.Answer.SendResponse(AnswerOperationCode.ContainerOperation, ErrorCode.NoError, null, operationData);
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("No Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
+                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
                         }
                     }
                     break;
@@ -125,15 +129,17 @@ namespace DoorofSoul.Library.General
                     {
                         Dictionary<byte, object> operationData = new Dictionary<byte, object>
                         {
-                            { (byte)Protocol.Communication.OperationParameters.Scene.ContainerOperationParameterCode.ContainerID, ContainerID },
-                            { (byte)Protocol.Communication.OperationParameters.Scene.ContainerOperationParameterCode.OperationCode, (byte)operationCode },
-                            { (byte)Protocol.Communication.OperationParameters.Scene.ContainerOperationParameterCode.Parameters, parameters }
+                            { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.ContainerID, ContainerID },
+                            { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.OperationCode, (byte)operationCode },
+                            { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.ReturnCode, (short)errorCode },
+                            { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.DebugMessage, debugMessage },
+                            { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.Parameters, parameters }
                         };
-                        Entity.LocatedScene.SendError(SceneOperationCode.ContainerOperation, errorCode, debugMessage, operationData);
+                        Entity.LocatedScene.SendResponse(SceneOperationCode.ContainerOperation, ErrorCode.NoError, null, operationData);
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("No Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }
@@ -146,6 +152,7 @@ namespace DoorofSoul.Library.General
             soulDictionary = new Dictionary<int, Soul>();
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);
+            ContainerResponseManager = new ContainerResponseManager(this);
         }
         public void BindEntity(Entity entity)
         {

@@ -33,10 +33,10 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
                 {
                     int entityID = (int)parameters[(byte)EntityEventParameterCode.EntityID];
                     EntityEventCode resolvedEventCode = (EntityEventCode)parameters[(byte)EntityEventParameterCode.EventCode];
-                    Dictionary<byte, object> resolvedOperationParameters = (Dictionary<byte, object>)parameters[(byte)EntityEventParameterCode.Parameters];
+                    Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)EntityEventParameterCode.Parameters];
                     if (scene.ContainsEntity(entityID))
                     {
-                        scene.FindEntity(entityID).EntityEventManager.Operate(resolvedEventCode, resolvedOperationParameters);
+                        scene.FindEntity(entityID).EntityEventManager.Operate(resolvedEventCode, resolvedParameters);
                         return true;
                     }
                     else

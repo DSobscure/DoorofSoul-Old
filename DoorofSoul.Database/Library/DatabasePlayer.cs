@@ -41,32 +41,33 @@ namespace DoorofSoul.Database.Library
             throw new NotImplementedException();
         }
 
-        public override void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendOperation(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override void SendWorldError(WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override void SendWorldEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
+
+        public override void SendWorldEvent(int worldID, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override void SendWorldResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
         }

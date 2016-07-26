@@ -39,16 +39,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneResponseParameterCode.Parameters];
                     if (world.ContainsScene(sceneID))
                     {
-                        if (returnCode == ErrorCode.NoError)
-                        {
-                            world.FindScene(sceneID).SceneResponseManager.Operate(resolvedOperationCode, resolvedParameters);
-                            return true;
-                        }
-                        else
-                        {
-                            LibraryLog.ErrorFormat("SceneOperationResponse Error Scene ID: {0} ErrorCode: {1}, DebugMessage: {2}", sceneID, returnCode, debugMessage);
-                            return false;
-                        }
+                        world.FindScene(sceneID).SceneResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        return true;
                     }
                     else
                     {

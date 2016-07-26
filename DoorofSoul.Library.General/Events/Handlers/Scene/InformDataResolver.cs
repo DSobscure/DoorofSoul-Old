@@ -15,8 +15,6 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
         {
             informTable = new Dictionary<SceneInformDataCode, InformDataHandler>
             {
-                { SceneInformDataCode.FetchDataError, new InformFetchDataErrorHandler(scene) },
-                { SceneInformDataCode.Entity, new InformEntityHandler(scene) },
                 { SceneInformDataCode.EntityEnter, new InformEntityEnterHandler(scene) },
                 { SceneInformDataCode.EntityExit, new InformEntityExitHandler(scene) },
             };

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters;
-using DoorofSoul.Protocol.Communication.EventParameters;
-using DoorofSoul.Protocol.Language;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Player
 {
@@ -27,37 +24,33 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             }
             else
             {
-                SendError(fetchCode, ErrorCode.ParameterError, debugMessage, null);
+                SendError(fetchCode, ErrorCode.ParameterError, debugMessage);
                 return false;
             }
         }
         public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(PlayerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage, string errorMessage)
+        public void SendResponse(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformFetchDataErrorParameterCode.FetchDataCode, (byte)fetchCode },
-                { (byte)InformFetchDataErrorParameterCode.DebugMessage, debugMessage },
-                { (byte)InformFetchDataErrorParameterCode.ErrorMessage, errorMessage }
-            };
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
-                { (byte)InformDataEventParameterCode.InformCode, (byte)PlayerInformDataCode.FetchDataError },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)errorCode },
-                { (byte)InformDataEventParameterCode.ReturnCode, parameters },
+                { (byte)FetchDataResponseParameterCode.FetchCode, (byte)fetchCode },
+                { (byte)FetchDataResponseParameterCode.ReturnCode, (short)ErrorCode.NoError },
+                { (byte)FetchDataResponseParameterCode.DebugMessage, null },
+                { (byte)FetchDataResponseParameterCode.Parameters, parameters }
+            };
+            player.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+        }
+        public void SendError(PlayerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataResponseParameterCode.FetchCode, (byte)fetchCode },
+                { (byte)FetchDataResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Player Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            player.SendEvent(PlayerEventCode.InformData, eventData);
-        }
-        public void SendEvent(PlayerInformDataCode informCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventData = new Dictionary<byte, object>
-            {
-                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
-                { (byte)InformDataEventParameterCode.ReturnCode, parameters },
-            };
-            player.SendEvent(PlayerEventCode.InformData, eventData);
+            player.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }
 }

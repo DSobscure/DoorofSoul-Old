@@ -47,8 +47,8 @@ namespace DoorofSoul.Server
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
-                { (byte)EventParameterCode.EventCode, (byte)eventCode },
                 { (byte)EventParameterCode.ID, PlayerID },
+                { (byte)EventParameterCode.EventCode, (byte)eventCode },
                 { (byte)EventParameterCode.Parameters, parameters }
             };
             EventData eventData = new EventData
@@ -62,8 +62,8 @@ namespace DoorofSoul.Server
         {
             Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
             {
-                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
                 { (byte)ResponseParameterCode.ID, PlayerID },
+                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
                 { (byte)ResponseParameterCode.ReturnCode, (short)errorCode },
                 { (byte)ResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)ResponseParameterCode.Parameters, parameters }
@@ -79,8 +79,8 @@ namespace DoorofSoul.Server
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
-                { (byte)EventParameterCode.EventCode, (byte)eventCode },
                 { (byte)EventParameterCode.ID, worldID },
+                { (byte)EventParameterCode.EventCode, (byte)eventCode },
                 { (byte)EventParameterCode.Parameters, parameters }
             };
             EventData eventData = new EventData
@@ -95,8 +95,8 @@ namespace DoorofSoul.Server
         {
             Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
             {
-                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
                 { (byte)ResponseParameterCode.ID, worldID },
+                { (byte)ResponseParameterCode.OperationCode, (byte)operationCode },
                 { (byte)ResponseParameterCode.ReturnCode, (short)errorCode },
                 { (byte)ResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)ResponseParameterCode.Parameters, parameters }

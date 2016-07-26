@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Library.General.Responses.Handlers;
 using DoorofSoul.Library.General.Responses.Handlers.Entity;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 
@@ -19,7 +20,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
             };
         }
 
-        public void Operate(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        public void Operate(EntityOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (operationTable.ContainsKey(operationCode))
             {

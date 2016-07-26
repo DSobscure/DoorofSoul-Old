@@ -39,16 +39,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerResponseParameterCode.Parameters];
                     if (player.AnswerID == answerID)
                     {
-                        if (returnCode == ErrorCode.NoError)
-                        {
-                            player.Answer.AnswerResponseManager.Operate(resolvedOperationCode, resolvedParameters);
-                            return true;
-                        }
-                        else
-                        {
-                            LibraryLog.ErrorFormat("AnswerOperationResponse Error Answer ID: {0} ErrorCode: {1}, DebugMessage: {2}", answerID, returnCode, debugMessage);
-                            return false;
-                        }
+                        player.Answer.AnswerResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        return true;
                     }
                     else
                     {

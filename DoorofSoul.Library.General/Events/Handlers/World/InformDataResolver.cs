@@ -1,5 +1,4 @@
-﻿using DoorofSoul.Library.General.Events.Handlers.World.InformData;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
@@ -15,7 +14,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.World
         {
             informTable = new Dictionary<WorldInformDataCode, InformDataHandler>
             {
-                { WorldInformDataCode.FetchDataError, new InformFetchDataErrorHandler(world) },
+
             };
         }
 

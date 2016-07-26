@@ -7,8 +7,8 @@ namespace DoorofSoul.Protocol.Communication.OperationParameters
 {
     public enum OperationParameterCode : byte
     {
-        OperationCode,
         ID,
+        OperationCode,
         Parameters
     }
 }

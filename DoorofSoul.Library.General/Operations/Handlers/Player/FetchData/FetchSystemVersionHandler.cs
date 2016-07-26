@@ -1,6 +1,5 @@
 ﻿using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
 using System;
 using System.Collections.Generic;
 
@@ -36,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                     player.FetchSystemVersion(out serverVersion, out clientVersion);
                     var result = new Dictionary<byte, object>
                     {
-                        { (byte)InformSystemVersionParameterCode.CurrentServerVersion, serverVersion },
-                        { (byte)InformSystemVersionParameterCode.CurrentClientVersion, clientVersion }
+                        { (byte)FetchSystemVersionResponseParameterCode.CurrentServerVersion, serverVersion },
+                        { (byte)FetchSystemVersionResponseParameterCode.CurrentClientVersion, clientVersion }
                     };
-                    SendEvent(PlayerInformDataCode.SystemVersion, result);
+                    SendResponse(fetchCode, result);
                     return true;
                 }
                 catch (InvalidCastException ex)

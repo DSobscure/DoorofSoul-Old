@@ -1,5 +1,4 @@
-﻿using DoorofSoul.Library.General.Events.Handlers.Answer.InformData;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
@@ -15,9 +14,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
         {
             informTable = new Dictionary<AnswerInformDataCode, InformDataHandler>
             {
-                { AnswerInformDataCode.Soul, new InformSoulHandler(answer) },
-                { AnswerInformDataCode.Container, new InformContainerHandler(answer) },
-                { AnswerInformDataCode.SoulContainerLink, new InformSoulContainerLinkHandler(answer) },
+
             };
         }
 

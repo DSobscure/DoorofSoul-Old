@@ -1,6 +1,5 @@
 ﻿using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
 using System;
 using System.Collections.Generic;
 
@@ -36,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                     player.FetchAnswer(out answer);
                     var result = new Dictionary<byte, object>
                     {
-                        { (byte)InformAnswerParameterCode.AnswerID, answer.AnswerID },
-                        { (byte)InformAnswerParameterCode.SoulCountLimit, answer.SoulCountLimit }
+                        { (byte)FetchAnswerResponseParameterCode.AnswerID, answer.AnswerID },
+                        { (byte)FetchAnswerResponseParameterCode.SoulCountLimit, answer.SoulCountLimit }
                     };
-                    SendEvent(PlayerInformDataCode.Answer, result);
+                    SendResponse(fetchCode, result);
                     return true;
                 }
                 catch (InvalidCastException ex)

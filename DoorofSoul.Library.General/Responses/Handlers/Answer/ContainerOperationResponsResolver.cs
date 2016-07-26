@@ -39,16 +39,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)ContainerResponseParameterCode.Parameters];
                     if (answer.ContainsContainer(containerID))
                     {
-                        if (returnCode == ErrorCode.NoError)
-                        {
-                            answer.FindContainer(containerID).ContainerResponseManager.Operate(resolvedOperationCode, resolvedParameters);
-                            return true;
-                        }
-                        else
-                        {
-                            LibraryLog.ErrorFormat("ContainerOperationResponse Error Container ID: {0} ErrorCode: {1}, DebugMessage: {2}", containerID, returnCode, debugMessage);
-                            return false;
-                        }
+                        answer.FindContainer(containerID).ContainerResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        return true;
                     }
                     else
                     {

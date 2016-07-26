@@ -2,8 +2,6 @@
 {
     public enum AnswerInformDataCode : byte
     {
-        Soul,
-        Container,
-        SoulContainerLink,
+
     }
 }

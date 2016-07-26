@@ -7,8 +7,8 @@ namespace DoorofSoul.Protocol.Communication.ResponseParameters
 {
     public enum ResponseParameterCode : byte
     {
-        OperationCode,
         ID,
+        OperationCode,
         ReturnCode,
         DebugMessage,
         Parameters

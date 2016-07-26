@@ -7,8 +7,8 @@ namespace DoorofSoul.Protocol.Communication.EventParameters
 {
     public enum EventParameterCode : byte
     {
-        EventCode,
         ID,
+        EventCode,
         Parameters
     }
 }

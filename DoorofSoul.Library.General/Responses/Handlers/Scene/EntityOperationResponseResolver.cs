@@ -39,16 +39,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)EntityResponseParameterCode.Parameters];
                     if (scene.ContainsEntity(entityID))
                     {
-                        if (returnCode == ErrorCode.NoError)
-                        {
-                            scene.FindEntity(entityID).EntityResponseManager.Operate(resolvedOperationCode, resolvedParameters);
-                            return true;
-                        }
-                        else
-                        {
-                            LibraryLog.ErrorFormat("EntityOperationResponse Error Entity ID: {0} ErrorCode: {1}, DebugMessage: {2}", entityID, returnCode, debugMessage);
-                            return false;
-                        }
+                        scene.FindEntity(entityID).EntityResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        return true;
                     }
                     else
                     {

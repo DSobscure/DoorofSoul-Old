@@ -39,16 +39,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulResponseParameterCode.Parameters];
                     if (answer.ContainsSoul(soulID))
                     {
-                        if(returnCode == ErrorCode.NoError)
-                        {
-                            answer.FindSoul(soulID).SoulResponseManager.Operate(resolvedOperationCode, resolvedParameters);
-                            return true;
-                        }
-                        else
-                        {
-                            LibraryLog.ErrorFormat("SoulOperationResponse Error Soul ID: {0} ErrorCode: {1}, DebugMessage: {2}", soulID, returnCode, debugMessage);
-                            return false;
-                        }
+                        answer.FindSoul(soulID).SoulResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        return true;
                     }
                     else
                     {

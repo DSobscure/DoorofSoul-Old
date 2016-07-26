@@ -2,7 +2,7 @@
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Communication.ResponseParameters;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Scene

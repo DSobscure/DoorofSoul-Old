@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters;
-using DoorofSoul.Protocol.Communication.EventParameters;
-using DoorofSoul.Protocol.Language;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Container
 {
@@ -28,37 +25,33 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
             }
             else
             {
-                SendError(fetchCode, ErrorCode.ParameterError, debugMessage, null);
+                SendError(fetchCode, ErrorCode.ParameterError, debugMessage);
                 return false;
             }
         }
         public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(ContainerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage, string errorMessage)
+        public void SendResponse(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformFetchDataErrorParameterCode.FetchDataCode, (byte)fetchCode },
-                { (byte)InformFetchDataErrorParameterCode.DebugMessage, debugMessage },
-                { (byte)InformFetchDataErrorParameterCode.ErrorMessage, errorMessage }
-            };
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
-                { (byte)InformDataEventParameterCode.InformCode, (byte)ContainerInformDataCode.FetchDataError },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)errorCode },
-                { (byte)InformDataEventParameterCode.ReturnCode, parameters },
+                { (byte)FetchDataResponseParameterCode.FetchCode, (byte)fetchCode },
+                { (byte)FetchDataResponseParameterCode.ReturnCode, (short)ErrorCode.NoError },
+                { (byte)FetchDataResponseParameterCode.DebugMessage, null },
+                { (byte)FetchDataResponseParameterCode.Parameters, parameters }
+            };
+            container.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
+        }
+        public void SendError(ContainerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataResponseParameterCode.FetchCode, (byte)fetchCode },
+                { (byte)FetchDataResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Container Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            container.SendEvent(ContainerEventCode.InformData, eventData, ContainerCommunicationChannel.Answer);
-        }
-        public void SendEvent(ContainerInformDataCode informCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventData = new Dictionary<byte, object>
-            {
-                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
-                { (byte)InformDataEventParameterCode.ReturnCode, parameters },
-            };
-            container.SendEvent(ContainerEventCode.InformData, eventData, ContainerCommunicationChannel.Answer);
+            container.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DoorofSoul.Protocol.Communication.InformDataParameters.Scene
+﻿namespace DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Scene
 {
-    public enum InformEntityParameterCode : byte
+    public enum FetchEntitiesResponseParameterCode : byte
     {
         EntityID,
         EntityName,

@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Answer;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
 using System;
 using System.Collections.Generic;
 
@@ -39,10 +39,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                         {
                             var result = new Dictionary<byte, object>
                             {
-                                { (byte)InformSoulContainerLinkParameterCode.SoulID, soul.SoulID },
-                                { (byte)InformSoulContainerLinkParameterCode.ContainerID, container.ContainerID }
+                                { (byte)FetchSoulContainerLinksResponseParameterCode.SoulID, soul.SoulID },
+                                { (byte)FetchSoulContainerLinksResponseParameterCode.ContainerID, container.ContainerID }
                             };
-                            SendEvent(AnswerInformDataCode.SoulContainerLink, result);
+                            SendResponse(fetchCode, result);
                         }
                     }
                     return true;

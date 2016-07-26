@@ -2,8 +2,6 @@
 {
     public enum PlayerInformDataCode : byte
     {
-        SystemVersion,
-        Answer,
-        Scene,
+
     }
 }

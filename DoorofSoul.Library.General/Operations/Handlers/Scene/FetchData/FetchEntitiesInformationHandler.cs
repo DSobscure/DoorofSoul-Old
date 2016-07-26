@@ -1,7 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
+﻿using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Scene;
 using System;
 using System.Collections.Generic;
 
@@ -37,32 +35,32 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene.FetchData
                     {
                         var result = new Dictionary<byte, object>
                             {
-                                { (byte)InformEntityParameterCode.EntityID, entity.EntityID },
-                                { (byte)InformEntityParameterCode.EntityName, entity.EntityName },
-                                { (byte)InformEntityParameterCode.PositionX, entity.Position.x },
-                                { (byte)InformEntityParameterCode.PositionY, entity.Position.y },
-                                { (byte)InformEntityParameterCode.PositionZ, entity.Position.z },
-                                { (byte)InformEntityParameterCode.RotationX, entity.Rotation.x },
-                                { (byte)InformEntityParameterCode.RotationY, entity.Rotation.y },
-                                { (byte)InformEntityParameterCode.RotationZ, entity.Rotation.z },
-                                { (byte)InformEntityParameterCode.ScaleX, entity.Scale.x },
-                                { (byte)InformEntityParameterCode.ScaleY, entity.Scale.y },
-                                { (byte)InformEntityParameterCode.ScaleZ, entity.Scale.z },
-                                { (byte)InformEntityParameterCode.VelocityX, entity.Velocity.x },
-                                { (byte)InformEntityParameterCode.VelocityY, entity.Velocity.y },
-                                { (byte)InformEntityParameterCode.VelocityZ, entity.Velocity.z },
-                                { (byte)InformEntityParameterCode.MaxVelocityX, entity.MaxVelocity.x },
-                                { (byte)InformEntityParameterCode.MaxVelocityY, entity.MaxVelocity.y },
-                                { (byte)InformEntityParameterCode.MaxVelocityZ, entity.MaxVelocity.z },
-                                { (byte)InformEntityParameterCode.AngularVelocityX, entity.AngularVelocity.x },
-                                { (byte)InformEntityParameterCode.AngularVelocityY, entity.AngularVelocity.y },
-                                { (byte)InformEntityParameterCode.AngularVelocityZ, entity.AngularVelocity.z },
-                                { (byte)InformEntityParameterCode.MaxAngularVelocityX, entity.MaxAngularVelocity.x },
-                                { (byte)InformEntityParameterCode.MaxAngularVelocityY, entity.MaxAngularVelocity.y },
-                                { (byte)InformEntityParameterCode.MaxAngularVelocityZ, entity.MaxAngularVelocity.z },
-                                { (byte)InformEntityParameterCode.Mass, entity.Mass },
+                                { (byte)FetchEntitiesResponseParameterCode.EntityID, entity.EntityID },
+                                { (byte)FetchEntitiesResponseParameterCode.EntityName, entity.EntityName },
+                                { (byte)FetchEntitiesResponseParameterCode.PositionX, entity.Position.x },
+                                { (byte)FetchEntitiesResponseParameterCode.PositionY, entity.Position.y },
+                                { (byte)FetchEntitiesResponseParameterCode.PositionZ, entity.Position.z },
+                                { (byte)FetchEntitiesResponseParameterCode.RotationX, entity.Rotation.x },
+                                { (byte)FetchEntitiesResponseParameterCode.RotationY, entity.Rotation.y },
+                                { (byte)FetchEntitiesResponseParameterCode.RotationZ, entity.Rotation.z },
+                                { (byte)FetchEntitiesResponseParameterCode.ScaleX, entity.Scale.x },
+                                { (byte)FetchEntitiesResponseParameterCode.ScaleY, entity.Scale.y },
+                                { (byte)FetchEntitiesResponseParameterCode.ScaleZ, entity.Scale.z },
+                                { (byte)FetchEntitiesResponseParameterCode.VelocityX, entity.Velocity.x },
+                                { (byte)FetchEntitiesResponseParameterCode.VelocityY, entity.Velocity.y },
+                                { (byte)FetchEntitiesResponseParameterCode.VelocityZ, entity.Velocity.z },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxVelocityX, entity.MaxVelocity.x },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxVelocityY, entity.MaxVelocity.y },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxVelocityZ, entity.MaxVelocity.z },
+                                { (byte)FetchEntitiesResponseParameterCode.AngularVelocityX, entity.AngularVelocity.x },
+                                { (byte)FetchEntitiesResponseParameterCode.AngularVelocityY, entity.AngularVelocity.y },
+                                { (byte)FetchEntitiesResponseParameterCode.AngularVelocityZ, entity.AngularVelocity.z },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxAngularVelocityX, entity.MaxAngularVelocity.x },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxAngularVelocityY, entity.MaxAngularVelocity.y },
+                                { (byte)FetchEntitiesResponseParameterCode.MaxAngularVelocityZ, entity.MaxAngularVelocity.z },
+                                { (byte)FetchEntitiesResponseParameterCode.Mass, entity.Mass },
                             };
-                        SendEvent(SceneInformDataCode.Entity, result);
+                        SendResponse(fetchCode, result);
                     }
                     return true;
                 }

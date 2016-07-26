@@ -1,6 +1,5 @@
 ﻿using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Answer;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
 using System;
 using System.Collections.Generic;
 
@@ -36,10 +35,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                     {
                         var result = new Dictionary<byte, object>
                         {
-                            { (byte)InformContainerParameterCode.ContainerID, container.ContainerID },
-                            { (byte)InformContainerParameterCode.EntityID, container.EntityID }
+                            { (byte)FetchContainersResponseParameterCode.ContainerID, container.ContainerID },
+                            { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID }
                         };
-                        SendEvent(AnswerInformDataCode.Container, result);
+                        SendResponse(fetchCode, result);
                     }
                     return true;
                 }

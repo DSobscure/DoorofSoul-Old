@@ -1,8 +1,7 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters.Player;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
 using System;
 using System.Collections.Generic;
 
@@ -41,17 +40,17 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                     {
                         var result = new Dictionary<byte, object>
                         {
-                            { (byte)InformSceneParameterCode.SceneID, scene.SceneID },
-                            { (byte)InformSceneParameterCode.SceneName, scene.SceneName },
-                            { (byte)InformSceneParameterCode.WorldID, scene.WorldID }
+                            { (byte)FetchSceneResponseParameterCode.SceneID, scene.SceneID },
+                            { (byte)FetchSceneResponseParameterCode.SceneName, scene.SceneName },
+                            { (byte)FetchSceneResponseParameterCode.WorldID, scene.WorldID }
                         };
-                        SendEvent(PlayerInformDataCode.Scene, result);
+                        SendResponse(fetchCode, result);
                         return true;
                     }
                     else
                     {
                         LibraryLog.ErrorFormat("Fetch Scene Not Exist!");
-                        SendError(fetchCode, ErrorCode.NotExist, "Scene not exist", null);
+                        SendError(fetchCode, ErrorCode.NotExist, "Scene not exist");
                         return false;
                     }
                 }

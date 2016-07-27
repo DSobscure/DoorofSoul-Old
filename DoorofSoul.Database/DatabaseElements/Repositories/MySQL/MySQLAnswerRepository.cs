@@ -6,7 +6,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLAnswerRepository : AnswerRepository
     {
-        public override DatabaseAnswer Find(int answerID, Player correspondingPlayer)
+        public override Answer Find(int answerID, Player correspondingPlayer)
         {
             string sqlString = @"SELECT  
                 SoulCountLimit
@@ -19,7 +19,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     if (reader.Read())
                     {
                         int soulCountLimit = reader.GetInt32(0);
-                        DatabaseAnswer answer = new DatabaseAnswer(answerID, soulCountLimit, correspondingPlayer);
+                        Answer answer = new Answer(answerID, soulCountLimit, correspondingPlayer);
                         correspondingPlayer.ActiveAnswer(answer);
                         return answer;
                     }

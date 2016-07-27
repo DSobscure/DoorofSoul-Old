@@ -47,7 +47,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
                 else
                 {
                     debugMessage = string.Format("Soul Fetch Operation Not Exist Fetch Code: {0}", fetchCode);
-                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage, LauguageDictionarySelector.Instance[soul.Answer.Player.UsingLanguage]["Not Existed Fetch Operation"]);
+                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage);
                     return false;
                 }
             }

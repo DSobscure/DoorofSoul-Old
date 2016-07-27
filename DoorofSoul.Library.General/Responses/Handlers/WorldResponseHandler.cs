@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication.OperationCodes;
+﻿using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers
@@ -12,19 +13,17 @@ namespace DoorofSoul.Library.General.Responses.Handlers
             this.world = world;
         }
 
-        public virtual bool Handle(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public virtual bool Handle(WorldOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            string debugMessage;
-            if (CheckParameter(parameters, out debugMessage))
+            if (CheckError(parameters, returnCode, debugMessage))
             {
                 return true;
             }
             else
             {
-                LibraryLog.ErrorFormat("World Response Parameter Error On {0} WorldID: {1} Debug Message: {2}", operationCode, world.WorldID, debugMessage);
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

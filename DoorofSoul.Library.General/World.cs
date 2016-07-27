@@ -4,6 +4,7 @@ using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
@@ -18,6 +19,7 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         protected Dictionary<int, Scene> sceneDictionary;
         public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
+        public abstract SupportLauguages UsingLanguage { get; }
 
         #region communication
         public WorldEventManager WorldEventManager { get; protected set; }
@@ -26,6 +28,7 @@ namespace DoorofSoul.Library.General
         public abstract void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
         public abstract void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters);
+        public abstract void ErrorInform(string title, string message);
         #endregion
 
         public World(int worldID, string worldName)

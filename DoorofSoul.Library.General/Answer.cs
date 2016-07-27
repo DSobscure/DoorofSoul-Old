@@ -7,12 +7,13 @@ using DoorofSoul.Protocol.Communication.EventParameters.Player;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
+using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
 {
-    public abstract class Answer
+    public class Answer
     {
         public int AnswerID { get; protected set; }
         public Player Player { get; protected set; }
@@ -23,6 +24,7 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
         public int SoulCountLimit { get; protected set; }
+        public SupportLauguages UsingLanguage { get { return Player.UsingLanguage; } }
 
         private event Action<Answer> onLoadSouls;
         public event Action<Answer> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
@@ -65,10 +67,23 @@ namespace DoorofSoul.Library.General
             };
             Player.SendResponse(PlayerOperationCode.AnswerOperation, ErrorCode.NoError, null, responseData);
         }
+        public void ErrorInform(string title, string message)
+        {
+            Player.ErrorInform(title, message);
+        }
 
-        public abstract bool DeleteSoul(int soulID);
-        public abstract bool CreateSoul(string soulName);
-        public abstract bool ActiveSoul(int soulID);
+        public bool DeleteSoul(int soulID)
+        {
+            return Player.DeleteSoul(this, soulID);
+        }
+        public bool CreateSoul(string soulName)
+        {
+            return Player.CreateSoul(this, soulName);
+        }
+        public bool ActiveSoul(int soulID)
+        {
+            return Player.ActiveSoul(this, soulID);
+        }
         #endregion
 
         public Answer(int answerID, int soulCountLimit, Player player)

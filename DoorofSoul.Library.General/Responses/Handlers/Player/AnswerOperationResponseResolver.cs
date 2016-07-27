@@ -12,34 +12,41 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 5)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("Answer OperationResponse Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 5)
+                {
+                    LibraryLog.ErrorFormat("Answer OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("AnswerOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(PlayerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 try
                 {
                     int answerID = (int)parameters[(byte)AnswerResponseParameterCode.AnswerID];
                     AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerResponseParameterCode.OperationCode];
-                    ErrorCode returnCode = (ErrorCode)parameters[(byte)AnswerResponseParameterCode.ReturnCode];
-                    string debugMessage = (string)parameters[(byte)AnswerResponseParameterCode.DebugMessage];
+                    ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)AnswerResponseParameterCode.ReturnCode];
+                    string resolvedDebugMessage = (string)parameters[(byte)AnswerResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerResponseParameterCode.Parameters];
                     if (player.AnswerID == answerID)
                     {
-                        player.Answer.AnswerResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        player.Answer.AnswerResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

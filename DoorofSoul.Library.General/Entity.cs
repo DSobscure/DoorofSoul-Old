@@ -9,6 +9,7 @@ using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Scene;
 using System;
 using System.Collections.Generic;
+using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General
 {
@@ -63,6 +64,7 @@ namespace DoorofSoul.Library.General
             get { return SpaceProperties.mass; }
             protected set { SpaceProperties.mass = value; }
         }
+        public SupportLauguages UsingLanguage { get { return LocatedScene.UsingLanguage; } }
         #endregion
         #region events
         private event Action<Entity> onEntityTranformChange;
@@ -106,6 +108,10 @@ namespace DoorofSoul.Library.General
                 { (byte)EntityResponseParameterCode.Parameters, parameters }
             };
             LocatedScene.SendResponse(SceneOperationCode.EntityOperation, ErrorCode.NoError, null, operationData);
+        }
+        public void ErrorInform(string title, string message)
+        {
+            LocatedScene.ErrorInform(title, message);
         }
         #endregion
 

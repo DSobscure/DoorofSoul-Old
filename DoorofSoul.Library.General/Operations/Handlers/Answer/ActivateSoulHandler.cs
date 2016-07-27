@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
         {
             if (base.Handle(operationCode, parameters))
             {
-                string debugMessage, errorMessage;
+                string debugMessage;
                 int soulID = (int)parameters[(byte)ActivateSoulOperationParameterCode.SoulID];
                 if (answer.ContainsSoul(soulID))
                 {
@@ -41,19 +41,9 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                     {
                         General.Soul soul = answer.FindSoul(soulID);
                         General.Container defaultContainer = soul.Containers.FirstOrDefault();
-                        int sceneID;
-                        if (defaultContainer == null)
-                        {
-                            sceneID = 1;
-                        }
-                        else
-                        {
-                            sceneID = defaultContainer.Entity.LocatedSceneID;
-                        }
                         Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
                         {
-                            { (byte)ActiveSoulResponseParameterCode.SoulID, soulID },
-                            { (byte)ActiveSoulResponseParameterCode.SceneID, sceneID }
+                            { (byte)ActiveSoulResponseParameterCode.SoulID, soulID }
                         };
                         SendResponse(operationCode, responseParameters);
                         return true;
@@ -61,16 +51,14 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                     else
                     {
                         debugMessage = string.Format("Soul Activate Error SoulID: {0}, AnswerID: {1}", soulID, answer.AnswerID);
-                        errorMessage = LauguageDictionarySelector.Instance[answer.Player.UsingLanguage]["Activate Soul Error"];
-                        SendError(operationCode, Protocol.Communication.ErrorCode.Fail, debugMessage, errorMessage);
+                        SendError(operationCode, Protocol.Communication.ErrorCode.Fail, debugMessage);
                         return false;
                     }
                 }
                 else
                 {
                     debugMessage = string.Format("Soul Activate Permission Deny SoulID: {0}, AnswerID: {1}", soulID, answer.AnswerID);
-                    errorMessage = LauguageDictionarySelector.Instance[answer.Player.UsingLanguage]["Permission Deny"];
-                    SendError(operationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage, errorMessage);
+                    SendError(operationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage);
                     return false;
                 }
             }

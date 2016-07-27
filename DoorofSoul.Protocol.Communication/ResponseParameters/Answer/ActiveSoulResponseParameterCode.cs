@@ -2,7 +2,6 @@
 {
     public enum ActiveSoulResponseParameterCode : byte
     {
-        SoulID,
-        SceneID
+        SoulID
     }
 }

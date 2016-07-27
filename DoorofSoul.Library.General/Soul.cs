@@ -7,6 +7,7 @@ using DoorofSoul.Protocol.Communication.EventParameters.Answer;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Answer;
+using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
@@ -22,6 +23,7 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
         public bool IsActive { get; set; }
+        public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
         #endregion
 
         #region communication
@@ -59,6 +61,10 @@ namespace DoorofSoul.Library.General
                 { (byte)SoulResponseParameterCode.Parameters, parameters }
             };
             Answer.SendResponse(AnswerOperationCode.SoulOperation, ErrorCode.NoError, null, responseData);
+        }
+        public void ErrorInform(string title, string message)
+        {
+            Answer.ErrorInform(title, message);
         }
         #endregion
 

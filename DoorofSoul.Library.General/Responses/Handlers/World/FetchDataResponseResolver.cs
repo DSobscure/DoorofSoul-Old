@@ -18,31 +18,38 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 4)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("World Fetch Data Response Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 4)
+                {
+                    LibraryLog.ErrorFormat("World Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("World Fetch Data Response Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(WorldOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 WorldFetchDataCode fetchCode = (WorldFetchDataCode)parameters[(byte)FetchDataResponseParameterCode.FetchCode];
-                ErrorCode returnCode = (ErrorCode)parameters[(byte)FetchDataResponseParameterCode.ReturnCode];
-                string debugMessage = (string)parameters[(byte)FetchDataResponseParameterCode.DebugMessage];
+                ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)FetchDataResponseParameterCode.ReturnCode];
+                string resolvedDebugMessage = (string)parameters[(byte)FetchDataResponseParameterCode.DebugMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)FetchDataResponseParameterCode.Parameters];
                 if (fetchResponseTable.ContainsKey(fetchCode))
                 {
-                    return fetchResponseTable[fetchCode].Handle(fetchCode, returnCode, debugMessage, resolvedParameters);
+                    return fetchResponseTable[fetchCode].Handle(fetchCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                 }
                 else
                 {

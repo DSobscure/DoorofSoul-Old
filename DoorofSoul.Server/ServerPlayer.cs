@@ -9,6 +9,7 @@ using DoorofSoul.Protocol.Communication.ResponseParameters;
 using Photon.SocketServer;
 using System;
 using System.Collections.Generic;
+using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Server
 {
@@ -27,14 +28,14 @@ namespace DoorofSoul.Server
             this.peer = peer;
             LastConnectedIPAddress = peer.RemoteIPAddress;
         }
-        public void LoadPlayer(DatabasePlayer player)
+        public void LoadPlayer(PlayerData player)
         {
-            PlayerID = player.PlayerID;
-            Account = player.Account;
-            Nickname = player.Nickname;
-            UsingLanguage = player.UsingLanguage;
-            LastConnectedIPAddress = player.LastConnectedIPAddress;
-            AnswerID = player.AnswerID;
+            PlayerID = player.playerID;
+            Account = player.account;
+            Nickname = player.nickname;
+            UsingLanguage = player.usingLanguage;
+            LastConnectedIPAddress = player.lastConnectedIPAddress;
+            AnswerID = player.answerID;
         }
         public void RelifeWithNewPlayer(ServerPlayer newPlayer)
         {
@@ -108,9 +109,9 @@ namespace DoorofSoul.Server
             peer.SendOperationResponse(response, new SendParameters());
         }
 
-        public override bool Login(string account, string password, out string debugMessage, out string errorMessage)
+        public override bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode)
         {
-            return Application.ServerInstance.PlayerFactory.PlayerLogin(this, account, password, out debugMessage, out errorMessage);
+            return Application.ServerInstance.PlayerFactory.PlayerLogin(this, account, password, out debugMessage, out errorCode);
         }
 
         public override void Logout()
@@ -143,6 +144,36 @@ namespace DoorofSoul.Server
         public override void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
+        }
+
+        public override void ErrorInform(string title, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void LoginResponse(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void LogoutResponse()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool DeleteSoul(Answer answer, int soulID)
+        {
+            return Hexagram.Instance.Throne.DeleteSoul(answer.AnswerID, soulID);
+        }
+
+        public override bool CreateSoul(Answer answer, string soulName)
+        {
+            return Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName);
+        }
+
+        public override bool ActiveSoul(Answer answer, int soulID)
+        {
+            return Hexagram.Instance.Throne.ActiveSoul(soulID);
         }
     }
 }

@@ -106,7 +106,6 @@
     <Compile Include="ResponseParameters\Answer\ContainerResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\Answer\SoulResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\FetchDataResponseParameterCode.cs" />
-    <Compile Include="ResponseParameters\OperationErrorResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\Player\AnswerResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\Player\PlayerLoginResponseParameterCode.cs" />
     <Compile Include="OperationCodes\SceneOperationCode.cs" />

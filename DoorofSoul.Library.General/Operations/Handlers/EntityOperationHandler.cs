@@ -23,14 +23,14 @@ namespace DoorofSoul.Library.General.Operations.Handlers
             }
             else
             {
-                SendError(operationCode, ErrorCode.ParameterError, debugMessage, null);
+                SendError(operationCode, ErrorCode.ParameterError, debugMessage);
                 return false;
             }
         }
         public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, string errorMessage)
+        public void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object> { { (byte)OperationErrorResponseParameterCode.ErrorMessage, errorMessage } };
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             entity.SendResponse(operationCode, errorCode, debugMessage, parameters);
             LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }

@@ -29,7 +29,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
         {
             if (operationTable.ContainsKey(operationCode))
             {
-                if (!operationTable[operationCode].Handle(operationCode, parameters))
+                if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
                     LibraryLog.ErrorFormat("Answer Response Error: {0} from AnswerID: {1}", operationCode, answer.AnswerID);
                 }

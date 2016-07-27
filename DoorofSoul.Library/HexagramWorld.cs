@@ -5,11 +5,20 @@ using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library
 {
     public class HexagramWorld : World
     {
+        public override SupportLauguages UsingLanguage
+        {
+            get
+            {
+                return SupportLauguages.Chinese_Traditional;
+            }
+        }
+
         protected HashSet<Player> Players
         {
             get
@@ -25,7 +34,7 @@ namespace DoorofSoul.Library
                 return players;
             }
         }
-        public HexagramWorld(DatabaseWorld world) : base(world.WorldID, world.WorldName)
+        public HexagramWorld(WorldData world) : base(world.worldID, world.worldName)
         {
         }
 
@@ -51,6 +60,11 @@ namespace DoorofSoul.Library
             {
                 player.SendWorldResponse(WorldID, operationCode, returnCode, degugMessage, parameters);
             }
+        }
+
+        public override void ErrorInform(string title, string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

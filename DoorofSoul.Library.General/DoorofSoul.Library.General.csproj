@@ -157,8 +157,8 @@
     <Compile Include="Responses\Handlers\Player\FetchData\FetchAnswerResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\FetchData\FetchSceneResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\FetchData\FetchSystemVersionResponseHandler.cs" />
-    <Compile Include="Responses\Handlers\Player\LoginResponseResolver.cs" />
-    <Compile Include="Responses\Handlers\Player\LogoutResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Player\LoginResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\LogoutResponseHandler.cs" />
     <Compile Include="Responses\Handlers\SceneResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Scene\ContainerOperationResponseResolver.cs" />
     <Compile Include="Responses\Handlers\Scene\EntityOperationResponseResolver.cs" />

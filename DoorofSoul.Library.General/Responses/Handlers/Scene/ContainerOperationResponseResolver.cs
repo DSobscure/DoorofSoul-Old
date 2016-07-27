@@ -12,34 +12,41 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 5)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("Container OperationResponse Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 5)
+                {
+                    LibraryLog.ErrorFormat("Container OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("ContainerOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(SceneOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 try
                 {
                     int containerID = (int)parameters[(byte)ContainerResponseParameterCode.ContainerID];
                     ContainerOperationCode resolvedOperationCode = (ContainerOperationCode)parameters[(byte)ContainerResponseParameterCode.OperationCode];
-                    ErrorCode returnCode = (ErrorCode)parameters[(byte)ContainerResponseParameterCode.ReturnCode];
-                    string debugMessage = (string)parameters[(byte)ContainerResponseParameterCode.DebugMessage];
+                    ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)ContainerResponseParameterCode.ReturnCode];
+                    string resolvedDebugMessage = (string)parameters[(byte)ContainerResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)ContainerResponseParameterCode.Parameters];
                     if (scene.ContainsContainer(containerID))
                     {
-                        scene.FindContainer(containerID).ContainerResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        scene.FindContainer(containerID).ContainerResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

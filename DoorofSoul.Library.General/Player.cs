@@ -1,5 +1,5 @@
-﻿using DoorofSoul.Library.General.Operations.Managers;
-using DoorofSoul.Library.General.Events.Managers;
+﻿using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
@@ -40,12 +40,18 @@ namespace DoorofSoul.Library.General
         public abstract void SendWorldEvent(int worldID, WorldEventCode eventCode, Dictionary<byte, object> parameters);
         public abstract void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void ErrorInform(string title, string message);
 
-        public abstract bool Login(string account, string password, out string debugMessage, out string errorMessage);
+        public abstract bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode);
+        public abstract void LoginResponse(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID);
         public abstract void Logout();
+        public abstract void LogoutResponse();
         public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
         public abstract void FetchAnswer(out Answer answer);
         public abstract void FetchScene(int sceneID, out Scene scene);
+        public abstract bool DeleteSoul(Answer answer, int soulID);
+        public abstract bool CreateSoul(Answer answer, string soulName);
+        public abstract bool ActiveSoul(Answer answer, int soulID);
         #endregion
 
         public Player()
@@ -54,15 +60,6 @@ namespace DoorofSoul.Library.General
             PlayerEventManager = new PlayerEventManager(this);
             PlayerOperationManager = new PlayerOperationManager(this);
             PlayerResponseManager = new PlayerResponseManager(this);
-        }
-        public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
-        {
-            PlayerID = playerID;
-            Account = account;
-            Nickname = nickname;
-            UsingLanguage = usingLanguage;
-            LastConnectedIPAddress = lastConnectedIPAddress;
-            AnswerID = answerID;
         }
 
         public bool ActiveAnswer(Answer answer)

@@ -12,34 +12,41 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 5)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("Scene OperationResponse Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 5)
+                {
+                    LibraryLog.ErrorFormat("Scene OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("SceneOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(WorldOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 try
                 {
                     int sceneID = (int)parameters[(byte)SceneResponseParameterCode.SceneID];
                     SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneResponseParameterCode.OperationCode];
-                    ErrorCode returnCode = (ErrorCode)parameters[(byte)SceneResponseParameterCode.ReturnCode];
-                    string debugMessage = (string)parameters[(byte)SceneResponseParameterCode.DebugMessage];
+                    ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)SceneResponseParameterCode.ReturnCode];
+                    string resolvedDebugMessage = (string)parameters[(byte)SceneResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneResponseParameterCode.Parameters];
                     if (world.ContainsScene(sceneID))
                     {
-                        world.FindScene(sceneID).SceneResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        world.FindScene(sceneID).SceneResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

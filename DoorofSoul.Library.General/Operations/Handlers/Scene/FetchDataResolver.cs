@@ -47,7 +47,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 else
                 {
                     debugMessage = string.Format("Scene Fetch Operation Not Exist Fetch Code: {0}", fetchCode);
-                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage, null);
+                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage);
                     return false;
                 }
             }

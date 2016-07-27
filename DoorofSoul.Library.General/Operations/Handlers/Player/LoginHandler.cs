@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
@@ -32,10 +32,11 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
         {
             if (base.Handle(operationCode, parameters))
             {
-                string debugMessage, errorMessage;
+                string debugMessage;
+                ErrorCode errorCode;
                 string account = (string)parameters[(byte)LoginParameterCode.Account];
                 string password = (string)parameters[(byte)LoginParameterCode.Password];
-                bool result = player.Login(account, password, out debugMessage, out errorMessage);
+                bool result = player.Login(account, password, out debugMessage, out errorCode);
                 if (result)
                 {
                     Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
@@ -50,7 +51,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 }
                 else
                 {
-                    SendError(operationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage, errorMessage);
+                    SendError(operationCode, errorCode, debugMessage);
                 }
                 return result;
             }

@@ -7,7 +7,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLWorldRepository : WorldRepository
     {
-        public override DatabaseWorld Create(string worldName)
+        public override WorldData Create(string worldName)
         {
             string sqlString = @"INSERT INTO Worlds 
                 (WorldName) VALUES (@worldName) ;
@@ -44,7 +44,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override DatabaseWorld Find(int worldID)
+        public override WorldData Find(int worldID)
         {
             string sqlString = @"SELECT  
                 WorldName
@@ -57,7 +57,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     if (reader.Read())
                     {
                         string worldName = reader.GetString(0);
-                        return new DatabaseWorld(worldID, worldName);
+                        return new WorldData { worldID = worldID, worldName = worldName };
                     }
                     else
                     {
@@ -67,7 +67,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override List<DatabaseWorld> List()
+        public override List<WorldData> List()
         {
             string sqlString = @"SELECT  
                 WorldID, WorldName
@@ -76,12 +76,12 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             {
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    List<DatabaseWorld> worlds = new List<DatabaseWorld>();
+                    List<WorldData> worlds = new List<WorldData>();
                     while (reader.Read())
                     {
                         int worldID = reader.GetInt32(0);
                         string worldName = reader.GetString(1);
-                        worlds.Add(new DatabaseWorld(worldID, worldName));
+                        worlds.Add(new WorldData { worldID = worldID, worldName = worldName });
                     }
                     return worlds;
                 }

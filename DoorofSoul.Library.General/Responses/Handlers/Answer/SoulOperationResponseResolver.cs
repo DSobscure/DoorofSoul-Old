@@ -12,34 +12,41 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 5)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("Soul OperationResponse Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 5)
+                {
+                    LibraryLog.ErrorFormat("Soul OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("SoulOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 try
                 {
                     int soulID = (int)parameters[(byte)SoulResponseParameterCode.SoulID];
                     SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulResponseParameterCode.OperationCode];
-                    ErrorCode returnCode = (ErrorCode)parameters[(byte)SoulResponseParameterCode.ReturnCode];
-                    string debugMessage = (string)parameters[(byte)SoulResponseParameterCode.DebugMessage];
+                    ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)SoulResponseParameterCode.ReturnCode];
+                    string resolvedDebugMessage = (string)parameters[(byte)SoulResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulResponseParameterCode.Parameters];
                     if (answer.ContainsSoul(soulID))
                     {
-                        answer.FindSoul(soulID).SoulResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        answer.FindSoul(soulID).SoulResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

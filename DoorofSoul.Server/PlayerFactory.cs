@@ -1,8 +1,9 @@
 ﻿using DoorofSoul.Database;
 using DoorofSoul.Library;
-using DoorofSoul.Protocol.Language;
+using DoorofSoul.Protocol.Communication;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DoorofSoul.Server
 {
@@ -40,14 +41,14 @@ namespace DoorofSoul.Server
                 Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.LastConnectedIPAddress);
             }
             PlayerOffline(player);
-            //await Task.Delay(60000);
+            await Task.Delay(600);
             if (!player.IsOnline)
             {
                 PlayerDeactivate(player);
             }
         }
 
-        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out string errorMessage)
+        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out ErrorCode errorCode)
         {
             int playerID;
             if (DataBase.Instance.RepositoryManager.PlayerRepository.Contains(account, out playerID))
@@ -55,7 +56,7 @@ namespace DoorofSoul.Server
                 if (DataBase.Instance.AuthenticationManager.PlayerAuthentication.LoginCheck(account, password))
                 {
                     debugMessage = null;
-                    errorMessage = null;
+                    errorCode = ErrorCode.NoError;
                     player.LoadPlayer(DataBase.Instance.RepositoryManager.PlayerRepository.Find(playerID));
                     if(PlayerOnline(player))
                     {
@@ -64,21 +65,21 @@ namespace DoorofSoul.Server
                     else
                     {
                         debugMessage = string.Format("Account:{0} already Logined from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
-                        errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Already Login"];
+                        errorCode = ErrorCode.Fail;
                         return false;
                     }
                 }
                 else
                 {
                     debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
-                    errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                    errorCode = ErrorCode.InvalidOperation;
                     return false;
                 }
             }
             else
             {
                 debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account ?? "", player?.LastConnectedIPAddress?.ToString() ?? "");
-                errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                errorCode = ErrorCode.InvalidOperation;
                 return false;
             }
         }

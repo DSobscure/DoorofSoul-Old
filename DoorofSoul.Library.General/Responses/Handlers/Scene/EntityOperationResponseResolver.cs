@@ -12,34 +12,41 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            if (parameter.Count != 5)
+            if (returnCode == ErrorCode.NoError)
             {
-                debugMessage = string.Format("Entity OperationResponse Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
+                if (parameters.Count != 5)
+                {
+                    LibraryLog.ErrorFormat("Entity OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                debugMessage = null;
-                return true;
+                LibraryLog.ErrorFormat("EntityOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                return false;
             }
         }
 
-        public override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public override bool Handle(SceneOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(operationCode, parameters))
+            if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 try
                 {
                     int entityID = (int)parameters[(byte)EntityResponseParameterCode.EntityID];
                     EntityOperationCode resolvedOperationCode = (EntityOperationCode)parameters[(byte)EntityResponseParameterCode.OperationCode];
-                    ErrorCode returnCode = (ErrorCode)parameters[(byte)EntityResponseParameterCode.ReturnCode];
-                    string debugMessage = (string)parameters[(byte)EntityResponseParameterCode.DebugMessage];
+                    ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)EntityResponseParameterCode.ReturnCode];
+                    string resolvedDebugMessage = (string)parameters[(byte)EntityResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)EntityResponseParameterCode.Parameters];
                     if (scene.ContainsEntity(entityID))
                     {
-                        scene.FindEntity(entityID).EntityResponseManager.Operate(resolvedOperationCode, returnCode, debugMessage, resolvedParameters);
+                        scene.FindEntity(entityID).EntityResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

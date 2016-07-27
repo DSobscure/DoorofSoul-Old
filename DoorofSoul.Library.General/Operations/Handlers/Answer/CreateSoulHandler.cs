@@ -29,7 +29,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
         {
             if (base.Handle(operationCode, parameters))
             {
-                string debugMessage, errorMessage;
+                string debugMessage;
                 string soulName = (string)parameters[(byte)CreateSoulOperationParameterCode.SoulName];
                 if (answer.SoulCount < answer.SoulCountLimit)
                 {
@@ -42,16 +42,14 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                     else
                     {
                         debugMessage = string.Format("Soul Create Error AnswerID: {0}", answer.AnswerID);
-                        errorMessage = LauguageDictionarySelector.Instance[answer.Player.UsingLanguage]["Create Soul Error"];
-                        SendError(operationCode, Protocol.Communication.ErrorCode.Fail, debugMessage, errorMessage);
+                        SendError(operationCode, Protocol.Communication.ErrorCode.Fail, debugMessage);
                         return false;
                     }
                 }
                 else
                 {
                     debugMessage = string.Format("Soul Create Permission Deny AnswerID: {0}", answer.AnswerID);
-                    errorMessage = LauguageDictionarySelector.Instance[answer.Player.UsingLanguage]["Permission Deny"];
-                    SendError(operationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage, errorMessage);
+                    SendError(operationCode, Protocol.Communication.ErrorCode.PermissionDeny, debugMessage);
                     return false;
                 }
             }

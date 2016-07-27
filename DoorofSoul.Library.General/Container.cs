@@ -7,6 +7,7 @@ using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 using System.Linq;
+using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General
 {
@@ -19,6 +20,7 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Soul> Souls { get { return soulDictionary.Values; } }
         public bool IsEmptyContainer { get { return soulDictionary.Count == 0; } }
         public Entity Entity { get; protected set; }
+        public SupportLauguages UsingLanguage { get { return soulDictionary.FirstOrDefault().Value.UsingLanguage; } }
         #endregion
 
         #region communication
@@ -136,6 +138,32 @@ namespace DoorofSoul.Library.General
                             { (byte)Protocol.Communication.ResponseParameters.Scene.ContainerResponseParameterCode.Parameters, parameters }
                         };
                         Entity.LocatedScene.SendResponse(SceneOperationCode.ContainerOperation, ErrorCode.NoError, null, operationData);
+                    }
+                    break;
+                default:
+                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
+                    break;
+            }
+        }
+        public void ErrorInform(string title, string message, ContainerCommunicationChannel channel)
+        {
+            switch (channel)
+            {
+                case ContainerCommunicationChannel.Answer:
+                    {
+                        if (soulDictionary.Count > 0)
+                        {
+                            soulDictionary.First().Value.Answer.ErrorInform(title, message);
+                        }
+                        else
+                        {
+                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", ContainerID);
+                        }
+                    }
+                    break;
+                case ContainerCommunicationChannel.Scene:
+                    {
+                        Entity.LocatedScene.ErrorInform(title, message);
                     }
                     break;
                 default:

@@ -18,8 +18,8 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 { PlayerOperationCode.AnswerOperation, new AnswerOperationResponseResolver(player) },
                 { PlayerOperationCode.FetchData, new FetchDataResponseResolver(player) },
-                { PlayerOperationCode.Login, new LoginResponseResolver(player) },
-                { PlayerOperationCode.Logout, new LogoutResponseResolver(player) },
+                { PlayerOperationCode.Login, new LoginResponseHandler(player) },
+                { PlayerOperationCode.Logout, new LogoutResponseHandler(player) },
             };
         }
 
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
         {
             if (operationTable.ContainsKey(operationCode))
             {
-                if (!operationTable[operationCode].Handle(operationCode, parameters))
+                if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
                     LibraryLog.ErrorFormat("Player Response Error: {0} from AnswerID: {1}", operationCode, player.PlayerID);
                 }

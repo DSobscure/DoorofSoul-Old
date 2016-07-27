@@ -38,7 +38,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             }
             else
             {
-                SendError(operationCode, Protocol.Communication.ErrorCode.InvalidOperation, "Logout Failed", LauguageDictionarySelector.Instance[player.UsingLanguage]["Logout Failed"]);
+                SendError(operationCode, Protocol.Communication.ErrorCode.InvalidOperation, "Logout Failed");
                 return false;
             }
         }

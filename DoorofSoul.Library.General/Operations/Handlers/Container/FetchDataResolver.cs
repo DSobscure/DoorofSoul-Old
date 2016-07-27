@@ -47,7 +47,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 else
                 {
                     debugMessage = string.Format("Container Fetch Operation Not Exist Fetch Code: {0}", fetchCode);
-                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage, null);
+                    SendError(operationCode, ErrorCode.InvalidOperation, debugMessage);
                     return false;
                 }
             }

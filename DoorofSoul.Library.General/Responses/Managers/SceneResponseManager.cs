@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Managers
 {
-    public class SceneResponseManager
+    internal class SceneResponseManager
     {
         protected readonly Dictionary<SceneOperationCode, SceneResponseHandler> operationTable;
         protected readonly Scene scene;

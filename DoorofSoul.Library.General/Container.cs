@@ -24,10 +24,10 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public ContainerEventManager ContainerEventManager { get; protected set; }
-        public ContainerOperationManager ContainerOperationManager { get; protected set; }
-        public ContainerResponseManager ContainerResponseManager { get; protected set; }
-        public void SendEvent(ContainerEventCode eventCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        internal ContainerEventManager ContainerEventManager { get; set; }
+        internal ContainerOperationManager ContainerOperationManager { get; set; }
+        internal ContainerResponseManager ContainerResponseManager { get; set; }
+        internal void SendEvent(ContainerEventCode eventCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch(channel)
             {
@@ -65,7 +65,7 @@ namespace DoorofSoul.Library.General
                     break;
             }
         }
-        public void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        internal void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {
@@ -103,7 +103,7 @@ namespace DoorofSoul.Library.General
                     break;
             }
         }
-        public void SendResponse(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        internal void SendResponse(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {
@@ -145,7 +145,7 @@ namespace DoorofSoul.Library.General
                     break;
             }
         }
-        public void ErrorInform(string title, string message, ContainerCommunicationChannel channel)
+        internal void ErrorInform(string title, string message, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {

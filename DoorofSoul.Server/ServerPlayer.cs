@@ -180,5 +180,10 @@ namespace DoorofSoul.Server
         {
             throw new NotImplementedException();
         }
+
+        public override void FetchSceneResponse(int sceneID, string sceneName, int worldID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

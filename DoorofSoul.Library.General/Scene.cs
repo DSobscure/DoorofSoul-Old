@@ -42,10 +42,10 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public SceneEventManager SceneEventManager { get; protected set; }
-        public SceneOperationManager SceneOperationManager { get; protected set; }
-        public SceneResponseManager SceneResponseManager { get; protected set; }
-        public void SendEvent(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal SceneEventManager SceneEventManager { get; set; }
+        internal SceneOperationManager SceneOperationManager { get; set; }
+        internal SceneResponseManager SceneResponseManager { get; set; }
+        internal void SendEvent(SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -55,7 +55,7 @@ namespace DoorofSoul.Library.General
             };
             World.SendEvent(WorldEventCode.SceneEvent, eventData);
         }
-        public void SendOperation(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal void SendOperation(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationData = new Dictionary<byte, object>
             {
@@ -65,7 +65,7 @@ namespace DoorofSoul.Library.General
             };
             World.SendOperation(WorldOperationCode.SceneOperation, operationData);
         }
-        public void SendResponse(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal void SendResponse(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> responseData = new Dictionary<byte, object>
             {
@@ -77,7 +77,7 @@ namespace DoorofSoul.Library.General
             };
             World.SendResponse(WorldOperationCode.SceneOperation, ErrorCode.NoError, null, responseData);
         }
-        public void ErrorInform(string title, string message)
+        internal void ErrorInform(string title, string message)
         {
             World.ErrorInform(title, message);
         }

@@ -2,8 +2,10 @@
 using DoorofSoul.Protocol.Communication.OperationParameters;
 using ExitGames.Client.Photon;
 using System;
-using System.Net;
 using System.Collections.Generic;
+using UnityEngine;
+using DoorofSoul.Client.Communication.Events;
+using DoorofSoul.Client.Communication.Responses;
 
 namespace DoorofSoul.Client.Communication
 {
@@ -11,13 +13,16 @@ namespace DoorofSoul.Client.Communication
     {
         private PhotonPeer peer;
         private bool serverConnected;
+        protected EventResolver eventResolver;
+        protected ResponseResolver responseResolver;
+
         public bool ServerConnected
         {
             get { return serverConnected; }
             private set
             {
                 serverConnected = value;
-                Global.SystemManagers.SystemInformManager.ConnectChange(serverConnected);
+                Global.Global.SystemManager.ConnectChange(serverConnected);
             }
         }
         private string serverName;
@@ -29,21 +34,24 @@ namespace DoorofSoul.Client.Communication
             this.serverName = serverName;
             this.serverAddress = serverAddress;
             this.udpPort = udpPort;
+
+            eventResolver = new EventResolver(this);
+            responseResolver = new ResponseResolver(this);
         }
 
         public void DebugReturn(DebugLevel level, string message)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform(level.ToString() + " : " + message);
+            Debug.Log(level.ToString() + " : " + message);
         }
 
         public void OnEvent(EventData eventData)
         {
-            Global.EventManagers.EventManager.Operate(eventData);
+            eventResolver.Operate(eventData);
         }
 
         public void OnOperationResponse(OperationResponse operationResponse)
         {
-            Global.ResponseManagers.ResponseManager.Operate(operationResponse);
+            responseResolver.Operate(operationResponse);
         }
 
         public void OnStatusChanged(StatusCode statusCode)

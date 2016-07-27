@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Managers
 {
-    public class EntityResponseManager
+    internal class EntityResponseManager
     {
         protected readonly Dictionary<EntityOperationCode, EntityResponseHandler> operationTable;
         protected readonly Entity entity;

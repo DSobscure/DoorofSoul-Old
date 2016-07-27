@@ -77,16 +77,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\Communication\Events\EventHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\EventResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\Handlers\PlayerEventResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\Handlers\WorldEventResolver.cs" />
     <Compile Include="Assets\Plugins\Communication\PhotonService.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\Handlers\PlayerOperationResponseResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\Handlers\WorldOperationResponseResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\ResponseHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\ResponseResolver.cs" />
     <Compile Include="Assets\Plugins\Global\Global.cs" />
+    <Compile Include="Assets\Plugins\Global\SystemManager.cs" />
     <Compile Include="Assets\Plugins\HelpFunctions\TransformHelpFunctions.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEntityController.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientAnswer.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientEntity.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientPlayer.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientScene.cs" />
+    <Compile Include="Assets\Plugins\Library.General\ClientWorld.cs" />
     <Compile Include="Assets\Plugins\Scene\ScenesManager.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

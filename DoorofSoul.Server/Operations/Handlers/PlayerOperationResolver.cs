@@ -14,11 +14,11 @@ namespace DoorofSoul.Server.Operations.Handlers
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
         {
-            if (parameter.Count != 3)
+            if (parameters.Count != 3)
             {
-                debugMessage = string.Format("Player Operation Parameter Error Parameter Count: {0}", parameter.Count);
+                debugMessage = string.Format("Player Operation Parameter Error Parameter Count: {0}", parameters.Count);
                 return false;
             }
             else
@@ -37,7 +37,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                     PlayerOperationCode resolvedOperationCode = (PlayerOperationCode)parameters[(byte)OperationParameterCode.OperationCode];
                     int playerID = (int)parameters[(byte)OperationParameterCode.ID];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)OperationParameterCode.Parameters];
-                    if(playerID != peer.Player.PlayerID)
+                    if(playerID == peer.Player.PlayerID)
                     {
                         peer.Player.PlayerOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;

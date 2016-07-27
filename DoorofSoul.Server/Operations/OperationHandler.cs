@@ -26,6 +26,6 @@ namespace DoorofSoul.Server.Operations
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
     }
 }

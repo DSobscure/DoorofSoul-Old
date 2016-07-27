@@ -74,10 +74,10 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public EntityEventManager EntityEventManager { get; protected set; }
-        public EntityOperationManager EntityOperationManager { get; protected set; }
-        public EntityResponseManager EntityResponseManager { get; protected set; }
-        public void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
+        internal EntityEventManager EntityEventManager { get; set; }
+        internal EntityOperationManager EntityOperationManager { get; set; }
+        internal EntityResponseManager EntityResponseManager { get; set; }
+        internal void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -87,7 +87,7 @@ namespace DoorofSoul.Library.General
             };
             LocatedScene.SendEvent(SceneEventCode.EntityEvent, eventData);
         }
-        public void SendOperation(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal void SendOperation(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -97,7 +97,7 @@ namespace DoorofSoul.Library.General
             };
             LocatedScene.SendOperation(SceneOperationCode.EntityOperation, eventData);
         }
-        public void SendResponse(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal void SendResponse(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationData = new Dictionary<byte, object>
             {
@@ -109,7 +109,7 @@ namespace DoorofSoul.Library.General
             };
             LocatedScene.SendResponse(SceneOperationCode.EntityOperation, ErrorCode.NoError, null, operationData);
         }
-        public void ErrorInform(string title, string message)
+        internal void ErrorInform(string title, string message)
         {
             LocatedScene.ErrorInform(title, message);
         }

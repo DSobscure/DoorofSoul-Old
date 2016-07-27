@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Managers
 {
-    public class ContainerResponseManager
+    internal class ContainerResponseManager
     {
         protected readonly Dictionary<ContainerOperationCode, ContainerResponseHandler> operationTable;
         protected readonly Container container;

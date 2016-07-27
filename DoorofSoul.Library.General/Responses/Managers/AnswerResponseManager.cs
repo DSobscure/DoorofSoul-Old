@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Managers
 {
-    public class AnswerResponseManager
+    internal class AnswerResponseManager
     {
         protected readonly Dictionary<AnswerOperationCode, AnswerResponseHandler> operationTable;
         protected readonly Answer answer;

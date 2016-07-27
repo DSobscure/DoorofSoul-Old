@@ -27,10 +27,10 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public SoulEventManager SoulEventManager { get; protected set; }
-        public SoulOperationManager SoulOperationManager { get; protected set; }
-        public SoulResponseManager SoulResponseManager { get; protected set; }
-        public void SendEvent(SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        internal SoulEventManager SoulEventManager { get; set; }
+        internal SoulOperationManager SoulOperationManager { get; set; }
+        internal SoulResponseManager SoulResponseManager { get; set; }
+        internal void SendEvent(SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Library.General
             };
             Answer.SendEvent(AnswerEventCode.SoulEvent, eventData);
         }
-        public void SendOperation(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal void SendOperation(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationData = new Dictionary<byte, object>
             {
@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General
             };
             Answer.SendOperation(AnswerOperationCode.SoulOperation, operationData);
         }
-        public void SendResponse(SoulOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal void SendResponse(SoulOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> responseData = new Dictionary<byte, object>
             {
@@ -62,7 +62,7 @@ namespace DoorofSoul.Library.General
             };
             Answer.SendResponse(AnswerOperationCode.SoulOperation, ErrorCode.NoError, null, responseData);
         }
-        public void ErrorInform(string title, string message)
+        internal void ErrorInform(string title, string message)
         {
             Answer.ErrorInform(title, message);
         }

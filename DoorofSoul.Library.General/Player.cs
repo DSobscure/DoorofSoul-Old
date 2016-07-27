@@ -47,8 +47,10 @@ namespace DoorofSoul.Library.General
         public abstract void Logout();
         public abstract void LogoutResponse();
         public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
+        public abstract void FetchSystemVersionResponse(string serverVersion, string clientVersion);
         public abstract void FetchAnswer(out Answer answer);
         public abstract void FetchScene(int sceneID, out Scene scene);
+        public abstract void FetchSceneResponse(int sceneID, string sceneName, int worldID);
         public abstract bool DeleteSoul(Answer answer, int soulID);
         public abstract bool CreateSoul(Answer answer, string soulName);
         public abstract bool ActiveSoul(Answer answer, int soulID);

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Scene.InformData
 {
@@ -13,14 +12,48 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene.InformData
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
         {
-            throw new NotImplementedException();
+            if (parameters.Count != 1)
+            {
+                debugMessage = string.Format("Inform EntityExit Event Parameter Error, Parameter Count: {0}", parameters.Count);
+                return false;
+            }
+            else
+            {
+                debugMessage = null;
+                return true;
+            }
         }
 
-        public override bool Handle(SceneInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameter)
+        public override bool Handle(SceneInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameters)
         {
-            return base.Handle(informCode, returnCode, parameter);
+            if (base.Handle(informCode, returnCode, parameters))
+            {
+                try
+                {
+                    int entityID = (int)parameters[(byte)InformEntityExitParameterCode.EntityID];
+                    scene.EntityExit(entityID);
+                    return true;
+                }
+                catch (InvalidCastException ex)
+                {
+                    LibraryLog.Error("Inform EntityEnter Event Parameter Cast Error");
+                    LibraryLog.Error(ex.Message);
+                    LibraryLog.Error(ex.StackTrace);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    LibraryLog.Error(ex.Message);
+                    LibraryLog.Error(ex.StackTrace);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

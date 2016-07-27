@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Scene;
+using DoorofSoul.Protocol.Language;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Scene.FetchData
 {
@@ -12,17 +13,28 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene.FetchData
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string fetchDebugMessage)
         {
-            if (parameter.Count != 24)
+            switch (returnCode)
             {
-                debugMessage = string.Format("Fetch Entities Response Parameter Error, Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
+                case ErrorCode.NoError:
+                    {
+                        if (parameters.Count != 24)
+                        {
+                            LibraryLog.ErrorFormat(string.Format("Fetch Entities Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                default:
+                    {
+                        LibraryLog.ErrorFormat("Fetch Entities Response Error DebugMessage: {0}", fetchDebugMessage);
+                        scene.ErrorInform(LauguageDictionarySelector.Instance[scene.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[scene.UsingLanguage]["Fetch Entities Error"]);
+                        return false;
+                    }
             }
         }
 

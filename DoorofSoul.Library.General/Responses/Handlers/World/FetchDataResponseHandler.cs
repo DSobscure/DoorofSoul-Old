@@ -13,19 +13,18 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
             this.world = world;
         }
 
-        public virtual bool Handle(WorldFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameter)
+        public virtual bool Handle(WorldFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
-            string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckError(parameters, returnCode, fetchDebugMessage))
             {
                 return true;
             }
             else
             {
-                LibraryLog.ErrorFormat("World FetchData Parameter Error On {0} WorldID: {1} Debug Message: {2}", fetchCode, world.WorldID, debugMessage);
+                LibraryLog.ErrorFormat("World FetchData Parameter Error On {0} WorldID: {1} Debug Message: {2}", fetchCode, world.WorldID, fetchDebugMessage);
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

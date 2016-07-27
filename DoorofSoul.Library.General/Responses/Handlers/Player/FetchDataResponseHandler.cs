@@ -13,19 +13,18 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
             this.player = player;
         }
 
-        public virtual bool Handle(PlayerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameter)
+        public virtual bool Handle(PlayerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
-            string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckError(parameters, returnCode, fetchDebugMessage))
             {
                 return true;
             }
             else
             {
-                LibraryLog.ErrorFormat("Player FetchData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", fetchCode, player.PlayerID, debugMessage);
+                LibraryLog.ErrorFormat("Player FetchData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", fetchCode, player.PlayerID, fetchDebugMessage);
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

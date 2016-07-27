@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
+using DoorofSoul.Protocol.Language;
+using System.Collections.Generic;
+using System;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
 {
@@ -13,14 +13,60 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
-            throw new NotImplementedException();
+            switch (returnCode)
+            {
+                case ErrorCode.NoError:
+                    {
+                        if (parameters.Count != 2)
+                        {
+                            LibraryLog.ErrorFormat(string.Format("Fetch SoulContainerLinks Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                default:
+                    {
+                        LibraryLog.ErrorFormat("Fetch SoulContainerLinks Response Error DebugMessage: {0}", debugMessage);
+                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch SoulContainerLinks Error"]);
+                        return false;
+                    }
+            }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameter)
+        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
-            return base.Handle(fetchCode, returnCode, fetchDebugMessage, parameter);
+            if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
+            {
+                try
+                {
+                    int soulID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.SoulID];
+                    int containerID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.ContainerID];
+                    answer.LinkSoulContainer(soulID, containerID);
+                    return true;
+                }
+                catch (InvalidCastException ex)
+                {
+                    LibraryLog.Error("Fetch Souls SoulContainerLinks Parameter Cast Error");
+                    LibraryLog.Error(ex.Message);
+                    LibraryLog.Error(ex.StackTrace);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    LibraryLog.Error(ex.Message);
+                    LibraryLog.Error(ex.StackTrace);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

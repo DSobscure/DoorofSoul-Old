@@ -13,19 +13,18 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             this.container = container;
         }
 
-        public virtual bool Handle(ContainerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameter)
+        public virtual bool Handle(ContainerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
-            string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckError(parameters, returnCode, fetchDebugMessage))
             {
                 return true;
             }
             else
             {
-                LibraryLog.ErrorFormat("Container FetchData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", fetchCode, container.ContainerID, debugMessage);
+                LibraryLog.ErrorFormat("Container FetchData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", fetchCode, container.ContainerID, fetchDebugMessage);
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

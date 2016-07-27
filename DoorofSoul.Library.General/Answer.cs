@@ -7,6 +7,8 @@ using DoorofSoul.Protocol.Communication.EventParameters.Player;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
@@ -83,6 +85,33 @@ namespace DoorofSoul.Library.General
         public bool ActiveSoul(int soulID)
         {
             return Player.ActiveSoul(this, soulID);
+        }
+        public void FetchSouls()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Souls },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+        public void FetchContainers()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Containers },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+        public void FetchSoulContainerLinks()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.SoulContainerLinks },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
         }
         #endregion
 
@@ -178,6 +207,16 @@ namespace DoorofSoul.Library.General
             {
                 containerDictionary.Remove(containerID);
                 onLoadContainers?.Invoke(this);
+            }
+        }
+        public void LinkSoulContainer(int soulID, int containerID)
+        {
+            if(ContainsSoul(soulID) && ContainsContainer(containerID))
+            {
+                Soul soul = FindSoul(soulID);
+                Container container = FindContainer(containerID);
+                soul.LinkContainer(container);
+                container.LinkSoul(soul);
             }
         }
     }

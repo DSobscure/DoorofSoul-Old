@@ -175,5 +175,10 @@ namespace DoorofSoul.Server
         {
             return Hexagram.Instance.Throne.ActiveSoul(soulID);
         }
+
+        public override void FetchSystemVersionResponse(string serverVersion, string clientVersion)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

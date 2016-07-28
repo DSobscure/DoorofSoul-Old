@@ -33,9 +33,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DoorofSoul.Database">
-      <HintPath>..\DoorofSoul.Database\bin\Debug\DoorofSoul.Database.dll</HintPath>
-    </Reference>
     <Reference Include="ExitGamesLibs, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
@@ -50,15 +47,27 @@
   <ItemGroup>
     <Compile Include="Authority\SceneEye.cs" />
     <Compile Include="Hexagram.cs" />
+    <Compile Include="HexagramWorld.cs" />
     <Compile Include="Nature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Throne.cs" />
-    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoorofSoul.Database\DoorofSoul.Database.csproj">
+      <Project>{d03ef50d-28c2-4c75-8f24-8dc094680e05}</Project>
+      <Name>DoorofSoul.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoorofSoul.Library.General\DoorofSoul.Library.General.csproj">
       <Project>{28e98488-b39a-471d-ae89-740f9c09f7d8}</Project>
       <Name>DoorofSoul.Library.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
+      <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
+      <Name>DoorofSoul.Protocol.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
+      <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
+      <Name>DoorofSoul.Protocol.Language</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

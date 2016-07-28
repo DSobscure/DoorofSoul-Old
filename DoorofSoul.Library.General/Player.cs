@@ -1,13 +1,19 @@
-﻿using DoorofSoul.Protocol.Communication;
-using System.Net;
-using System.Collections.Generic;
+﻿using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Language;
 using System;
-using DoorofSoul.Library.General.Events;
+using System.Collections.Generic;
+using System.Net;
 
 namespace DoorofSoul.Library.General
 {
-    public class Player
+    public abstract class Player
     {
+        #region properties
         public int PlayerID { get; protected set; }
         public string Account { get; protected set; }
         public string Nickname { get; protected set; }
@@ -17,45 +23,47 @@ namespace DoorofSoul.Library.General
         public bool IsOnline { get; set; }
         public bool IsActivated { get; set; }
         public Answer Answer { get; protected set; }
+        #endregion
+
+        #region events
         private event Action<Answer> onActiveAnswer;
         public event Action<Answer> OnActiveAnswer { add { onActiveAnswer += value; } remove { onActiveAnswer -= value; } }
+        #endregion
 
-        public PlayerEventManagers PlayerEventManager { get; protected set; }
+        #region communication
+        public PlayerEventManager PlayerEventManager { get; protected set; }
+        public PlayerOperationManager PlayerOperationManager { get; protected set; }
+        public PlayerResponseManager PlayerResponseManager { get; protected set; }
+        public abstract void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendOperation(PlayerOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void SendWorldEvent(int worldID, WorldEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters);
+        public abstract void ErrorInform(string title, string message);
+
+        public abstract bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode);
+        public abstract void LoginResponse(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID);
+        public abstract void LoginFailed();
+        public abstract void Logout();
+        public abstract void LogoutResponse();
+        public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
+        public abstract void FetchSystemVersionResponse(string serverVersion, string clientVersion);
+        public abstract void FetchAnswer(out Answer answer);
+        public abstract void FetchWorlds(out List<World> worlds);
+        public abstract void FetchWorldsResponse(int worldID, string worldName);
+        public abstract bool DeleteSoul(Answer answer, int soulID);
+        public abstract bool CreateSoul(Answer answer, string soulName);
+        public abstract bool ActivateSoul(Answer answer, int soulID);
+        #endregion
 
         public Player()
         {
             UsingLanguage = SupportLauguages.Chinese_Traditional;
-            PlayerEventManager = new PlayerEventManagers(this);
+            PlayerEventManager = new PlayerEventManager(this);
+            PlayerOperationManager = new PlayerOperationManager(this);
+            PlayerResponseManager = new PlayerResponseManager(this);
         }
-        public Player(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
-        {
-            PlayerID = playerID;
-            Account = account;
-            Nickname = nickname;
-            UsingLanguage = usingLanguage;
-            LastConnectedIPAddress = lastConnectedIPAddress;
-            AnswerID = answerID;
-        }
-
-        public void LoadPlayer(int playerID, string account, string nickname, SupportLauguages usingLanguage, IPAddress lastConnectedIPAddress, int answerID)
-        {
-            PlayerID = playerID;
-            Account = account;
-            Nickname = nickname;
-            UsingLanguage = usingLanguage;
-            LastConnectedIPAddress = lastConnectedIPAddress;
-            AnswerID = answerID;
-        }
-        public void LoadPlayer(Player player)
-        {
-            PlayerID = player.PlayerID;
-            Account = player.Account;
-            Nickname = player.Nickname;
-            UsingLanguage = player.UsingLanguage;
-            AnswerID = player.AnswerID;
-        }
-
-        public Action<EventCode, Dictionary<byte, object>> SendEvent { get; protected set; }
 
         public bool ActiveAnswer(Answer answer)
         {

@@ -1,5 +1,6 @@
-﻿using DoorofSoul.Library.General;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Database.Library;
+using DoorofSoul.Library.General;
+using DoorofSoul.Protocol.Language;
 using MySql.Data.MySqlClient;
 using System.Net;
 
@@ -28,7 +29,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             }
         }
 
-        public override Player Find(int playerID)
+        public override PlayerData Find(int playerID)
         {
             string sqlString = @"SELECT  
                 Account, Nickname, UsingLanguage, LastConnectedIPAddress, AnswerID
@@ -45,7 +46,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         SupportLauguages usingLanguage = (SupportLauguages)reader.GetByte(2);
                         IPAddress lastConnectedIPAddress = reader.IsDBNull(3) ? IPAddress.None : IPAddress.Parse(reader.GetString(3));
                         int answerID = reader.GetInt32(4);
-                        return new Player(playerID, account, nickname, usingLanguage, lastConnectedIPAddress, answerID);
+                        return new PlayerData { playerID = playerID, account = account, nickname = nickname, usingLanguage = usingLanguage, lastConnectedIPAddress = lastConnectedIPAddress, answerID = answerID };
                     }
                     else
                     {

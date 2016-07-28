@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Language;
 using DoorofSoul.Server.Operations;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
@@ -10,14 +10,14 @@ namespace DoorofSoul.Server
     {
         public Guid Guid { get; }
         public SupportLauguages UsingLanguage { get { return Player.UsingLanguage; } }
-        protected OperationManager operationManager;
+        protected OperationResolver operationResolver;
         public ServerPlayer Player { get; protected set; }
 
 
         public Peer(InitRequest initRequest, out ServerPlayer player) : base(initRequest)
         {
             Guid = Guid.NewGuid();
-            operationManager = new OperationManager(this);
+            operationResolver = new OperationResolver(this);
             Player = new ServerPlayer(this);
             player = Player;
         }
@@ -30,7 +30,7 @@ namespace DoorofSoul.Server
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
-            operationManager.Operate(operationRequest);
+            operationResolver.Operate(operationRequest);
         }
 
         public void RelifeWithOldPlayer(ServerPlayer old)

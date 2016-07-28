@@ -37,7 +37,8 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -47,20 +48,168 @@
     <Compile Include="DSVector3.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityProperties.cs" />
-    <Compile Include="Events\Managers\PlayerSceneEventManager.cs" />
-    <Compile Include="Events\PlayerEventManagers.cs" />
+    <Compile Include="Events\Handlers\AnswerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Answer\ContainerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Answer\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Answer\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Answer\SoulEventResolver.cs" />
+    <Compile Include="Events\Handlers\ContainerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Container\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Container\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\EntityEventHandler.cs" />
+    <Compile Include="Events\Handlers\Entity\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Entity\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\PlayerEventHandler.cs" />
+    <Compile Include="Events\Handlers\Player\AnswerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Player\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Player\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\SceneEventHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\ContainerEventResolver.cs" />
+    <Compile Include="Events\Handlers\Scene\EntityEventResolver.cs" />
+    <Compile Include="Events\Handlers\Scene\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Scene\InformData\InformEntityEnterHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\InformData\InformEntityExitHandler.cs" />
+    <Compile Include="Events\Handlers\SoulEventHandler.cs" />
+    <Compile Include="Events\Handlers\Soul\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\Soul\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\WorldEventHandler.cs" />
+    <Compile Include="Events\Handlers\World\InformDataHandler.cs" />
+    <Compile Include="Events\Handlers\World\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\World\SceneEventResolver.cs" />
+    <Compile Include="Events\Managers\AnswerEventManager.cs" />
+    <Compile Include="Events\Managers\ContainerEventManager.cs" />
+    <Compile Include="Events\Managers\EntityEventManager.cs" />
+    <Compile Include="Events\Managers\PlayerEventManager.cs" />
+    <Compile Include="Events\Managers\SceneEventManager.cs" />
+    <Compile Include="Events\Managers\SoulEventManager.cs" />
+    <Compile Include="Events\Managers\WorldEventManager.cs" />
+    <Compile Include="IControllers\IEntityController.cs" />
+    <Compile Include="LibraryLog.cs" />
+    <Compile Include="Operations\Handlers\AnswerOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\ActivateSoulHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\ContainerOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\Answer\CreateSoulHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\DeleteSoulHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchContainersHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchSoulContainerLinksHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\FetchData\FetchSoulsHandler.cs" />
+    <Compile Include="Operations\Handlers\Answer\SoulOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\ContainerOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
+    <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Entity\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\PlayerOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\AnswerOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchAnswerHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchSystemVersionHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchWorldsHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\LoginHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\LogoutHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchData\FetchEntitiesInformationHandler.cs" />
+    <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\World\FetchDataHandler.cs" />
+    <Compile Include="Operations\Handlers\World\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\World\FetchData\FetchSceneHandler.cs" />
+    <Compile Include="Operations\Handlers\World\SceneOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\SceneOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Scene\ContainerOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\Scene\EntityOperationResolver.cs" />
+    <Compile Include="Operations\Handlers\Scene\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\SoulOperationHandler.cs" />
+    <Compile Include="Operations\Handlers\Soul\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\WorldOperationHandler.cs" />
+    <Compile Include="Operations\Managers\AnswerOperationManager.cs" />
+    <Compile Include="Operations\Managers\ContainerOperationManager.cs" />
+    <Compile Include="Operations\Managers\EntityOperationManager.cs" />
+    <Compile Include="Operations\Managers\PlayerOperationManager.cs" />
+    <Compile Include="Operations\Managers\SceneOperationManager.cs" />
+    <Compile Include="Operations\Managers\SoulOperationManager.cs" />
+    <Compile Include="Operations\Managers\WorldOperationManager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\Handlers\AnswerResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\ActivateSoulResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\ContainerOperationResponsResolver.cs" />
+    <Compile Include="Responses\Handlers\Answer\CreateSoulResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\DeleteSoulResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Answer\FetchData\FetchContainersResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\FetchData\FetchSoulContainerLinksResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\FetchData\FetchSoulsResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Answer\SoulOperationResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\ContainerResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchData\FetchEntityResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\EntityResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Entity\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Entity\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\PlayerResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\AnswerOperationResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchData\FetchAnswerResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchData\FetchWorldsResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\World\FetchData\FetchSceneResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchData\FetchSystemVersionResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\LoginResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\LogoutResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\SceneResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Scene\ContainerOperationResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Scene\EntityOperationResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Scene\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Scene\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Scene\FetchData\FetchEntitiesResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\SoulResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Soul\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Soul\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\WorldResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\World\FetchDataResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\World\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\World\SceneOperationResponseResolver.cs" />
+    <Compile Include="Responses\Managers\AnswerResponseManager.cs" />
+    <Compile Include="Responses\Managers\ContainerResponseManager.cs" />
+    <Compile Include="Responses\Managers\EntityResponseManager.cs" />
+    <Compile Include="Responses\Managers\PlayerResponseManager.cs" />
+    <Compile Include="Responses\Managers\SceneResponseManager.cs" />
+    <Compile Include="Responses\Managers\SoulResponseManager.cs" />
+    <Compile Include="Responses\Managers\WorldResponseManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Soul.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
       <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
       <Name>DoorofSoul.Protocol.Communication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
+      <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
+      <Name>DoorofSoul.Protocol.Language</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Events\Handlers\Answer\InformData\" />
+    <Folder Include="Events\Handlers\Container\InformData\" />
+    <Folder Include="Events\Handlers\Entity\InformData\" />
+    <Folder Include="Events\Handlers\Player\InformData\" />
+    <Folder Include="Events\Handlers\Soul\InformData\" />
+    <Folder Include="Events\Handlers\World\InformData\" />
+    <Folder Include="Operations\Handlers\Entity\FetchData\" />
+    <Folder Include="Operations\Handlers\Soul\FetchData\" />
+    <Folder Include="Responses\Handlers\Entity\FetchData\" />
+    <Folder Include="Responses\Handlers\Soul\FetchData\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

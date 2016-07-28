@@ -1,0 +1,30 @@
+﻿namespace DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Scene
+{
+    public enum FetchEntitiesResponseParameterCode : byte
+    {
+        EntityID,
+        EntityName,
+        PositionX,
+        PositionY,
+        PositionZ,
+        RotationX,
+        RotationY,
+        RotationZ,
+        ScaleX,
+        ScaleY,
+        ScaleZ,
+        VelocityX,
+        VelocityY,
+        VelocityZ,
+        MaxVelocityX,
+        MaxVelocityY,
+        MaxVelocityZ,
+        AngularVelocityX,
+        AngularVelocityY,
+        AngularVelocityZ,
+        MaxAngularVelocityX,
+        MaxAngularVelocityY,
+        MaxAngularVelocityZ,
+        Mass
+    }
+}

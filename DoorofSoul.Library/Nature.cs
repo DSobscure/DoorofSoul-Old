@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using DoorofSoul.Library.General;
 using System.Collections.Generic;
 using DoorofSoul.Database;
@@ -7,6 +7,24 @@ namespace DoorofSoul.Library
 {
     public class Nature
     {
+        #region Container
+        private Dictionary<int, Container> containerDictionary;
+        public bool ContainsContainer(int container)
+        {
+            return containerDictionary.ContainsKey(container);
+        }
+        public Container FindContainer(int container)
+        {
+            if (ContainsContainer(container))
+            {
+                return containerDictionary[container];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
         #region Entity
         private Dictionary<int, Entity> entityDictionary;
         public bool ContainsEntity(int entityID)
@@ -64,6 +82,7 @@ namespace DoorofSoul.Library
 
         public Nature()
         {
+            containerDictionary = new Dictionary<int, Container>();
             entityDictionary = new Dictionary<int, Entity>();
             sceneDictionary = new Dictionary<int, Scene>();
             worldDictionary = new Dictionary<int, World>();
@@ -72,7 +91,8 @@ namespace DoorofSoul.Library
 
         protected void LoadNature()
         {
-            List<World> worldList = DataBase.Instance.RepositoryManager.WorldRepository.List();
+            List<World> worldList = new List<World>();
+            DataBase.Instance.RepositoryManager.WorldRepository.List().ForEach(world => worldList.Add(new HexagramWorld(world)));
             foreach (World world in worldList)
             {
                 worldDictionary.Add(world.WorldID, world);
@@ -81,10 +101,36 @@ namespace DoorofSoul.Library
                 foreach(Scene scene in sceneList)
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
+                    scene.OnEntityEnter += scene.EntityEnterEvent;
+                    scene.OnEntityExit += scene.EntityExitEvent;
                 }
             }
         }
 
+        public void ProjectContainer(Container container)
+        {
+            if (!ContainsContainer(container.ContainerID))
+            {
+                containerDictionary.Add(container.ContainerID, container);
+                if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
+                {
+                    Scene scene = sceneDictionary[container.Entity.LocatedSceneID];
+                    if (worldDictionary.ContainsKey(scene.WorldID))
+                    {
+                        worldDictionary[scene.WorldID].ContainerEnter(container);
+                        ProjectEntity(container.Entity);
+                    }
+                    else
+                    {
+                        Hexagram.Instance.Log.ErrorFormat("Hexagram: World Not Exist WorldID: {0}", scene.WorldID);
+                    }
+                }
+                else
+                {
+                    Hexagram.Instance.Log.ErrorFormat("Hexagram: Scene Not Exist SceneID: {0}", container.Entity.LocatedSceneID);
+                }
+            }
+        }
         public void ProjectEntity(Entity entity)
         {
             if (!entityDictionary.ContainsKey(entity.EntityID))
@@ -108,16 +154,33 @@ namespace DoorofSoul.Library
                 }
             }
         }
+        public void ExtractContainer(Container container)
+        {
+            if (containerDictionary.ContainsKey(container.ContainerID))
+            {
+                if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
+                {
+                    worldDictionary[container.Entity.LocatedScene.WorldID].ContainerExit(container);
+                    ExtractEntity(container.Entity);
+                }
+                containerDictionary.Remove(container.ContainerID);
+            }
+        }
         public void ExtractEntity(Entity entity)
         {
             if (entityDictionary.ContainsKey(entity.EntityID))
             {
-                if (worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
+                if (entity.LocatedScene != null && worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
                 {
                     worldDictionary[entity.LocatedScene.WorldID].EntityExit(entity);
                 }
                 entityDictionary.Remove(entity.EntityID);
             }
+        }
+
+        public List<World> ListWorlds()
+        {
+            return worldDictionary.Values.ToList();
         }
     }
 }

@@ -1,12 +1,24 @@
-﻿using System;
+﻿using DoorofSoul.Library.General.Events.Managers;
+using DoorofSoul.Library.General.Operations.Managers;
+using DoorofSoul.Library.General.Responses.Managers;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataParameters;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters.Player;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
+using DoorofSoul.Protocol.Language;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DoorofSoul.Library.General
 {
     public class Answer
     {
+        #region properties
         public int AnswerID { get; protected set; }
         public Player Player { get; protected set; }
         protected Dictionary<int, Soul> soulDictionary;
@@ -16,11 +28,96 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
         public int SoulCountLimit { get; protected set; }
+        public SupportLauguages UsingLanguage { get { return Player.UsingLanguage; } }
+        private Dictionary<int, HashSet<int>> incompleteSoulIDContainerIDConnection_SoulKey;
+        private Dictionary<int, HashSet<int>> incompleteSoulIDContainerIDConnection_ContainerKey;
 
-        private event Action<Answer> onLoadSouls;
-        public event Action<Answer> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
-        private event Action<Answer> onLoadContainers;
-        public event Action<Answer> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
+        private event Action<List<Soul>> onLoadSouls;
+        public event Action<List<Soul>> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
+        private event Action<List<Container>> onLoadContainers;
+        public event Action<List<Container>> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
+        #endregion
+        #region communication
+        internal AnswerEventManager AnswerEventManager { get; set; }
+        internal AnswerOperationManager AnswerOperationManager { get; set; }
+        internal AnswerResponseManager AnswerResponseManager { get; set; }
+        internal void SendEvent(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerEventParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)AnswerEventParameterCode.Parameters, parameters }
+            };
+            Player.SendEvent(PlayerEventCode.AnswerEvent, eventData);
+        }
+        internal void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerOperationParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)AnswerOperationParameterCode.Parameters, parameters }
+            };
+            Player.SendOperation(PlayerOperationCode.AnswerOperation, operationData);
+        }
+        internal void SendResponse(AnswerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> responseData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerResponseParameterCode.AnswerID, AnswerID },
+                { (byte)AnswerResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)AnswerResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)AnswerResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)AnswerResponseParameterCode.Parameters, parameters }
+            };
+            Player.SendResponse(PlayerOperationCode.AnswerOperation, ErrorCode.NoError, null, responseData);
+        }
+        internal void ErrorInform(string title, string message)
+        {
+            Player.ErrorInform(title, message);
+        }
+
+        public bool DeleteSoul(int soulID)
+        {
+            return Player.DeleteSoul(this, soulID);
+        }
+        public bool CreateSoul(string soulName)
+        {
+            return Player.CreateSoul(this, soulName);
+        }
+        public bool ActivateSoul(int soulID)
+        {
+            return Player.ActivateSoul(this, soulID);
+        }
+        public void FetchSouls()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Souls },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+        public void FetchContainers()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Containers },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+        public void FetchSoulContainerLinks()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.SoulContainerLinks },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+        #endregion
 
         public Answer(int answerID, int soulCountLimit, Player player)
         {
@@ -29,11 +126,18 @@ namespace DoorofSoul.Library.General
             Player = player;
             soulDictionary = new Dictionary<int, Soul>();
             containerDictionary = new Dictionary<int, Container>();
+            AnswerOperationManager = new AnswerOperationManager(this);
+            AnswerEventManager = new AnswerEventManager(this);
+            AnswerResponseManager = new AnswerResponseManager(this);
+            incompleteSoulIDContainerIDConnection_SoulKey = new Dictionary<int, HashSet<int>>();
+            incompleteSoulIDContainerIDConnection_ContainerKey = new Dictionary<int, HashSet<int>>();
         }
+
         public void ClearSouls()
         {
             soulDictionary.Clear();
-            onLoadSouls?.Invoke(this);
+            ClearIncompleteSoulIDContainerIDConnection();
+            onLoadSouls?.Invoke(new List<Soul>());
         }
         public virtual void LoadSouls(List<Soul> souls)
         {
@@ -44,9 +148,24 @@ namespace DoorofSoul.Library.General
                     if (!soulDictionary.ContainsKey(soul.SoulID) && soul.AnswerID == AnswerID)
                     {
                         soulDictionary.Add(soul.SoulID, soul);
+                        onLoadSouls?.Invoke(new List<Soul> { soul });
                     }
                 }
-                onLoadSouls?.Invoke(this);
+                foreach (Soul soul in souls)
+                {
+                    if (incompleteSoulIDContainerIDConnection_SoulKey.ContainsKey(soul.SoulID))
+                    {
+                        foreach (int containerID in incompleteSoulIDContainerIDConnection_SoulKey[soul.SoulID])
+                        {
+                            if (ContainsContainer(containerID))
+                            {
+                                Container container = containerDictionary[containerID];
+                                soul.LinkContainer(container);
+                                container.LinkSoul(soul);
+                            }
+                        }
+                    }
+                }
             }
         }
         public bool ContainsSoul(int soulID)
@@ -69,14 +188,15 @@ namespace DoorofSoul.Library.General
             if(soulDictionary.ContainsKey(soulID))
             {
                 soulDictionary.Remove(soulID);
-                onLoadSouls?.Invoke(this);
+                onLoadSouls?.Invoke(Souls.ToList());
             }
         }
 
         public void ClearContainers()
         {
             containerDictionary.Clear();
-            onLoadContainers?.Invoke(this);
+            ClearIncompleteSoulIDContainerIDConnection();
+            onLoadContainers?.Invoke(new List<Container>());
         }
         public virtual void LoadContainers(List<Container> containers)
         {
@@ -85,9 +205,24 @@ namespace DoorofSoul.Library.General
                 if(!containerDictionary.ContainsKey(container.ContainerID))
                 {
                     containerDictionary.Add(container.ContainerID, container);
+                    onLoadContainers?.Invoke(new List<Container> { container });
                 }
             }
-            onLoadContainers?.Invoke(this);
+            foreach (Container container in containers)
+            {
+                if (incompleteSoulIDContainerIDConnection_ContainerKey.ContainsKey(container.ContainerID))
+                {
+                    foreach (int soulID in incompleteSoulIDContainerIDConnection_ContainerKey[container.ContainerID])
+                    {
+                        if (ContainsSoul(soulID))
+                        {
+                            Soul soul = soulDictionary[soulID];
+                            soul.LinkContainer(container);
+                            container.LinkSoul(soul);
+                        }
+                    }
+                }
+            }
         }
         public bool ContainsContainer(int containerID)
         {
@@ -109,8 +244,47 @@ namespace DoorofSoul.Library.General
             if (containerDictionary.ContainsKey(containerID))
             {
                 containerDictionary.Remove(containerID);
-                onLoadContainers?.Invoke(this);
+                onLoadContainers?.Invoke(Containers.ToList());
             }
+        }
+        public void LinkSoulContainer(int soulID, int containerID)
+        {
+            if(ContainsSoul(soulID) && ContainsContainer(containerID))
+            {
+                Soul soul = FindSoul(soulID);
+                Container container = FindContainer(containerID);
+                soul.LinkContainer(container);
+                container.LinkSoul(soul);
+            }
+            else
+            {
+                RecordIncompleteSoulIDContainerIDConnection(soulID, containerID);
+            }
+        }
+        private void RecordIncompleteSoulIDContainerIDConnection(int soulID, int containerID)
+        {
+            if (incompleteSoulIDContainerIDConnection_SoulKey.ContainsKey(soulID))
+            {
+                incompleteSoulIDContainerIDConnection_SoulKey[soulID].Add(containerID);
+            }
+            else
+            {
+                incompleteSoulIDContainerIDConnection_SoulKey.Add(soulID, new HashSet<int> { containerID });
+            }
+
+            if (incompleteSoulIDContainerIDConnection_ContainerKey.ContainsKey(containerID))
+            {
+                incompleteSoulIDContainerIDConnection_ContainerKey[containerID].Add(soulID);
+            }
+            else
+            {
+                incompleteSoulIDContainerIDConnection_ContainerKey.Add(containerID, new HashSet<int> { soulID });
+            }
+        }
+        private void ClearIncompleteSoulIDContainerIDConnection()
+        {
+            incompleteSoulIDContainerIDConnection_SoulKey.Clear();
+            incompleteSoulIDContainerIDConnection_ContainerKey.Clear();
         }
     }
 }

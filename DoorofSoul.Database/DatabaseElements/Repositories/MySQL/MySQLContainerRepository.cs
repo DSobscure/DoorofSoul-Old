@@ -65,7 +65,9 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     {
                         int entityID = reader.GetInt32(0);
                         Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Find(entityID);
-                        return new Container(containerID, entityID, entity.EntityName, entity.LocatedSceneID, entity.SpaceProperties);
+                        Container container = new Container(containerID, entityID);
+                        container.BindEntity(entity);
+                        return container;
                     }
                     else
                     {
@@ -90,7 +92,9 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         int containerID = reader.GetInt32(0);
                         int entityID = reader.GetInt32(1);
                         Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Find(entityID);
-                        containers.Add(new Container(containerID, entityID, entity.EntityName, entity.LocatedSceneID, entity.SpaceProperties));
+                        Container container = new Container(containerID, entityID);
+                        container.BindEntity(entity);
+                        containers.Add(container);
                     }
                     return containers;
                 }
@@ -109,7 +113,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 if (command.ExecuteNonQuery() <= 0)
                 {
                     DataBase.Instance.Log.ErrorFormat("MySQLContainerRepository Save Container Error ContainerID: {0}", container.ContainerID);
-                    DataBase.Instance.RepositoryManager.EntityRepository.Save(container);
+                    DataBase.Instance.RepositoryManager.EntityRepository.Save(container.Entity);
                 }
             }
         }

@@ -1,12 +1,14 @@
-﻿using DoorofSoul.Client.Communication;
+﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
 {
+    private Answer answer;
+
     [SerializeField]
     private SoulPanel soulPanelPrefab;
     [SerializeField]
@@ -15,11 +17,12 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
 
     void Awake()
     {
+        answer = Global.Player.Answer;
         RegisterEvents();
     }
     void Start()
     {
-        ShowSouls(Global.Player.Answer);
+        ShowSouls();
     }
     void OnDestroy()
     {
@@ -28,19 +31,19 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
 
     public void RegisterEvents()
     {
-        Global.Player.Answer.OnLoadSouls += OnLoadSouls;
+        answer.OnLoadSouls += OnLoadSouls;
     }
     public void EraseEvents()
     {
-        Global.Player.Answer.OnLoadSouls -= OnLoadSouls;
+        answer.OnLoadSouls -= OnLoadSouls;
     }
 
-    private void OnLoadSouls(Answer answer)
+    private void OnLoadSouls(List<Soul> souls)
     {
-        ShowSouls(answer);
+        ShowSouls();
     }
 
-    private void ShowSouls(Answer answer)
+    private void ShowSouls()
     {
         deleteSoulsPanel.ClearChild();
         float blockSize = soulPanelPrefab.GetComponent<RectTransform>().rect.width + 20;
@@ -49,7 +52,6 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
         int counter = 0;
         foreach (Soul soul in answer.Souls)
         {
-            Debug.Log(soul.SoulName);
             SoulPanel soulPanel = Instantiate(soulPanelPrefab);
             soulPanel.transform.SetParent(deleteSoulsPanel);
             RectTransform rect = soulPanel.GetComponent<RectTransform>();
@@ -58,7 +60,7 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
             soulPanel.Show(soul);
             int soulID = soul.SoulID;
-            soulPanel.SetButton("刪除", () => { Global.OperationManagers.OperationManager.DeleteSoul(soulID); });
+            soulPanel.SetButton("刪除", () => { answer.DeleteSoul(soulID); });
             counter++;
         }
     }

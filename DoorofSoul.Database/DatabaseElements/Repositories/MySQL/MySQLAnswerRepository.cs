@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Database.Library;
+using DoorofSoul.Library.General;
 using MySql.Data.MySqlClient;
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL

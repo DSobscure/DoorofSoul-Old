@@ -1,8 +1,11 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters;
 using ExitGames.Client.Photon;
 using System;
-using System.Net;
 using System.Collections.Generic;
+using UnityEngine;
+using DoorofSoul.Client.Communication.Events;
+using DoorofSoul.Client.Communication.Responses;
 
 namespace DoorofSoul.Client.Communication
 {
@@ -10,13 +13,32 @@ namespace DoorofSoul.Client.Communication
     {
         private PhotonPeer peer;
         private bool serverConnected;
+        protected EventResolver eventResolver;
+        protected ResponseResolver responseResolver;
+
+        #region Connect Change
+        private event Action<bool> onConnectChange;
+        public event Action<bool> OnConnectChange
+        {
+            add { onConnectChange += value; }
+            remove { onConnectChange -= value; }
+        }
+        #endregion
+
         public bool ServerConnected
         {
             get { return serverConnected; }
             private set
             {
                 serverConnected = value;
-                Global.SystemManagers.SystemInformManager.ConnectChange(serverConnected);
+                if(onConnectChange != null)
+                {
+                    onConnectChange(serverConnected);
+                }
+                else
+                {
+                    DebugReturn(DebugLevel.ERROR, "onConnectChange event is null");
+                }
             }
         }
         private string serverName;
@@ -28,21 +50,24 @@ namespace DoorofSoul.Client.Communication
             this.serverName = serverName;
             this.serverAddress = serverAddress;
             this.udpPort = udpPort;
+
+            eventResolver = new EventResolver(this);
+            responseResolver = new ResponseResolver(this);
         }
 
         public void DebugReturn(DebugLevel level, string message)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform(level.ToString() + " : " + message);
+            Debug.Log(level.ToString() + " : " + message);
         }
 
         public void OnEvent(EventData eventData)
         {
-            Global.EventManagers.EventManager.Operate(eventData);
+            eventResolver.Operate(eventData);
         }
 
         public void OnOperationResponse(OperationResponse operationResponse)
         {
-            Global.ResponseManagers.ResponseManager.Operate(operationResponse);
+            responseResolver.Operate(operationResponse);
         }
 
         public void OnStatusChanged(StatusCode statusCode)
@@ -111,11 +136,35 @@ namespace DoorofSoul.Client.Communication
             }
         }
 
-        public void SendOperation(OperationCode operationCode, Dictionary<byte, object> parameters)
+        public void SendPlayerOperation(int playerID, PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (peer.IsEncryptionAvailable)
             {
-                peer.OpCustom((byte)operationCode, parameters, true, 0, true);
+                Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
+                {
+                    { (byte)OperationParameterCode.ID, playerID },
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
+                    { (byte)OperationParameterCode.Parameters, parameters }
+                };
+                peer.OpCustom((byte)OperationCode.PlayerOperation, operationParameter, true, 0, true);
+            }
+            else
+            {
+                DebugReturn(DebugLevel.WARNING, "Communication Still Not Establish Encryption");
+            }
+        }
+
+        public void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            if (peer.IsEncryptionAvailable)
+            {
+                Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
+                {
+                    { (byte)OperationParameterCode.ID, worldID },
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
+                    { (byte)OperationParameterCode.Parameters, parameters }
+                };
+                peer.OpCustom((byte)OperationCode.WorldOperation, operationParameter, true, 0, true);
             }
             else
             {

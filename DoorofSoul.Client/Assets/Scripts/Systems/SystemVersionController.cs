@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Client.Communication;
+using DoorofSoul.Protocol.Language;
 using UnityEngine.SceneManagement;
+using DoorofSoul.Client.Global;
+using DoorofSoul.Client.Library.General;
 
 public class SystemVersionController : MonoBehaviour, IEventProvider
 {
+    private SystemManager systemManager;
+    private ClientPlayer player;
+
     void Awake()
     {
+        systemManager = Global.SystemManager;
+        player = Global.Player;
         RegisterEvents();
     }
     void OnDestroy()
@@ -15,32 +22,32 @@ public class SystemVersionController : MonoBehaviour, IEventProvider
     }
     void OnGUI()
     {
-        GUI.Label(new Rect(20, 30, 300, 20), string.Format("CurrentServer Version: {0}", Global.VersionManager.CurrentServerVersion));
-        GUI.Label(new Rect(20, 50, 300, 20), string.Format("CurrentClient Version: {0}", Global.VersionManager.CurrentClientVersion));
-        GUI.Label(new Rect(20, 70, 300, 20), string.Format("LocalClient Version: {0}", Global.VersionManager.LocalClientVersion));
+        GUI.Label(new Rect(20, 30, 300, 20), string.Format("CurrentServer Version: {0}", systemManager.CurrentServerVersion));
+        GUI.Label(new Rect(20, 50, 300, 20), string.Format("CurrentClient Version: {0}", systemManager.CurrentClientVersion));
+        GUI.Label(new Rect(20, 70, 300, 20), string.Format("LocalClient Version: {0}", systemManager.LocalClientVersion));
     }
 
     public void EraseEvents()
     {
-        Global.VersionManager.OnCurrentServerVersionChange -= CurrentServerVersionChange;
-        Global.VersionManager.OnCurrentClientVersionChange -= CurrentClientVersionChange;
+        systemManager.OnCurrentServerVersionChange -= OnCurrentServerVersionChange;
+        systemManager.OnCurrentClientVersionChange -= OnCurrentClientVersionChange;
     }
 
     public void RegisterEvents()
     {
-        Global.VersionManager.OnCurrentServerVersionChange += CurrentServerVersionChange;
-        Global.VersionManager.OnCurrentClientVersionChange += CurrentClientVersionChange;
+        systemManager.OnCurrentServerVersionChange += OnCurrentServerVersionChange;
+        systemManager.OnCurrentClientVersionChange += OnCurrentClientVersionChange;
     }
 
-    private void CurrentServerVersionChange(string version)
+    private void OnCurrentServerVersionChange(string version)
     {
 
     }
-    private void CurrentClientVersionChange(string version)
+    private void OnCurrentClientVersionChange(string version)
     {
-        if(!Global.VersionManager.ClientVersionCheck())
+        if(!systemManager.ClientVersionCheck())
         {
-            Global.SystemManagers.SystemInformManager.ErrorInform(LauguageDictionarySelector.Instance[Global.SystemManagers.UsingLauguage]["Client Version Inconsistent"]);
+            player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Client Version Inconsistent"]);
         }
         else
         {

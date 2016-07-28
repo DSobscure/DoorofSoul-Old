@@ -1,28 +1,34 @@
 ﻿using UnityEngine;
-using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Client.Global;
 using UnityEngine.SceneManagement;
 using System.Linq;
 using DoorofSoul.Library.General;
 
 public class PlayerAnswerController : MonoBehaviour
 {
+    private Answer answer;
+
     [SerializeField]
     private CreateSoulPanel createSoulPanel;
 
+    void Awake()
+    {
+        answer = Global.Player.Answer;
+    }
     public void CreateSoul()
     {
-        Global.OperationManagers.OperationManager.CreateSoul(createSoulPanel.SoulName);
+        answer.CreateSoul(createSoulPanel.SoulName);
     }
     public void DeleteSoul(int soulID)
     {
-        Global.OperationManagers.OperationManager.DeleteSoul(soulID);
+        answer.DeleteSoul(soulID);
     }
     public void ActivateSoul(int soulID)
     {
-        Global.OperationManagers.OperationManager.ActivateSoul(soulID);
+        answer.ActivateSoul(soulID);
     }
     public void Logout()
     {
-        Global.OperationManagers.OperationManager.PlayerLogout();
+        answer.Player.Logout();
     }
 }

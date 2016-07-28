@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,52 +67,30 @@
     <Reference Include="DoorofSoul.Protocol.Communication">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Communication.dll</HintPath>
     </Reference>
+    <Reference Include="DoorofSoul.Protocol.Language">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Communication\EventManagers.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\EventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformAnswerEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformContainerEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSceneEntityEnterEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSceneEntityExitEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSceneEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSoulContainerConnectionEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSoulEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\InformDataEventHandlers\InformSystemVersionEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\ActivateSoulResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\CreateSoulResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\DeleteSoulResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\FetchDataResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLoginResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Handlers\ResponseHandlers\PlayerLogoutResponseHandler.cs" />
-    <Compile Include="Assets\Plugins\Communication\Languages\ChineseDictionary.cs" />
-    <Compile Include="Assets\Plugins\Communication\LauguageDictionary.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\EventManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\EventManagers\InformDataEventManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\FetchDataOperationManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\OperationManagers\OperationManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers\ResponseManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\ResponseManagers\UIResponseManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\DebugInformManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\SystemManagers\SystemInformManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\Managers\VersionManager.cs" />
-    <Compile Include="Assets\Plugins\Communication\OperationManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\EventHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\EventResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\Handlers\PlayerEventResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Events\Handlers\WorldEventResolver.cs" />
     <Compile Include="Assets\Plugins\Communication\PhotonService.cs" />
-    <Compile Include="Assets\Plugins\Communication\ResponseManagers.cs" />
-    <Compile Include="Assets\Plugins\Communication\SystemManagers.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\Handlers\PlayerOperationResponseResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\Handlers\WorldOperationResponseResolver.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\ResponseHandler.cs" />
+    <Compile Include="Assets\Plugins\Communication\Responses\ResponseResolver.cs" />
     <Compile Include="Assets\Plugins\Global\Global.cs" />
+    <Compile Include="Assets\Plugins\Global\SystemManager.cs" />
     <Compile Include="Assets\Plugins\HelpFunctions\TransformHelpFunctions.cs" />
-    <Compile Include="Assets\Plugins\Interfaces\IEntityController.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientAnswer.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientEntity.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientScene.cs" />
-    <Compile Include="Assets\Plugins\Scene\ScenesManager.cs" />
+    <Compile Include="Assets\Plugins\Library.General\ClientPlayer.cs" />
+    <Compile Include="Assets\Plugins\Library.General\ClientWorld.cs" />
+    <Compile Include="Assets\Plugins\Library.General\Horizon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

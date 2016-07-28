@@ -97,6 +97,9 @@
     <Reference Include="DoorofSoul.Protocol.Communication">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Communication.dll</HintPath>
     </Reference>
+    <Reference Include="DoorofSoul.Protocol.Language">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>

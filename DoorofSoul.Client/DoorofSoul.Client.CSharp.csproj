@@ -67,6 +67,9 @@
     <Reference Include="DoorofSoul.Protocol.Communication">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Communication.dll</HintPath>
     </Reference>
+    <Reference Include="DoorofSoul.Protocol.Language">
+      <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
@@ -78,11 +81,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Authentications\PlayerLoginController.cs" />
     <Compile Include="Assets\Scripts\Authentications\PlayerLogoutController.cs" />
     <Compile Include="Assets\Scripts\Communications\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\Entities\EntityController.cs" />
-    <Compile Include="Assets\Scripts\Systems\DebugController.cs" />
     <Compile Include="Assets\Scripts\Systems\ErrorInformController.cs" />
     <Compile Include="Assets\Scripts\Systems\EternalObject.cs" />
     <Compile Include="Assets\Scripts\Systems\SceneController.cs" />
@@ -97,8 +98,8 @@
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulsPanelController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\InputNavigationController.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginUI.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerScene\PlayerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

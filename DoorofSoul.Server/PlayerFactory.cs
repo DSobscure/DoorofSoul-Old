@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoorofSoul.Database;
 using DoorofSoul.Library;
-using DoorofSoul.Database;
+using DoorofSoul.Protocol.Communication;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DoorofSoul.Server
 {
@@ -42,14 +41,14 @@ namespace DoorofSoul.Server
                 Application.Log.InfoFormat("Player Guid: {0} Disconnect from {1}", player.Guid, player.LastConnectedIPAddress);
             }
             PlayerOffline(player);
-            //await Task.Delay(60000);
+            await Task.Delay(600);
             if (!player.IsOnline)
             {
                 PlayerDeactivate(player);
             }
         }
 
-        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out string errorMessage)
+        public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out ErrorCode errorCode)
         {
             int playerID;
             if (DataBase.Instance.RepositoryManager.PlayerRepository.Contains(account, out playerID))
@@ -57,21 +56,31 @@ namespace DoorofSoul.Server
                 if (DataBase.Instance.AuthenticationManager.PlayerAuthentication.LoginCheck(account, password))
                 {
                     debugMessage = null;
-                    errorMessage = null;
+                    errorCode = ErrorCode.NoError;
                     player.LoadPlayer(DataBase.Instance.RepositoryManager.PlayerRepository.Find(playerID));
-                    return PlayerOnline(player);
+                    if(PlayerOnline(player))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        player.LoginFailed();
+                        debugMessage = string.Format("Account:{0} already Logined from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
+                        errorCode = ErrorCode.Fail;
+                        return false;
+                    }
                 }
                 else
                 {
                     debugMessage = string.Format("Account:{0} PasswordError from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
-                    errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                    errorCode = ErrorCode.InvalidOperation;
                     return false;
                 }
             }
             else
             {
                 debugMessage = string.Format("Account:{0} Not Exist from IP: {1}", account ?? "", player?.LastConnectedIPAddress?.ToString() ?? "");
-                errorMessage = LauguageDictionarySelector.Instance[player.UsingLanguage]["Account or Password Error"];
+                errorCode = ErrorCode.InvalidOperation;
                 return false;
             }
         }
@@ -83,38 +92,34 @@ namespace DoorofSoul.Server
 
         public bool PlayerOnline(ServerPlayer player)
         {
-            if(activatedPlayers.ContainsKey(player.PlayerID))
-            {
-                ServerPlayer originPlayer = activatedPlayers[player.PlayerID];
-                originPlayer.RelifeWithNewPlayer(player);
-                connectedPlayers.Remove(player.Guid);
-                connectedPlayers.Add(originPlayer.Guid, originPlayer);
-                player = originPlayer;
-            }
-
-            if (player.IsOnline)
+            if(onlinedPlayers.ContainsKey(player.PlayerID))
             {
                 return false;
             }
-            else if (player.IsActivated)
-            {
-                player.IsOnline = true;
-                if (!onlinedPlayers.ContainsKey(player.PlayerID))
-                {
-                    onlinedPlayers.Add(player.PlayerID, player);
-                }
-                Application.Log.InfoFormat("PlayerID: {0} Return to World", player.PlayerID);
-                return true;
-            }
             else
             {
-                player.IsOnline = true;
-                if (!onlinedPlayers.ContainsKey(player.PlayerID))
+                if (activatedPlayers.ContainsKey(player.PlayerID))
+                {
+                    ServerPlayer originPlayer = activatedPlayers[player.PlayerID];
+                    originPlayer.RelifeWithNewPlayer(player);
+                    connectedPlayers.Remove(player.Guid);
+                    connectedPlayers.Add(originPlayer.Guid, originPlayer);
+                    player = originPlayer;
+                    player.IsOnline = true;
+                    if (!onlinedPlayers.ContainsKey(player.PlayerID))
+                    {
+                        onlinedPlayers.Add(player.PlayerID, player);
+                    }
+                    Application.Log.InfoFormat("PlayerID: {0} Return to World", player.PlayerID);
+                    return true;
+                }
+                else
                 {
                     onlinedPlayers.Add(player.PlayerID, player);
+                    player.IsOnline = true;
+                    Application.Log.InfoFormat("PlayerID: {0} Online", player.PlayerID);
+                    return PlayerActive(player);
                 }
-                Application.Log.InfoFormat("PlayerID: {0} Online", player.PlayerID);
-                return PlayerActive(player);
             }
         }
         public void PlayerOffline(ServerPlayer player)

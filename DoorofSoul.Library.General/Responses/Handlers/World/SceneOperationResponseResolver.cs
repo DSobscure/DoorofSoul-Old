@@ -10,6 +10,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
     {
         public SceneOperationResponseResolver(General.World world) : base(world)
         {
+
         }
 
         public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)

@@ -16,10 +16,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
             this.container = container;
         }
 
-        public virtual bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public virtual bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckParameter(parameters, out debugMessage))
             {
                 return true;
             }
@@ -29,7 +29,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        public abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
         public void SendResponse(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>

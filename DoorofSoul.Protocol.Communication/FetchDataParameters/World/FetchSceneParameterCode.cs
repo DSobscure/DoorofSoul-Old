@@ -1,4 +1,4 @@
-﻿namespace DoorofSoul.Protocol.Communication.FetchDataParameters.Player
+﻿namespace DoorofSoul.Protocol.Communication.FetchDataParameters.World
 {
     public enum FetchSceneParameterCode : byte
     {

@@ -6,7 +6,7 @@ using ExitGames.Logging.Log4Net;
 using log4net.Config;
 using Photon.SocketServer;
 using System.IO;
-using System.Threading.Tasks;
+using DoorofSoul.Library.General;
 
 namespace DoorofSoul.Server
 {
@@ -56,6 +56,7 @@ namespace DoorofSoul.Server
                 LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
                 XmlConfigurator.ConfigureAndWatch(file);
             }
+            LibraryLog.Initial(Log.Error, Log.ErrorFormat);
         }
         protected void SetupConfiguration()
         {

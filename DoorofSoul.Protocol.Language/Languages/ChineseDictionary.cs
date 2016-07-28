@@ -35,6 +35,8 @@ namespace DoorofSoul.Protocol.Language.Languages
                 { "Fetch Scene NotExist", "讀取了不存在的場景" },
                 { "Fetch Scene Error", "讀取場景錯誤" },
                 { "Fetch Container Error", "讀取容器錯誤" },
+                { "Fetch Worlds Error", "讀取世界錯誤" },
+                { "Fetch Entity Error", "讀取實體錯誤" },
                 #endregion
 
                 #region UI

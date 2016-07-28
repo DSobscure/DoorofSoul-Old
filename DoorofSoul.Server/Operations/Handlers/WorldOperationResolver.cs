@@ -17,7 +17,7 @@ namespace DoorofSoul.Server.Operations.Handlers
 
         public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
-            if (parameter.Count != 2)
+            if (parameter.Count != 3)
             {
                 debugMessage = string.Format("World Operation Parameter Error Parameter Count: {0}", parameter.Count);
                 return false;
@@ -35,8 +35,8 @@ namespace DoorofSoul.Server.Operations.Handlers
             {
                 try
                 {
-                    WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)OperationParameterCode.OperationCode];
                     int worldID = (int)parameters[(byte)OperationParameterCode.ID];
+                    WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)OperationParameterCode.OperationCode];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)OperationParameterCode.Parameters];
                     if (Hexagram.Instance.Nature.ContainsWorld(worldID))
                     {

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DoorofSoul.Protocol.Language;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
-using DoorofSoul.Protocol.Language;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
 
-namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
+namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
 {
-    public class FetchContainersResponseHandler : FetchDataResponseHandler
+    public class FetchWorldsResponseHandler : FetchDataResponseHandler
     {
-        public FetchContainersResponseHandler(General.Answer answer) : base(answer)
+        public FetchWorldsResponseHandler(General.Player player) : base(player)
         {
         }
 
@@ -23,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     {
                         if (parameters.Count != 2)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryLog.ErrorFormat(string.Format("Fetch Worlds Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -33,28 +31,27 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Containers Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Container Error"]);
+                        LibraryLog.ErrorFormat("Fetch Worlds Response Error DebugMessage: {0}", debugMessage);
+                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Worlds Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        public override bool Handle(PlayerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {
                 try
                 {
-                    int containerID = (int)parameters[(byte)FetchContainersResponseParameterCode.ContainerID];
-                    int entityID = (int)parameters[(byte)FetchContainersResponseParameterCode.EntityID];
-                    General.Container container = new General.Container(containerID, entityID);
-                    answer.LoadContainers(new List<General.Container> { container });
+                    int worldID = (int)parameters[(byte)FetchWorldsResponseParameterCode.WorldID];
+                    string worldName = (string)parameters[(byte)FetchWorldsResponseParameterCode.WorldName];
+                    player.FetchWorldsResponse(worldID, worldName);
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Containers Response Parameter Cast Error");
+                    LibraryLog.Error("Fetch Worlds Response Parameter Cast Error");
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
                     return false;

@@ -4,14 +4,15 @@ using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DoorofSoul.Library.General
 {
@@ -31,10 +32,10 @@ namespace DoorofSoul.Library.General
         private Dictionary<int, HashSet<int>> incompleteSoulIDContainerIDConnection_SoulKey;
         private Dictionary<int, HashSet<int>> incompleteSoulIDContainerIDConnection_ContainerKey;
 
-        private event Action<Answer> onLoadSouls;
-        public event Action<Answer> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
-        private event Action<Answer> onLoadContainers;
-        public event Action<Answer> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
+        private event Action<List<Soul>> onLoadSouls;
+        public event Action<List<Soul>> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
+        private event Action<List<Container>> onLoadContainers;
+        public event Action<List<Container>> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
         #endregion
         #region communication
         internal AnswerEventManager AnswerEventManager { get; set; }
@@ -136,7 +137,7 @@ namespace DoorofSoul.Library.General
         {
             soulDictionary.Clear();
             ClearIncompleteSoulIDContainerIDConnection();
-            onLoadSouls?.Invoke(this);
+            onLoadSouls?.Invoke(new List<Soul>());
         }
         public virtual void LoadSouls(List<Soul> souls)
         {
@@ -147,6 +148,7 @@ namespace DoorofSoul.Library.General
                     if (!soulDictionary.ContainsKey(soul.SoulID) && soul.AnswerID == AnswerID)
                     {
                         soulDictionary.Add(soul.SoulID, soul);
+                        onLoadSouls?.Invoke(new List<Soul> { soul });
                     }
                 }
                 foreach (Soul soul in souls)
@@ -164,7 +166,6 @@ namespace DoorofSoul.Library.General
                         }
                     }
                 }
-                onLoadSouls?.Invoke(this);
             }
         }
         public bool ContainsSoul(int soulID)
@@ -187,7 +188,7 @@ namespace DoorofSoul.Library.General
             if(soulDictionary.ContainsKey(soulID))
             {
                 soulDictionary.Remove(soulID);
-                onLoadSouls?.Invoke(this);
+                onLoadSouls?.Invoke(Souls.ToList());
             }
         }
 
@@ -195,7 +196,7 @@ namespace DoorofSoul.Library.General
         {
             containerDictionary.Clear();
             ClearIncompleteSoulIDContainerIDConnection();
-            onLoadContainers?.Invoke(this);
+            onLoadContainers?.Invoke(new List<Container>());
         }
         public virtual void LoadContainers(List<Container> containers)
         {
@@ -204,6 +205,7 @@ namespace DoorofSoul.Library.General
                 if(!containerDictionary.ContainsKey(container.ContainerID))
                 {
                     containerDictionary.Add(container.ContainerID, container);
+                    onLoadContainers?.Invoke(new List<Container> { container });
                 }
             }
             foreach (Container container in containers)
@@ -221,7 +223,6 @@ namespace DoorofSoul.Library.General
                     }
                 }
             }
-            onLoadContainers?.Invoke(this);
         }
         public bool ContainsContainer(int containerID)
         {
@@ -243,7 +244,7 @@ namespace DoorofSoul.Library.General
             if (containerDictionary.ContainsKey(containerID))
             {
                 containerDictionary.Remove(containerID);
-                onLoadContainers?.Invoke(this);
+                onLoadContainers?.Invoke(Containers.ToList());
             }
         }
         public void LinkSoulContainer(int soulID, int containerID)

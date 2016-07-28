@@ -1,7 +1,8 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Responses.Handlers.World.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.World
@@ -14,7 +15,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
         {
             fetchResponseTable = new Dictionary<WorldFetchDataCode, FetchDataResponseHandler>
             {
-
+                { WorldFetchDataCode.Scene, new FetchSceneResponseHandler(world) },
             };
         }
 

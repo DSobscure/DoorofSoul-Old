@@ -8,6 +8,7 @@ using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Answer;
 using DoorofSoul.Protocol.Language;
+using System;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
@@ -22,8 +23,26 @@ namespace DoorofSoul.Library.General
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
         public int ContainerCount { get { return containerDictionary.Count; } }
-        public bool IsActive { get; set; }
+        private bool isActivate;
+        public bool IsActivate
+        {
+            get { return isActivate; }
+            set
+            {
+                isActivate = value;
+                onSoulActivate?.Invoke(this);
+            }
+        }
         public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
+        #endregion
+
+        #region events
+        private event Action<Soul> onSoulActivate;
+        public event Action<Soul> OnSoulActivate
+        {
+            add { onSoulActivate += value; }
+            remove { onSoulActivate -= value; }
+        }
         #endregion
 
         #region communication

@@ -100,6 +100,7 @@
     <Compile Include="Operations\Handlers\ContainerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataResolver.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Operations\Handlers\Player\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\Player\FetchData\FetchAnswerHandler.cs" />
     <Compile Include="Operations\Handlers\Player\FetchData\FetchSystemVersionHandler.cs" />
+    <Compile Include="Operations\Handlers\Player\FetchData\FetchWorldsHandler.cs" />
     <Compile Include="Operations\Handlers\Player\LoginHandler.cs" />
     <Compile Include="Operations\Handlers\Player\LogoutHandler.cs" />
     <Compile Include="Operations\Handlers\Scene\FetchDataHandler.cs" />
@@ -116,7 +118,7 @@
     <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataResolver.cs" />
-    <Compile Include="Operations\Handlers\Player\FetchData\FetchSceneHandler.cs" />
+    <Compile Include="Operations\Handlers\World\FetchData\FetchSceneHandler.cs" />
     <Compile Include="Operations\Handlers\World\SceneOperationResolver.cs" />
     <Compile Include="Operations\Handlers\SceneOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Scene\ContainerOperationResolver.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Responses\Handlers\ContainerResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Container\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Container\FetchDataResponseResolver.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchData\FetchEntityResponseHandler.cs" />
     <Compile Include="Responses\Handlers\EntityResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Entity\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Entity\FetchDataResponseResolver.cs" />
@@ -156,7 +159,8 @@
     <Compile Include="Responses\Handlers\Player\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\FetchDataResponseResolver.cs" />
     <Compile Include="Responses\Handlers\Player\FetchData\FetchAnswerResponseHandler.cs" />
-    <Compile Include="Responses\Handlers\Player\FetchData\FetchSceneResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Player\FetchData\FetchWorldsResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\World\FetchData\FetchSceneResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\FetchData\FetchSystemVersionResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\LoginResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Player\LogoutResponseHandler.cs" />
@@ -201,14 +205,10 @@
     <Folder Include="Events\Handlers\Player\InformData\" />
     <Folder Include="Events\Handlers\Soul\InformData\" />
     <Folder Include="Events\Handlers\World\InformData\" />
-    <Folder Include="Operations\Handlers\Container\FetchData\" />
     <Folder Include="Operations\Handlers\Entity\FetchData\" />
     <Folder Include="Operations\Handlers\Soul\FetchData\" />
-    <Folder Include="Operations\Handlers\World\FetchData\" />
-    <Folder Include="Responses\Handlers\Container\FetchData\" />
     <Folder Include="Responses\Handlers\Entity\FetchData\" />
     <Folder Include="Responses\Handlers\Soul\FetchData\" />
-    <Folder Include="Responses\Handlers\World\FetchData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

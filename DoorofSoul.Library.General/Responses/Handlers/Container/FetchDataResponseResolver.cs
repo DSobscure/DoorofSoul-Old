@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Responses.Handlers.Container.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
@@ -14,7 +15,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
         {
             fetchResponseTable = new Dictionary<ContainerFetchDataCode, FetchDataResponseHandler>
             {
-
+                { ContainerFetchDataCode.Entity, new FetchEntityResponseHandler(container) }
             };
         }
 

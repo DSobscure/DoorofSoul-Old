@@ -14,10 +14,15 @@ public class SceneController : MonoBehaviour
             scene.OnEntityExit -= DestroyEntity;
         }
         scene = Global.Horizon.MainScene;
-        if(scene != null)
+        if (scene != null)
         {
+            scene.FetchEntities();
             scene.OnEntityEnter += InstantiateEntity;
             scene.OnEntityExit += DestroyEntity;
+            foreach (Entity entity in scene.Entities)
+            {
+                InstantiateEntity(entity);
+            }
         }
     }
 

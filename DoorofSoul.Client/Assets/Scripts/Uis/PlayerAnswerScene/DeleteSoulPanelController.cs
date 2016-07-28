@@ -2,6 +2,7 @@
 using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
@@ -21,7 +22,7 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
     }
     void Start()
     {
-        ShowSouls(answer);
+        ShowSouls();
     }
     void OnDestroy()
     {
@@ -37,12 +38,12 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
         answer.OnLoadSouls -= OnLoadSouls;
     }
 
-    private void OnLoadSouls(Answer answer)
+    private void OnLoadSouls(List<Soul> souls)
     {
-        ShowSouls(answer);
+        ShowSouls();
     }
 
-    private void ShowSouls(Answer answer)
+    private void ShowSouls()
     {
         deleteSoulsPanel.ClearChild();
         float blockSize = soulPanelPrefab.GetComponent<RectTransform>().rect.width + 20;

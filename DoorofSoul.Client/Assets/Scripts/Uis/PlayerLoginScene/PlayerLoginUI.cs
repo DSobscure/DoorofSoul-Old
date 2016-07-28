@@ -46,7 +46,7 @@ public class PlayerLoginUI : MonoBehaviour, IEventProvider
     }
     public void OnLoginResponse(Player player)
     {
-        if(player.AnswerID == 0)
+        if(!player.IsOnline)
         {
             accountInputField.enabled = true;
             passwordInputField.enabled = true;

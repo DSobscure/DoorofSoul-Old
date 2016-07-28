@@ -4,10 +4,12 @@ using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 using System.Linq;
-using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General
 {
@@ -65,7 +67,7 @@ namespace DoorofSoul.Library.General
                     break;
             }
         }
-        internal void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        internal void SendOperation(ContainerOperationCode operationCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
         {
             switch (channel)
             {
@@ -171,6 +173,15 @@ namespace DoorofSoul.Library.General
                     break;
             }
         }
+        public void FetchEntity()
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)ContainerFetchDataCode.Entity },
+                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(ContainerOperationCode.FetchData, fetchDataParameters, ContainerCommunicationChannel.Answer);
+        }
         #endregion
 
         public Container(int containerID, int entityID)
@@ -184,7 +195,10 @@ namespace DoorofSoul.Library.General
         }
         public void BindEntity(Entity entity)
         {
-            Entity = entity;
+            if(Entity == null)
+            {
+                Entity = entity;
+            }
         }
 
         public void LinkSoul(Soul soul)

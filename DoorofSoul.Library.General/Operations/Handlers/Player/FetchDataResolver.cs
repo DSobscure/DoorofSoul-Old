@@ -3,7 +3,6 @@ using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Player
@@ -18,7 +17,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             {
                 { PlayerFetchDataCode.SystemVersion, new FetchSystemVersionHandler(player) },
                 { PlayerFetchDataCode.Answer, new FetchAnswerHandler(player) },
-                { PlayerFetchDataCode.Scene, new FetchSceneHandler(player) },
+                { PlayerFetchDataCode.Worlds, new FetchWorldsHandler(player) },
             };
         }
 

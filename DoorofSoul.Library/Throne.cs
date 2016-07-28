@@ -69,7 +69,7 @@ namespace DoorofSoul.Library
             if (soulDictionary.ContainsKey(soulID))
             {
                 Soul soul = soulDictionary[soulID];
-                soul.IsActive = true;
+                soul.IsActivate = true;
                 foreach(Container container in soul.Containers)
                 {
                     ProjectContainer(container);
@@ -119,7 +119,7 @@ namespace DoorofSoul.Library
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
-                    if(soul.IsActive)
+                    if(soul.IsActivate)
                     {
                         Scene locatedScene = container.Entity.LocatedScene;
                         if (container.IsEmptyContainer)
@@ -138,7 +138,7 @@ namespace DoorofSoul.Library
         {
             if (soulDictionary.ContainsKey(soulID))
             {
-                soulDictionary[soulID].IsActive = false;
+                soulDictionary[soulID].IsActivate = false;
                 return true;
             }
             else

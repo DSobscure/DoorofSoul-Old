@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
             {
                 { PlayerFetchDataCode.SystemVersion, new FetchSystemVersionResponseHandler(player) },
                 { PlayerFetchDataCode.Answer, new FetchAnswerResponseHandler(player) },
-                { PlayerFetchDataCode.Scene, new FetchSceneResponseHandler(player) },
+                { PlayerFetchDataCode.Worlds, new FetchWorldsResponseHandler(player) },
             };
         }
 

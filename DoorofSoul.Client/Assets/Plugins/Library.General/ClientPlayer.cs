@@ -7,7 +7,6 @@ using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
-using DoorofSoul.Protocol.Communication.FetchDataParameters.Player;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Language;
 using DoorofSoul.Client.Global;
@@ -113,24 +112,21 @@ namespace DoorofSoul.Client.Library.General
             SendOperation(PlayerOperationCode.FetchData, parameters);
         }
 
-        public override void FetchScene(int sceneID, out Scene scene)
+        public override void FetchWorlds(out List<World> worlds)
         {
-            scene = null;
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchSceneParameterCode.SceneID, sceneID }
-            };
+            worlds = null;
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>();
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)FetchDataParameterCode.FetchDataCode, PlayerFetchDataCode.Scene },
+                { (byte)FetchDataParameterCode.FetchDataCode, PlayerFetchDataCode.Worlds },
                 { (byte)FetchDataParameterCode.Parameters, fetchDataParameters }
             };
             SendOperation(PlayerOperationCode.FetchData, parameters);
         }
 
-        public override void FetchSceneResponse(int sceneID, string sceneName, int worldID)
+        public override void FetchWorldsResponse(int worldID, string worldName)
         {
-            Global.Global.Horizon.LoadScene(new Scene(sceneID, sceneName, worldID));
+            Global.Global.Horizon.LoadWorld(new ClientWorld(worldID, worldName));
         }
 
         public override void FetchSystemVersion(out string serverVersion, out string clientVersion)
@@ -172,6 +168,7 @@ namespace DoorofSoul.Client.Library.General
             Nickname = nickname;
             UsingLanguage = usingLanguage;
             AnswerID = answerID;
+            IsOnline = true;
             if (onLogin != null)
             {
                 onLogin(this);
@@ -190,7 +187,8 @@ namespace DoorofSoul.Client.Library.General
 
         public override void LogoutResponse()
         {
-            if(onLogout != null)
+            IsOnline = false;
+            if (onLogout != null)
             {
                 onLogout();
             }
@@ -228,6 +226,18 @@ namespace DoorofSoul.Client.Library.General
         public override void SendWorldResponse(int worldID, WorldOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
+        }
+
+        public override void LoginFailed()
+        {
+            if (onLogin != null)
+            {
+                onLogin(this);
+            }
+            else
+            {
+                LibraryLog.Error("onLogin event is null");
+            }
         }
     }
 }

@@ -5,10 +5,14 @@ using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Global;
 using DoorofSoul.Protocol.Language;
+using System.Collections.Generic;
+using System.Linq;
+using DoorofSoul.Client.Library.General;
 
 public class SoulsPanelController : MonoBehaviour, IEventProvider
 {
     private Answer answer;
+    private Horizon horizon;
 
     [SerializeField]
     private SoulPanel soulPanelPrefab;
@@ -19,6 +23,7 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
     void Awake()
     {
         answer = Global.Player.Answer;
+        horizon = Global.Horizon;
         RegisterEvents();
     }
     void Start()
@@ -28,7 +33,7 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
         soulCountLimitText = GameObject.Find("SoulCountLimitText").GetComponent<Text>();
         answerIDText.text = answer.AnswerID.ToString();
         soulCountLimitText.text = string.Format("{0}: {1}", LauguageDictionarySelector.Instance[answer.UsingLanguage]["SoulCountLimit"], answer.SoulCountLimit);
-        ShowSouls(answer);
+        ShowSouls();
     }
     void OnDestroy()
     {
@@ -44,12 +49,16 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
         answer.OnLoadSouls -= OnLoadSouls;
     }
 
-    private void OnLoadSouls(Answer answer)
+    private void OnLoadSouls(List<Soul> souls)
     {
-        ShowSouls(answer);
+        ShowSouls();
+        foreach(Soul soul in souls)
+        {
+            soul.OnSoulActivate += OnSoulActivate;
+        }
     }
 
-    private void ShowSouls(Answer answer)
+    private void ShowSouls()
     {
         soulsPanel.ClearChild();
         float blockSize = soulPanelPrefab.GetComponent<RectTransform>().rect.width + 20;
@@ -68,6 +77,20 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
             int soulID = soul.SoulID;
             soulPanel.SetButton("連結", () => { answer.ActivateSoul(soulID); });
             counter++;
+        }
+    }
+    private void OnSoulActivate(Soul soul)
+    {
+        if(soul.IsActivate)
+        {
+            if(soul.Containers.First().Entity.LocatedScene == null)
+            {
+                horizon.FetchMainScene(soul.Containers.First().Entity.LocatedSceneID);
+            }
+            else
+            {
+                horizon.ChangeToScene(soul.Containers.First().Entity.LocatedScene);
+            }
         }
     }
 }

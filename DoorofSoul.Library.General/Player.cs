@@ -44,13 +44,14 @@ namespace DoorofSoul.Library.General
 
         public abstract bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode);
         public abstract void LoginResponse(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID);
+        public abstract void LoginFailed();
         public abstract void Logout();
         public abstract void LogoutResponse();
         public abstract void FetchSystemVersion(out string serverVersion, out string clientVersion);
         public abstract void FetchSystemVersionResponse(string serverVersion, string clientVersion);
         public abstract void FetchAnswer(out Answer answer);
-        public abstract void FetchScene(int sceneID, out Scene scene);
-        public abstract void FetchSceneResponse(int sceneID, string sceneName, int worldID);
+        public abstract void FetchWorlds(out List<World> worlds);
+        public abstract void FetchWorldsResponse(int worldID, string worldName);
         public abstract bool DeleteSoul(Answer answer, int soulID);
         public abstract bool CreateSoul(Answer answer, string soulName);
         public abstract bool ActivateSoul(Answer answer, int soulID);

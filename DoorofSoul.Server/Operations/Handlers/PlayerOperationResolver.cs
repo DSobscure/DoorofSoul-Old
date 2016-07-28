@@ -37,7 +37,7 @@ namespace DoorofSoul.Server.Operations.Handlers
                     PlayerOperationCode resolvedOperationCode = (PlayerOperationCode)parameters[(byte)OperationParameterCode.OperationCode];
                     int playerID = (int)parameters[(byte)OperationParameterCode.ID];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)OperationParameterCode.Parameters];
-                    if(playerID == peer.Player.PlayerID)
+                    if(playerID == peer.Player.PlayerID || playerID == 0)
                     {
                         peer.Player.PlayerOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;

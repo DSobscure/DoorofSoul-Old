@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Client.Communication;
 using DoorofSoul.Client.Library.General;
+using DoorofSoul.Library.General;
 
 namespace DoorofSoul.Client.Global
 {
@@ -18,6 +19,7 @@ namespace DoorofSoul.Client.Global
 
             PhotonService = new PhotonService("DoorofSoul.Server", "doorofsoul.duckdns.org", 5055);
             SystemManager = new SystemManager();
+            LibraryLog.Initial(SystemManager.Error, SystemManager.ErrorFormat);
         }
     }
 }

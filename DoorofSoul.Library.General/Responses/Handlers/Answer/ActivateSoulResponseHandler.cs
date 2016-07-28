@@ -61,7 +61,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     int soulID = (int)parameters[(byte)ActiveSoulResponseParameterCode.SoulID];
                     if (answer.ContainsSoul(soulID))
                     {
-                        answer.FindSoul(soulID).IsActive = true;
+                        answer.FindSoul(soulID).IsActivate = true;
                         return true;
                     }
                     else

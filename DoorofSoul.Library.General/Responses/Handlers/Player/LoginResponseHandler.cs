@@ -65,7 +65,9 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     int answerID = (int)parameters[(byte)LoginResponseParameterCode.AnswerID];
                     player.LoginResponse(playerID, account, nickname, usingLanguage, answerID);
                     General.Answer answer;
+                    List<General.World> worlds;
                     player.FetchAnswer(out answer);
+                    player.FetchWorlds(out worlds);
                     return true;
                 }
                 catch (InvalidCastException ex)
@@ -73,17 +75,20 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     LibraryLog.Error("PlayerLogin Parameter Cast Error");
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
+                    player.LoginFailed();
                     return false;
                 }
                 catch (Exception ex)
                 {
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
+                    player.LoginFailed();
                     return false;
                 }
             }
             else
             {
+                player.LoginFailed();
                 return false;
             }
         }

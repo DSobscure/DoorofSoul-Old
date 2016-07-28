@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.World;
 using DoorofSoul.Protocol.Language;
 
-namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
+namespace DoorofSoul.Library.General.Responses.Handlers.World.FetchData
 {
     public class FetchSceneResponseHandler : FetchDataResponseHandler
     {
-        public FetchSceneResponseHandler(General.Player player) : base(player)
+        public FetchSceneResponseHandler(General.World world) : base(world)
         {
         }
 
@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 3)
+                        if (parameters.Count != 2)
                         {
                             LibraryLog.ErrorFormat(string.Format("Fetch Scene Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -34,19 +34,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 case ErrorCode.NotExist:
                     {
                         LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Not Exist"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Scene NotExist"]);
+                        world.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Not Exist"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene NotExist"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Scene Error"]);
+                        world.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(PlayerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        public override bool Handle(WorldFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {
@@ -54,13 +54,12 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 {
                     int sceneID = (int)parameters[(byte)FetchSceneResponseParameterCode.SceneID];
                     string sceneName = (string)parameters[(byte)FetchSceneResponseParameterCode.SceneName];
-                    int worldID = (int)parameters[(byte)FetchSceneResponseParameterCode.WorldID];
-                    player.FetchSceneResponse(sceneID, sceneName, worldID);
+                    world.FetchSceneResponse(sceneID, sceneName);
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Inform Scene Event Parameter Cast Error");
+                    LibraryLog.Error("Fetch Scene Response Parameter Cast Error");
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
                     return false;

@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene.FetchData
 
         public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
-            if (parameter.Count != 1)
+            if (parameter.Count != 0)
             {
                 debugMessage = string.Format("Scene Fetch Entities Parameter Error Parameter Count: {0}", parameter.Count);
                 return false;

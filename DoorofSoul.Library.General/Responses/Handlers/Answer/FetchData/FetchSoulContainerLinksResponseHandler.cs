@@ -47,6 +47,14 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     int soulID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.SoulID];
                     int containerID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.ContainerID];
                     answer.LinkSoulContainer(soulID, containerID);
+                    if(answer.ContainsContainer(containerID))
+                    {
+                        General.Container container = answer.FindContainer(containerID);
+                        if(container.Entity == null)
+                        {
+                            container.FetchEntity();
+                        }
+                    }
                     return true;
                 }
                 catch (InvalidCastException ex)

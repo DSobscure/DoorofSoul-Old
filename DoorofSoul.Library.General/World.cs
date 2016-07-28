@@ -29,6 +29,8 @@ namespace DoorofSoul.Library.General
         public abstract void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters);
         public abstract void ErrorInform(string title, string message);
+        public abstract void FetchScene(int sceneID, out Scene scene);
+        public abstract void FetchSceneResponse(int sceneID, string sceneName);
         #endregion
 
         public World(int worldID, string worldName)
@@ -48,6 +50,7 @@ namespace DoorofSoul.Library.General
             foreach (Scene scene in sceneList)
             {
                 sceneDictionary.Add(scene.SceneID, scene);
+                scene.BindWorld(this);
             }
         }
 

@@ -130,11 +130,6 @@ namespace DoorofSoul.Server
             answer = Answer;
         }
 
-        public override void FetchScene(int sceneID, out Scene scene)
-        {
-            scene = Hexagram.Instance.Nature.FindScene(sceneID);
-        }
-
         public override void SendOperation(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             throw new NotImplementedException();
@@ -154,6 +149,15 @@ namespace DoorofSoul.Server
         public override void LoginResponse(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID)
         {
             throw new NotImplementedException();
+        }
+
+        public override void LoginFailed()
+        {
+            PlayerID = 0;
+            Account = null;
+            IsOnline = false;
+            IsActivated = false;
+            AnswerID = 0;
         }
 
         public override void LogoutResponse()
@@ -181,7 +185,12 @@ namespace DoorofSoul.Server
             throw new NotImplementedException();
         }
 
-        public override void FetchSceneResponse(int sceneID, string sceneName, int worldID)
+        public override void FetchWorlds(out List<World> worlds)
+        {
+            worlds = Hexagram.Instance.Nature.ListWorlds();
+        }
+
+        public override void FetchWorldsResponse(int worldID, string worldName)
         {
             throw new NotImplementedException();
         }

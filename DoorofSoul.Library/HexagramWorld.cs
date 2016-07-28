@@ -66,5 +66,15 @@ namespace DoorofSoul.Library
         {
             throw new NotImplementedException();
         }
+
+        public override void FetchScene(int sceneID, out Scene scene)
+        {
+            scene = FindScene(sceneID);
+        }
+
+        public override void FetchSceneResponse(int sceneID, string sceneName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

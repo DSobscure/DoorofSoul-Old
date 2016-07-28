@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Operations.Handlers.World.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
@@ -14,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
         {
             fetchTable = new Dictionary<WorldFetchDataCode, FetchDataHandler>
             {
-                
+                { WorldFetchDataCode.Scene, new FetchSceneHandler(world) },
             };
         }
 

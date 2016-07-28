@@ -65,8 +65,10 @@
     <Compile Include="FetchDataResponseParameters\Answer\FetchContainersResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulContainerLinksResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulsResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Container\FetchEntityResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchAnswerResponseParameterCode.cs" />
-    <Compile Include="FetchDataResponseParameters\Player\FetchSceneResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Player\FetchWorldsResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\World\FetchSceneResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchSystemVersionResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Scene\FetchEntitiesResponseParameterCode.cs" />
     <Compile Include="InformDataCodes\AnswerInformDataCode.cs" />
@@ -82,7 +84,7 @@
     <Compile Include="EventCodes\PlayerEventCode.cs" />
     <Compile Include="EventParameters\InformDataEventParameterCode.cs" />
     <Compile Include="FetchDataCodes\PlayerFetchDataCode.cs" />
-    <Compile Include="FetchDataParameters\Player\FetchSceneParameterCode.cs" />
+    <Compile Include="FetchDataParameters\World\FetchSceneParameterCode.cs" />
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityExitParameterCode.cs" />
@@ -122,13 +124,11 @@
     <Folder Include="FetchDataParameters\Answer\" />
     <Folder Include="FetchDataParameters\Container\" />
     <Folder Include="FetchDataParameters\Entity\" />
+    <Folder Include="FetchDataParameters\Player\" />
     <Folder Include="FetchDataParameters\Scene\" />
     <Folder Include="FetchDataParameters\Soul\" />
-    <Folder Include="FetchDataParameters\World\" />
-    <Folder Include="FetchDataResponseParameters\Container\" />
     <Folder Include="FetchDataResponseParameters\Entity\" />
     <Folder Include="FetchDataResponseParameters\Soul\" />
-    <Folder Include="FetchDataResponseParameters\World\" />
     <Folder Include="InformDataParameters\Answer\" />
     <Folder Include="InformDataParameters\Container\" />
     <Folder Include="InformDataParameters\Entity\" />

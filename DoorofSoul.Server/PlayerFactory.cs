@@ -64,6 +64,7 @@ namespace DoorofSoul.Server
                     }
                     else
                     {
+                        player.LoginFailed();
                         debugMessage = string.Format("Account:{0} already Logined from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
                         errorCode = ErrorCode.Fail;
                         return false;
@@ -91,38 +92,34 @@ namespace DoorofSoul.Server
 
         public bool PlayerOnline(ServerPlayer player)
         {
-            if(activatedPlayers.ContainsKey(player.PlayerID))
-            {
-                ServerPlayer originPlayer = activatedPlayers[player.PlayerID];
-                originPlayer.RelifeWithNewPlayer(player);
-                connectedPlayers.Remove(player.Guid);
-                connectedPlayers.Add(originPlayer.Guid, originPlayer);
-                player = originPlayer;
-            }
-
-            if (player.IsOnline)
+            if(onlinedPlayers.ContainsKey(player.PlayerID))
             {
                 return false;
             }
-            else if (player.IsActivated)
-            {
-                player.IsOnline = true;
-                if (!onlinedPlayers.ContainsKey(player.PlayerID))
-                {
-                    onlinedPlayers.Add(player.PlayerID, player);
-                }
-                Application.Log.InfoFormat("PlayerID: {0} Return to World", player.PlayerID);
-                return true;
-            }
             else
             {
-                player.IsOnline = true;
-                if (!onlinedPlayers.ContainsKey(player.PlayerID))
+                if (activatedPlayers.ContainsKey(player.PlayerID))
+                {
+                    ServerPlayer originPlayer = activatedPlayers[player.PlayerID];
+                    originPlayer.RelifeWithNewPlayer(player);
+                    connectedPlayers.Remove(player.Guid);
+                    connectedPlayers.Add(originPlayer.Guid, originPlayer);
+                    player = originPlayer;
+                    player.IsOnline = true;
+                    if (!onlinedPlayers.ContainsKey(player.PlayerID))
+                    {
+                        onlinedPlayers.Add(player.PlayerID, player);
+                    }
+                    Application.Log.InfoFormat("PlayerID: {0} Return to World", player.PlayerID);
+                    return true;
+                }
+                else
                 {
                     onlinedPlayers.Add(player.PlayerID, player);
+                    player.IsOnline = true;
+                    Application.Log.InfoFormat("PlayerID: {0} Online", player.PlayerID);
+                    return PlayerActive(player);
                 }
-                Application.Log.InfoFormat("PlayerID: {0} Online", player.PlayerID);
-                return PlayerActive(player);
             }
         }
         public void PlayerOffline(ServerPlayer player)

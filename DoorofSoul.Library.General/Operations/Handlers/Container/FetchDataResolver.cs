@@ -1,8 +1,8 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Operations.Handlers.Container.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Container
@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
         {
             fetchTable = new Dictionary<ContainerFetchDataCode, FetchDataHandler>
             {
-
+                { ContainerFetchDataCode.Entity, new FetchEntityHandler(container) },
             };
         }
 

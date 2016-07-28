@@ -1,15 +1,15 @@
 ﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataParameters.Player;
-using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Player;
+using DoorofSoul.Protocol.Communication.FetchDataParameters.World;
+using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.World;
 using System;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
+namespace DoorofSoul.Library.General.Operations.Handlers.World.FetchData
 {
     public class FetchSceneHandler : FetchDataHandler
     {
-        public FetchSceneHandler(General.Player player) : base(player)
+        public FetchSceneHandler(General.World world) : base(world)
         {
         }
 
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
             }
         }
 
-        public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        public override bool Handle(WorldFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {
@@ -35,14 +35,13 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                 {
                     int sceneID = (int)parameter[(byte)FetchSceneParameterCode.SceneID];
                     General.Scene scene;
-                    player.FetchScene(sceneID, out scene);
+                    world.FetchScene(sceneID, out scene);
                     if (scene != null)
                     {
                         var result = new Dictionary<byte, object>
                         {
                             { (byte)FetchSceneResponseParameterCode.SceneID, scene.SceneID },
                             { (byte)FetchSceneResponseParameterCode.SceneName, scene.SceneName },
-                            { (byte)FetchSceneResponseParameterCode.WorldID, scene.WorldID }
                         };
                         SendResponse(fetchCode, result);
                         return true;

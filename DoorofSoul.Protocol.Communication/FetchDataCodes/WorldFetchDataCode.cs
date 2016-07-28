@@ -7,6 +7,6 @@ namespace DoorofSoul.Protocol.Communication.FetchDataCodes
 {
     public enum WorldFetchDataCode : byte
     {
-        
+        Scene
     }
 }

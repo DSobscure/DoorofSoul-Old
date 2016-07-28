@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using DoorofSoul.Library.General;
 using System.Collections.Generic;
 using DoorofSoul.Database;
@@ -101,7 +101,8 @@ namespace DoorofSoul.Library
                 foreach(Scene scene in sceneList)
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
-                    scene.BindWorld(world);
+                    scene.OnEntityEnter += scene.EntityEnterEvent;
+                    scene.OnEntityExit += scene.EntityExitEvent;
                 }
             }
         }
@@ -169,12 +170,17 @@ namespace DoorofSoul.Library
         {
             if (entityDictionary.ContainsKey(entity.EntityID))
             {
-                if (worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
+                if (entity.LocatedScene != null && worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
                 {
                     worldDictionary[entity.LocatedScene.WorldID].EntityExit(entity);
                 }
                 entityDictionary.Remove(entity.EntityID);
             }
+        }
+
+        public List<World> ListWorlds()
+        {
+            return worldDictionary.Values.ToList();
         }
     }
 }

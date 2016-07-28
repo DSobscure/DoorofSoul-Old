@@ -10,6 +10,7 @@ using DoorofSoul.Protocol.Communication.ResponseParameters.Scene;
 using System;
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Language;
+using DoorofSoul.Library.General.IControllers;
 
 namespace DoorofSoul.Library.General
 {
@@ -65,6 +66,8 @@ namespace DoorofSoul.Library.General
             protected set { SpaceProperties.mass = value; }
         }
         public SupportLauguages UsingLanguage { get { return LocatedScene.UsingLanguage; } }
+        protected IEntityController entityController;
+        public IEntityController EntityController { get { return entityController; } }
         #endregion
         #region events
         private event Action<Entity> onEntityTranformChange;
@@ -138,6 +141,12 @@ namespace DoorofSoul.Library.General
             Velocity = velocity;
             AngularVelocity = angularVelocity;
             onEntityVelocityChange?.Invoke(this);
+        }
+
+        public void BindEntityController(IEntityController entityController)
+        {
+            this.entityController = entityController;
+            entityController.BindEntity(this);
         }
     }
 }

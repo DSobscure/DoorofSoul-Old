@@ -2,14 +2,18 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Client.Library.General;
+using DoorofSoul.Client.Global;
 
 public class ErrorInformController : MonoBehaviour, IEventProvider
 {
     [SerializeField]
     private ErrorInformPanel errorInformPanelPrefab;
+    private ClientPlayer player;
 
     void Awake()
     {
+        player = Global.Player;
         RegisterEvents();
     }
     void OnDestroy()
@@ -19,21 +23,25 @@ public class ErrorInformController : MonoBehaviour, IEventProvider
 
     public void RegisterEvents()
     {
-        Global.SystemManagers.SystemInformManager.OnErrorInform += ErrorInform;
+        player.OnErrorInform += OnErrorInform;
     }
 
     public void EraseEvents()
     {
-        Global.SystemManagers.SystemInformManager.OnErrorInform -= ErrorInform;
+        player.OnErrorInform -= OnErrorInform;
     }
 
-    private void ErrorInform(string errorMessage)
+    private void OnErrorInform(string title, string errorMessage)
     {
         if(errorMessage != null)
         {
             var panel = Instantiate(errorInformPanelPrefab);
             panel.transform.SetParent(GameObject.Find("Canvas").transform);
             panel.ShowMessage(errorMessage);
+        }
+        else
+        {
+            SystemManager.Error("ErrorInformController errorMessage is null");
         }
     }
 }

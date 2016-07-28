@@ -1,29 +1,37 @@
 ﻿using UnityEngine;
 using DoorofSoul.Client.Interfaces;
-using System;
+using DoorofSoul.Client.Global;
+using DoorofSoul.Client.Communication;
+using ExitGames.Client.Photon;
+using DoorofSoul.Client.Library.General;
 
 public class PhotonServiceController : MonoBehaviour, IEventProvider
 {
+    private PhotonService photonService;
+    private ClientPlayer player;
+
     void Awake()
     {
+        photonService = Global.PhotonService;
+        player = Global.Player;
         RegisterEvents();
     }
     void Start()
     {
-        if(Global.PhotonService.ServerConnected)
+        if(photonService.ServerConnected)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform("Already Connected");
+            photonService.DebugReturn(DebugLevel.WARNING, "Already Connected");
         }
         else
         {
-            Global.PhotonService.Connect();
-            Global.SystemManagers.DebugInformManager.DebugInform("Start Connecting");
+            photonService.Connect();
+            photonService.DebugReturn(DebugLevel.INFO, "Start Connecting");
         }
     }
 
     void OnGUI()
     {
-        if(Global.PhotonService.ServerConnected)
+        if(photonService.ServerConnected)
         {
             GUI.Label(new Rect(20, 10, 100, 20), "connected");
         }
@@ -39,34 +47,35 @@ public class PhotonServiceController : MonoBehaviour, IEventProvider
     }
     void FixedUpdate()
     {
-        Global.PhotonService.Service();
+        photonService.Service();
     }
 
     void OnApplicationQuit()
     {
-        Global.PhotonService.Disconnect();
+        photonService.Disconnect();
     }
 
     public void EraseEvents()
     {
-        Global.SystemManagers.SystemInformManager.OnConnectChange -= OnConnectChange;
+        photonService.OnConnectChange -= OnConnectChange;
     }
 
     public void RegisterEvents()
     {
-        Global.SystemManagers.SystemInformManager.OnConnectChange += OnConnectChange;
+        photonService.OnConnectChange += OnConnectChange;
     }
 
     private void OnConnectChange(bool connected)
     {
         if(connected)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform("Connected");
-            Global.OperationManagers.FetchDataOperationManager.FetchSystemVersion();
+            SystemManager.Error("Connected");
+            string systemVersion, clientVersion;
+            player.FetchSystemVersion(out systemVersion, out clientVersion);
         }
         else
         {
-            Global.SystemManagers.DebugInformManager.DebugInform("Disconnected");
+            SystemManager.Error("Disconnected");
         }
     }
 }

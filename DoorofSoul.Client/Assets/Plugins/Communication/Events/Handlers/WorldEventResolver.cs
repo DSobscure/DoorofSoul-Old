@@ -35,9 +35,9 @@ namespace DoorofSoul.Client.Communication.Events.Handlers
                     int worldID = (int)parameters[(byte)EventParameterCode.ID];
                     WorldEventCode resolvedEventCode = (WorldEventCode)parameters[(byte)EventParameterCode.EventCode];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)EventParameterCode.Parameters];
-                    if (worldID == Global.Global.World.WorldID)
+                    if (Global.Global.Horizon.ContainsWorld(worldID))
                     {
-                        Global.Global.World.WorldEventManager.Operate(resolvedEventCode, resolvedParameters);
+                        Global.Global.Horizon.FindWorld(worldID).WorldEventManager.Operate(resolvedEventCode, resolvedParameters);
                         return true;
                     }
                     else

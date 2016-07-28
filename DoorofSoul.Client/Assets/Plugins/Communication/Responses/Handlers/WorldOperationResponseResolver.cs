@@ -49,9 +49,9 @@ namespace DoorofSoul.Client.Communication.Responses.Handlers
                     ErrorCode resolvedReturnCode = (ErrorCode)parameters[(byte)ResponseParameterCode.ReturnCode];
                     string resolvedDebugMessage = (string)parameters[(byte)ResponseParameterCode.DebugMessage];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)ResponseParameterCode.Parameters];
-                    if (worldID == Global.Global.World.WorldID)
+                    if (Global.Global.Horizon.ContainsWorld(worldID))
                     {
-                        Global.Global.World.WorldResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
+                        Global.Global.Horizon.FindWorld(worldID).WorldResponseManager.Operate(resolvedOperationCode, resolvedReturnCode, resolvedDebugMessage, resolvedParameters);
                         return true;
                     }
                     else

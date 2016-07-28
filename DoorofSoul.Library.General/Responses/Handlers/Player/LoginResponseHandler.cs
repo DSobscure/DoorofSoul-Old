@@ -64,6 +64,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     SupportLauguages usingLanguage = (SupportLauguages)(byte)parameters[(byte)LoginResponseParameterCode.UsingLanguageCode];
                     int answerID = (int)parameters[(byte)LoginResponseParameterCode.AnswerID];
                     player.LoginResponse(playerID, account, nickname, usingLanguage, answerID);
+                    General.Answer answer;
+                    player.FetchAnswer(out answer);
                     return true;
                 }
                 catch (InvalidCastException ex)

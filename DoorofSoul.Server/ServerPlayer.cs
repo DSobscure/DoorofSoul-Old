@@ -171,7 +171,7 @@ namespace DoorofSoul.Server
             return Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName);
         }
 
-        public override bool ActiveSoul(Answer answer, int soulID)
+        public override bool ActivateSoul(Answer answer, int soulID)
         {
             return Hexagram.Instance.Throne.ActiveSoul(soulID);
         }

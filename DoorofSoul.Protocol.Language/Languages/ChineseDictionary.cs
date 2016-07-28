@@ -37,18 +37,16 @@ namespace DoorofSoul.Protocol.Language.Languages
                 { "Fetch Container Error", "讀取容器錯誤" },
                 #endregion
 
+                #region UI
+                { "SoulCountLimit", "靈魂數量上限" },
+                #endregion
 
                 { "Operation Parameter Error", "操作參數錯誤"},
                 { "Fetch Operation Parameter Error", "擷取操作參數錯誤"},
                 { "Not Existed Fetch Operation", "不存在的擷取操作"},
-                { "Logout Failed", "登出失敗" },
                 
-                { "Delete Soul Error", "刪除靈魂錯誤" },
-                { "Activate Soul Error", "連接靈魂錯誤" },
-                { "Create Soul Error", "分離靈魂錯誤" },
-                { "Already Login", "此帳號登入中" },
                 { "Client Version Inconsistent", "客戶端版本無法執行最新的遊戲內容\n請下載最新的版本" },
-                { "SoulCountLimit", "靈魂數量上限" },
+                
             };
         }
     }

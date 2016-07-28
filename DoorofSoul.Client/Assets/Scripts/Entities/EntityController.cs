@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Library.General.IControllers;
+using DoorofSoul.Library.General;
 using System;
-using DoorofSoul.Client.Library.General;
 
 public class EntityController : MonoBehaviour, IEntityController
 {
-    protected ClientEntity entity;
-    public ClientEntity Entity
+    protected Entity entity;
+
+    public Entity Entity
     {
         get
         {
@@ -23,7 +25,7 @@ public class EntityController : MonoBehaviour, IEntityController
         }
     }
 
-    public void BindEntity(ClientEntity entity)
+    public void BindEntity(Entity entity)
     {
         this.entity = entity;
     }

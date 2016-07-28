@@ -1,6 +1,6 @@
 ﻿namespace DoorofSoul.Protocol.Communication.FetchDataCodes
 {
-    public enum PlayerFetchDataCode : short
+    public enum PlayerFetchDataCode : byte
     {
         SystemVersion,
         Answer,

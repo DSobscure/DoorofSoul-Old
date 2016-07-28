@@ -84,6 +84,7 @@
     <Compile Include="Events\Managers\SceneEventManager.cs" />
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
+    <Compile Include="IControllers\IEntityController.cs" />
     <Compile Include="LibraryLog.cs" />
     <Compile Include="Operations\Handlers\AnswerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\ActivateSoulHandler.cs" />

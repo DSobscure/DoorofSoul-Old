@@ -16,13 +16,29 @@ namespace DoorofSoul.Client.Communication
         protected EventResolver eventResolver;
         protected ResponseResolver responseResolver;
 
+        #region Connect Change
+        private event Action<bool> onConnectChange;
+        public event Action<bool> OnConnectChange
+        {
+            add { onConnectChange += value; }
+            remove { onConnectChange -= value; }
+        }
+        #endregion
+
         public bool ServerConnected
         {
             get { return serverConnected; }
             private set
             {
                 serverConnected = value;
-                Global.Global.SystemManager.ConnectChange(serverConnected);
+                if(onConnectChange != null)
+                {
+                    onConnectChange(serverConnected);
+                }
+                else
+                {
+                    DebugReturn(DebugLevel.ERROR, "onConnectChange event is null");
+                }
             }
         }
         private string serverName;
@@ -120,14 +136,14 @@ namespace DoorofSoul.Client.Communication
             }
         }
 
-        public void SendPlayerOperation(PlayerOperationCode operationCode, int playerID, Dictionary<byte, object> parameters)
+        public void SendPlayerOperation(int playerID, PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (peer.IsEncryptionAvailable)
             {
                 Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
                 {
-                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
                     { (byte)OperationParameterCode.ID, playerID },
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
                     { (byte)OperationParameterCode.Parameters, parameters }
                 };
                 peer.OpCustom((byte)OperationCode.PlayerOperation, operationParameter, true, 0, true);
@@ -138,14 +154,14 @@ namespace DoorofSoul.Client.Communication
             }
         }
 
-        public void SendWorldOperation(WorldOperationCode operationCode, int worldID, Dictionary<byte, object> parameters)
+        public void SendWorldOperation(int worldID, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (peer.IsEncryptionAvailable)
             {
                 Dictionary<byte, object> operationParameter = new Dictionary<byte, object>
                 {
-                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
                     { (byte)OperationParameterCode.ID, worldID },
+                    { (byte)OperationParameterCode.OperationCode, (byte)operationCode },
                     { (byte)OperationParameterCode.Parameters, parameters }
                 };
                 peer.OpCustom((byte)OperationCode.WorldOperation, operationParameter, true, 0, true);

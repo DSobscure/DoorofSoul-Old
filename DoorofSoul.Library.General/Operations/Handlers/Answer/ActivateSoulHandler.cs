@@ -37,7 +37,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                 int soulID = (int)parameters[(byte)ActivateSoulOperationParameterCode.SoulID];
                 if (answer.ContainsSoul(soulID))
                 {
-                    if (answer.ActiveSoul(soulID))
+                    if (answer.ActivateSoul(soulID))
                     {
                         General.Soul soul = answer.FindSoul(soulID);
                         General.Container defaultContainer = soul.Containers.FirstOrDefault();

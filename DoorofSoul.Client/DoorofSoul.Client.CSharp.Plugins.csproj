@@ -89,13 +89,10 @@
     <Compile Include="Assets\Plugins\Global\Global.cs" />
     <Compile Include="Assets\Plugins\Global\SystemManager.cs" />
     <Compile Include="Assets\Plugins\HelpFunctions\TransformHelpFunctions.cs" />
-    <Compile Include="Assets\Plugins\Interfaces\IEntityController.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientEntity.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientPlayer.cs" />
-    <Compile Include="Assets\Plugins\Library.General\ClientScene.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientWorld.cs" />
-    <Compile Include="Assets\Plugins\Scene\ScenesManager.cs" />
+    <Compile Include="Assets\Plugins\Library.General\Horizon.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

@@ -85,9 +85,9 @@ namespace DoorofSoul.Library.General
         {
             return Player.CreateSoul(this, soulName);
         }
-        public bool ActiveSoul(int soulID)
+        public bool ActivateSoul(int soulID)
         {
-            return Player.ActiveSoul(this, soulID);
+            return Player.ActivateSoul(this, soulID);
         }
         public void FetchSouls()
         {

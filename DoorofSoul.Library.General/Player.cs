@@ -53,7 +53,7 @@ namespace DoorofSoul.Library.General
         public abstract void FetchSceneResponse(int sceneID, string sceneName, int worldID);
         public abstract bool DeleteSoul(Answer answer, int soulID);
         public abstract bool CreateSoul(Answer answer, string soulName);
-        public abstract bool ActiveSoul(Answer answer, int soulID);
+        public abstract bool ActivateSoul(Answer answer, int soulID);
         #endregion
 
         public Player()

@@ -3,10 +3,13 @@ using UnityEngine.UI;
 using DoorofSoul.Library.General;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.HelpFunctions;
-using DoorofSoul.Client.Communication;
+using DoorofSoul.Client.Global;
+using DoorofSoul.Protocol.Language;
 
 public class SoulsPanelController : MonoBehaviour, IEventProvider
 {
+    private Answer answer;
+
     [SerializeField]
     private SoulPanel soulPanelPrefab;
     private RectTransform soulsPanel;
@@ -15,6 +18,7 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
 
     void Awake()
     {
+        answer = Global.Player.Answer;
         RegisterEvents();
     }
     void Start()
@@ -22,9 +26,9 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
         soulsPanel = GameObject.Find("SoulsPanel").GetComponent<RectTransform>();
         answerIDText = GameObject.Find("AnswerIDText").GetComponent<Text>();
         soulCountLimitText = GameObject.Find("SoulCountLimitText").GetComponent<Text>();
-        answerIDText.text = Global.Player.Answer.AnswerID.ToString();
-        soulCountLimitText.text = string.Format("{0}: {1}", LauguageDictionarySelector.Instance[Global.SystemManagers.UsingLauguage]["SoulCountLimit"], Global.Player.Answer.SoulCountLimit);
-        ShowSouls(Global.Player.Answer);
+        answerIDText.text = answer.AnswerID.ToString();
+        soulCountLimitText.text = string.Format("{0}: {1}", LauguageDictionarySelector.Instance[answer.UsingLanguage]["SoulCountLimit"], answer.SoulCountLimit);
+        ShowSouls(answer);
     }
     void OnDestroy()
     {
@@ -33,11 +37,11 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
 
     public void RegisterEvents()
     {
-        Global.Player.Answer.OnLoadSouls += OnLoadSouls;
+        answer.OnLoadSouls += OnLoadSouls;
     }
     public void EraseEvents()
     {
-        Global.Player.Answer.OnLoadSouls -= OnLoadSouls;
+        answer.OnLoadSouls -= OnLoadSouls;
     }
 
     private void OnLoadSouls(Answer answer)
@@ -54,7 +58,6 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
         int counter = 0;
         foreach (Soul soul in answer.Souls)
         {
-            Debug.Log(soul.SoulName);
             SoulPanel soulPanel = Instantiate(soulPanelPrefab);
             soulPanel.transform.SetParent(soulsPanel);
             RectTransform rect = soulPanel.GetComponent<RectTransform>();
@@ -63,7 +66,7 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
             soulPanel.Show(soul);
             int soulID = soul.SoulID;
-            soulPanel.SetButton("連結", () => { Global.OperationManagers.OperationManager.ActivateSoul(soulID); });
+            soulPanel.SetButton("連結", () => { answer.ActivateSoul(soulID); });
             counter++;
         }
     }

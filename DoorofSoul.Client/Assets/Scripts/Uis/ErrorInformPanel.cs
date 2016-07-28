@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Client.Global;
 using System;
 
 public class ErrorInformPanel : MonoBehaviour
@@ -14,12 +14,12 @@ public class ErrorInformPanel : MonoBehaviour
         errorMessageText = GameObject.Find("ErrorMessageText").GetComponent<Text>();
         if (errorMessageText == null)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform("ErrorInformPanel doesn't have text");
+            SystemManager.Error("ErrorInformPanel errorMessageText is null");
         }
         errorMessageContent = GameObject.Find("ErrorMessageContent").GetComponent<RectTransform>();
         if (errorMessageContent == null)
         {
-            Global.SystemManagers.DebugInformManager.DebugInform("ErrorMessageContent doesn't have content");
+            SystemManager.Error("ErrorMessageContent errorMessageContent is null");
         }
         GetComponent<RectTransform>().localScale = Vector3.one;
         GetComponent<RectTransform>().localPosition = Vector3.zero;

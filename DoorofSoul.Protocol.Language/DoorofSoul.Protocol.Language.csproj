@@ -43,6 +43,8 @@
     <Compile Include="LauguageDictionarySelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SupportLauguages.cs" />
+    <Compile Include="UILanguageSeletor.cs" />
+    <Compile Include="UILanguages\ChineseUIDictionary.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

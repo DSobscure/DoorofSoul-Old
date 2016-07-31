@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Client.Global
 {
@@ -41,6 +42,7 @@ namespace DoorofSoul.Client.Global
             }
         }
         public string LocalClientVersion { get; private set; }
+        public static SupportLauguages SystemLanguage { get { return SupportLauguages.Chinese_Traditional; } }
 
         public SystemManager()
         {

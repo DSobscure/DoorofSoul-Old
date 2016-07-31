@@ -49,8 +49,11 @@ namespace DoorofSoul.Library.General
         {
             foreach (Scene scene in sceneList)
             {
-                sceneDictionary.Add(scene.SceneID, scene);
-                scene.BindWorld(this);
+                if(!sceneDictionary.ContainsKey(scene.SceneID))
+                {
+                    sceneDictionary.Add(scene.SceneID, scene);
+                    scene.BindWorld(this);
+                }
             }
         }
 

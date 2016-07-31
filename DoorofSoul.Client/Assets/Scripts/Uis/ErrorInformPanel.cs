@@ -25,7 +25,7 @@ public class ErrorInformPanel : MonoBehaviour
         GetComponent<RectTransform>().localPosition = Vector3.zero;
 
         errorMessageText.text = message;
-        errorMessageContent.sizeDelta = new Vector2(errorMessageText.preferredWidth, errorMessageText.preferredHeight);
+        errorMessageContent.sizeDelta = new Vector2(errorMessageContent.rect.width, errorMessageText.preferredHeight);
     }
 
     public void DestroySelf()

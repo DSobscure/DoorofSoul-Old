@@ -8,6 +8,9 @@ using System;
 public class EntityController : MonoBehaviour, IEntityController
 {
     protected Entity entity;
+    protected float rotateSpeed;
+    protected Rigidbody rigidbody;
+    protected float moveSpeed;
 
     public Entity Entity
     {
@@ -28,5 +31,19 @@ public class EntityController : MonoBehaviour, IEntityController
     public void BindEntity(Entity entity)
     {
         this.entity = entity;
+        rigidbody = GetComponent<Rigidbody>();
+        rotateSpeed = 1;
+        moveSpeed = 1;
+        rigidbody.velocity = (Vector3)entity.Velocity;
+        rigidbody.angularVelocity = (Vector3)entity.AngularVelocity;
+    }
+
+    public void StartRotate(int direction)
+    {
+        rigidbody.angularVelocity = new Vector3(0, direction * rotateSpeed, 0);
+    }
+    public void StartMove(int direction)
+    {
+        rigidbody.velocity = rigidbody.transform.forward * direction * moveSpeed;
     }
 }

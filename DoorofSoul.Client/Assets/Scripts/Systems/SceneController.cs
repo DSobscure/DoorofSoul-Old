@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerPanel playerPanelPrefab;
+    private Canvas canvas;
     private DoorofSoul.Library.General.Scene scene;
     void OnLevelWasLoaded(int level)
     {
@@ -14,6 +17,7 @@ public class SceneController : MonoBehaviour
             scene.OnEntityExit -= DestroyEntity;
         }
         scene = Global.Horizon.MainScene;
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (scene != null)
         {
             scene.FetchEntities();
@@ -23,6 +27,10 @@ public class SceneController : MonoBehaviour
             {
                 InstantiateEntity(entity);
             }
+            RectTransform playerPanel = Instantiate(playerPanelPrefab).GetComponent<RectTransform>();
+            playerPanel.transform.SetParent(canvas.transform);
+            playerPanel.localScale = Vector3.one;
+            playerPanel.localPosition = Vector3.zero;
         }
     }
 

@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Scene
 {
-    public class FetchDataResponseResolver : SceneResponseHandler
+    internal class FetchDataResponseResolver : SceneResponseHandler
     {
         protected readonly Dictionary<SceneFetchDataCode, FetchDataResponseHandler> fetchResponseTable;
 
-        public FetchDataResponseResolver(General.Scene scene) : base(scene)
+        internal FetchDataResponseResolver(General.Scene scene) : base(scene)
         {
             fetchResponseTable = new Dictionary<SceneFetchDataCode, FetchDataResponseHandler>
             {
@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             };
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             if (returnCode == ErrorCode.NoError)
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             }
         }
 
-        public override bool Handle(SceneOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {

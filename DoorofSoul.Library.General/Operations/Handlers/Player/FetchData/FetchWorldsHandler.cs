@@ -34,8 +34,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
             {
                 try
                 {
-                    List<General.World> worlds;
-                    player.FetchWorlds(out worlds);
+                    List<General.World> worlds = player.PlayerCommunicationInterface.ListWorlds();
                     foreach(General.World world in worlds)
                     {
                         var result = new Dictionary<byte, object>

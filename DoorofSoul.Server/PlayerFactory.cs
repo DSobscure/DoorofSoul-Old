@@ -64,7 +64,7 @@ namespace DoorofSoul.Server
                     }
                     else
                     {
-                        player.LoginFailed();
+                        player.IsOnline = false;
                         debugMessage = string.Format("Account:{0} already Logined from IP: {1}", account ?? "", player.LastConnectedIPAddress?.ToString() ?? "");
                         errorCode = ErrorCode.Fail;
                         return false;

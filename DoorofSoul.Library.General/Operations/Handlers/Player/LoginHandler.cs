@@ -36,7 +36,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 ErrorCode errorCode;
                 string account = (string)parameters[(byte)LoginParameterCode.Account];
                 string password = (string)parameters[(byte)LoginParameterCode.Password];
-                bool result = player.Login(account, password, out debugMessage, out errorCode);
+                bool result = player.PlayerCommunicationInterface.Login(account, password, out debugMessage, out errorCode);
                 if (result)
                 {
                     Dictionary<byte, object> responseParameters = new Dictionary<byte, object>

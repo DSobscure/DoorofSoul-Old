@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Answer Response Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Answer Error"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Answer Error"]);
                         return false;
                     }
             }
@@ -48,9 +48,9 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     int soulCountLimit = (int)parameters[(byte)FetchAnswerResponseParameterCode.SoulCountLimit];
                     General.Answer answer = new General.Answer(answerID, soulCountLimit, player);
                     player.ActiveAnswer(answer);
-                    answer.FetchSouls();
-                    answer.FetchContainers();
-                    answer.FetchSoulContainerLinks();
+                    answer.AnswerOperationManager.FetchSouls();
+                    answer.AnswerOperationManager.FetchContainers();
+                    answer.AnswerOperationManager.FetchSoulContainerLinks();
                     return true;
                 }
                 catch (InvalidCastException ex)

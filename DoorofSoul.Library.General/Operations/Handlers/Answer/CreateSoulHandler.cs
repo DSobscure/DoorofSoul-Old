@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    public class CreateSoulHandler : AnswerOperationHandler
+    internal class CreateSoulHandler : AnswerOperationHandler
     {
-        public CreateSoulHandler(General.Answer answer) : base(answer)
+        internal CreateSoulHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 1)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                 string soulName = (string)parameters[(byte)CreateSoulOperationParameterCode.SoulName];
                 if (answer.SoulCount < answer.SoulCountLimit)
                 {
-                    if (answer.CreateSoul(soulName))
+                    if (answer.Player.PlayerCommunicationInterface.CreateSoul(answer, soulName))
                     {
                         Dictionary<byte, object> responseParameters = new Dictionary<byte, object>();
                         SendResponse(operationCode, responseParameters);

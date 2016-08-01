@@ -7,13 +7,13 @@ using System;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
 {
-    public class FetchSoulContainerLinksResponseHandler : FetchDataResponseHandler
+    internal class FetchSoulContainerLinksResponseHandler : FetchDataResponseHandler
     {
-        public FetchSoulContainerLinksResponseHandler(General.Answer answer) : base(answer)
+        internal FetchSoulContainerLinksResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -32,13 +32,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch SoulContainerLinks Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch SoulContainerLinks Error"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch SoulContainerLinks Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {
@@ -52,7 +52,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                         General.Container container = answer.FindContainer(containerID);
                         if(container.Entity == null)
                         {
-                            container.FetchEntity();
+                            container.ContainerOperationManager.FetchEntity();
                         }
                     }
                     return true;

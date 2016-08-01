@@ -8,13 +8,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    public class DeleteSoulHandler : AnswerOperationHandler
+    internal class DeleteSoulHandler : AnswerOperationHandler
     {
-        public DeleteSoulHandler(General.Answer answer) : base(answer)
+        internal DeleteSoulHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 1)
             {
@@ -28,7 +28,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {
@@ -36,7 +36,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                 int soulID = (int)parameters[(byte)DeleteSoulOperationParameterCode.SoulID];
                 if (answer.ContainsSoul(soulID))
                 {
-                    if (answer.DeleteSoul(soulID))
+                    if (answer.Player.PlayerCommunicationInterface.DeleteSoul(answer, soulID))
                     {
                         Dictionary<byte, object> responseParameters = new Dictionary<byte, object>();
                         SendResponse(operationCode, responseParameters);

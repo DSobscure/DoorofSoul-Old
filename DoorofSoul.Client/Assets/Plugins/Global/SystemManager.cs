@@ -44,6 +44,17 @@ namespace DoorofSoul.Client.Global
         public string LocalClientVersion { get; private set; }
         public static SupportLauguages SystemLanguage { get { return SupportLauguages.Chinese_Traditional; } }
 
+        #region events
+        #region OnErrorInform
+        private event Action<string, string> onErrorInform;
+        public event Action<string, string> OnErrorInform
+        {
+            add { onErrorInform += value; }
+            remove { onErrorInform -= value; }
+        }
+        #endregion
+        #endregion
+
         public SystemManager()
         {
             LocalClientVersion = "Test 0.0.1";
@@ -73,6 +84,17 @@ namespace DoorofSoul.Client.Global
             else
             {
                 return true;
+            }
+        }
+        public void ErrorInform(string title, string message)
+        {
+            if(onErrorInform != null)
+            {
+                onErrorInform(title, message);
+            }
+            else
+            {
+                Error("onErrorInform event is null");
             }
         }
     }

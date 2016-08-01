@@ -1,6 +1,5 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Client.Library.General;
 using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Communication;
 using UnityEngine;
@@ -11,7 +10,7 @@ public class PlayerLoginController : MonoBehaviour, IEventProvider
     [SerializeField]
     private PlayerLoginUI playerLoginUI;
 
-    private ClientPlayer player;
+    private Player player;
 
     void Awake()
     {
@@ -34,9 +33,7 @@ public class PlayerLoginController : MonoBehaviour, IEventProvider
     }
     public void PlayerLogin()
     {
-        string debugMessage;
-        ErrorCode errorCode;
-        player.Login(playerLoginUI.Account, playerLoginUI.Password, out debugMessage, out errorCode);
+        player.PlayerOperationManager.Login(playerLoginUI.Account, playerLoginUI.Password);
         playerLoginUI.PlayerLogin();
     }
     public void OnActiveAnswer(Answer answer)

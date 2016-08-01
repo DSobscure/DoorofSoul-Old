@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General
 {
-    public abstract class World
+    public class World
     {
         public int WorldID { get; protected set; }
         public string WorldName { get; protected set; }
@@ -19,22 +19,19 @@ namespace DoorofSoul.Library.General
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         protected Dictionary<int, Scene> sceneDictionary;
         public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
-        public abstract SupportLauguages UsingLanguage { get; }
+        public SupportLauguages UsingLanguage { get; }
 
         #region communication
         public WorldEventManager WorldEventManager { get; protected set; }
         public WorldOperationManager WorldOperationManager { get; protected set; }
         public WorldResponseManager WorldResponseManager { get; protected set; }
-        public abstract void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters);
-        public abstract void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters);
-        public abstract void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters);
-        public abstract void ErrorInform(string title, string message);
-        public abstract void FetchScene(int sceneID, out Scene scene);
-        public abstract void FetchSceneResponse(int sceneID, string sceneName);
+        public WorldCommunicationInterface WorldCommunicationInterface { get; protected set; }
         #endregion
 
-        public World(int worldID, string worldName)
+        public World(WorldCommunicationInterface communicationInterface, int worldID, string worldName)
         {
+            WorldCommunicationInterface = communicationInterface;
+            WorldCommunicationInterface.BindWorld(this);
             WorldID = worldID;
             WorldName = worldName;
             containerDictionary = new Dictionary<int, Container>();

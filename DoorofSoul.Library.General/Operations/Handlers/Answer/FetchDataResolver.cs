@@ -8,11 +8,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    public class FetchDataResolver : AnswerOperationHandler
+    internal class FetchDataResolver : AnswerOperationHandler
     {
         protected readonly Dictionary<AnswerFetchDataCode, FetchDataHandler> fetchTable;
 
-        public FetchDataResolver(General.Answer answer) : base(answer)
+        internal FetchDataResolver(General.Answer answer) : base(answer)
         {
             fetchTable = new Dictionary<AnswerFetchDataCode, FetchDataHandler>
             {
@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 2)
             {
@@ -36,7 +36,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {

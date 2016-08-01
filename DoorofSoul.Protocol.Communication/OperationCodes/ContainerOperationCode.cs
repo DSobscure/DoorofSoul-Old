@@ -3,5 +3,6 @@
     public enum ContainerOperationCode : byte
     {
         FetchData,
+        SendMessage,
     }
 }

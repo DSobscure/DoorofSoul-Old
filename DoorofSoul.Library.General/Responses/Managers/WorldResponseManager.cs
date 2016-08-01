@@ -35,5 +35,15 @@ namespace DoorofSoul.Library.General.Responses.Managers
                 LibraryLog.ErrorFormat("Unknow World Response:{0} from AnswerID: {1}", operationCode, world.WorldID);
             }
         }
+
+        public void SendResponse(WorldOperationCode operationCode, ErrorCode returnCode, string degugMessage, Dictionary<byte, object> parameters)
+        {
+            world.WorldCommunicationInterface.SendResponse(operationCode, returnCode, degugMessage, parameters);
+        }
+
+        public void FetchSceneResponse(int sceneID, string sceneName)
+        {
+            world.WorldCommunicationInterface.LoadScene(sceneID, sceneName);
+        }
     }
 }

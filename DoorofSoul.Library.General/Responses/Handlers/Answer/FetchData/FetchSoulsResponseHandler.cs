@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
 {
-    public class FetchSoulsResponseHandler : FetchDataResponseHandler
+    internal class FetchSoulsResponseHandler : FetchDataResponseHandler
     {
-        public FetchSoulsResponseHandler(General.Answer answer) : base(answer)
+        internal FetchSoulsResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -32,13 +32,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Soul Error"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Soul Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {

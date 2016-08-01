@@ -7,13 +7,13 @@ using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    public class ContainerOperationResolver : AnswerOperationHandler
+    internal class ContainerOperationResolver : AnswerOperationHandler
     {
-        public ContainerOperationResolver(General.Answer answer) : base(answer)
+        internal ContainerOperationResolver(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if(base.Handle(operationCode, parameters))
             {

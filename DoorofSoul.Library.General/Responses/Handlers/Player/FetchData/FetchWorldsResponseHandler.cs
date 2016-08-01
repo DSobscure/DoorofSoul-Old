@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Worlds Response Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Worlds Error"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Worlds Error"]);
                         return false;
                     }
             }
@@ -46,7 +46,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 {
                     int worldID = (int)parameters[(byte)FetchWorldsResponseParameterCode.WorldID];
                     string worldName = (string)parameters[(byte)FetchWorldsResponseParameterCode.WorldName];
-                    player.FetchWorldsResponse(worldID, worldName);
+                    player.PlayerCommunicationInterface.LoadWorld(worldID, worldName);
                     return true;
                 }
                 catch (InvalidCastException ex)

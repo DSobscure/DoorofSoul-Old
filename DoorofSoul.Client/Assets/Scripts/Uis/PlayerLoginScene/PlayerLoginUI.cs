@@ -1,13 +1,12 @@
 ﻿using DoorofSoul.Library.General;
 using UnityEngine;
 using UnityEngine.UI;
-using DoorofSoul.Client.Library.General;
 using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
 
 public class PlayerLoginUI : MonoBehaviour, IEventProvider
 {
-    private ClientPlayer player;
+    private Player player;
 
     [SerializeField]
     private InputField accountInputField;
@@ -31,12 +30,12 @@ public class PlayerLoginUI : MonoBehaviour, IEventProvider
 
     public void RegisterEvents()
     {
-        player.OnLogin += OnLoginResponse;
+        player.OnOnline += OnLoginResponse;
     }
 
     public void EraseEvents()
     {
-        player.OnLogin -= OnLoginResponse;
+        player.OnOnline -= OnLoginResponse;
     }
     public void PlayerLogin()
     {

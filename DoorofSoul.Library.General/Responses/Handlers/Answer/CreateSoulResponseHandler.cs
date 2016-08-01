@@ -8,13 +8,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer
 {
-    public class CreateSoulResponseHandler : AnswerResponseHandler
+    internal class CreateSoulResponseHandler : AnswerResponseHandler
     {
-        public CreateSoulResponseHandler(General.Answer answer) : base(answer)
+        internal CreateSoulResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -33,31 +33,31 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                 case ErrorCode.Fail:
                     {
                         LibraryLog.ErrorFormat("Create Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul Fail"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul Fail"]);
                         return false;
                     }
                 case ErrorCode.PermissionDeny:
                     {
                         LibraryLog.ErrorFormat("Create Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul PermissionDeny"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul PermissionDeny"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("Create Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul Error"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Create Soul Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
-                answer.FetchSouls();
-                answer.FetchContainers();
-                answer.FetchSoulContainerLinks();
+                answer.AnswerOperationManager.FetchSouls();
+                answer.AnswerOperationManager.FetchContainers();
+                answer.AnswerOperationManager.FetchSoulContainerLinks();
                 return true;
             }
             else

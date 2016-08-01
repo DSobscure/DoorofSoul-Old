@@ -1,7 +1,13 @@
 ﻿using DoorofSoul.Library.General.Events.Handlers;
 using DoorofSoul.Library.General.Events.Handlers.Scene;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters;
+using DoorofSoul.Protocol.Communication.EventParameters.World;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System.Collections.Generic;
+
 namespace DoorofSoul.Library.General.Events.Managers
 {
     public class SceneEventManager
@@ -9,7 +15,7 @@ namespace DoorofSoul.Library.General.Events.Managers
         protected readonly Dictionary<SceneEventCode, SceneEventHandler> eventTable;
         protected readonly Scene scene;
 
-        public SceneEventManager(Scene scene)
+        internal SceneEventManager(Scene scene)
         {
             this.scene = scene;
             eventTable = new Dictionary<SceneEventCode, SceneEventHandler>
@@ -20,7 +26,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             };
         }
 
-        public void Operate(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void Operate(SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (eventTable.ContainsKey(eventCode))
             {
@@ -33,6 +39,73 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Scene Event:{0} from SceneID: {1}", eventCode, scene.SceneID);
             }
+        }
+        internal void SendEvent(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)SceneEventParameterCode.SceneID, scene.SceneID },
+                { (byte)SceneEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)SceneEventParameterCode.Parameters, parameters }
+            };
+            scene.World.WorldEventManager.SendEvent(WorldEventCode.SceneEvent, eventData);
+        }
+
+        public void ErrorInform(string title, string message)
+        {
+            scene.World.WorldEventManager.ErrorInform(title, message);
+        }
+
+        public void EntityEnter(Entity entity)
+        {
+            Dictionary<byte, object> informParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformEntityEnterParameterCode.EntityID, entity.EntityID },
+                { (byte)InformEntityEnterParameterCode.EntityName, entity.EntityName },
+                { (byte)InformEntityEnterParameterCode.PositionX, entity.Position.x },
+                { (byte)InformEntityEnterParameterCode.PositionY, entity.Position.y },
+                { (byte)InformEntityEnterParameterCode.PositionZ, entity.Position.z },
+                { (byte)InformEntityEnterParameterCode.RotationX, entity.Rotation.x },
+                { (byte)InformEntityEnterParameterCode.RotationY, entity.Rotation.y },
+                { (byte)InformEntityEnterParameterCode.RotationZ, entity.Rotation.z },
+                { (byte)InformEntityEnterParameterCode.ScaleX, entity.Scale.x },
+                { (byte)InformEntityEnterParameterCode.ScaleY, entity.Scale.y },
+                { (byte)InformEntityEnterParameterCode.ScaleZ, entity.Scale.z },
+                { (byte)InformEntityEnterParameterCode.VelocityX, entity.Velocity.x },
+                { (byte)InformEntityEnterParameterCode.VelocityY, entity.Velocity.y },
+                { (byte)InformEntityEnterParameterCode.VelocityZ, entity.Velocity.z },
+                { (byte)InformEntityEnterParameterCode.MaxVelocityX, entity.MaxVelocity.x },
+                { (byte)InformEntityEnterParameterCode.MaxVelocityY, entity.MaxVelocity.y },
+                { (byte)InformEntityEnterParameterCode.MaxVelocityZ, entity.MaxVelocity.z },
+                { (byte)InformEntityEnterParameterCode.AngularVelocityX, entity.AngularVelocity.x },
+                { (byte)InformEntityEnterParameterCode.AngularVelocityY, entity.AngularVelocity.y },
+                { (byte)InformEntityEnterParameterCode.AngularVelocityZ, entity.AngularVelocity.z },
+                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityX, entity.MaxAngularVelocity.x },
+                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityY, entity.MaxAngularVelocity.y },
+                { (byte)InformEntityEnterParameterCode.MaxAngularVelocityZ, entity.MaxAngularVelocity.z },
+                { (byte)InformEntityEnterParameterCode.Mass, entity.Mass },
+            };
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, SceneInformDataCode.EntityEnter },
+                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
+                { (byte)InformDataEventParameterCode.Parameters, informParameters }
+            };
+            SendEvent(SceneEventCode.InformData, parameters);
+        }
+        public void EntityExit(Entity entity)
+        {
+            Dictionary<byte, object> informParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformEntityExitParameterCode.EntityID, entity.EntityID }
+            };
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, SceneInformDataCode.EntityExit },
+                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
+                { (byte)InformDataEventParameterCode.Parameters, informParameters }
+            };
+            SendEvent(SceneEventCode.InformData, parameters);
         }
     }
 }

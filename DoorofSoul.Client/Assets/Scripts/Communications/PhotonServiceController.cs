@@ -3,12 +3,12 @@ using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Communication;
 using ExitGames.Client.Photon;
-using DoorofSoul.Client.Library.General;
+using DoorofSoul.Library.General;
 
 public class PhotonServiceController : MonoBehaviour, IEventProvider
 {
     private PhotonService photonService;
-    private ClientPlayer player;
+    private Player player;
 
     void Awake()
     {
@@ -70,8 +70,7 @@ public class PhotonServiceController : MonoBehaviour, IEventProvider
         if(connected)
         {
             SystemManager.Error("Connected");
-            string systemVersion, clientVersion;
-            player.FetchSystemVersion(out systemVersion, out clientVersion);
+            player.PlayerOperationManager.FetchSystemVersion();
         }
         else
         {

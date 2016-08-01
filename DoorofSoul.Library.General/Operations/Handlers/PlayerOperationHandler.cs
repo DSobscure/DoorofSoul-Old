@@ -32,12 +32,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         public void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            player.SendResponse(operationCode, errorCode, debugMessage, parameters);
+            player.PlayerResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
             LibraryLog.ErrorFormat("Error On Player Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         public void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            player.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
+            player.PlayerResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
         }
     }
 }

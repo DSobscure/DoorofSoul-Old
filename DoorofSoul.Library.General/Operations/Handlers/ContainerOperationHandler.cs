@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    public abstract class ContainerOperationHandler
+    internal abstract class ContainerOperationHandler
     {
         protected General.Container container;
 
@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
             this.container = container;
         }
 
-        public virtual bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -28,16 +28,16 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendError(ContainerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            container.SendResponse(operationCode, errorCode, debugMessage, parameters, ContainerCommunicationChannel.Answer);
+            container.ContainerResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters, ContainerCommunicationChannel.Answer);
             LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
-        public void SendResponse(ContainerOperationCode operationCode, Dictionary<byte, object> parameter)
+        internal void SendResponse(ContainerOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            container.SendResponse(operationCode, ErrorCode.NoError, null, parameter, ContainerCommunicationChannel.Answer);
+            container.ContainerResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter, ContainerCommunicationChannel.Answer);
         }
     }
 }

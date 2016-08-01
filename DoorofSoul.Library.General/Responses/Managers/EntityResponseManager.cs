@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.Responses.Handlers.Entity;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Scene;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Managers
@@ -11,7 +12,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
         protected readonly Dictionary<EntityOperationCode, EntityResponseHandler> operationTable;
         protected readonly Entity entity;
 
-        public EntityResponseManager(Entity entity)
+        internal EntityResponseManager(Entity entity)
         {
             this.entity = entity;
             operationTable = new Dictionary<EntityOperationCode, EntityResponseHandler>
@@ -20,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
             };
         }
 
-        public void Operate(EntityOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal void Operate(EntityOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (operationTable.ContainsKey(operationCode))
             {
@@ -33,6 +34,19 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Entity Response:{0} from AnswerID: {1}", operationCode, entity.EntityID);
             }
+        }
+
+        internal void SendResponse(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)EntityResponseParameterCode.EntityID, entity.EntityID },
+                { (byte)EntityResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)EntityResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)EntityResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)EntityResponseParameterCode.Parameters, parameters }
+            };
+            entity.LocatedScene.SceneResponseManager.SendResponse(SceneOperationCode.EntityOperation, ErrorCode.NoError, null, operationData);
         }
     }
 }

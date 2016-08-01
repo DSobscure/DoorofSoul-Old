@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers
 {
-    public abstract class AnswerResponseHandler
+    internal abstract class AnswerResponseHandler
     {
         protected General.Answer answer;
 
@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers
             this.answer = answer;
         }
 
-        public virtual bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (CheckError(parameters, returnCode, debugMessage))
             {
@@ -24,6 +24,6 @@ namespace DoorofSoul.Library.General.Responses.Handlers
                 return false;
             }
         }
-        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
+        internal abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

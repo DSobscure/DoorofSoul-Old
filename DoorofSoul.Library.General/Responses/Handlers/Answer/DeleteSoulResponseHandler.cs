@@ -8,13 +8,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer
 {
-    public class DeleteSoulResponseHandler : AnswerResponseHandler
+    internal class DeleteSoulResponseHandler : AnswerResponseHandler
     {
-        public DeleteSoulResponseHandler(General.Answer answer) : base(answer)
+        internal DeleteSoulResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -33,33 +33,33 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                 case ErrorCode.Fail:
                     {
                         LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Fail"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Fail"]);
                         return false;
                     }
                 case ErrorCode.PermissionDeny:
                     {
                         LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul PermissionDeny"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul PermissionDeny"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Error"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {
                 answer.ClearSouls();
                 answer.ClearContainers();
-                answer.FetchSouls();
-                answer.FetchContainers();
-                answer.FetchSoulContainerLinks();
+                answer.AnswerOperationManager.FetchSouls();
+                answer.AnswerOperationManager.FetchContainers();
+                answer.AnswerOperationManager.FetchSoulContainerLinks();
                 return true;
             }
             else

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Scene
 {
-    public abstract class FetchDataHandler
+    internal abstract class FetchDataHandler
     {
         protected General.Scene scene;
 
@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
             this.scene = scene;
         }
 
-        public virtual bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal virtual bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             string debugMessage;
             if (CheckParameter(parameter, out debugMessage))
@@ -28,8 +28,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendResponse(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendResponse(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -38,9 +38,9 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 { (byte)FetchDataResponseParameterCode.DebugMessage, null },
                 { (byte)FetchDataResponseParameterCode.Parameters, parameters }
             };
-            scene.SendResponse(SceneOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            scene.SceneResponseManager.SendResponse(SceneOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
-        public void SendError(SceneFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        internal void SendError(SceneFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Scene Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            scene.SendResponse(SceneOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            scene.SceneResponseManager.SendResponse(SceneOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }
 }

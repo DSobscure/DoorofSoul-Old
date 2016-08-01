@@ -31,12 +31,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         public void SendError(SoulOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            soul.SendResponse(operationCode, errorCode, debugMessage, parameters);
+            soul.SoulResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
             LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         public void SendResponse(SoulOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            soul.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
+            soul.SoulResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
         }
     }
 }

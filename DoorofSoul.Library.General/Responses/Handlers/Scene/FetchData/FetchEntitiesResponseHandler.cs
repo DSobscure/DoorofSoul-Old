@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Scene.FetchData
 {
-    public class FetchEntitiesResponseHandler : FetchDataResponseHandler
+    internal class FetchEntitiesResponseHandler : FetchDataResponseHandler
     {
-        public FetchEntitiesResponseHandler(General.Scene scene) : base(scene)
+        internal FetchEntitiesResponseHandler(General.Scene scene) : base(scene)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string fetchDebugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string fetchDebugMessage)
         {
             switch (returnCode)
             {
@@ -32,13 +32,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Entities Response Error DebugMessage: {0}", fetchDebugMessage);
-                        scene.ErrorInform(LauguageDictionarySelector.Instance[scene.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[scene.UsingLanguage]["Fetch Entities Error"]);
+                        scene.SceneEventManager.ErrorInform(LauguageDictionarySelector.Instance[scene.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[scene.UsingLanguage]["Fetch Entities Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(SceneFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {

@@ -38,7 +38,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 { (byte)FetchDataResponseParameterCode.DebugMessage, null },
                 { (byte)FetchDataResponseParameterCode.Parameters, parameters }
             };
-            player.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            player.PlayerResponseManager.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
         public void SendError(PlayerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Player Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            player.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            player.PlayerResponseManager.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }
 }

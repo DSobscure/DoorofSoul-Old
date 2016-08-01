@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Authority\SceneEye.cs" />
     <Compile Include="Hexagram.cs" />
-    <Compile Include="HexagramWorld.cs" />
+    <Compile Include="HexagramWorldCommunicationInterface.cs" />
     <Compile Include="Nature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Throne.cs" />

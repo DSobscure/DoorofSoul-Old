@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
 {
-    public class FetchContainersHandler : FetchDataHandler
+    internal class FetchContainersHandler : FetchDataHandler
     {
-        public FetchContainersHandler(General.Answer answer) : base(answer)
+        internal FetchContainersHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 0)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
             }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal override bool Handle(AnswerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {

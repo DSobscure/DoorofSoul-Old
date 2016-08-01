@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    public abstract class SceneOperationHandler
+    internal abstract class SceneOperationHandler
     {
         protected General.Scene scene;
 
@@ -14,7 +14,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
             this.scene = scene;
         }
 
-        public virtual bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -27,16 +27,16 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendError(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            scene.SendResponse(operationCode, errorCode, debugMessage, parameters);
+            scene.SceneResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
             LibraryLog.ErrorFormat("Error On Scene Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
-        public void SendResponse(SceneOperationCode operationCode, Dictionary<byte, object> parameter)
+        internal void SendResponse(SceneOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            scene.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
+            scene.SceneResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
         }
     }
 }

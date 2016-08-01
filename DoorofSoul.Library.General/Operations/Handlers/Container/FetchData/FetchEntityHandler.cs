@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Container.FetchData
 {
-    public class FetchEntityHandler : FetchDataHandler
+    internal class FetchEntityHandler : FetchDataHandler
     {
-        public FetchEntityHandler(General.Container container) : base(container)
+        internal FetchEntityHandler(General.Container container) : base(container)
         {
             
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
         {
             if (parameters.Count != 0)
             {
@@ -26,7 +26,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container.FetchData
             }
         }
 
-        public override bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal override bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {

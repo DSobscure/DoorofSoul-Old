@@ -3,12 +3,12 @@ using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Protocol.Language;
 using UnityEngine.SceneManagement;
 using DoorofSoul.Client.Global;
-using DoorofSoul.Client.Library.General;
+using DoorofSoul.Library.General;
 
 public class SystemVersionController : MonoBehaviour, IEventProvider
 {
     private SystemManager systemManager;
-    private ClientPlayer player;
+    private Player player;
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class SystemVersionController : MonoBehaviour, IEventProvider
     {
         if(!systemManager.ClientVersionCheck())
         {
-            player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Client Version Inconsistent"]);
+            player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Client Version Inconsistent"]);
         }
         else
         {

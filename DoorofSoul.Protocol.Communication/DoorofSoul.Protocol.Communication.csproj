@@ -77,6 +77,7 @@
     <Compile Include="InformDataCodes\SceneInformDataCode.cs" />
     <Compile Include="InformDataCodes\SoulInformDataCode.cs" />
     <Compile Include="InformDataCodes\WorldInformDataCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformMessageParameterCode.cs" />
     <Compile Include="OperationCodes\AnswerOperationCode.cs" />
     <Compile Include="OperationCodes\ContainerOperationCode.cs" />
     <Compile Include="OperationCodes\EntityOperationCode.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="OperationParameters\Answer\DeleteSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\SoulOperationParameterCode.cs" />
     <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
+    <Compile Include="OperationParameters\Container\SendMessageParameterCode.cs" />
     <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
@@ -130,12 +132,10 @@
     <Folder Include="FetchDataResponseParameters\Entity\" />
     <Folder Include="FetchDataResponseParameters\Soul\" />
     <Folder Include="InformDataParameters\Answer\" />
-    <Folder Include="InformDataParameters\Container\" />
     <Folder Include="InformDataParameters\Entity\" />
     <Folder Include="InformDataParameters\Player\" />
     <Folder Include="InformDataParameters\Soul\" />
     <Folder Include="InformDataParameters\World\" />
-    <Folder Include="OperationParameters\Container\" />
     <Folder Include="OperationParameters\Entity\" />
     <Folder Include="OperationParameters\Soul\" />
     <Folder Include="ResponseParameters\Container\" />

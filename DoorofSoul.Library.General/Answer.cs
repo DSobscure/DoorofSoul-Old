@@ -1,14 +1,7 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
-using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.EventParameters.Player;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataParameters;
-using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Communication.OperationParameters.Player;
-using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
+
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
@@ -37,86 +30,11 @@ namespace DoorofSoul.Library.General
         private event Action<List<Container>> onLoadContainers;
         public event Action<List<Container>> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
         #endregion
-        #region communication
-        internal AnswerEventManager AnswerEventManager { get; set; }
-        internal AnswerOperationManager AnswerOperationManager { get; set; }
-        internal AnswerResponseManager AnswerResponseManager { get; set; }
-        internal void SendEvent(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventData = new Dictionary<byte, object>
-            {
-                { (byte)AnswerEventParameterCode.AnswerID, AnswerID },
-                { (byte)AnswerEventParameterCode.EventCode, (byte)eventCode },
-                { (byte)AnswerEventParameterCode.Parameters, parameters }
-            };
-            Player.SendEvent(PlayerEventCode.AnswerEvent, eventData);
-        }
-        internal void SendOperation(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> operationData = new Dictionary<byte, object>
-            {
-                { (byte)AnswerOperationParameterCode.AnswerID, AnswerID },
-                { (byte)AnswerOperationParameterCode.OperationCode, (byte)operationCode },
-                { (byte)AnswerOperationParameterCode.Parameters, parameters }
-            };
-            Player.SendOperation(PlayerOperationCode.AnswerOperation, operationData);
-        }
-        internal void SendResponse(AnswerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> responseData = new Dictionary<byte, object>
-            {
-                { (byte)AnswerResponseParameterCode.AnswerID, AnswerID },
-                { (byte)AnswerResponseParameterCode.OperationCode, (byte)operationCode },
-                { (byte)AnswerResponseParameterCode.ReturnCode, (short)errorCode },
-                { (byte)AnswerResponseParameterCode.DebugMessage, debugMessage },
-                { (byte)AnswerResponseParameterCode.Parameters, parameters }
-            };
-            Player.SendResponse(PlayerOperationCode.AnswerOperation, ErrorCode.NoError, null, responseData);
-        }
-        internal void ErrorInform(string title, string message)
-        {
-            Player.ErrorInform(title, message);
-        }
 
-        public bool DeleteSoul(int soulID)
-        {
-            return Player.DeleteSoul(this, soulID);
-        }
-        public bool CreateSoul(string soulName)
-        {
-            return Player.CreateSoul(this, soulName);
-        }
-        public bool ActivateSoul(int soulID)
-        {
-            return Player.ActivateSoul(this, soulID);
-        }
-        public void FetchSouls()
-        {
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Souls },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
-        }
-        public void FetchContainers()
-        {
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Containers },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
-        }
-        public void FetchSoulContainerLinks()
-        {
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.SoulContainerLinks },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
-        }
+        #region communication
+        public AnswerEventManager AnswerEventManager { get; set; }
+        public AnswerOperationManager AnswerOperationManager { get; set; }
+        internal AnswerResponseManager AnswerResponseManager { get; set; }
         #endregion
 
         public Answer(int answerID, int soulCountLimit, Player player)

@@ -1,16 +1,17 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers;
-using DoorofSoul.Protocol.Communication.OperationCodes;
-using System.Collections.Generic;
 using DoorofSoul.Library.General.Operations.Handlers.Soul;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Managers
 {
     public class SoulOperationManager
     {
-        protected readonly Dictionary<SoulOperationCode, SoulOperationHandler> operationTable;
+        private readonly Dictionary<SoulOperationCode, SoulOperationHandler> operationTable;
         protected readonly Soul soul;
 
-        public SoulOperationManager(Soul soul)
+        internal SoulOperationManager(Soul soul)
         {
             this.soul = soul;
             operationTable = new Dictionary<SoulOperationCode, SoulOperationHandler>
@@ -19,7 +20,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             };
         }
 
-        public void Operate(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal void Operate(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (operationTable.ContainsKey(operationCode))
             {
@@ -32,6 +33,17 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Soul Operation:{0} from SoulID: {1}", operationCode, soul.SoulID);
             }
+        }
+
+        internal void SendOperation(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationData = new Dictionary<byte, object>
+            {
+                { (byte)SoulOperationParameterCode.SoulID, soul.SoulID },
+                { (byte)SoulOperationParameterCode.OperationCode, (byte)operationCode },
+                { (byte)SoulOperationParameterCode.Parameters, parameters }
+            };
+            soul.Answer.AnswerOperationManager.SendOperation(AnswerOperationCode.SoulOperation, operationData);
         }
     }
 }

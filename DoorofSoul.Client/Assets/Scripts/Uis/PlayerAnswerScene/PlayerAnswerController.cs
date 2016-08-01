@@ -17,18 +17,18 @@ public class PlayerAnswerController : MonoBehaviour
     }
     public void CreateSoul()
     {
-        answer.CreateSoul(createSoulPanel.SoulName);
+        answer.AnswerOperationManager.CreateSoul(createSoulPanel.SoulName);
     }
     public void DeleteSoul(int soulID)
     {
-        answer.DeleteSoul(soulID);
+        answer.AnswerOperationManager.DeleteSoul(soulID);
     }
     public void ActivateSoul(int soulID)
     {
-        answer.ActivateSoul(soulID);
+        answer.AnswerOperationManager.ActivateSoul(soulID);
     }
     public void Logout()
     {
-        answer.Player.Logout();
+        answer.Player.PlayerOperationManager.Logout();
     }
 }

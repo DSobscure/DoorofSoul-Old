@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Scene
 {
-    public abstract class FetchDataResponseHandler
+    internal abstract class FetchDataResponseHandler
     {
         protected General.Scene scene;
 
@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             this.scene = scene;
         }
 
-        public virtual bool Handle(SceneFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(SceneFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (CheckError(parameters, returnCode, fetchDebugMessage))
             {
@@ -25,6 +25,6 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
                 return false;
             }
         }
-        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
+        internal abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

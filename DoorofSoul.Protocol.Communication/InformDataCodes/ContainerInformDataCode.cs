@@ -2,6 +2,6 @@
 {
     public enum ContainerInformDataCode : byte
     {
-
+        Message
     }
 }

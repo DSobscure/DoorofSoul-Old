@@ -1,15 +1,17 @@
 ﻿using DoorofSoul.Library.General.Events.Handlers;
 using DoorofSoul.Library.General.Events.Handlers.Entity;
 using DoorofSoul.Protocol.Communication.EventCodes;
+using DoorofSoul.Protocol.Communication.EventParameters.Scene;
 using System.Collections.Generic;
+
 namespace DoorofSoul.Library.General.Events.Managers
 {
     public class EntityEventManager
     {
-        protected readonly Dictionary<EntityEventCode, EntityEventHandler> eventTable;
+        private readonly Dictionary<EntityEventCode, EntityEventHandler> eventTable;
         protected readonly Entity entity;
 
-        public EntityEventManager(Entity entity)
+        internal EntityEventManager(Entity entity)
         {
             this.entity = entity;
             eventTable = new Dictionary<EntityEventCode, EntityEventHandler>
@@ -18,7 +20,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             };
         }
 
-        public void Operate(EntityEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void Operate(EntityEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (eventTable.ContainsKey(eventCode))
             {
@@ -31,6 +33,22 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Entity Event:{0} from EntityID: {1}", eventCode, entity.EntityID);
             }
+        }
+
+        internal void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)EntityEventParameterCode.EntityID, entity.EntityID },
+                { (byte)EntityEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)EntityEventParameterCode.Parameters, parameters }
+            };
+            entity.LocatedScene.SceneEventManager.SendEvent(SceneEventCode.EntityEvent, eventData);
+        }
+
+        public void ErrorInform(string title, string message)
+        {
+            entity.LocatedScene.SceneEventManager.ErrorInform(title, message);
         }
     }
 }

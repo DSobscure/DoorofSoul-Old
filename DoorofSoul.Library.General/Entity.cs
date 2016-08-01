@@ -1,12 +1,6 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
-using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.EventParameters.Scene;
-using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
-using DoorofSoul.Protocol.Communication.ResponseParameters.Scene;
 using System;
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Language;
@@ -77,45 +71,9 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        internal EntityEventManager EntityEventManager { get; set; }
-        internal EntityOperationManager EntityOperationManager { get; set; }
+        public EntityEventManager EntityEventManager { get; set; }
+        public EntityOperationManager EntityOperationManager { get; set; }
         internal EntityResponseManager EntityResponseManager { get; set; }
-        internal void SendEvent(EntityEventCode eventCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventData = new Dictionary<byte, object>
-            {
-                { (byte)EntityEventParameterCode.EntityID, EntityID },
-                { (byte)EntityEventParameterCode.EventCode, (byte)eventCode },
-                { (byte)EntityEventParameterCode.Parameters, parameters }
-            };
-            LocatedScene.SendEvent(SceneEventCode.EntityEvent, eventData);
-        }
-        internal void SendOperation(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventData = new Dictionary<byte, object>
-            {
-                { (byte)EntityOperationParameterCode.EntityID, EntityID },
-                { (byte)EntityOperationParameterCode.OperationCode, (byte)operationCode },
-                { (byte)EntityOperationParameterCode.Parameters, parameters }
-            };
-            LocatedScene.SendOperation(SceneOperationCode.EntityOperation, eventData);
-        }
-        internal void SendResponse(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> operationData = new Dictionary<byte, object>
-            {
-                { (byte)EntityResponseParameterCode.EntityID, EntityID },
-                { (byte)EntityResponseParameterCode.OperationCode, (byte)operationCode },
-                { (byte)EntityResponseParameterCode.ReturnCode, (short)errorCode },
-                { (byte)EntityResponseParameterCode.DebugMessage, debugMessage },
-                { (byte)EntityResponseParameterCode.Parameters, parameters }
-            };
-            LocatedScene.SendResponse(SceneOperationCode.EntityOperation, ErrorCode.NoError, null, operationData);
-        }
-        internal void ErrorInform(string title, string message)
-        {
-            LocatedScene.ErrorInform(title, message);
-        }
         #endregion
 
         public Entity(int entityID, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)

@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer
 {
-    public class SoulOperationResponseResolver : AnswerResponseHandler
+    internal class SoulOperationResponseResolver : AnswerResponseHandler
     {
-        public SoulOperationResponseResolver(General.Answer answer) : base(answer)
+        internal SoulOperationResponseResolver(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             if (returnCode == ErrorCode.NoError)
             {
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {

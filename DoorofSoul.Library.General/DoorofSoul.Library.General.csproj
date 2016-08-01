@@ -101,6 +101,7 @@
     <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\SendMessageHandler.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataResolver.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Operations\Managers\SoulOperationManager.cs" />
     <Compile Include="Operations\Managers\WorldOperationManager.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerCommunicationInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\Handlers\AnswerResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Answer\ActivateSoulResponseHandler.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Scene.cs" />
     <Compile Include="Soul.cs" />
     <Compile Include="World.cs" />
+    <Compile Include="WorldCommunicationInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
@@ -196,6 +199,10 @@
     <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
       <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
       <Name>DoorofSoul.Protocol.Language</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol\DoorofSoul.Protocol.csproj">
+      <Project>{9f5b0064-cbfb-4852-b308-ab64760955c8}</Project>
+      <Name>DoorofSoul.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

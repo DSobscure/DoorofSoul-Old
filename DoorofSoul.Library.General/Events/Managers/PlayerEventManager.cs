@@ -34,5 +34,15 @@ namespace DoorofSoul.Library.General.Events.Managers
                 LibraryLog.ErrorFormat("Unknow Player Event:{0} from PlayerID: {1}", eventCode, player.PlayerID);
             }
         }
+
+        public void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            player.PlayerCommunicationInterface.SendEvent(eventCode, parameters);
+        }
+
+        public void ErrorInform(string title, string message)
+        {
+            player.PlayerCommunicationInterface.ErrorInform(title, message);
+        }
     }
 }

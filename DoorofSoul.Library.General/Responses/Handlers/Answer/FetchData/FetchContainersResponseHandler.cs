@@ -9,13 +9,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
 {
-    public class FetchContainersResponseHandler : FetchDataResponseHandler
+    internal class FetchContainersResponseHandler : FetchDataResponseHandler
     {
-        public FetchContainersResponseHandler(General.Answer answer) : base(answer)
+        internal FetchContainersResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -34,13 +34,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Containers Response Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Container Error"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Container Error"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {
@@ -50,6 +50,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     int entityID = (int)parameters[(byte)FetchContainersResponseParameterCode.EntityID];
                     General.Container container = new General.Container(containerID, entityID);
                     answer.LoadContainers(new List<General.Container> { container });
+                    container.ContainerOperationManager.FetchEntity();
                     return true;
                 }
                 catch (InvalidCastException ex)

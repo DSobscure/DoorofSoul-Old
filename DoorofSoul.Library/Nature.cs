@@ -92,7 +92,13 @@ namespace DoorofSoul.Library
         protected void LoadNature()
         {
             List<World> worldList = new List<World>();
-            DataBase.Instance.RepositoryManager.WorldRepository.List().ForEach(world => worldList.Add(new HexagramWorld(world)));
+            DataBase.Instance.RepositoryManager.WorldRepository.List().ForEach(world => 
+            {
+                HexagramWorldCommunicationInterface communicationInterface = new HexagramWorldCommunicationInterface();
+                World newWorld = new World(communicationInterface, world.worldID, world.worldName);
+                communicationInterface.BindWorld(newWorld);
+                worldList.Add(newWorld);
+            });
             foreach (World world in worldList)
             {
                 worldDictionary.Add(world.WorldID, world);
@@ -101,8 +107,8 @@ namespace DoorofSoul.Library
                 foreach(Scene scene in sceneList)
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
-                    scene.OnEntityEnter += scene.EntityEnterEvent;
-                    scene.OnEntityExit += scene.EntityExitEvent;
+                    scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
+                    scene.OnEntityExit += scene.SceneEventManager.EntityExit;
                 }
             }
         }

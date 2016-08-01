@@ -60,7 +60,7 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
             soulPanel.Show(soul);
             int soulID = soul.SoulID;
-            soulPanel.SetButton("刪除", () => { answer.DeleteSoul(soulID); });
+            soulPanel.SetButton("刪除", () => { answer.AnswerOperationManager.DeleteSoul(soulID); });
             counter++;
         }
     }

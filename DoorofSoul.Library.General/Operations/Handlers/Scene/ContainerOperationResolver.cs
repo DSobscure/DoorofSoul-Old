@@ -7,13 +7,13 @@ using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Scene
 {
-    public class ContainerOperationResolver : SceneOperationHandler
+    internal class ContainerOperationResolver : SceneOperationHandler
     {
-        public ContainerOperationResolver(General.Scene scene) : base(scene)
+        internal ContainerOperationResolver(General.Scene scene) : base(scene)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
             }
         }
 
-        public override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {

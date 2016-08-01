@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DoorofSoul.Client.Global;
-using DoorofSoul.Client.Library.General;
+using DoorofSoul.Library.General;
 
 public class PlayerLogoutController : MonoBehaviour, IEventProvider
 {
-    private ClientPlayer player;
+    private Player player;
 
     void Awake()
     {
@@ -20,16 +20,19 @@ public class PlayerLogoutController : MonoBehaviour, IEventProvider
 
     public void EraseEvents()
     {
-        player.OnLogout -= Logout;
+        player.OnOnline -= Logout;
     }
 
     public void RegisterEvents()
     {
-        player.OnLogout += Logout;
+        player.OnOnline += Logout;
     }
 
-    private void Logout()
+    private void Logout(Player player)
     {
-        SceneManager.LoadScene("PlayerLoginScene");
+        if(!player.IsOnline && SceneManager.GetActiveScene().name != "PlayerLoginScene")
+        {
+            SceneManager.LoadScene("PlayerLoginScene");
+        }
     }
 }

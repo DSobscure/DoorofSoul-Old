@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    public abstract class EntityOperationHandler
+    internal abstract class EntityOperationHandler
     {
         protected General.Entity entity;
 
@@ -14,7 +14,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
             this.entity = entity;
         }
 
-        public virtual bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -27,16 +27,16 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendError(EntityOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-            entity.SendResponse(operationCode, errorCode, debugMessage, parameters);
+            entity.EntityResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
             LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
-        public void SendResponse(EntityOperationCode operationCode, Dictionary<byte, object> parameter)
+        internal void SendResponse(EntityOperationCode operationCode, Dictionary<byte, object> parameter)
         {
-            entity.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
+            entity.EntityResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
         }
     }
 }

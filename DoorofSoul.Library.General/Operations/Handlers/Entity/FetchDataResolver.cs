@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Entity
 {
-    public class FetchDataResolver : EntityOperationHandler
+    internal class FetchDataResolver : EntityOperationHandler
     {
         protected readonly Dictionary<EntityFetchDataCode, FetchDataHandler> fetchTable;
 
-        public FetchDataResolver(General.Entity entity) : base(entity)
+        internal FetchDataResolver(General.Entity entity) : base(entity)
         {
             fetchTable = new Dictionary<EntityFetchDataCode, FetchDataHandler>
             {
@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 2)
             {
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             }
         }
 
-        public override bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {

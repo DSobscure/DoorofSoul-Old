@@ -1,17 +1,28 @@
-﻿using DoorofSoul.Client.Global;
+﻿using System;
+using DoorofSoul.Client.Global;
+using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.IControllers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class SceneController : MonoBehaviour, IEventProvider
 {
     [SerializeField]
     private PlayerPanel playerPanelPrefab;
     private Canvas canvas;
     private DoorofSoul.Library.General.Scene scene;
-    void OnLevelWasLoaded(int level)
+    void Awake()
     {
-        if(scene != null)
+        RegisterEvents();
+    }
+    void OnDestroy()
+    {
+        EraseEvents();
+    }
+    void OnSceneLoad(UnityEngine.SceneManagement.Scene unityScene, LoadSceneMode mode)
+    {
+        if (scene != null)
         {
             scene.OnEntityEnter -= InstantiateEntity;
             scene.OnEntityExit -= DestroyEntity;
@@ -20,7 +31,7 @@ public class SceneController : MonoBehaviour
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (scene != null)
         {
-            scene.FetchEntities();
+            scene.SceneOperationManager.FetchEntities();
             scene.OnEntityEnter += InstantiateEntity;
             scene.OnEntityExit += DestroyEntity;
             foreach (Entity entity in scene.Entities)
@@ -62,5 +73,15 @@ public class SceneController : MonoBehaviour
     private void DestroyEntity(Entity entity)
     {
         Destroy(entity.EntityController.GameObject);
+    }
+
+    public void RegisterEvents()
+    {
+        SceneManager.sceneLoaded += OnSceneLoad;
+    }
+
+    public void EraseEvents()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoad;
     }
 }

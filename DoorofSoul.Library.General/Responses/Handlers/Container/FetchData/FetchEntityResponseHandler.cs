@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
 {
-    public class FetchEntityResponseHandler : FetchDataResponseHandler
+    internal class FetchEntityResponseHandler : FetchDataResponseHandler
     {
-        public FetchEntityResponseHandler(General.Container container) : base(container)
+        internal FetchEntityResponseHandler(General.Container container) : base(container)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch (returnCode)
             {
@@ -32,13 +32,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Entity Response Error DebugMessage: {0}", debugMessage);
-                        container.ErrorInform(LauguageDictionarySelector.Instance[container.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[container.UsingLanguage]["Fetch Entity Error"], Protocol.Communication.Channels.ContainerCommunicationChannel.Answer);
+                        container.ContainerEventManager.ErrorInform(LauguageDictionarySelector.Instance[container.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[container.UsingLanguage]["Fetch Entity Error"], Protocol.Communication.Channels.ContainerCommunicationChannel.Answer);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(ContainerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(ContainerFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, returnCode, fetchDebugMessage, parameters))
             {

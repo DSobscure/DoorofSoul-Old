@@ -7,21 +7,21 @@ namespace DoorofSoul.Client.Library.General
 {
     public class Horizon
     {
-        protected readonly Dictionary<int, ClientWorld> worldDictionary;
-        public IEnumerable<ClientWorld> Worlds { get { return worldDictionary.Values; } }
+        protected readonly Dictionary<int, World> worldDictionary;
+        public IEnumerable<World> Worlds { get { return worldDictionary.Values; } }
         public DoorofSoul.Library.General.Scene MainScene { get; protected set; }
         private int waitingMainSceneID;
 
         public Horizon()
         {
-            worldDictionary = new Dictionary<int, ClientWorld>();
+            worldDictionary = new Dictionary<int, World>();
         }
 
         public bool ContainsWorld(int worldID)
         {
             return worldDictionary.ContainsKey(worldID);
         }
-        public ClientWorld FindWorld(int worldID)
+        public World FindWorld(int worldID)
         {
             if(ContainsWorld(worldID))
             {
@@ -32,7 +32,7 @@ namespace DoorofSoul.Client.Library.General
                 return null;
             }
         }
-        public void LoadWorld(ClientWorld world)
+        public void LoadWorld(World world)
         {
             if(!ContainsWorld(world.WorldID))
             {
@@ -87,10 +87,9 @@ namespace DoorofSoul.Client.Library.General
         public void FetchMainScene(int sceneID)
         {
             waitingMainSceneID = sceneID;
-            DoorofSoul.Library.General.Scene scene;
             foreach(World world in Worlds)
             {
-                world.FetchScene(sceneID, out scene);
+                world.WorldOperationManager.FetchScene(sceneID);
             }
         }
     }

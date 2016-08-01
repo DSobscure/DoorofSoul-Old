@@ -31,8 +31,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
             {
                 try
                 {
-                    General.Answer answer;
-                    player.FetchAnswer(out answer);
+                    General.Answer answer = player.Answer;
                     var result = new Dictionary<byte, object>
                     {
                         { (byte)FetchAnswerResponseParameterCode.AnswerID, answer.AnswerID },

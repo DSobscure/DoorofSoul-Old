@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Container
 {
-    public class FetchDataResponseResolver : ContainerResponseHandler
+    internal class FetchDataResponseResolver : ContainerResponseHandler
     {
         protected readonly Dictionary<ContainerFetchDataCode, FetchDataResponseHandler> fetchResponseTable;
 
-        public FetchDataResponseResolver(General.Container container) : base(container)
+        internal FetchDataResponseResolver(General.Container container) : base(container)
         {
             fetchResponseTable = new Dictionary<ContainerFetchDataCode, FetchDataResponseHandler>
             {
@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             };
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             if (returnCode == ErrorCode.NoError)
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             }
         }
 
-        public override bool Handle(ContainerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(ContainerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {

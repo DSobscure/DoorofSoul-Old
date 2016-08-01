@@ -18,7 +18,9 @@ namespace DoorofSoul.Server
         {
             Guid = Guid.NewGuid();
             operationResolver = new OperationResolver(this);
-            Player = new ServerPlayer(this);
+            ServerPlayerCommunicationInterface communicationInterface = new ServerPlayerCommunicationInterface(this);
+            Player = new ServerPlayer(this, communicationInterface);
+            communicationInterface.BindPlayer(Player);
             player = Player;
         }
 

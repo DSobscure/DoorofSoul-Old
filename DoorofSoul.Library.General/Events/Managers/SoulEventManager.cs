@@ -2,15 +2,16 @@
 using DoorofSoul.Library.General.Events.Handlers.Soul;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using System.Collections.Generic;
+using DoorofSoul.Protocol.Communication.EventParameters.Answer;
 
 namespace DoorofSoul.Library.General.Events.Managers
 {
     public class SoulEventManager
     {
-        protected readonly Dictionary<SoulEventCode, SoulEventHandler> eventTable;
+        private readonly Dictionary<SoulEventCode, SoulEventHandler> eventTable;
         protected readonly Soul soul;
 
-        public SoulEventManager(Soul soul)
+        internal SoulEventManager(Soul soul)
         {
             this.soul = soul;
             eventTable = new Dictionary<SoulEventCode, SoulEventHandler>
@@ -19,7 +20,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             };
         }
 
-        public void Operate(SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void Operate(SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (eventTable.ContainsKey(eventCode))
             {
@@ -32,6 +33,22 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Soul Event:{0} from SoulID: {1}", eventCode, soul.SoulID);
             }
+        }
+
+        internal void SendEvent(SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventData = new Dictionary<byte, object>
+            {
+                { (byte)SoulEventParameterCode.SoulID, soul.SoulID },
+                { (byte)SoulEventParameterCode.EventCode, (byte)eventCode },
+                { (byte)SoulEventParameterCode.Parameters, parameters }
+            };
+            soul.Answer.AnswerEventManager.SendEvent(AnswerEventCode.SoulEvent, eventData);
+        }
+
+        public void ErrorInform(string title, string message)
+        {
+            soul.Answer.AnswerEventManager.ErrorInform(title, message);
         }
     }
 }

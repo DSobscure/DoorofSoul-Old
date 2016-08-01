@@ -34,8 +34,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World.FetchData
                 try
                 {
                     int sceneID = (int)parameter[(byte)FetchSceneParameterCode.SceneID];
-                    General.Scene scene;
-                    world.FetchScene(sceneID, out scene);
+                    General.Scene scene = world.FindScene(sceneID);
                     if (scene != null)
                     {
                         var result = new Dictionary<byte, object>

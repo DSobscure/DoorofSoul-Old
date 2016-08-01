@@ -3,6 +3,7 @@ using DoorofSoul.Library.General.Responses.Handlers.Player;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
+using DoorofSoul.Protocol.Language;
 using System;
 
 namespace DoorofSoul.Library.General.Responses.Managers
@@ -37,6 +38,34 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Player Response:{0} from AnswerID: {1}", operationCode, player.PlayerID);
             }
+        }
+
+        public void SendResponse(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            player.PlayerCommunicationInterface.SendResponse(operationCode, errorCode, debugMessage, parameters);
+        }
+
+        public void Login(int playerID, string account, string nickname, SupportLauguages usingLanguage, int answerID)
+        {
+            player.LoadPlayer(playerID, account, nickname, usingLanguage, answerID);
+            player.IsOnline = true;
+        }
+        public void LoginFailed()
+        {
+            player.IsOnline = false;
+        }
+        public void Logout()
+        {
+            player.IsOnline = false;
+        }
+        public void FetchSystemVersion(string serverVersion, string clientVersion)
+        {
+            player.PlayerCommunicationInterface.UpdateSystemVersion(serverVersion, clientVersion);
+        }
+
+        public void FetchWorlds(int worldID, string worldName)
+        {
+            player.PlayerCommunicationInterface.LoadWorld(worldID, worldName);
         }
     }
 }

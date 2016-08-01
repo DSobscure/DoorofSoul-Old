@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Container
 {
-    public abstract class FetchDataHandler
+    internal abstract class FetchDataHandler
     {
         protected General.Container container;
 
@@ -16,7 +16,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
             this.container = container;
         }
 
-        public virtual bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -29,8 +29,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
-        public void SendResponse(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
+        internal void SendResponse(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -39,9 +39,9 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 { (byte)FetchDataResponseParameterCode.DebugMessage, null },
                 { (byte)FetchDataResponseParameterCode.Parameters, parameters }
             };
-            container.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
+            container.ContainerResponseManager.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
         }
-        public void SendError(ContainerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        internal void SendError(ContainerFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -51,7 +51,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Container Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            container.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
+            container.ContainerResponseManager.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
         }
     }
 }

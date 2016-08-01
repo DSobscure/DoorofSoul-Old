@@ -34,13 +34,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World.FetchData
                 case ErrorCode.NotExist:
                     {
                         LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
-                        world.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Not Exist"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene NotExist"]);
+                        world.WorldEventManager.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Not Exist"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene NotExist"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
-                        world.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene Error"]);
+                        world.WorldEventManager.ErrorInform(LauguageDictionarySelector.Instance[world.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[world.UsingLanguage]["Fetch Scene Error"]);
                         return false;
                     }
             }
@@ -54,7 +54,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World.FetchData
                 {
                     int sceneID = (int)parameters[(byte)FetchSceneResponseParameterCode.SceneID];
                     string sceneName = (string)parameters[(byte)FetchSceneResponseParameterCode.SceneName];
-                    world.FetchSceneResponse(sceneID, sceneName);
+                    world.WorldResponseManager.FetchSceneResponse(sceneID, sceneName);
                     return true;
                 }
                 catch (InvalidCastException ex)

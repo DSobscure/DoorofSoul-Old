@@ -38,7 +38,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                 { (byte)FetchDataResponseParameterCode.DebugMessage, null },
                 { (byte)FetchDataResponseParameterCode.Parameters, parameters }
             };
-            world.SendResponse(WorldOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            world.WorldResponseManager.SendResponse(WorldOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
         public void SendError(WorldFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On World Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            world.SendResponse(WorldOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            world.WorldResponseManager.SendResponse(WorldOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }
 }

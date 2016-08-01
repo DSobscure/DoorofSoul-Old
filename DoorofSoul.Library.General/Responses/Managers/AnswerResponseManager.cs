@@ -3,6 +3,7 @@ using DoorofSoul.Library.General.Responses.Handlers.Answer;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
+using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
 
 namespace DoorofSoul.Library.General.Responses.Managers
 {
@@ -38,6 +39,19 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 LibraryLog.ErrorFormat("Unknow Answer Response:{0} from AnswerID: {1}", operationCode, answer.AnswerID);
             }
+        }
+
+        internal void SendResponse(AnswerOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> responseData = new Dictionary<byte, object>
+            {
+                { (byte)AnswerResponseParameterCode.AnswerID, answer.AnswerID },
+                { (byte)AnswerResponseParameterCode.OperationCode, (byte)operationCode },
+                { (byte)AnswerResponseParameterCode.ReturnCode, (short)errorCode },
+                { (byte)AnswerResponseParameterCode.DebugMessage, debugMessage },
+                { (byte)AnswerResponseParameterCode.Parameters, parameters }
+            };
+            answer.Player.PlayerResponseManager.SendResponse(PlayerOperationCode.AnswerOperation, ErrorCode.NoError, null, responseData);
         }
     }
 }

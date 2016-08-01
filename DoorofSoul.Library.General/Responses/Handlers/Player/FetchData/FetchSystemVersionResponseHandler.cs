@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 default:
                     {
                         LibraryLog.ErrorFormat("Fetch SystemVersion Response Error DebugMessage: {0}", fetchDebugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch SystemVersion Error"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch SystemVersion Error"]);
                         return false;
                     }
             }
@@ -46,7 +46,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 {
                     string currentServerVersion = (string)parameters[(byte)FetchSystemVersionResponseParameterCode.CurrentServerVersion];
                     string currentClientVersion = (string)parameters[(byte)FetchSystemVersionResponseParameterCode.CurrentClientVersion];
-                    player.FetchSystemVersionResponse(currentServerVersion, currentClientVersion);
+                    player.PlayerCommunicationInterface.UpdateSystemVersion(currentServerVersion, currentClientVersion);
                     return true;
                 }
                 catch (InvalidCastException ex)

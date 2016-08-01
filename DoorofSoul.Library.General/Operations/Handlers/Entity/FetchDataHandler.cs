@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Entity
 {
-    public abstract class FetchDataHandler
+    internal abstract class FetchDataHandler
     {
         protected General.Entity entity;
 
@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             this.entity = entity;
         }
 
-        public virtual bool Handle(EntityFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal virtual bool Handle(EntityFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             string debugMessage;
             if (CheckParameter(parameter, out debugMessage))
@@ -28,8 +28,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendResponse(EntityFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendResponse(EntityFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -38,9 +38,9 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
                 { (byte)FetchDataResponseParameterCode.DebugMessage, null },
                 { (byte)FetchDataResponseParameterCode.Parameters, parameters }
             };
-            entity.SendResponse(EntityOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            entity.EntityResponseManager.SendResponse(EntityOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
-        public void SendError(EntityFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        internal void SendError(EntityFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             LibraryLog.ErrorFormat("Error On Entity Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
-            entity.SendResponse(EntityOperationCode.FetchData, ErrorCode.NoError, null, eventData);
+            entity.EntityResponseManager.SendResponse(EntityOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }
 }

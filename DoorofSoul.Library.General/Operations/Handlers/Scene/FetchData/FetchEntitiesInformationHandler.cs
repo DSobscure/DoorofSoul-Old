@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Scene.FetchData
 {
-    public class FetchEntitiesHandler : FetchDataHandler
+    internal class FetchEntitiesHandler : FetchDataHandler
     {
-        public FetchEntitiesHandler(General.Scene scene) : base(scene)
+        internal FetchEntitiesHandler(General.Scene scene) : base(scene)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 0)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene.FetchData
             }
         }
 
-        public override bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal override bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             if (base.Handle(fetchCode, parameter))
             {

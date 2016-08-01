@@ -9,13 +9,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    public class ActivateSoulHandler : AnswerOperationHandler
+    internal class ActivateSoulHandler : AnswerOperationHandler
     {
-        public ActivateSoulHandler(General.Answer answer) : base(answer)
+        internal ActivateSoulHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 1)
             {
@@ -29,7 +29,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {
@@ -37,7 +37,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                 int soulID = (int)parameters[(byte)ActivateSoulOperationParameterCode.SoulID];
                 if (answer.ContainsSoul(soulID))
                 {
-                    if (answer.ActivateSoul(soulID))
+                    if (answer.Player.PlayerCommunicationInterface.ActiveSoul(answer, soulID))
                     {
                         General.Soul soul = answer.FindSoul(soulID);
                         General.Container defaultContainer = soul.Containers.FirstOrDefault();

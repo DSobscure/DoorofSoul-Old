@@ -1,5 +1,8 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers;
 using DoorofSoul.Library.General.Operations.Handlers.World;
+using DoorofSoul.Protocol.Communication.FetchDataCodes;
+using DoorofSoul.Protocol.Communication.FetchDataParameters;
+using DoorofSoul.Protocol.Communication.FetchDataParameters.World;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 
@@ -33,6 +36,25 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 LibraryLog.ErrorFormat("Unknow World Operation:{0} from WorldID: {1}", operationCode, world.WorldID);
             }
+        }
+
+        public void SendOperation(WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            world.WorldCommunicationInterface.SendOperation(operationCode, parameters);
+        }
+
+        public void FetchScene(int sceneID)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchSceneParameterCode.SceneID, sceneID }
+            };
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, WorldFetchDataCode.Scene },
+                { (byte)FetchDataParameterCode.Parameters, fetchDataParameters }
+            };
+            SendOperation(WorldOperationCode.FetchData, parameters);
         }
     }
 }

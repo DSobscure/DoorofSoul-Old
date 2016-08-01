@@ -34,19 +34,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                 case ErrorCode.Fail:
                     {
                         LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Fail"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Fail"]);
                         return false;
                     }
                 case ErrorCode.InvalidOperation:
                     {
                         LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Invalid Operation"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login InvalidOperation"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Invalid Operation"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login InvalidOperation"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
-                        player.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Error"]);
+                        player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Error"]);
                         return false;
                     }
             }
@@ -63,32 +63,31 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     string nickname = (string)parameters[(byte)LoginResponseParameterCode.Nickname];
                     SupportLauguages usingLanguage = (SupportLauguages)(byte)parameters[(byte)LoginResponseParameterCode.UsingLanguageCode];
                     int answerID = (int)parameters[(byte)LoginResponseParameterCode.AnswerID];
-                    player.LoginResponse(playerID, account, nickname, usingLanguage, answerID);
-                    General.Answer answer;
-                    List<General.World> worlds;
-                    player.FetchAnswer(out answer);
-                    player.FetchWorlds(out worlds);
+                    player.LoadPlayer(playerID, account, nickname, usingLanguage, answerID);
+                    player.IsOnline = true;
+                    player.PlayerOperationManager.FetchAnswer();
+                    player.PlayerOperationManager.FetchWorlds();
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
+                    player.IsOnline = false;
                     LibraryLog.Error("PlayerLogin Parameter Cast Error");
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
-                    player.LoginFailed();
                     return false;
                 }
                 catch (Exception ex)
                 {
+                    player.IsOnline = false;
                     LibraryLog.Error(ex.Message);
                     LibraryLog.Error(ex.StackTrace);
-                    player.LoginFailed();
                     return false;
                 }
             }
             else
             {
-                player.LoginFailed();
+                player.IsOnline = false;
                 return false;
             }
         }

@@ -34,5 +34,15 @@ namespace DoorofSoul.Library.General.Events.Managers
                 LibraryLog.ErrorFormat("Unknow World Event:{0} from AnswerID: {1}", eventCode, world.WorldID);
             }
         }
+
+        public void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            world.WorldCommunicationInterface.SendEvent(eventCode, parameters);
+        }
+
+        public void ErrorInform(string title, string message)
+        {
+            world.WorldCommunicationInterface.ErrorInform(title, message);
+        }
     }
 }

@@ -9,13 +9,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer
 {
-    public class ActivateSoulResponseHandler : AnswerResponseHandler
+    internal class ActivateSoulResponseHandler : AnswerResponseHandler
     {
-        public ActivateSoulResponseHandler(General.Answer answer) : base(answer)
+        internal ActivateSoulResponseHandler(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             switch(returnCode)
             {
@@ -34,25 +34,25 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                 case ErrorCode.Fail:
                     {
                         LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
                 case ErrorCode.PermissionDeny:
                     {
                         LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
                 default:
                     {
                         LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
-                        answer.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
+                        answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
             }
         }
 
-        public override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {

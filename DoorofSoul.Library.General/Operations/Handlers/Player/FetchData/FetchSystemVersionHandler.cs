@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                 try
                 {
                     string serverVersion, clientVersion;
-                    player.FetchSystemVersion(out serverVersion, out clientVersion);
+                    player.PlayerCommunicationInterface.GetSystemVersion(out serverVersion, out clientVersion);
                     var result = new Dictionary<byte, object>
                     {
                         { (byte)FetchSystemVersionResponseParameterCode.CurrentServerVersion, serverVersion },

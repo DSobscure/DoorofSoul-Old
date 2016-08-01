@@ -53,6 +53,7 @@
     <Compile Include="EventParameters\Answer\SoulEventParameterCode.cs" />
     <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
+    <Compile Include="EventParameters\Scene\BroadcastMessageParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\ContainerEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\EntityEventParameterCode.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="OperationParameters\Answer\DeleteSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\SoulOperationParameterCode.cs" />
     <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
-    <Compile Include="OperationParameters\Container\SendMessageParameterCode.cs" />
+    <Compile Include="OperationParameters\Container\SayParameterCode.cs" />
     <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />

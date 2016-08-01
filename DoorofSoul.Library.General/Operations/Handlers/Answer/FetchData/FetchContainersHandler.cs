@@ -36,7 +36,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                         var result = new Dictionary<byte, object>
                         {
                             { (byte)FetchContainersResponseParameterCode.ContainerID, container.ContainerID },
-                            { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID }
+                            { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID },
+                            { (byte)FetchContainersResponseParameterCode.ContainerName, container.ContainerName }
                         };
                         SendResponse(fetchCode, result);
                     }

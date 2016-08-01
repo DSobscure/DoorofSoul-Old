@@ -1,9 +1,11 @@
 ﻿using DoorofSoul.Library.General.Events.Handlers;
 using DoorofSoul.Library.General.Events.Handlers.Scene;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.EventParameters.World;
+using DoorofSoul.Protocol.Communication.EventParameters.Scene;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace DoorofSoul.Library.General.Events.Managers
 {
     public class SceneEventManager
     {
-        protected readonly Dictionary<SceneEventCode, SceneEventHandler> eventTable;
+        private readonly Dictionary<SceneEventCode, SceneEventHandler> eventTable;
         protected readonly Scene scene;
 
         internal SceneEventManager(Scene scene)
@@ -23,6 +25,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                 { SceneEventCode.ContainerEvent, new ContainerEventResolver(scene) },
                 { SceneEventCode.EntityEvent, new EntityEventResolver(scene) },
                 { SceneEventCode.InformData, new InformDataResolver(scene) },
+                { SceneEventCode.BroadcastMessage, new BroadcastMessageHandler(scene) },
             };
         }
 
@@ -48,7 +51,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                 { (byte)SceneEventParameterCode.EventCode, (byte)eventCode },
                 { (byte)SceneEventParameterCode.Parameters, parameters }
             };
-            scene.World.WorldEventManager.SendEvent(WorldEventCode.SceneEvent, eventData);
+            scene.World.WorldEventManager.SendSceneEvent(scene, WorldEventCode.SceneEvent, eventData);
         }
 
         public void ErrorInform(string title, string message)
@@ -106,6 +109,17 @@ namespace DoorofSoul.Library.General.Events.Managers
                 { (byte)InformDataEventParameterCode.Parameters, informParameters }
             };
             SendEvent(SceneEventCode.InformData, parameters);
+        }
+        public void BroadcastMessage(MessageType messageType, MessageSourceType messageSourceType, string sourceName, string message)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)BroadcastMessageParameterCode.MessageType, (byte)messageType },
+                { (byte)BroadcastMessageParameterCode.MessageSourceType, (byte)messageSourceType },
+                { (byte)BroadcastMessageParameterCode.SourceName, sourceName },
+                { (byte)BroadcastMessageParameterCode.Message, message }
+            };
+            SendEvent(SceneEventCode.BroadcastMessage, parameters);
         }
     }
 }

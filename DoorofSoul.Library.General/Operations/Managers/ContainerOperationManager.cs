@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             operationTable = new Dictionary<ContainerOperationCode, ContainerOperationHandler>
             {
                 { ContainerOperationCode.FetchData, new FetchDataResolver(container) },
-                { ContainerOperationCode.SendMessage, new SendMessageHandler(container) }
+                { ContainerOperationCode.Say, new SayHandler(container) }
             };
         }
 
@@ -88,15 +88,13 @@ namespace DoorofSoul.Library.General.Operations.Managers
             };
             SendOperation(ContainerOperationCode.FetchData, fetchDataParameters, ContainerCommunicationChannel.Answer);
         }
-        public void SendMessageOperation(MessageTargetType targetType, string specificTarget, string message)
+        public void Say(string message)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)SendMessageParameterCode.MessageTargetType, (byte)targetType },
-                { (byte)SendMessageParameterCode.SpecificTarget, specificTarget },
-                { (byte)SendMessageParameterCode.Message, message }
+                { (byte)SayParameterCode.Message, message }
             };
-            SendOperation(ContainerOperationCode.SendMessage, parameters, ContainerCommunicationChannel.Answer);
+            SendOperation(ContainerOperationCode.Say, parameters, ContainerCommunicationChannel.Answer);
         }
     }
 }

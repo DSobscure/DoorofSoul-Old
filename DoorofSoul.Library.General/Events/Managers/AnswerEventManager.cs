@@ -8,10 +8,10 @@ namespace DoorofSoul.Library.General.Events.Managers
 {
     public class AnswerEventManager
     {
-        protected readonly Dictionary<AnswerEventCode, AnswerEventHandler> eventTable;
+        private readonly Dictionary<AnswerEventCode, AnswerEventHandler> eventTable;
         protected readonly Answer answer;
 
-        public AnswerEventManager(Answer answer)
+        internal AnswerEventManager(Answer answer)
         {
             this.answer = answer;
             eventTable = new Dictionary<AnswerEventCode, AnswerEventHandler>
@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             };
         }
 
-        public void Operate(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void Operate(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (eventTable.ContainsKey(eventCode))
             {

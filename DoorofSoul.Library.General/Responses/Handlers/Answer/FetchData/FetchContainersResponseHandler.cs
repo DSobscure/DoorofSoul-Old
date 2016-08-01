@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 2)
+                        if (parameters.Count != 3)
                         {
                             LibraryLog.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -48,7 +48,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 {
                     int containerID = (int)parameters[(byte)FetchContainersResponseParameterCode.ContainerID];
                     int entityID = (int)parameters[(byte)FetchContainersResponseParameterCode.EntityID];
-                    General.Container container = new General.Container(containerID, entityID);
+                    string containerName = (string)parameters[(byte)FetchContainersResponseParameterCode.ContainerName];
+                    General.Container container = new General.Container(containerID, entityID, containerName);
                     answer.LoadContainers(new List<General.Container> { container });
                     container.ContainerOperationManager.FetchEntity();
                     return true;

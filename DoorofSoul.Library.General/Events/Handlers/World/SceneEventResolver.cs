@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.World
 {
-    partial class SceneEventResolver : WorldEventHandler
+    internal class SceneEventResolver : WorldEventHandler
     {
         public SceneEventResolver(General.World world) : base(world)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.World
             }
         }
 
-        public override bool Handle(WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {

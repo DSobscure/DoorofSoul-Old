@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Answer
 {
-    public class ContainerEventResolver : AnswerEventHandler
+    internal class ContainerEventResolver : AnswerEventHandler
     {
-        public ContainerEventResolver(General.Answer answer) : base(answer)
+        internal ContainerEventResolver(General.Answer answer) : base(answer)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
             }
         }
 
-        public override bool Handle(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {

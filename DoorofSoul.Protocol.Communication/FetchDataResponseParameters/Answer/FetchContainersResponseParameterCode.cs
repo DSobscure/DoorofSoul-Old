@@ -3,6 +3,7 @@
     public enum FetchContainersResponseParameterCode : byte
     {
         ContainerID,
-        EntityID
+        EntityID,
+        ContainerName
     }
 }

@@ -1,9 +1,7 @@
 ﻿namespace DoorofSoul.Protocol.Communication.OperationParameters.Container
 {
-    public enum SendMessageParameterCode : byte
+    public enum SayParameterCode : byte
     {
-        MessageTargetType,
-        SpecificTarget,
         Message
     }
 }

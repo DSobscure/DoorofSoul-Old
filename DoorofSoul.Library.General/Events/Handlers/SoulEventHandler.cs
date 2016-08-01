@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers
 {
-    public abstract class SoulEventHandler
+    internal abstract class SoulEventHandler
     {
         protected General.Soul soul;
 
@@ -12,7 +12,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             this.soul = soul;
         }
 
-        public virtual bool Handle(SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -25,6 +25,6 @@ namespace DoorofSoul.Library.General.Events.Handlers
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
     }
 }

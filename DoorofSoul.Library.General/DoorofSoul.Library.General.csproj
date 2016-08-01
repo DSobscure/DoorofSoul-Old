@@ -64,6 +64,7 @@
     <Compile Include="Events\Handlers\Player\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Player\InformDataResolver.cs" />
     <Compile Include="Events\Handlers\SceneEventHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\BroadcastMessageHandler.cs" />
     <Compile Include="Events\Handlers\Scene\ContainerEventResolver.cs" />
     <Compile Include="Events\Handlers\Scene\EntityEventResolver.cs" />
     <Compile Include="Events\Handlers\Scene\InformDataHandler.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
-    <Compile Include="Operations\Handlers\Container\SendMessageHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\SayHandler.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataResolver.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Responses\Managers\SoulResponseManager.cs" />
     <Compile Include="Responses\Managers\WorldResponseManager.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="SceneElements\MessageLog.cs" />
     <Compile Include="Soul.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldCommunicationInterface.cs" />

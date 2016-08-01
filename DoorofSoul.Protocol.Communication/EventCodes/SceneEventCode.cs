@@ -5,5 +5,6 @@
         ContainerEvent,
         EntityEvent,
         InformData,
+        BroadcastMessage
     }
 }

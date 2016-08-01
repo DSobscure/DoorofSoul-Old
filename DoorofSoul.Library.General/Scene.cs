@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
+using DoorofSoul.Library.General.SceneElements;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,12 @@ namespace DoorofSoul.Library.General
         #endregion
 
         #region communication
-        public SceneEventManager SceneEventManager { get; set; }
-        public SceneOperationManager SceneOperationManager { get; set; }
-        internal SceneResponseManager SceneResponseManager { get; set; }
+        public SceneEventManager SceneEventManager { get; private set; }
+        public SceneOperationManager SceneOperationManager { get; private set; }
+        internal SceneResponseManager SceneResponseManager { get;  private set; }
         #endregion
+
+        public MessageLog MessageLog { get; protected set; }
 
         public Scene(int sceneID, string sceneName, int worldID)
         {
@@ -51,6 +54,7 @@ namespace DoorofSoul.Library.General
             SceneEventManager = new SceneEventManager(this);
             SceneOperationManager = new SceneOperationManager(this);
             SceneResponseManager = new SceneResponseManager(this);
+            MessageLog = new MessageLog();
         }
         public void BindWorld(World world)
         {

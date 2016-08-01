@@ -60,5 +60,16 @@ namespace DoorofSoul.Library
                 }
             }
         }
+
+        public override void SendSceneEvent(Scene scene, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            foreach (Container container in scene.Containers)
+            {
+                if (!container.IsEmptyContainer)
+                {
+                    container.FirstSoul.Answer.Player.PlayerCommunicationInterface.SendWorldEvent(world.WorldID, eventCode, parameters);
+                }
+            }
+        }
     }
 }

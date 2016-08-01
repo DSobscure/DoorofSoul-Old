@@ -54,7 +54,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override Container Find(int containerID)
         {
             string sqlString = @"SELECT  
-                EntityID
+                EntityID, ContainerName
                 from Containers WHERE ContainerID = @containerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -64,8 +64,9 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     if (reader.Read())
                     {
                         int entityID = reader.GetInt32(0);
+                        string containerName = reader.IsDBNull(1) ? null : reader.GetString(1);
                         Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Find(entityID);
-                        Container container = new Container(containerID, entityID);
+                        Container container = new Container(containerID, entityID, containerName);
                         container.BindEntity(entity);
                         return container;
                     }
@@ -80,7 +81,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override List<Container> List()
         {
             string sqlString = @"SELECT  
-                ContainerID, EntityID
+                ContainerID, EntityID, ContainerName
                 from Containers;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -91,8 +92,9 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     {
                         int containerID = reader.GetInt32(0);
                         int entityID = reader.GetInt32(1);
+                        string containerName = reader.IsDBNull(2) ? null : reader.GetString(2);
                         Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Find(entityID);
-                        Container container = new Container(containerID, entityID);
+                        Container container = new Container(containerID, entityID, containerName);
                         container.BindEntity(entity);
                         containers.Add(container);
                     }

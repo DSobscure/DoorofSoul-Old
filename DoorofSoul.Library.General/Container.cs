@@ -12,6 +12,7 @@ namespace DoorofSoul.Library.General
         #region properties
         public int ContainerID { get; protected set; }
         public int EntityID { get; protected set; }
+        public string ContainerName { get; protected set; }
         protected Dictionary<int, Soul> soulDictionary;
         public IEnumerable<Soul> Souls { get { return soulDictionary.Values; } }
         public bool IsEmptyContainer { get { return soulDictionary.Count == 0; } }
@@ -39,10 +40,11 @@ namespace DoorofSoul.Library.General
         internal ContainerResponseManager ContainerResponseManager { get; set; }
         #endregion
 
-        public Container(int containerID, int entityID)
+        public Container(int containerID, int entityID, string containerName)
         {
             ContainerID = containerID;
             EntityID = entityID;
+            ContainerName = containerName;
             soulDictionary = new Dictionary<int, Soul>();
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);

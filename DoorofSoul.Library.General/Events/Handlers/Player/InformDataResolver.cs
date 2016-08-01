@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Player
 {
-    public class InformDataResolver : PlayerEventHandler
+    internal class InformDataResolver : PlayerEventHandler
     {
         protected readonly Dictionary<PlayerInformDataCode, InformDataHandler> informTable;
 
-        public InformDataResolver(General.Player player) : base(player)
+        internal InformDataResolver(General.Player player) : base(player)
         {
             informTable = new Dictionary<PlayerInformDataCode, InformDataHandler>
             {
@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             }
         }
 
-        public override bool Handle(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {

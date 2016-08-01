@@ -83,7 +83,9 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
     {
         if(soul.IsActivate)
         {
-            if(soul.Containers.First().Entity.LocatedScene == null)
+            Global.Seat.MainSoul = soul;
+            Global.Seat.MainContainer = soul.Containers.First();
+            if (soul.Containers.First().Entity.LocatedScene == null)
             {
                 horizon.FetchMainScene(soul.Containers.First().Entity.LocatedSceneID);
             }

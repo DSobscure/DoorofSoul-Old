@@ -7,10 +7,10 @@ namespace DoorofSoul.Library.General.Events.Managers
 {
     public class WorldEventManager
     {
-        protected readonly Dictionary<WorldEventCode, WorldEventHandler> eventTable;
+        private readonly Dictionary<WorldEventCode, WorldEventHandler> eventTable;
         protected readonly World world;
 
-        public WorldEventManager(World world)
+        internal WorldEventManager(World world)
         {
             this.world = world;
             eventTable = new Dictionary<WorldEventCode, WorldEventHandler>
@@ -35,9 +35,13 @@ namespace DoorofSoul.Library.General.Events.Managers
             }
         }
 
-        public void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void SendEvent(WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             world.WorldCommunicationInterface.SendEvent(eventCode, parameters);
+        }
+        internal void SendSceneEvent(Scene scene, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            world.WorldCommunicationInterface.SendSceneEvent(scene, eventCode, parameters);
         }
 
         public void ErrorInform(string title, string message)

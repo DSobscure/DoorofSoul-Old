@@ -11,6 +11,7 @@ namespace DoorofSoul.Client.Global
 
         public static Player Player { get; private set; }
         public static Horizon Horizon { get; private set; }
+        public static Seat Seat { get; private set; }
 
         static Global()
         {
@@ -22,7 +23,7 @@ namespace DoorofSoul.Client.Global
             ClientPlayerCommunicationInterface communicationInterface = new ClientPlayerCommunicationInterface(SystemManager, PhotonService, Horizon);
             Player = new Player(communicationInterface);
             communicationInterface.BindPlayer(Player);
-            
+            Seat = new Seat();
         }
     }
 }

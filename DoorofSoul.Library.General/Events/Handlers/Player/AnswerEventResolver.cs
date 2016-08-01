@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Player
 {
-    public class AnswerEventResolver : PlayerEventHandler
+    internal class AnswerEventResolver : PlayerEventHandler
     {
-        public AnswerEventResolver(General.Player player) : base(player)
+        internal AnswerEventResolver(General.Player player) : base(player)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             }
         }
 
-        public override bool Handle(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {

@@ -7,10 +7,10 @@ namespace DoorofSoul.Library.General.Events.Managers
 {
     public class PlayerEventManager
     {
-        protected readonly Dictionary<PlayerEventCode, PlayerEventHandler> eventTable;
+        private readonly Dictionary<PlayerEventCode, PlayerEventHandler> eventTable;
         protected readonly Player player;
 
-        public PlayerEventManager(Player player)
+        internal PlayerEventManager(Player player)
         {
             this.player = player;
             eventTable = new Dictionary<PlayerEventCode, PlayerEventHandler>
@@ -35,7 +35,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             }
         }
 
-        public void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
+        internal void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             player.PlayerCommunicationInterface.SendEvent(eventCode, parameters);
         }

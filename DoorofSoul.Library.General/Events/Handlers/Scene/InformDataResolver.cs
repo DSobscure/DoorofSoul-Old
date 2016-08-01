@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Scene
 {
-    public class InformDataResolver : SceneEventHandler
+    internal class InformDataResolver : SceneEventHandler
     {
         protected readonly Dictionary<SceneInformDataCode, InformDataHandler> informTable;
 
-        public InformDataResolver(General.Scene scene) : base(scene)
+        internal InformDataResolver(General.Scene scene) : base(scene)
         {
             informTable = new Dictionary<SceneInformDataCode, InformDataHandler>
             {
@@ -20,7 +20,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -34,7 +34,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
             }
         }
 
-        public override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {

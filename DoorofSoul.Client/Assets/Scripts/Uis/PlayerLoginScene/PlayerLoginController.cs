@@ -38,6 +38,7 @@ public class PlayerLoginController : MonoBehaviour, IEventProvider
     }
     public void OnActiveAnswer(Answer answer)
     {
+        Global.Seat.MainAnswer = answer;
         SceneManager.LoadScene("PlayerAnswerScene");
     }
 }

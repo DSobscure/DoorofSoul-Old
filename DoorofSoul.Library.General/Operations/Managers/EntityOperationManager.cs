@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.Operations.Handlers.Entity;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
+using DoorofSoul.Protocol.Communication.OperationParameters.Entity;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Managers
@@ -17,6 +18,8 @@ namespace DoorofSoul.Library.General.Operations.Managers
             operationTable = new Dictionary<EntityOperationCode, EntityOperationHandler>
             {
                 { EntityOperationCode.FetchData, new FetchDataResolver(entity) },
+                { EntityOperationCode.Rotate, new RotateHandler(entity) },
+                { EntityOperationCode.Move, new MoveHandler(entity) },
             };
         }
 
@@ -44,6 +47,23 @@ namespace DoorofSoul.Library.General.Operations.Managers
                 { (byte)EntityOperationParameterCode.Parameters, parameters }
             };
             entity.LocatedScene.SceneOperationManager.SendOperation(SceneOperationCode.EntityOperation, eventData);
+        }
+
+        public void Rotate(int direction)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)RotateParameterCode.Direction, direction }
+            };
+            SendOperation(EntityOperationCode.Rotate, parameters);
+        }
+        public void Move(int direction)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)MoveParameterCode.Direction, direction }
+            };
+            SendOperation(EntityOperationCode.Move, parameters);
         }
     }
 }

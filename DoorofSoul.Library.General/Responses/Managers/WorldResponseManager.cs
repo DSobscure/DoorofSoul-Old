@@ -40,10 +40,5 @@ namespace DoorofSoul.Library.General.Responses.Managers
         {
             world.WorldCommunicationInterface.SendResponse(operationCode, returnCode, degugMessage, parameters);
         }
-
-        public void FetchSceneResponse(int sceneID, string sceneName)
-        {
-            world.WorldCommunicationInterface.LoadScene(sceneID, sceneName);
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DoorofSoul.Protocol.Communication.OperationParameters.Answer
 {
-    public enum CreateSoulOperationParameterCode : byte
+    public enum CreateSoulParameterCode : byte
     {
         SoulName
     }

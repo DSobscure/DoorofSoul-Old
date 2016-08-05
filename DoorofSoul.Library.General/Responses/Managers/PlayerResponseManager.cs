@@ -67,5 +67,9 @@ namespace DoorofSoul.Library.General.Responses.Managers
         {
             player.PlayerCommunicationInterface.LoadWorld(worldID, worldName);
         }
+        public void FetchSceneResponse(int sceneID, string sceneName, int worldID)
+        {
+            player.PlayerCommunicationInterface.LoadScene(sceneID, sceneName, worldID);
+        }
     }
 }

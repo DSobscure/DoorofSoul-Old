@@ -58,7 +58,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)DeleteSoulOperationParameterCode.SoulID, soulID }
+                { (byte)DeleteSoulParameterCode.SoulID, soulID }
             };
             SendOperation(AnswerOperationCode.DeleteSoul, parameters);
         }
@@ -66,7 +66,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)CreateSoulOperationParameterCode.SoulName, soulName }
+                { (byte)CreateSoulParameterCode.SoulName, soulName }
             };
             SendOperation(AnswerOperationCode.CreateSoul, parameters);
         }

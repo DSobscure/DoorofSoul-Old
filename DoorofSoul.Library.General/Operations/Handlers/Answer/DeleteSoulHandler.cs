@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             if (base.Handle(operationCode, parameters))
             {
                 string debugMessage;
-                int soulID = (int)parameters[(byte)DeleteSoulOperationParameterCode.SoulID];
+                int soulID = (int)parameters[(byte)DeleteSoulParameterCode.SoulID];
                 if (answer.ContainsSoul(soulID))
                 {
                     if (answer.Player.PlayerCommunicationInterface.DeleteSoul(answer, soulID))

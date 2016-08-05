@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.Operations.Handlers.Player;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
+using DoorofSoul.Protocol.Communication.FetchDataParameters.Player;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using System.Collections.Generic;
@@ -93,6 +94,19 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 { (byte)FetchDataParameterCode.FetchDataCode, PlayerFetchDataCode.Worlds },
                 { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
+            };
+            SendOperation(PlayerOperationCode.FetchData, parameters);
+        }
+        public void FetchScene(int sceneID)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchSceneParameterCode.SceneID, sceneID }
+            };
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, PlayerFetchDataCode.Scene },
+                { (byte)FetchDataParameterCode.Parameters, fetchDataParameters }
             };
             SendOperation(PlayerOperationCode.FetchData, parameters);
         }

@@ -4,6 +4,7 @@
     {
         SystemVersion,
         Answer,
-        Worlds
+        Worlds,
+        Scene
     }
 }

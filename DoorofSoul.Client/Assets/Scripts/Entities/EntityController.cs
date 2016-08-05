@@ -38,12 +38,12 @@ public class EntityController : MonoBehaviour, IEntityController
         entityRigidbody.angularVelocity = (Vector3)entity.AngularVelocity;
     }
 
-    public void StartRotate(int direction)
+    public void StartRotate(float velocity)
     {
-        entityRigidbody.angularVelocity = new Vector3(0, direction * rotateSpeed, 0);
+        entityRigidbody.angularVelocity = new Vector3(0, velocity, 0);
     }
-    public void StartMove(int direction)
+    public void StartMove(float angularVelocity)
     {
-        entityRigidbody.velocity = entityRigidbody.transform.forward * direction * moveSpeed;
+        entityRigidbody.velocity = entityRigidbody.transform.forward * angularVelocity;
     }
 }

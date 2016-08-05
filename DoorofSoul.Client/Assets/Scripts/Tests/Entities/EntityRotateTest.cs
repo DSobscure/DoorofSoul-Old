@@ -12,7 +12,7 @@ public class EntityRotateTest : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        entity = new Entity(1, "TestEntity", -1, new EntitySpaceProperties
+        entity = new Entity(1, "TestContainer", -1, new EntitySpaceProperties
         {
             velocity = new DSVector3 { x = 0, y = 0, z =0 },
             angularVelocity = new DSVector3 { x = 0, y = 0, z = 0 },
@@ -26,7 +26,7 @@ public class EntityRotateTest : MonoBehaviour
         IEntityController entityController = gameObject.GetComponent<IEntityController>();
         entity.BindEntityController(entityController);
         Camera.main.transform.SetParent(entity.EntityController.GameObject.transform);
-        Camera.main.transform.localPosition = Vector3.zero;
+        Camera.main.transform.localPosition = new Vector3(0, 1, -1);
         Camera.main.transform.localRotation = Quaternion.identity;
     }
 	

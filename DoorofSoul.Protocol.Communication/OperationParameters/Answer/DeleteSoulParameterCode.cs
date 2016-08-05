@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DoorofSoul.Protocol.Communication.OperationParameters.Answer
 {
-    public enum DeleteSoulOperationParameterCode : byte
+    public enum DeleteSoulParameterCode : byte
     {
         SoulID
     }

@@ -7,7 +7,7 @@ namespace DoorofSoul.Library.General.IControllers
         GameObject GameObject { get; }
         Entity Entity { get; }
         void BindEntity(Entity entity);
-        void StartMove(int direction);
-        void StartRotate(int direction);
+        void StartMove(float velocity);
+        void StartRotate(float angularVelocity);
     }
 }

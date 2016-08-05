@@ -105,5 +105,15 @@ namespace DoorofSoul.Client.Library.General
             systemManager.CurrentServerVersion = serverVersion;
             systemManager.CurrentClientVersion = clientVersion;
         }
+
+        public override Scene FindScene(int sceneID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void LoadScene(int sceneID, string sceneName, int worldID)
+        {
+            horizon.LoadScene(new Scene(sceneID, sceneName, worldID));
+        }
     }
 }

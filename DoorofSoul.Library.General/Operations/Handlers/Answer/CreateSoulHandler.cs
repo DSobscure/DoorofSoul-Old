@@ -30,7 +30,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             if (base.Handle(operationCode, parameters))
             {
                 string debugMessage;
-                string soulName = (string)parameters[(byte)CreateSoulOperationParameterCode.SoulName];
+                string soulName = (string)parameters[(byte)CreateSoulParameterCode.SoulName];
                 if (answer.SoulCount < answer.SoulCountLimit)
                 {
                     if (answer.Player.PlayerCommunicationInterface.CreateSoul(answer, soulName))

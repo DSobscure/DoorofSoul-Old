@@ -10,6 +10,8 @@ public class SceneController : MonoBehaviour, IEventProvider
 {
     [SerializeField]
     private PlayerPanel playerPanelPrefab;
+    [SerializeField]
+    private ViewController viewControllerPrefab;
     private Canvas canvas;
     private DoorofSoul.Library.General.Scene scene;
     void Awake()
@@ -22,9 +24,11 @@ public class SceneController : MonoBehaviour, IEventProvider
     }
     void OnSceneLoad(UnityEngine.SceneManagement.Scene unityScene, LoadSceneMode mode)
     {
+        Debug.Log("Load!");
         if (scene != null)
         {
             scene.OnEntityEnter -= InstantiateEntity;
+            scene.OnEntityEnter -= AttachEntity;
             scene.OnEntityExit -= DestroyEntity;
         }
         scene = Global.Horizon.MainScene;
@@ -33,7 +37,10 @@ public class SceneController : MonoBehaviour, IEventProvider
         {
             scene.SceneOperationManager.FetchEntities();
             scene.OnEntityEnter += InstantiateEntity;
+            scene.OnEntityEnter += AttachEntity;
             scene.OnEntityExit += DestroyEntity;
+            ViewController viewController = Instantiate(viewControllerPrefab);
+            viewController.transform.SetParent(GameObject.Find("Controllers").transform);
             foreach (Entity entity in scene.Entities)
             {
                 InstantiateEntity(entity);
@@ -63,11 +70,22 @@ public class SceneController : MonoBehaviour, IEventProvider
                 gameObject.transform.rotation = Quaternion.Euler((Vector3)entity.Rotation);
                 IEntityController entityController = gameObject.GetComponent<IEntityController>();
                 entity.BindEntityController(entityController);
+                if (Global.Seat.MainContainer.EntityID == entity.EntityID)
+                {
+                    Camera.main.transform.SetParent(entity.EntityController.GameObject.transform);
+                }
             }
         }
         else
         {
             SystemManager.ErrorFormat("EntityPrefabs {0} Not Found", entity.EntityName);
+        }
+    }
+    private void AttachEntity(Entity entity)
+    {
+        if(Global.Seat.MainContainer.EntityID == entity.EntityID)
+        {
+            Global.Seat.MainContainer.BindEntity(entity);
         }
     }
     private void DestroyEntity(Entity entity)

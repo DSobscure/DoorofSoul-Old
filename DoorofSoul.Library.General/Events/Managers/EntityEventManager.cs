@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.Events.Handlers.Entity;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Scene;
+using DoorofSoul.Protocol.Communication.EventParameters.Entity;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Managers
@@ -16,7 +17,9 @@ namespace DoorofSoul.Library.General.Events.Managers
             this.entity = entity;
             eventTable = new Dictionary<EntityEventCode, EntityEventHandler>
             {
-                { EntityEventCode.InformData, new InformDataResolver(entity) }
+                { EntityEventCode.InformData, new InformDataResolver(entity) },
+                { EntityEventCode.StartRotate, new StartRotateHandler(entity) },
+                { EntityEventCode.StartMove, new StartMoveHandler(entity) },
             };
         }
 
@@ -49,6 +52,22 @@ namespace DoorofSoul.Library.General.Events.Managers
         public void ErrorInform(string title, string message)
         {
             entity.LocatedScene.SceneEventManager.ErrorInform(title, message);
+        }
+        public void StartRotate(float angularVelocity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)StartRotateParameterCode.AngularVelocity, angularVelocity }
+            };
+            SendEvent(EntityEventCode.StartRotate, parameters);
+        }
+        public void StartMove(float velocity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)StartMoveParameterCode.Velocity, velocity }
+            };
+            SendEvent(EntityEventCode.StartMove, parameters);
         }
     }
 }

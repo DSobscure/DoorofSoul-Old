@@ -1,7 +1,8 @@
-﻿using System;
+﻿using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DoorofSoul.Library.General.SceneElements;
 
 public class MessageContentPanel : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,10 +10,14 @@ public class MessageContentPanel : MonoBehaviour, IDragHandler, IPointerDownHand
     private bool canDrag;
     private float originMousePositionX;
     private float originPositionX;
+    private ScrollTextArea messageContent;
+    private Text heightHelperText;
 
     void Start ()
     {
         self = GetComponent<RectTransform>();
+        messageContent = transform.FindChild("ScrollTextArea").GetComponent<ScrollTextArea>();
+        heightHelperText = transform.FindChild("HeightHelperText").GetComponent<Text>();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -34,5 +39,12 @@ public class MessageContentPanel : MonoBehaviour, IDragHandler, IPointerDownHand
     public void OnPointerUp(PointerEventData eventData)
     {
         canDrag = false;
+    }
+    public void ShowMessage(string text)
+    {
+        heightHelperText.text = text;
+        messageContent.textAreaSize.y = heightHelperText.preferredHeight;
+        messageContent.textAreaPosition.y = messageContent.size.y - heightHelperText.preferredHeight + heightHelperText.fontSize + heightHelperText.lineSpacing;
+        messageContent.ShowText(text);
     }
 }

@@ -10,6 +10,7 @@ namespace DoorofSoul.Protocol.Language.UILanguages
             {
                 #region player panel
                 { "Unfold", "展開" },
+                { "Fold", "摺疊" },
                 { "Hold", "舉牌" },
                 { "Send", "送出" },
                 { "Source", "來源" },

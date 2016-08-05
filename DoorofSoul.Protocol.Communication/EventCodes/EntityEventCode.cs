@@ -3,5 +3,7 @@
     public enum EntityEventCode : byte
     {
         InformData,
+        StartRotate,
+        StartMove,
     }
 }

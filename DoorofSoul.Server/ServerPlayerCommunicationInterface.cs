@@ -40,6 +40,11 @@ namespace DoorofSoul.Server
             Application.Log.ErrorFormat("PlayerErrorInform PlayerID: {0} Title: {1}, Message: {2}", player.PlayerID, title, message);
         }
 
+        public override Scene FindScene(int sceneID)
+        {
+            return Hexagram.Instance.Nature.FindScene(sceneID);
+        }
+
         public override void GetSystemVersion(out string serverVersion, out string clientVersion)
         {
             serverVersion = Application.ServerInstance.SystemConfiguration.ServerVersion;
@@ -49,6 +54,11 @@ namespace DoorofSoul.Server
         public override List<World> ListWorlds()
         {
             return Hexagram.Instance.Nature.ListWorlds();
+        }
+
+        public override void LoadScene(int sceneID, string sceneName, int worldID)
+        {
+            throw new NotImplementedException();
         }
 
         public override void LoadWorld(int worldID, string worldName)

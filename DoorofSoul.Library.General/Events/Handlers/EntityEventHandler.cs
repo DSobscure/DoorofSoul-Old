@@ -25,6 +25,6 @@ namespace DoorofSoul.Library.General.Events.Handlers
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
     }
 }

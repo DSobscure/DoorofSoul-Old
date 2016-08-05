@@ -1,7 +1,8 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Protocol.Language;
-using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using DoorofSoul.Library.General;
@@ -36,7 +37,7 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
     #endregion
     #endregion
     #region message content panel
-    private RectTransform messageContentPanel;
+    private MessageContentPanel messageContentPanel;
     #endregion
 
     void Awake()
@@ -52,24 +53,35 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
     {
         SetupStatusPanel();
         SetupSkillPanel();
+        SetupMessageContentPanel();
         SetupMessageControlPanel();
         SetupGeneralPanel();
-        SetupMessageContentPanel();
     }
 
     public void RegisterEvents()
     {
         scene.MessageLog.OnReceiveNewMessage += OnReceiveNewMessage;
+        scene.MessageLog.OnMessageChange += OnMessageChange;
     }
 
     public void EraseEvents()
     {
         scene.MessageLog.OnReceiveNewMessage -= OnReceiveNewMessage;
+        scene.MessageLog.OnMessageChange -= OnMessageChange;
     }
 
     private void OnReceiveNewMessage(MessageInformation messageInformation)
     {
         latestMessageText.text = string.Format("[{0}]{1}: {2}", messageInformation.messageSourceType.ToString(), messageInformation.sourceName, messageInformation.message);
+    }
+    private void OnMessageChange(List<MessageInformation> messages)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach(MessageInformation message in messages)
+        {
+            stringBuilder.AppendLine(string.Format("[{0}]{1}: {2}", message.messageSourceType.ToString(), message.sourceName, message.message));
+        }
+        messageContentPanel.ShowMessage(stringBuilder.ToString());
     }
 
     private void SetupStatusPanel()
@@ -87,7 +99,7 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
         messageSourceFilterDropdown = messageControlPanel.transform.FindChild("MessageSourceFilterDropdown").GetComponent<Dropdown>();
         messageSourceFilterDropdown.transform.FindChild("Label").GetComponent<Text>().text = UILanguageSeletor.Instance[SystemManager.SystemLanguage]["Source"];
         foldMessageContentButton = messageControlPanel.transform.FindChild("FoldMessageContentButton").GetComponent<Button>();
-        foldMessageContentButton.GetComponentInChildren<Text>().text = UILanguageSeletor.Instance[SystemManager.SystemLanguage]["Unfold"];
+        FoldMessageContent();
     }
     private void SetupGeneralPanel()
     {
@@ -114,6 +126,21 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
     }
     private void SetupMessageContentPanel()
     {
-        messageContentPanel = transform.FindChild("MessageContentPanel").GetComponent<RectTransform>();
+        messageContentPanel = transform.FindChild("MessageContentPanel").GetComponent<MessageContentPanel>();
+    }
+
+    private void FoldMessageContent()
+    {
+        foldMessageContentButton.GetComponentInChildren<Text>().text = UILanguageSeletor.Instance[SystemManager.SystemLanguage]["Unfold"];
+        foldMessageContentButton.onClick.RemoveAllListeners();
+        foldMessageContentButton.onClick.AddListener(() => UnfoldMessageContent());
+        messageContentPanel.gameObject.SetActive(false);
+    }
+    private void UnfoldMessageContent()
+    {
+        foldMessageContentButton.GetComponentInChildren<Text>().text = UILanguageSeletor.Instance[SystemManager.SystemLanguage]["Fold"];
+        foldMessageContentButton.onClick.RemoveAllListeners();
+        foldMessageContentButton.onClick.AddListener(() => FoldMessageContent());
+        messageContentPanel.gameObject.SetActive(true);
     }
 }

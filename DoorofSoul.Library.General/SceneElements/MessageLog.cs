@@ -17,6 +17,8 @@ namespace DoorofSoul.Library.General.SceneElements
         #region events
         private event Action<MessageInformation> onReceiveNewMessage;
         public event Action<MessageInformation> OnReceiveNewMessage { add { onReceiveNewMessage += value; } remove { onReceiveNewMessage -= value; } }
+        private event Action<List<MessageInformation>> onMessageChange;
+        public event Action<List<MessageInformation>> OnMessageChange { add { onMessageChange += value; } remove { onMessageChange -= value; } }
         #endregion
 
         public List<MessageInformation> Messages { get; protected set; }
@@ -30,6 +32,11 @@ namespace DoorofSoul.Library.General.SceneElements
         {
             Messages.Add(newMessageInformation);
             onReceiveNewMessage?.Invoke(newMessageInformation);
+            if(Messages.Count > 500)
+            {
+                Messages.RemoveRange(0, 50);
+            }
+            onMessageChange?.Invoke(Messages);
         }
     }
 }

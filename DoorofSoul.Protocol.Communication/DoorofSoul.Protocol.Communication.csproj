@@ -51,6 +51,8 @@
     <Compile Include="EventCodes\WorldEventCode.cs" />
     <Compile Include="EventParameters\Answer\ContainerEventParameterCode.cs" />
     <Compile Include="EventParameters\Answer\SoulEventParameterCode.cs" />
+    <Compile Include="EventParameters\Entity\StartMoveParameterCode.cs" />
+    <Compile Include="EventParameters\Entity\StartRotateParameterCode.cs" />
     <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\BroadcastMessageParameterCode.cs" />
@@ -69,7 +71,7 @@
     <Compile Include="FetchDataResponseParameters\Container\FetchEntityResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchAnswerResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchWorldsResponseParameterCode.cs" />
-    <Compile Include="FetchDataResponseParameters\World\FetchSceneResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Player\FetchSceneResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchSystemVersionResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Scene\FetchEntitiesResponseParameterCode.cs" />
     <Compile Include="InformDataCodes\AnswerInformDataCode.cs" />
@@ -86,7 +88,7 @@
     <Compile Include="EventCodes\PlayerEventCode.cs" />
     <Compile Include="EventParameters\InformDataEventParameterCode.cs" />
     <Compile Include="FetchDataCodes\PlayerFetchDataCode.cs" />
-    <Compile Include="FetchDataParameters\World\FetchSceneParameterCode.cs" />
+    <Compile Include="FetchDataParameters\Player\FetchSceneParameterCode.cs" />
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformEntityExitParameterCode.cs" />
@@ -95,11 +97,13 @@
     <Compile Include="OperationCodes\WorldOperationCode.cs" />
     <Compile Include="OperationParameters\Answer\ActivateSoulOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\ContainerOperationParameterCode.cs" />
-    <Compile Include="OperationParameters\Answer\CreateSoulOperationParameterCode.cs" />
-    <Compile Include="OperationParameters\Answer\DeleteSoulOperationParameterCode.cs" />
+    <Compile Include="OperationParameters\Answer\CreateSoulParameterCode.cs" />
+    <Compile Include="OperationParameters\Answer\DeleteSoulParameterCode.cs" />
     <Compile Include="OperationParameters\Answer\SoulOperationParameterCode.cs" />
     <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
     <Compile Include="OperationParameters\Container\SayParameterCode.cs" />
+    <Compile Include="OperationParameters\Entity\MoveParameterCode.cs" />
+    <Compile Include="OperationParameters\Entity\RotateParameterCode.cs" />
     <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
@@ -122,22 +126,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EventParameters\Container\" />
-    <Folder Include="EventParameters\Entity\" />
     <Folder Include="EventParameters\Soul\" />
     <Folder Include="FetchDataParameters\Answer\" />
     <Folder Include="FetchDataParameters\Container\" />
     <Folder Include="FetchDataParameters\Entity\" />
-    <Folder Include="FetchDataParameters\Player\" />
     <Folder Include="FetchDataParameters\Scene\" />
     <Folder Include="FetchDataParameters\Soul\" />
+    <Folder Include="FetchDataParameters\World\" />
     <Folder Include="FetchDataResponseParameters\Entity\" />
     <Folder Include="FetchDataResponseParameters\Soul\" />
+    <Folder Include="FetchDataResponseParameters\World\" />
     <Folder Include="InformDataParameters\Answer\" />
     <Folder Include="InformDataParameters\Entity\" />
     <Folder Include="InformDataParameters\Player\" />
     <Folder Include="InformDataParameters\Soul\" />
     <Folder Include="InformDataParameters\World\" />
-    <Folder Include="OperationParameters\Entity\" />
     <Folder Include="OperationParameters\Soul\" />
     <Folder Include="ResponseParameters\Container\" />
     <Folder Include="ResponseParameters\Entity\" />

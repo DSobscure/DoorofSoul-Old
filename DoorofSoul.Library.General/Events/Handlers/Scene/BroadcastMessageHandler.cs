@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
         {
             if (parameter.Count != 4)
             {
-                debugMessage = string.Format("BroadcastMessage Parameter Error Parameter Count: {0}", parameter.Count);
+                debugMessage = string.Format("BroadcastMessage Event Parameter Error Parameter Count: {0}", parameter.Count);
                 return false;
             }
             else
@@ -48,7 +48,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("BroadcastMessage Parameter Cast Error");
+                    LibraryLog.ErrorFormat("BroadcastMessage Event Parameter Cast Error");
                     LibraryLog.ErrorFormat(ex.Message);
                     LibraryLog.ErrorFormat(ex.StackTrace);
                     return false;

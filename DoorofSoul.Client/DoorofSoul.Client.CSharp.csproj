@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Camera\ViewController.cs" />
     <Compile Include="Assets\Scripts\Communications\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\Entities\EntityController.cs" />
+    <Compile Include="Assets\Scripts\Input\EntityInputController.cs" />
     <Compile Include="Assets\Scripts\Systems\ErrorInformController.cs" />
     <Compile Include="Assets\Scripts\Systems\EternalObject.cs" />
     <Compile Include="Assets\Scripts\Systems\SceneController.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\Tests\Camera\ViewFollowMouse.cs" />
     <Compile Include="Assets\Scripts\Tests\Entities\AngularVelocityTest.cs" />
     <Compile Include="Assets\Scripts\Tests\Entities\EntityRotateTest.cs" />
+    <Compile Include="Assets\Scripts\Tests\UI\RichTextBoxTest.cs" />
     <Compile Include="Assets\Scripts\Tests\UI\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\Tests\UI\ViewMaskTest.cs" />
     <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginUI.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerPanel\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerPanel\PlayerPanel.cs" />
+    <Compile Include="Assets\Scripts\Uis\ScrollTextArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />

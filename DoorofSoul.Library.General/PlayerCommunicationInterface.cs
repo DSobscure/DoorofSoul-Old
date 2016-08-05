@@ -23,7 +23,9 @@ namespace DoorofSoul.Library.General
         public abstract void GetSystemVersion(out string serverVersion, out string clientVersion);
         public abstract void UpdateSystemVersion(string serverVersion, string clientVersion);
         public abstract List<World> ListWorlds();
+        public abstract Scene FindScene(int sceneID);
         public abstract void LoadWorld(int worldID, string worldName);
+        public abstract void LoadScene(int sceneID, string sceneName, int worldID);
         public abstract void Logout();
         public abstract bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode);
         public abstract bool DeleteSoul(Answer answer, int soulID);

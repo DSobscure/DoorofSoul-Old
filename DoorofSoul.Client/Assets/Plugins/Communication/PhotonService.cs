@@ -1,11 +1,12 @@
-﻿using DoorofSoul.Protocol.Communication.OperationCodes;
+﻿using DoorofSoul.Client.Communication.Events;
+using DoorofSoul.Client.Communication.Responses;
+using DoorofSoul.Library.General;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters;
 using ExitGames.Client.Photon;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using DoorofSoul.Client.Communication.Events;
-using DoorofSoul.Client.Communication.Responses;
 
 namespace DoorofSoul.Client.Communication
 {
@@ -53,6 +54,8 @@ namespace DoorofSoul.Client.Communication
 
             eventResolver = new EventResolver(this);
             responseResolver = new ResponseResolver(this);
+
+            RegisterTypes();
         }
 
         public void DebugReturn(DebugLevel level, string message)
@@ -170,6 +173,11 @@ namespace DoorofSoul.Client.Communication
             {
                 DebugReturn(DebugLevel.WARNING, "Communication Still Not Establish Encryption");
             }
+        }
+
+        private void RegisterTypes()
+        {
+            PhotonPeer.RegisterType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
         }
     }
 }

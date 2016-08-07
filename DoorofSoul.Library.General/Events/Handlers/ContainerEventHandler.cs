@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Container Event Parameter Error On {0} ContainerID: {1} Debug Message: {2}", eventCode, container.ContainerID, debugMessage);
+                LibraryInstance.ErrorFormat("Container Event Parameter Error On {0} ContainerID: {1} Debug Message: {2}", eventCode, container.ContainerID, debugMessage);
                 return false;
             }
         }

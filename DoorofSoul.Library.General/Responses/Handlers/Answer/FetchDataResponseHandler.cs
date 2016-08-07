@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             }
             else
             {
-                LibraryLog.ErrorFormat("Answer FetchData Parameter Error On {0} AnswerID: {1} Debug Message: {2}", fetchCode, answer.AnswerID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Answer FetchData Parameter Error On {0} AnswerID: {1} Debug Message: {2}", fetchCode, answer.AnswerID, fetchDebugMessage);
                 return false;
             }
         }

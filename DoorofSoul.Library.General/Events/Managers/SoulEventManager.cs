@@ -26,12 +26,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Soul Event Error: {0} from SoulID: {1}", eventCode, soul.SoulID);
+                    LibraryInstance.ErrorFormat("Soul Event Error: {0} from SoulID: {1}", eventCode, soul.SoulID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Soul Event:{0} from SoulID: {1}", eventCode, soul.SoulID);
+                LibraryInstance.ErrorFormat("Unknow Soul Event:{0} from SoulID: {1}", eventCode, soul.SoulID);
             }
         }
 

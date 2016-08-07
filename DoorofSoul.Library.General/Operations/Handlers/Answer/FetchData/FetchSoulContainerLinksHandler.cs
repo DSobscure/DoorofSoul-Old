@@ -49,15 +49,15 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("Fetch Soul Container Links Invalid Cast!");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("Fetch Soul Container Links Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

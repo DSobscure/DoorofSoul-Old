@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    internal abstract class SceneOperationHandler
+    public abstract class SceneOperationHandler
     {
         protected General.Scene scene;
 
@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             scene.SceneResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
-            LibraryLog.ErrorFormat("Error On Scene Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Scene Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         internal void SendResponse(SceneOperationCode operationCode, Dictionary<byte, object> parameter)
         {

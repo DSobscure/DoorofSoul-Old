@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     {
                         if (parameters.Count != 2)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch SoulContainerLinks Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch SoulContainerLinks Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -31,7 +31,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch SoulContainerLinks Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch SoulContainerLinks Response Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch SoulContainerLinks Error"]);
                         return false;
                     }
@@ -46,28 +46,33 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 {
                     int soulID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.SoulID];
                     int containerID = (int)parameters[(byte)FetchSoulContainerLinksResponseParameterCode.ContainerID];
-                    answer.LinkSoulContainer(soulID, containerID);
-                    if(answer.ContainsContainer(containerID))
+                    if (answer.ContainsContainer(containerID))
                     {
                         General.Container container = answer.FindContainer(containerID);
-                        if(container.Entity == null)
+                        if(container.IsEmptyContainer)
                         {
-                            container.ContainerOperationManager.FetchEntity();
+                            answer.LinkSoulContainer(soulID, containerID);
+                            container.ContainerOperationManager.FetchDataResolver.FetchEntity();
+                            container.ContainerOperationManager.FetchDataResolver.FetchInventory();
+                        }
+                        else
+                        {
+                            answer.LinkSoulContainer(soulID, containerID);
                         }
                     }
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Souls SoulContainerLinks Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Souls SoulContainerLinks Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

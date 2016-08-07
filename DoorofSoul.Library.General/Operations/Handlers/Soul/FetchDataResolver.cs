@@ -56,5 +56,14 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
                 return false;
             }
         }
+        internal void SendOperation(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            soul.SoulOperationManager.SendOperation(SoulOperationCode.FetchData, fetchDataParameters);
+        }
     }
 }

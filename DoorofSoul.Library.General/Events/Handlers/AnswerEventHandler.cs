@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Answer Event Parameter Error On {0} AnswerID: {1} Debug Message: {2}", eventCode, answer.AnswerID, debugMessage);
+                LibraryInstance.ErrorFormat("Answer Event Parameter Error On {0} AnswerID: {1} Debug Message: {2}", eventCode, answer.AnswerID, debugMessage);
                 return false;
             }
         }

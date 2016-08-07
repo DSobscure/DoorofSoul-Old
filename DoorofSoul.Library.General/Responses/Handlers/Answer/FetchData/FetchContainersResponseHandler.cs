@@ -23,7 +23,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     {
                         if (parameters.Count != 3)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Containers Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Containers Response Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fetch Container Error"]);
                         return false;
                     }
@@ -51,20 +51,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     string containerName = (string)parameters[(byte)FetchContainersResponseParameterCode.ContainerName];
                     General.Container container = new General.Container(containerID, entityID, containerName);
                     answer.LoadContainers(new List<General.Container> { container });
-                    container.ContainerOperationManager.FetchEntity();
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Containers Response Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Containers Response Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

@@ -11,13 +11,15 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         private readonly Dictionary<EntityOperationCode, EntityOperationHandler> operationTable;
         protected readonly Entity entity;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         internal EntityOperationManager(Entity entity)
         {
             this.entity = entity;
+            FetchDataResolver = new FetchDataResolver(entity);
             operationTable = new Dictionary<EntityOperationCode, EntityOperationHandler>
             {
-                { EntityOperationCode.FetchData, new FetchDataResolver(entity) },
+                { EntityOperationCode.FetchData, FetchDataResolver },
                 { EntityOperationCode.Rotate, new RotateHandler(entity) },
                 { EntityOperationCode.Move, new MoveHandler(entity) },
             };
@@ -29,12 +31,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Entity Operation Error: {0} from EntityID: {1}", operationCode, entity.EntityID);
+                    LibraryInstance.ErrorFormat("Entity Operation Error: {0} from EntityID: {1}", operationCode, entity.EntityID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Entity Operation:{0} from EntityID: {1}", operationCode, entity.EntityID);
+                LibraryInstance.ErrorFormat("Unknow Entity Operation:{0} from EntityID: {1}", operationCode, entity.EntityID);
             }
         }
 

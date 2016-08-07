@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     {
                         if (parameters.Count != 0)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Delete Soul Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Delete Soul Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -32,19 +32,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     }
                 case ErrorCode.Fail:
                     {
-                        LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Fail"]);
                         return false;
                     }
                 case ErrorCode.PermissionDeny:
                     {
-                        LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul PermissionDeny"]);
                         return false;
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Delete Soul Response Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Delete Soul Error"]);
                         return false;
                     }
@@ -57,9 +57,9 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             {
                 answer.ClearSouls();
                 answer.ClearContainers();
-                answer.AnswerOperationManager.FetchSouls();
-                answer.AnswerOperationManager.FetchContainers();
-                answer.AnswerOperationManager.FetchSoulContainerLinks();
+                answer.AnswerOperationManager.FetchDataResolver.FetchSouls();
+                answer.AnswerOperationManager.FetchDataResolver.FetchContainers();
+                answer.AnswerOperationManager.FetchDataResolver.FetchSoulContainerLinks();
                 return true;
             }
             else

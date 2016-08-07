@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             {
                 if (parameters.Count != 5)
                 {
-                    LibraryLog.ErrorFormat("Entity OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    LibraryInstance.ErrorFormat("Entity OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
                     return false;
                 }
                 else
@@ -28,7 +28,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             }
             else
             {
-                LibraryLog.ErrorFormat("EntityOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                LibraryInstance.ErrorFormat("EntityOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
                 return false;
             }
         }
@@ -51,21 +51,21 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("EntityOperationResponse Error Entity ID: {0} Not in Scene ID: {1}", entityID, scene.SceneID);
+                        LibraryInstance.ErrorFormat("EntityOperationResponse Error Entity ID: {0} Not in Scene ID: {1}", entityID, scene.SceneID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("EntityOperationResponse Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("EntityOperationResponse Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

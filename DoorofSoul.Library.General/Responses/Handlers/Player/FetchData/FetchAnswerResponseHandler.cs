@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     {
                         if (parameters.Count != 2)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Answer Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch Answer Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -31,7 +31,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Answer Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Answer Response Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Answer Error"]);
                         return false;
                     }
@@ -48,22 +48,22 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     int soulCountLimit = (int)parameters[(byte)FetchAnswerResponseParameterCode.SoulCountLimit];
                     General.Answer answer = new General.Answer(answerID, soulCountLimit, player);
                     player.ActiveAnswer(answer);
-                    answer.AnswerOperationManager.FetchSouls();
-                    answer.AnswerOperationManager.FetchContainers();
-                    answer.AnswerOperationManager.FetchSoulContainerLinks();
+                    answer.AnswerOperationManager.FetchDataResolver.FetchSouls();
+                    answer.AnswerOperationManager.FetchDataResolver.FetchContainers();
+                    answer.AnswerOperationManager.FetchDataResolver.FetchSoulContainerLinks();
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Answer Response Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Answer Response Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

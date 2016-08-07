@@ -11,5 +11,8 @@ namespace DoorofSoul.Database.DatabaseElements
         public EntityRepository EntityRepository { get; set; }
         public WorldRepository WorldRepository { get; set; }
         public SceneRepository SceneRepository { get; set; }
+
+        public ItemRepository ItemRepository { get; set; }
+        public InventoryRepository InventoryRepository { get; set; }
     }
 }

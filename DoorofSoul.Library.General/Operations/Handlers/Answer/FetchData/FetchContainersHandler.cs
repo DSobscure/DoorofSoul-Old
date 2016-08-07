@@ -37,7 +37,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                         {
                             { (byte)FetchContainersResponseParameterCode.ContainerID, container.ContainerID },
                             { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID },
-                            { (byte)FetchContainersResponseParameterCode.ContainerName, container.ContainerName }
+                            { (byte)FetchContainersResponseParameterCode.ContainerName, container.ContainerName },
                         };
                         SendResponse(fetchCode, result);
                     }
@@ -45,15 +45,15 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("Fetch Containers Invalid Cast!");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("Fetch Containers Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

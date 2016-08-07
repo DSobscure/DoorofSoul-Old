@@ -43,21 +43,21 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("EntityOperation Error Entity ID: {0} Not in Scene ID: {1}", entityID, scene.SceneID);
+                        LibraryInstance.ErrorFormat("EntityOperation Error Entity ID: {0} Not in Scene ID: {1}", entityID, scene.SceneID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("EntityOperation Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("EntityOperation Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

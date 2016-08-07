@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Entity Event Parameter Error On {0} EntityID: {1} Debug Message: {2}", eventCode, entity.EntityID, debugMessage);
+                LibraryInstance.ErrorFormat("Entity Event Parameter Error On {0} EntityID: {1} Debug Message: {2}", eventCode, entity.EntityID, debugMessage);
                 return false;
             }
         }

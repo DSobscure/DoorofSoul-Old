@@ -69,6 +69,8 @@
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulContainerLinksResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulsResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Container\FetchEntityResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Container\FetchInventoryItemsResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Container\FetchInventoryResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchAnswerResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchWorldsResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchSceneResponseParameterCode.cs" />

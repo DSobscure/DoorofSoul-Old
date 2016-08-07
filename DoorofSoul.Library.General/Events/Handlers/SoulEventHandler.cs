@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Soul Event Parameter Error On {0} SoulID: {1} Debug Message: {2}", eventCode, soul.SoulID, debugMessage);
+                LibraryInstance.ErrorFormat("Soul Event Parameter Error On {0} SoulID: {1} Debug Message: {2}", eventCode, soul.SoulID, debugMessage);
                 return false;
             }
         }

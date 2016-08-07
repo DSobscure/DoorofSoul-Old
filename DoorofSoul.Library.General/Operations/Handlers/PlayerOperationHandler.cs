@@ -10,12 +10,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
     {
         protected General.Player player;
 
-        protected PlayerOperationHandler(General.Player player)
+        internal PlayerOperationHandler(General.Player player)
         {
             this.player = player;
         }
 
-        public virtual bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
             if (CheckParameter(parameters, out debugMessage))
@@ -28,14 +28,14 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             player.PlayerResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
-            LibraryLog.ErrorFormat("Error On Player Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Player Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
-        public void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameter)
+        internal void SendResponse(PlayerOperationCode operationCode, Dictionary<byte, object> parameter)
         {
             player.PlayerResponseManager.SendResponse(operationCode, ErrorCode.NoError, null, parameter);
         }

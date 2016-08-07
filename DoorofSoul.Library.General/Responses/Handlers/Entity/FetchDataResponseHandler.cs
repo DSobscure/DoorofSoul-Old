@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Entity
             }
             else
             {
-                LibraryLog.ErrorFormat("Entity FetchData Parameter Error On {0} EntityID: {1} Debug Message: {2}", fetchCode, entity.EntityID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Entity FetchData Parameter Error On {0} EntityID: {1} Debug Message: {2}", fetchCode, entity.EntityID, fetchDebugMessage);
                 return false;
             }
         }

@@ -49,7 +49,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
                 { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
-            LibraryLog.ErrorFormat("Error On Entity Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Entity Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
             entity.EntityResponseManager.SendResponse(EntityOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }

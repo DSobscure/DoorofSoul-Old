@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
                     {
                         if (parameters.Count != 25)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Entity Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch Entity Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -31,7 +31,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Entity Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Entity Response Error DebugMessage: {0}", debugMessage);
                         container.ContainerEventManager.ErrorInform(LauguageDictionarySelector.Instance[container.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[container.UsingLanguage]["Fetch Entity Error"], Protocol.Communication.Channels.ContainerCommunicationChannel.Answer);
                         return false;
                     }
@@ -99,15 +99,15 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Entity Response Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Entity Response Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

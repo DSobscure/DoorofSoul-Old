@@ -2,6 +2,8 @@
 {
     public enum ContainerFetchDataCode : byte
     {
-        Entity
+        Entity,
+        Inventory,
+        InventoryItems,
     }
 }

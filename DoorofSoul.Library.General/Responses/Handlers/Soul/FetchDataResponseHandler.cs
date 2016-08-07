@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
             }
             else
             {
-                LibraryLog.ErrorFormat("Soul FetchData Parameter Error On {0} SoulID: {1} Debug Message: {2}", fetchCode, soul.SoulID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Soul FetchData Parameter Error On {0} SoulID: {1} Debug Message: {2}", fetchCode, soul.SoulID, fetchDebugMessage);
                 return false;
             }
         }

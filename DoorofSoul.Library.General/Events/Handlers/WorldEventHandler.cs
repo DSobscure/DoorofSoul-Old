@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("World Event Parameter Error On {0} WorldID: {1} Debug Message: {2}", eventCode, world.WorldID, debugMessage);
+                LibraryInstance.ErrorFormat("World Event Parameter Error On {0} WorldID: {1} Debug Message: {2}", eventCode, world.WorldID, debugMessage);
                 return false;
             }
         }

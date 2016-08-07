@@ -29,12 +29,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Entity Event Error: {0} from EntityID: {1}", eventCode, entity.EntityID);
+                    LibraryInstance.ErrorFormat("Entity Event Error: {0} from EntityID: {1}", eventCode, entity.EntityID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Entity Event:{0} from EntityID: {1}", eventCode, entity.EntityID);
+                LibraryInstance.ErrorFormat("Unknow Entity Event:{0} from EntityID: {1}", eventCode, entity.EntityID);
             }
         }
 

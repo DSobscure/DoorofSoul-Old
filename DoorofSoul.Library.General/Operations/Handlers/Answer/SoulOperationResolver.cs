@@ -41,21 +41,21 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("SoulOperation Error Soul ID: {0} Not in Answer ID: {1}", soulID, answer.AnswerID);
+                        LibraryInstance.ErrorFormat("SoulOperation Error Soul ID: {0} Not in Answer ID: {1}", soulID, answer.AnswerID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("SoulOperation Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("SoulOperation Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

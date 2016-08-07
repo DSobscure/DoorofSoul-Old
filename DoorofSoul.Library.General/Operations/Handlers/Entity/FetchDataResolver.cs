@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Entity
 {
-    internal class FetchDataResolver : EntityOperationHandler
+    public class FetchDataResolver : EntityOperationHandler
     {
-        protected readonly Dictionary<EntityFetchDataCode, FetchDataHandler> fetchTable;
+        private readonly Dictionary<EntityFetchDataCode, FetchDataHandler> fetchTable;
 
         internal FetchDataResolver(General.Entity entity) : base(entity)
         {
@@ -55,6 +55,15 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             {
                 return false;
             }
+        }
+        internal void SendOperation(EntityFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            entity.EntityOperationManager.SendOperation(EntityOperationCode.FetchData, fetchDataParameters);
         }
     }
 }

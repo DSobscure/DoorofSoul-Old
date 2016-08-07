@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
             }
             else
             {
-                LibraryLog.ErrorFormat("Scene InformData Parameter Error On {0} SceneID: {1} Debug Message: {2}", informCode, scene.SceneID, debugMessage);
+                LibraryInstance.ErrorFormat("Scene InformData Parameter Error On {0} SceneID: {1} Debug Message: {2}", informCode, scene.SceneID, debugMessage);
                 return false;
             }
         }

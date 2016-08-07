@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
             }
             else
             {
-                LibraryLog.ErrorFormat("Answer InformData Parameter Error On {0} AnswerID: {1} Debug Message: {2}", informCode, answer.AnswerID, debugMessage);
+                LibraryInstance.ErrorFormat("Answer InformData Parameter Error On {0} AnswerID: {1} Debug Message: {2}", informCode, answer.AnswerID, debugMessage);
                 return false;
             }
         }

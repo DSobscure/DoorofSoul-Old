@@ -49,7 +49,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
-            LibraryLog.ErrorFormat("Error On Scene Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Scene Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
             scene.SceneResponseManager.SendResponse(SceneOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }

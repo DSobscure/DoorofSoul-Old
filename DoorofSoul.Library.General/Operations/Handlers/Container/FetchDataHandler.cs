@@ -50,7 +50,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
-            LibraryLog.ErrorFormat("Error On Container Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Container Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
             container.ContainerResponseManager.SendResponse(ContainerOperationCode.FetchData, ErrorCode.NoError, null, eventData, ContainerCommunicationChannel.Answer);
         }
     }

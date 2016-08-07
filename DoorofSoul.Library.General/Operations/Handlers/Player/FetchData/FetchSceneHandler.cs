@@ -48,22 +48,22 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("Fetch Scene Not Exist!");
+                        LibraryInstance.ErrorFormat("Fetch Scene Not Exist!");
                         SendError(fetchCode, ErrorCode.NotExist, "Scene not exist");
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("Fetch Scene Invalid Cast!");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("Fetch Scene Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

@@ -12,15 +12,17 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         private readonly Dictionary<SceneOperationCode, SceneOperationHandler> operationTable;
         protected readonly Scene scene;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         internal SceneOperationManager(Scene scene)
         {
             this.scene = scene;
+            FetchDataResolver = new FetchDataResolver(scene);
             operationTable = new Dictionary<SceneOperationCode, SceneOperationHandler>
             {
                 { SceneOperationCode.ContainerOperation, new ContainerOperationResolver(scene) },
                 { SceneOperationCode.EntityOperation, new EntityOperationResolver(scene) },
-                { SceneOperationCode.FetchData, new FetchDataResolver(scene) },
+                { SceneOperationCode.FetchData, FetchDataResolver },
             };
         }
 
@@ -30,12 +32,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Scene Operation Error: {0} from SceneID: {1}", operationCode, scene.SceneID);
+                    LibraryInstance.ErrorFormat("Scene Operation Error: {0} from SceneID: {1}", operationCode, scene.SceneID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Scene Operation:{0} from SceneID: {1}", operationCode, scene.SceneID);
+                LibraryInstance.ErrorFormat("Unknow Scene Operation:{0} from SceneID: {1}", operationCode, scene.SceneID);
             }
         }
 
@@ -48,16 +50,6 @@ namespace DoorofSoul.Library.General.Operations.Managers
                 { (byte)SceneOperationParameterCode.Parameters, parameters }
             };
             scene.World.WorldOperationManager.SendOperation(WorldOperationCode.SceneOperation, operationData);
-        }
-
-        public void FetchEntities()
-        {
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)SceneFetchDataCode.Entities },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(SceneOperationCode.FetchData, fetchDataParameters);
         }
     }
 }

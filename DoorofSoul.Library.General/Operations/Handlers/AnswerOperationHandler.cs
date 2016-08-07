@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    internal abstract class AnswerOperationHandler
+    public abstract class AnswerOperationHandler
     {
         protected General.Answer answer;
 
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             answer.AnswerResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
-            LibraryLog.ErrorFormat("Error On Answer Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Answer Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         internal void SendResponse(AnswerOperationCode operationCode, Dictionary<byte, object> parameter)
         {

@@ -32,6 +32,7 @@ namespace DoorofSoul.Library.General
         }
         public Entity Entity { get; protected set; }
         public SupportLauguages UsingLanguage { get { return soulDictionary.FirstOrDefault().Value.UsingLanguage; } }
+        public Inventory Inventory { get; protected set; }
         #endregion
 
         #region communication
@@ -45,6 +46,7 @@ namespace DoorofSoul.Library.General
             ContainerID = containerID;
             EntityID = entityID;
             ContainerName = containerName;
+            
             soulDictionary = new Dictionary<int, Soul>();
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);
@@ -56,6 +58,10 @@ namespace DoorofSoul.Library.General
             {
                 Entity = entity;
             }
+        }
+        public void BindInventory(Inventory inventory)
+        {
+            Inventory = inventory;
         }
 
         public void LinkSoul(Soul soul)

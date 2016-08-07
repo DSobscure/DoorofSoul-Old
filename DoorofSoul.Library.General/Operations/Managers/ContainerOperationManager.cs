@@ -14,14 +14,16 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         private readonly Dictionary<ContainerOperationCode, ContainerOperationHandler> operationTable;
         protected readonly Container container;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         internal ContainerOperationManager(Container container)
         {
             this.container = container;
+            FetchDataResolver = new FetchDataResolver(container);
             operationTable = new Dictionary<ContainerOperationCode, ContainerOperationHandler>
             {
-                { ContainerOperationCode.FetchData, new FetchDataResolver(container) },
-                { ContainerOperationCode.Say, new SayHandler(container) }
+                { ContainerOperationCode.FetchData, FetchDataResolver },
+                { ContainerOperationCode.Say, new SayHandler(container) },
             };
         }
 
@@ -31,12 +33,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Container Operation Error: {0} from ContainerID: {1}", operationCode, container.ContainerID);
+                    LibraryInstance.ErrorFormat("Container Operation Error: {0} from ContainerID: {1}", operationCode, container.ContainerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Container Operation:{0} from ContainerID: {1}", operationCode, container.ContainerID);
+                LibraryInstance.ErrorFormat("Unknow Container Operation:{0} from ContainerID: {1}", operationCode, container.ContainerID);
             }
         }
 
@@ -58,7 +60,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
+                            LibraryInstance.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
                         }
                     }
                     break;
@@ -74,19 +76,9 @@ namespace DoorofSoul.Library.General.Operations.Managers
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
-        }
-
-        public void FetchEntity()
-        {
-            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)ContainerFetchDataCode.Entity },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(ContainerOperationCode.FetchData, fetchDataParameters, ContainerCommunicationChannel.Answer);
         }
         public void Say(string message)
         {

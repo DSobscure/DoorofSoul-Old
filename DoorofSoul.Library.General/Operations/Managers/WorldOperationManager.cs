@@ -11,14 +11,16 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         protected readonly Dictionary<WorldOperationCode, WorldOperationHandler> operationTable;
         protected readonly World world;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         public WorldOperationManager(World world)
         {
             this.world = world;
+            FetchDataResolver = new FetchDataResolver(world);
             operationTable = new Dictionary<WorldOperationCode, WorldOperationHandler>
             {
                 { WorldOperationCode.SceneOperation, new SceneOperationResolver(world) },
-                { WorldOperationCode.FetchData, new FetchDataResolver(world) },
+                { WorldOperationCode.FetchData, FetchDataResolver },
             };
         }
 
@@ -28,12 +30,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("World Operation Error: {0} from WorldID: {1}", operationCode, world.WorldID);
+                    LibraryInstance.ErrorFormat("World Operation Error: {0} from WorldID: {1}", operationCode, world.WorldID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow World Operation:{0} from WorldID: {1}", operationCode, world.WorldID);
+                LibraryInstance.ErrorFormat("Unknow World Operation:{0} from WorldID: {1}", operationCode, world.WorldID);
             }
         }
 

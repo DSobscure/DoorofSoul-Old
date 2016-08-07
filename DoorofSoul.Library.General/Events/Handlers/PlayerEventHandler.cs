@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Player Event Parameter Error On {0} PlayerID: {1} Debug Message: {2}", eventCode, player.PlayerID, debugMessage);
+                LibraryInstance.ErrorFormat("Player Event Parameter Error On {0} PlayerID: {1} Debug Message: {2}", eventCode, player.PlayerID, debugMessage);
                 return false;
             }
         }

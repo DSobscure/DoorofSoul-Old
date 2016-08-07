@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
             }
             else
             {
-                LibraryLog.ErrorFormat("Player FetchData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", fetchCode, player.PlayerID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Player FetchData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", fetchCode, player.PlayerID, fetchDebugMessage);
                 return false;
             }
         }

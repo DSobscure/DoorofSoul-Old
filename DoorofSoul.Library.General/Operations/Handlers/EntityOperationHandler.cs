@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    internal abstract class EntityOperationHandler
+    public abstract class EntityOperationHandler
     {
         protected General.Entity entity;
 
@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             entity.EntityResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
-            LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         internal void SendResponse(EntityOperationCode operationCode, Dictionary<byte, object> parameter)
         {

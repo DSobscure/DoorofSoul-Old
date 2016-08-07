@@ -66,15 +66,15 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("FetchEntity Invalid Cast!");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("FetchEntity Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

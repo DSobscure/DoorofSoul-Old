@@ -11,7 +11,8 @@
     <AssemblyName>DoorofSoul.Library.General</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\MsgPack.Cli.0.8.0\unity-full\MsgPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,7 +93,9 @@
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
     <Compile Include="IControllers\IEntityController.cs" />
-    <Compile Include="LibraryLog.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="LibraryInstance.cs" />
     <Compile Include="Operations\Handlers\AnswerOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\ActivateSoulHandler.cs" />
     <Compile Include="Operations\Handlers\Answer\ContainerOperationResolver.cs" />
@@ -104,6 +111,8 @@
     <Compile Include="Operations\Handlers\Container\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchData\FetchInventoryHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\FetchData\FetchInventoryItemsHandler.cs" />
     <Compile Include="Operations\Handlers\Container\SayHandler.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
@@ -158,6 +167,8 @@
     <Compile Include="Responses\Handlers\Container\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Container\FetchDataResponseResolver.cs" />
     <Compile Include="Responses\Handlers\Container\FetchData\FetchEntityResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchData\FetchInventoryItemsResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Container\FetchData\FetchInventoryResponseHandler.cs" />
     <Compile Include="Responses\Handlers\EntityResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Entity\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Entity\FetchDataResponseResolver.cs" />
@@ -193,6 +204,7 @@
     <Compile Include="Responses\Managers\WorldResponseManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="SceneElements\MessageLog.cs" />
+    <Compile Include="SerializationClassTypeCode.cs" />
     <Compile Include="Soul.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldCommunicationInterface.cs" />
@@ -224,6 +236,9 @@
     <Folder Include="Responses\Handlers\Entity\FetchData\" />
     <Folder Include="Responses\Handlers\Soul\FetchData\" />
     <Folder Include="Responses\Handlers\World\FetchData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

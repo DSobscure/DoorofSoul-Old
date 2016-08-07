@@ -43,21 +43,21 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("ContainerOperation Error Container ID: {0} Not in Scene ID: {1}", containerID, scene.SceneID);
+                        LibraryInstance.ErrorFormat("ContainerOperation Error Container ID: {0} Not in Scene ID: {1}", containerID, scene.SceneID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("ContainerOperation Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("ContainerOperation Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

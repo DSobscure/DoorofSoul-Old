@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     {
                         if (parameters.Count != 0)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Logout Operation Parameter Error Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Logout Operation Parameter Error Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -32,13 +32,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     }
                 case ErrorCode.InvalidOperation:
                     {
-                        LibraryLog.ErrorFormat("Logout Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Logout Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Invalid Operation"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Logout Fail"]);
                         return false;
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Logout Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Logout Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Logout Fail"]);
                         return false;
                     }

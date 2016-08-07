@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             world.WorldResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters);
-            LibraryLog.ErrorFormat("Error On World Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On World Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         public void SendResponse(WorldOperationCode operationCode, Dictionary<byte, object> parameter)
         {

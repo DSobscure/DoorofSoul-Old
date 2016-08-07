@@ -9,6 +9,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override Container Create(string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
         {
             Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Create(entityName, locatedSceneID, spaceProperties);
+            
             if (entity != null)
             {
                 string sqlString = @"INSERT INTO Containers 
@@ -22,6 +23,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         if (reader.Read())
                         {
                             int containerID = reader.GetInt32(0);
+                            Inventory inventory = DataBase.Instance.RepositoryManager.InventoryRepository.Create(containerID, 40);
                             return Find(containerID);
                         }
                         else
@@ -66,8 +68,10 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         int entityID = reader.GetInt32(0);
                         string containerName = reader.IsDBNull(1) ? null : reader.GetString(1);
                         Entity entity = DataBase.Instance.RepositoryManager.EntityRepository.Find(entityID);
+                        Inventory inventory = DataBase.Instance.RepositoryManager.InventoryRepository.FindByContainerID(containerID);
                         Container container = new Container(containerID, entityID, containerName);
                         container.BindEntity(entity);
+                        container.BindInventory(inventory);
                         return container;
                     }
                     else

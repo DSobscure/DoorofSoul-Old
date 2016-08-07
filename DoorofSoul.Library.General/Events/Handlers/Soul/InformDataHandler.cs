@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul
             }
             else
             {
-                LibraryLog.ErrorFormat("Soul InformData Parameter Error On {0} SoulID: {1} Debug Message: {2}", informCode, soul.SoulID, debugMessage);
+                LibraryInstance.ErrorFormat("Soul InformData Parameter Error On {0} SoulID: {1} Debug Message: {2}", informCode, soul.SoulID, debugMessage);
                 return false;
             }
         }

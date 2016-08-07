@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Events.Handlers
             }
             else
             {
-                LibraryLog.ErrorFormat("Scene Event Parameter Error On {0} SceneID: {1} Debug Message: {2}", eventCode, scene.SceneID, debugMessage);
+                LibraryInstance.ErrorFormat("Scene Event Parameter Error On {0} SceneID: {1} Debug Message: {2}", eventCode, scene.SceneID, debugMessage);
                 return false;
             }
         }

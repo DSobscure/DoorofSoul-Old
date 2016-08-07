@@ -18,8 +18,11 @@ namespace DoorofSoul.Database
             RepositoryManager.EntityRepository = new MySQLEntityRepository();
             RepositoryManager.WorldRepository = new MySQLWorldRepository();
             RepositoryManager.SceneRepository = new MySQLSceneRepository();
+            RepositoryManager.ItemRepository = new MySQLItemRepository();
+            RepositoryManager.InventoryRepository = new MySQLInventoryRepository();
 
             RelationManager.SoulID_ContainerID_Relation = new MySQL_SoulID_ContainerID_Relation();
+            RelationManager.InventoryItemInfo_Relation = new MySQL_InventoryItemInfo_Relation();
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

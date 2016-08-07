@@ -15,7 +15,9 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
         {
             fetchResponseTable = new Dictionary<ContainerFetchDataCode, FetchDataResponseHandler>
             {
-                { ContainerFetchDataCode.Entity, new FetchEntityResponseHandler(container) }
+                { ContainerFetchDataCode.Entity, new FetchEntityResponseHandler(container) },
+                { ContainerFetchDataCode.Inventory, new FetchInventoryResponseHandler(container) },
+                { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsResponseHandler(container) }
             };
         }
 
@@ -25,7 +27,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             {
                 if (parameters.Count != 4)
                 {
-                    LibraryLog.ErrorFormat("Container Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
+                    LibraryInstance.ErrorFormat("Container Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
                     return false;
                 }
                 else
@@ -35,7 +37,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             }
             else
             {
-                LibraryLog.ErrorFormat("ContainerOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                LibraryInstance.ErrorFormat("ContainerOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
                 return false;
             }
         }
@@ -54,7 +56,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Container FetchData Response Not Exist Fetch Code: {0}", fetchCode);
+                    LibraryInstance.ErrorFormat("Container FetchData Response Not Exist Fetch Code: {0}", fetchCode);
                     return false;
                 }
             }

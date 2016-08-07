@@ -8,13 +8,13 @@ using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Player
 {
-    public class LoginHandler : PlayerOperationHandler
+    internal class LoginHandler : PlayerOperationHandler
     {
-        public LoginHandler(General.Player player) : base(player)
+        internal LoginHandler(General.Player player) : base(player)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 2)
             {
@@ -28,7 +28,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             }
         }
 
-        public override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {

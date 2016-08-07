@@ -47,7 +47,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Scene InformData Event Not Exist Inform Code: {0}", informCode);
+                    LibraryInstance.ErrorFormat("Scene InformData Event Not Exist Inform Code: {0}", informCode);
                     return false;
                 }
             }

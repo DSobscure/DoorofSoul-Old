@@ -8,13 +8,13 @@ using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Player
 {
-    public class AnswerOperationResolver : PlayerOperationHandler
+    internal class AnswerOperationResolver : PlayerOperationHandler
     {
-        public AnswerOperationResolver(General.Player player) : base(player)
+        internal AnswerOperationResolver(General.Player player) : base(player)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 3)
             {
@@ -28,7 +28,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             }
         }
 
-        public override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {
@@ -44,21 +44,21 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("AnswerOperation Error Answer ID: {0} Not in Player ID: {1}", answerID, player.PlayerID);
+                        LibraryInstance.ErrorFormat("AnswerOperation Error Answer ID: {0} Not in Player ID: {1}", answerID, player.PlayerID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("AnswerOperation Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("AnswerOperation Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

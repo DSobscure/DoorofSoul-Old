@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.World
 {
-    partial class FetchDataResolver : WorldOperationHandler
+    public class FetchDataResolver : WorldOperationHandler
     {
         protected readonly Dictionary<WorldFetchDataCode, FetchDataHandler> fetchTable;
 
@@ -54,6 +54,15 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
             {
                 return false;
             }
+        }
+        internal void SendOperation(WorldFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            world.WorldOperationManager.SendOperation(WorldOperationCode.FetchData, fetchDataParameters);
         }
     }
 }

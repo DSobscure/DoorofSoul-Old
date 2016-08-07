@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             {
                 if (parameters.Count != 4)
                 {
-                    LibraryLog.ErrorFormat("Answer Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
+                    LibraryInstance.ErrorFormat("Answer Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
                     return false;
                 }
                 else
@@ -37,7 +37,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             }
             else
             {
-                LibraryLog.ErrorFormat("Answer FetchDataResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                LibraryInstance.ErrorFormat("Answer FetchDataResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
                 return false;
             }
         }
@@ -56,7 +56,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Answer FetchData Response Not Exist Fetch Code: {0}", fetchCode);
+                    LibraryInstance.ErrorFormat("Answer FetchData Response Not Exist Fetch Code: {0}", fetchCode);
                     return false;
                 }
             }

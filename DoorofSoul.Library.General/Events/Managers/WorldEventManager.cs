@@ -26,12 +26,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("World Event Error: {0} from AnswerID: {1}", eventCode, world.WorldID);
+                    LibraryInstance.ErrorFormat("World Event Error: {0} from AnswerID: {1}", eventCode, world.WorldID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow World Event:{0} from AnswerID: {1}", eventCode, world.WorldID);
+                LibraryInstance.ErrorFormat("Unknow World Event:{0} from AnswerID: {1}", eventCode, world.WorldID);
             }
         }
 

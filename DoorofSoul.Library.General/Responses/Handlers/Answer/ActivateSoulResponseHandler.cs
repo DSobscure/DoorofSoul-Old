@@ -23,7 +23,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     {
                         if (parameters.Count != 1)
                         {
-                            LibraryLog.ErrorFormat(string.Format("ActivateSoulResponse Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("ActivateSoulResponse Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -33,19 +33,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     }
                 case ErrorCode.Fail:
                     {
-                        LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
                 case ErrorCode.PermissionDeny:
                     {
-                        LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Permission Deny"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("ActiveSoul Error DebugMessage: {0}", debugMessage);
                         answer.AnswerEventManager.ErrorInform(LauguageDictionarySelector.Instance[answer.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[answer.UsingLanguage]["Activate Soul Fail"]);
                         return false;
                     }
@@ -66,21 +66,21 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     }
                     else
                     {
-                        LibraryLog.Error("ActiveSoulResponseError Soul Not Exist");
+                        LibraryInstance.Error("ActiveSoulResponseError Soul Not Exist");
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("ActiveSoul Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("ActiveSoul Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

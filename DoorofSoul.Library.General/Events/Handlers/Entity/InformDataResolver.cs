@@ -45,7 +45,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Entity
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Entity InformData Event Not Exist Inform Code: {0}", informCode);
+                    LibraryInstance.ErrorFormat("Entity InformData Event Not Exist Inform Code: {0}", informCode);
                     return false;
                 }
             }

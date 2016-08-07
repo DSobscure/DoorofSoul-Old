@@ -86,15 +86,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene.InformData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Inform SceneEntityEnter Event Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Inform SceneEntityEnter Event Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

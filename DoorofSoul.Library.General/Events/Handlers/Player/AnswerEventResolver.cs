@@ -41,21 +41,21 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("AnswerEvent Error Answer ID: {0} Not in Player ID: {1}", answerID, player.PlayerID);
+                        LibraryInstance.ErrorFormat("AnswerEvent Error Answer ID: {0} Not in Player ID: {1}", answerID, player.PlayerID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("AnswerEvent Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("AnswerEvent Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

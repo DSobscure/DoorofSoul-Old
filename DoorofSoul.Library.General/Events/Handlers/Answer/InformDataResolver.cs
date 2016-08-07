@@ -45,7 +45,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Answer InformData Event Not Exist Inform Code: {0}", informCode);
+                    LibraryInstance.ErrorFormat("Answer InformData Event Not Exist Inform Code: {0}", informCode);
                     return false;
                 }
             }

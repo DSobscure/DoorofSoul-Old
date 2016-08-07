@@ -23,7 +23,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     {
                         if (parameters.Count != 5)
                         {
-                            LibraryLog.ErrorFormat(string.Format("LoginResponse Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("LoginResponse Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -33,19 +33,19 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     }
                 case ErrorCode.Fail:
                     {
-                        LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Fail"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Fail"]);
                         return false;
                     }
                 case ErrorCode.InvalidOperation:
                     {
-                        LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Invalid Operation"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login InvalidOperation"]);
                         return false;
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Login Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Login Error"]);
                         return false;
                     }
@@ -65,23 +65,23 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player
                     int answerID = (int)parameters[(byte)LoginResponseParameterCode.AnswerID];
                     player.LoadPlayer(playerID, account, nickname, usingLanguage, answerID);
                     player.IsOnline = true;
-                    player.PlayerOperationManager.FetchAnswer();
-                    player.PlayerOperationManager.FetchWorlds();
+                    player.PlayerOperationManager.FetchDataResolver.FetchAnswer();
+                    player.PlayerOperationManager.FetchDataResolver.FetchWorlds();
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
                     player.IsOnline = false;
-                    LibraryLog.Error("PlayerLogin Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("PlayerLogin Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
                     player.IsOnline = false;
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

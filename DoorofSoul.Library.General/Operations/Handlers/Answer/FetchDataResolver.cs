@@ -8,9 +8,9 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
-    internal class FetchDataResolver : AnswerOperationHandler
+    public class FetchDataResolver : AnswerOperationHandler
     {
-        protected readonly Dictionary<AnswerFetchDataCode, FetchDataHandler> fetchTable;
+        private readonly Dictionary<AnswerFetchDataCode, FetchDataHandler> fetchTable;
 
         internal FetchDataResolver(General.Answer answer) : base(answer)
         {
@@ -58,6 +58,28 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             {
                 return false;
             }
+        }
+        internal void SendOperation(AnswerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            answer.AnswerOperationManager.SendOperation(AnswerOperationCode.FetchData, fetchDataParameters);
+        }
+
+        public void FetchSouls()
+        {
+            SendOperation(AnswerFetchDataCode.Souls, new Dictionary<byte, object>());
+        }
+        public void FetchContainers()
+        {
+            SendOperation(AnswerFetchDataCode.Containers, new Dictionary<byte, object>());
+        }
+        public void FetchSoulContainerLinks()
+        {
+            SendOperation(AnswerFetchDataCode.SoulContainerLinks, new Dictionary<byte, object>());
         }
     }
 }

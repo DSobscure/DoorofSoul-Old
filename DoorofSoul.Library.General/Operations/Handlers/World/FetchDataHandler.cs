@@ -49,7 +49,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                 { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
-            LibraryLog.ErrorFormat("Error On World Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On World Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
             world.WorldResponseManager.SendResponse(WorldOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }

@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.World
             }
             else
             {
-                LibraryLog.ErrorFormat("World FetchData Parameter Error On {0} WorldID: {1} Debug Message: {2}", fetchCode, world.WorldID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("World FetchData Parameter Error On {0} WorldID: {1} Debug Message: {2}", fetchCode, world.WorldID, fetchDebugMessage);
                 return false;
             }
         }

@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
             }
             else
             {
-                LibraryLog.ErrorFormat("Container InformData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", informCode, container.ContainerID, debugMessage);
+                LibraryInstance.ErrorFormat("Container InformData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", informCode, container.ContainerID, debugMessage);
                 return false;
             }
         }

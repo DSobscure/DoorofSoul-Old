@@ -3,13 +3,14 @@ using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters.World;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Scene
 {
-    internal class FetchDataResolver : SceneOperationHandler
+    public class FetchDataResolver : SceneOperationHandler
     {
-        protected readonly Dictionary<SceneFetchDataCode, FetchDataHandler> fetchTable;
+        private readonly Dictionary<SceneFetchDataCode, FetchDataHandler> fetchTable;
 
         internal FetchDataResolver(General.Scene scene) : base(scene)
         {
@@ -55,6 +56,20 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
             {
                 return false;
             }
+        }
+        internal void SendOperation(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            scene.SceneOperationManager.SendOperation(SceneOperationCode.FetchData, fetchDataParameters);
+        }
+
+        public void FetchEntities()
+        {
+            SendOperation(SceneFetchDataCode.Entities, new Dictionary<byte, object>());
         }
     }
 }

@@ -27,12 +27,12 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
-                    LibraryLog.ErrorFormat("Entity Response Error: {0} from AnswerID: {1}", operationCode, entity.EntityID);
+                    LibraryInstance.ErrorFormat("Entity Response Error: {0} from AnswerID: {1}", operationCode, entity.EntityID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Entity Response:{0} from AnswerID: {1}", operationCode, entity.EntityID);
+                LibraryInstance.ErrorFormat("Unknow Entity Response:{0} from AnswerID: {1}", operationCode, entity.EntityID);
             }
         }
 

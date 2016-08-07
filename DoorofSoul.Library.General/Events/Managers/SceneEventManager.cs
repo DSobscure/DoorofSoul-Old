@@ -35,12 +35,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Scene Event Error: {0} from SceneID: {1}", eventCode, scene.SceneID);
+                    LibraryInstance.ErrorFormat("Scene Event Error: {0} from SceneID: {1}", eventCode, scene.SceneID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Scene Event:{0} from SceneID: {1}", eventCode, scene.SceneID);
+                LibraryInstance.ErrorFormat("Unknow Scene Event:{0} from SceneID: {1}", eventCode, scene.SceneID);
             }
         }
         internal void SendEvent(SceneEventCode eventCode, Dictionary<byte, object> parameters)

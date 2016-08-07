@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             }
             else
             {
-                LibraryLog.ErrorFormat("Scene FetchData Parameter Error On {0} SceneID: {1} Debug Message: {2}", fetchCode, scene.SceneID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Scene FetchData Parameter Error On {0} SceneID: {1} Debug Message: {2}", fetchCode, scene.SceneID, fetchDebugMessage);
                 return false;
             }
         }

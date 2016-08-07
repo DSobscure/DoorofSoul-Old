@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Entity
             }
             else
             {
-                LibraryLog.ErrorFormat("Entity InformData Parameter Error On {0} EntityID: {1} Debug Message: {2}", informCode, entity.EntityID, debugMessage);
+                LibraryInstance.ErrorFormat("Entity InformData Parameter Error On {0} EntityID: {1} Debug Message: {2}", informCode, entity.EntityID, debugMessage);
                 return false;
             }
         }

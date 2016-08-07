@@ -7,13 +7,13 @@ using DoorofSoul.Protocol.Language;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Player
 {
-    public class LogoutHandler : PlayerOperationHandler
+    internal class LogoutHandler : PlayerOperationHandler
     {
-        public LogoutHandler(General.Player player) : base(player)
+        internal LogoutHandler(General.Player player) : base(player)
         {
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 0)
             {
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
             }
         }
 
-        public override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {

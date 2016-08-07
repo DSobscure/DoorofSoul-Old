@@ -24,7 +24,6 @@ public class SceneController : MonoBehaviour, IEventProvider
     }
     void OnSceneLoad(UnityEngine.SceneManagement.Scene unityScene, LoadSceneMode mode)
     {
-        Debug.Log("Load!");
         if (scene != null)
         {
             scene.OnEntityEnter -= InstantiateEntity;
@@ -35,7 +34,7 @@ public class SceneController : MonoBehaviour, IEventProvider
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (scene != null)
         {
-            scene.SceneOperationManager.FetchEntities();
+            scene.SceneOperationManager.FetchDataResolver.FetchEntities();
             scene.OnEntityEnter += InstantiateEntity;
             scene.OnEntityEnter += AttachEntity;
             scene.OnEntityExit += DestroyEntity;

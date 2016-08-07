@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers
 {
-    internal abstract class ContainerOperationHandler
+    public abstract class ContainerOperationHandler
     {
         protected General.Container container;
 
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();
             container.ContainerResponseManager.SendResponse(operationCode, errorCode, debugMessage, parameters, ContainerCommunicationChannel.Answer);
-            LibraryLog.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Soul Operation: {0}, ErrorCode:{1}, Debug Message: {2}", operationCode, errorCode, debugMessage);
         }
         internal void SendResponse(ContainerOperationCode operationCode, Dictionary<byte, object> parameter)
         {

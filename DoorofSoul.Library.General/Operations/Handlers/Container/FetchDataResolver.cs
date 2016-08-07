@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers.Container.FetchData;
 using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
@@ -7,15 +8,17 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Container
 {
-    internal class FetchDataResolver : ContainerOperationHandler
+    public class FetchDataResolver : ContainerOperationHandler
     {
-        protected readonly Dictionary<ContainerFetchDataCode, FetchDataHandler> fetchTable;
+        private readonly Dictionary<ContainerFetchDataCode, FetchDataHandler> fetchTable;
 
         internal FetchDataResolver(General.Container container) : base(container)
         {
             fetchTable = new Dictionary<ContainerFetchDataCode, FetchDataHandler>
             {
                 { ContainerFetchDataCode.Entity, new FetchEntityHandler(container) },
+                { ContainerFetchDataCode.Inventory, new FetchInventoryHandler(container) },
+                { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsHandler(container) },
             };
         }
 
@@ -55,6 +58,28 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
             {
                 return false;
             }
+        }
+        internal void SendOperation(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters, ContainerCommunicationChannel channel)
+        {
+            Dictionary<byte, object> fetchDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)FetchDataParameterCode.FetchDataCode, (byte)fetchCode },
+                { (byte)FetchDataParameterCode.Parameters, parameters }
+            };
+            container.ContainerOperationManager.SendOperation(ContainerOperationCode.FetchData, fetchDataParameters, channel);
+        }
+
+        public void FetchEntity()
+        {
+            SendOperation(ContainerFetchDataCode.Entity, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
+        }
+        public void FetchInventory()
+        {
+            SendOperation(ContainerFetchDataCode.Inventory, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
+        }
+        public void FetchInventoryItems()
+        {
+            SendOperation(ContainerFetchDataCode.InventoryItems, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
         }
     }
 }

@@ -29,12 +29,12 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
-                    LibraryLog.ErrorFormat("Scene Response Error: {0} from AnswerID: {1}", operationCode, scene.SceneID);
+                    LibraryInstance.ErrorFormat("Scene Response Error: {0} from AnswerID: {1}", operationCode, scene.SceneID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Scene Response:{0} from AnswerID: {1}", operationCode, scene.SceneID);
+                LibraryInstance.ErrorFormat("Unknow Scene Response:{0} from AnswerID: {1}", operationCode, scene.SceneID);
             }
         }
         internal void SendResponse(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage, Dictionary<byte, object> parameters)

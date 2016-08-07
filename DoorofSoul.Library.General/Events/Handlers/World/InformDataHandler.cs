@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.World
             }
             else
             {
-                LibraryLog.ErrorFormat("World InformData Parameter Error On {0} WorldID: {1} Debug Message: {2}", informCode, world.WorldID, debugMessage);
+                LibraryInstance.ErrorFormat("World InformData Parameter Error On {0} WorldID: {1} Debug Message: {2}", informCode, world.WorldID, debugMessage);
                 return false;
             }
         }

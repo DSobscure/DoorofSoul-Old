@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     {
                         if (parameters.Count != 2)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Worlds Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch Worlds Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -31,7 +31,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Worlds Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Worlds Response Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Worlds Error"]);
                         return false;
                     }
@@ -51,15 +51,15 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Worlds Response Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Worlds Response Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

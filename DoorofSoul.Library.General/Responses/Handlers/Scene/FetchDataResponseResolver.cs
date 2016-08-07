@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             {
                 if (parameters.Count != 4)
                 {
-                    LibraryLog.ErrorFormat("Scene Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
+                    LibraryInstance.ErrorFormat("Scene Fetch Data Response Parameter Error Parameter Count: {0}", parameters.Count);
                     return false;
                 }
                 else
@@ -35,7 +35,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
             }
             else
             {
-                LibraryLog.ErrorFormat("Scene Fetch Data Response Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                LibraryInstance.ErrorFormat("Scene Fetch Data Response Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
                 return false;
             }
         }
@@ -54,7 +54,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Scene
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Scene FetchData Response Not Exist Fetch Code: {0}", fetchCode);
+                    LibraryInstance.ErrorFormat("Scene FetchData Response Not Exist Fetch Code: {0}", fetchCode);
                     return false;
                 }
             }

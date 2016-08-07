@@ -28,12 +28,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Answer Event Error: {0} from AnswerID: {1}", eventCode, answer.AnswerID);
+                    LibraryInstance.ErrorFormat("Answer Event Error: {0} from AnswerID: {1}", eventCode, answer.AnswerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Answer Event:{0} from AnswerID: {1}", eventCode, answer.AnswerID);
+                LibraryInstance.ErrorFormat("Unknow Answer Event:{0} from AnswerID: {1}", eventCode, answer.AnswerID);
             }
         }
 

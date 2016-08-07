@@ -27,12 +27,12 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
-                    LibraryLog.ErrorFormat("World Response Error: {0} from AnswerID: {1}", operationCode, world.WorldID);
+                    LibraryInstance.ErrorFormat("World Response Error: {0} from AnswerID: {1}", operationCode, world.WorldID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow World Response:{0} from AnswerID: {1}", operationCode, world.WorldID);
+                LibraryInstance.ErrorFormat("Unknow World Response:{0} from AnswerID: {1}", operationCode, world.WorldID);
             }
         }
 

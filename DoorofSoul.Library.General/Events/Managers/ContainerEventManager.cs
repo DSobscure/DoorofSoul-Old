@@ -26,12 +26,12 @@ namespace DoorofSoul.Library.General.Events.Managers
             {
                 if (!eventTable[eventCode].Handle(eventCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Container Event Error: {0} from ContainerID: {1}", eventCode, container.ContainerID);
+                    LibraryInstance.ErrorFormat("Container Event Error: {0} from ContainerID: {1}", eventCode, container.ContainerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Container Event:{0} from ContainerID: {1}", eventCode, container.ContainerID);
+                LibraryInstance.ErrorFormat("Unknow Container Event:{0} from ContainerID: {1}", eventCode, container.ContainerID);
             }
         }
 
@@ -53,7 +53,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
+                            LibraryInstance.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
                         }
                     }
                     break;
@@ -69,7 +69,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }
@@ -85,7 +85,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
+                            LibraryInstance.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
                         }
                     }
                     break;
@@ -95,7 +95,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }

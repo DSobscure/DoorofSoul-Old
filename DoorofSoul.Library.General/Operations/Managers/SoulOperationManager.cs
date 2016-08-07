@@ -10,13 +10,15 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         private readonly Dictionary<SoulOperationCode, SoulOperationHandler> operationTable;
         protected readonly Soul soul;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         internal SoulOperationManager(Soul soul)
         {
             this.soul = soul;
+            FetchDataResolver = new FetchDataResolver(soul);
             operationTable = new Dictionary<SoulOperationCode, SoulOperationHandler>
             {
-                { SoulOperationCode.FetchData, new FetchDataResolver(soul) },
+                { SoulOperationCode.FetchData, FetchDataResolver },
             };
         }
 
@@ -26,12 +28,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Soul Operation Error: {0} from SoulID: {1}", operationCode, soul.SoulID);
+                    LibraryInstance.ErrorFormat("Soul Operation Error: {0} from SoulID: {1}", operationCode, soul.SoulID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Soul Operation:{0} from SoulID: {1}", operationCode, soul.SoulID);
+                LibraryInstance.ErrorFormat("Unknow Soul Operation:{0} from SoulID: {1}", operationCode, soul.SoulID);
             }
         }
 

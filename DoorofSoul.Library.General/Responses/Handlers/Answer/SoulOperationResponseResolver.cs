@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             {
                 if (parameters.Count != 5)
                 {
-                    LibraryLog.ErrorFormat("Soul OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
+                    LibraryInstance.ErrorFormat("Soul OperationResponse Parameter Error Parameter Count: {0}", parameters.Count);
                     return false;
                 }
                 else
@@ -28,7 +28,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
             }
             else
             {
-                LibraryLog.ErrorFormat("SoulOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
+                LibraryInstance.ErrorFormat("SoulOperationResponse Error ErrorCode: {0}, DebugMessage: {1}", returnCode, debugMessage);
                 return false;
             }
         }
@@ -51,21 +51,21 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("SoulOperationResponse Error Soul ID: {0} Not in Answer ID: {1}", soulID, answer.AnswerID);
+                        LibraryInstance.ErrorFormat("SoulOperationResponse Error Soul ID: {0} Not in Answer ID: {1}", soulID, answer.AnswerID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("SoulOperationResponse Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("SoulOperationResponse Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

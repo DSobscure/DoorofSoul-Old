@@ -23,7 +23,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     {
                         if (parameters.Count != 3)
                         {
-                            LibraryLog.ErrorFormat(string.Format("Fetch Scene Response Parameter Error, Parameter Count: {0}", parameters.Count));
+                            LibraryInstance.ErrorFormat(string.Format("Fetch Scene Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
                         }
                         else
@@ -33,13 +33,13 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                     }
                 case ErrorCode.NotExist:
                     {
-                        LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Not Exist"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Scene NotExist"]);
                         return false;
                     }
                 default:
                     {
-                        LibraryLog.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
+                        LibraryInstance.ErrorFormat("Fetch Scene Response Error DebugMessage: {0}", debugMessage);
                         player.PlayerEventManager.ErrorInform(LauguageDictionarySelector.Instance[player.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[player.UsingLanguage]["Fetch Scene Error"]);
                         return false;
                     }
@@ -60,15 +60,15 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Player.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.Error("Fetch Scene Response Parameter Cast Error");
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error("Fetch Scene Response Parameter Cast Error");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.Error(ex.Message);
-                    LibraryLog.Error(ex.StackTrace);
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
                     return false;
                 }
             }

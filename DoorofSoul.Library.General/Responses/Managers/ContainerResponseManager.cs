@@ -27,12 +27,12 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
-                    LibraryLog.ErrorFormat("Container Response Error: {0} from AnswerID: {1}", operationCode, container.ContainerID);
+                    LibraryInstance.ErrorFormat("Container Response Error: {0} from AnswerID: {1}", operationCode, container.ContainerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Container Response:{0} from AnswerID: {1}", operationCode, container.ContainerID);
+                LibraryInstance.ErrorFormat("Unknow Container Response:{0} from AnswerID: {1}", operationCode, container.ContainerID);
             }
         }
 
@@ -56,7 +56,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
                         }
                         else
                         {
-                            LibraryLog.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
+                            LibraryInstance.ErrorFormat("Not Exist Soul for Container Communication, ContainerID: {0}", container.ContainerID);
                         }
                     }
                     break;
@@ -74,7 +74,7 @@ namespace DoorofSoul.Library.General.Responses.Managers
                     }
                     break;
                 default:
-                    LibraryLog.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
+                    LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
         }

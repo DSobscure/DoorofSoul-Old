@@ -43,21 +43,21 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                     }
                     else
                     {
-                        LibraryLog.ErrorFormat("SceneOperation Error Scene ID: {0} Not in World ID: {1}", sceneID, world.WorldID);
+                        LibraryInstance.ErrorFormat("SceneOperation Error Scene ID: {0} Not in World ID: {1}", sceneID, world.WorldID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryLog.ErrorFormat("SceneOperation Parameter Cast Error");
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat("SceneOperation Parameter Cast Error");
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    LibraryLog.ErrorFormat(ex.Message);
-                    LibraryLog.ErrorFormat(ex.StackTrace);
+                    LibraryInstance.ErrorFormat(ex.Message);
+                    LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;
                 }
             }

@@ -31,12 +31,12 @@ namespace DoorofSoul.Library.General.Responses.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, returnCode, debugMessage, parameters))
                 {
-                    LibraryLog.ErrorFormat("Player Response Error: {0} from AnswerID: {1}", operationCode, player.PlayerID);
+                    LibraryInstance.ErrorFormat("Player Response Error: {0} from AnswerID: {1}", operationCode, player.PlayerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Player Response:{0} from AnswerID: {1}", operationCode, player.PlayerID);
+                LibraryInstance.ErrorFormat("Unknow Player Response:{0} from AnswerID: {1}", operationCode, player.PlayerID);
             }
         }
 

@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             }
             else
             {
-                LibraryLog.ErrorFormat("Player InformData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", informCode, player.PlayerID, debugMessage);
+                LibraryInstance.ErrorFormat("Player InformData Parameter Error On {0} PlayerID: {1} Debug Message: {2}", informCode, player.PlayerID, debugMessage);
                 return false;
             }
         }

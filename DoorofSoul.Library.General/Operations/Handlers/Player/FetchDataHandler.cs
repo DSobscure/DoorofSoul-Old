@@ -49,7 +49,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 { (byte)FetchDataResponseParameterCode.DebugMessage, debugMessage },
                 { (byte)FetchDataResponseParameterCode.Parameters, new Dictionary<byte, object>() }
             };
-            LibraryLog.ErrorFormat("Error On Player Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
+            LibraryInstance.ErrorFormat("Error On Player Fetch Operation: {0}, ErrorCode:{1}, Debug Message: {2}", fetchCode, errorCode, debugMessage);
             player.PlayerResponseManager.SendResponse(PlayerOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
     }

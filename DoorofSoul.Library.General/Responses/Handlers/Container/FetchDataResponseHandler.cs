@@ -21,7 +21,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container
             }
             else
             {
-                LibraryLog.ErrorFormat("Container FetchData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", fetchCode, container.ContainerID, fetchDebugMessage);
+                LibraryInstance.ErrorFormat("Container FetchData Parameter Error On {0} ContainerID: {1} Debug Message: {2}", fetchCode, container.ContainerID, fetchDebugMessage);
                 return false;
             }
         }

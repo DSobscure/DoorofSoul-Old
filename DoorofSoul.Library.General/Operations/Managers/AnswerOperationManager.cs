@@ -13,15 +13,17 @@ namespace DoorofSoul.Library.General.Operations.Managers
     {
         private readonly Dictionary<AnswerOperationCode, AnswerOperationHandler> operationTable;
         protected readonly Answer answer;
+        public FetchDataResolver FetchDataResolver { get; protected set; }
 
         internal AnswerOperationManager(Answer answer)
         {
             this.answer = answer;
+            FetchDataResolver = new FetchDataResolver(answer);
             operationTable = new Dictionary<AnswerOperationCode, AnswerOperationHandler>
             {
                 { AnswerOperationCode.SoulOperation, new SoulOperationResolver(answer) },
                 { AnswerOperationCode.ContainerOperation, new ContainerOperationResolver(answer) },
-                { AnswerOperationCode.FetchData, new FetchDataResolver(answer) },
+                { AnswerOperationCode.FetchData, FetchDataResolver },
                 { AnswerOperationCode.CreateSoul, new CreateSoulHandler(answer) },
                 { AnswerOperationCode.DeleteSoul, new DeleteSoulHandler(answer) },
                 { AnswerOperationCode.ActivateSoul, new ActivateSoulHandler(answer) },
@@ -34,12 +36,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 if (!operationTable[operationCode].Handle(operationCode, parameters))
                 {
-                    LibraryLog.ErrorFormat("Answe Operation Error: {0} from AnswerID: {1}", operationCode, answer.AnswerID);
+                    LibraryInstance.ErrorFormat("Answe Operation Error: {0} from AnswerID: {1}", operationCode, answer.AnswerID);
                 }
             }
             else
             {
-                LibraryLog.ErrorFormat("Unknow Answer Operation:{0} from AnswerID: {1}", operationCode, answer.AnswerID);
+                LibraryInstance.ErrorFormat("Unknow Answer Operation:{0} from AnswerID: {1}", operationCode, answer.AnswerID);
             }
         }
 
@@ -77,34 +79,6 @@ namespace DoorofSoul.Library.General.Operations.Managers
                 { (byte)ActivateSoulOperationParameterCode.SoulID, soulID }
             };
             SendOperation(AnswerOperationCode.ActivateSoul, parameters);
-        }
-
-        public void FetchSouls()
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Souls },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, parameters);
-        }
-        public void FetchContainers()
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.Containers },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, parameters);
-        }
-        public void FetchSoulContainerLinks()
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)FetchDataParameterCode.FetchDataCode, (byte)AnswerFetchDataCode.SoulContainerLinks },
-                { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
-            };
-            SendOperation(AnswerOperationCode.FetchData, parameters);
         }
     }
 }

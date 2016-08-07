@@ -45,7 +45,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
                 }
                 else
                 {
-                    LibraryLog.ErrorFormat("Player InformData Event Not Exist Inform Code: {0}", informCode);
+                    LibraryInstance.ErrorFormat("Player InformData Event Not Exist Inform Code: {0}", informCode);
                     return false;
                 }
             }

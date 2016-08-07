@@ -56,11 +56,12 @@ namespace DoorofSoul.Server
                 LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
                 XmlConfigurator.ConfigureAndWatch(file);
             }
-            LibraryLog.Initial(Log.Error, Log.ErrorFormat);
+            LibraryInstance.Initial(Log.Error, Log.ErrorFormat);
         }
         protected void SetupConfiguration()
         {
             SystemConfiguration = SystemConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "system.config"));
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
         }
 
         protected void SetupDatabase()

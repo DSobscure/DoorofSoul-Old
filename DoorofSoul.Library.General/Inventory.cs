@@ -20,6 +20,9 @@ namespace DoorofSoul.Library.General
         protected ItemInfo[] itemInfos;
         public IEnumerable<ItemInfo> ItemInfos { get { return itemInfos.Where(x => x.item != null).OrderBy(x => x.positionIndex); } }
 
+        private event Action<ItemInfo> onItemChange;
+        public event Action<ItemInfo> OnItemChange { add { onItemChange += value; } remove { onItemChange -= value; } }
+
         public Inventory(int inventoryID, int containerID, int capacity)
         {
             InventoryID = inventoryID;
@@ -33,6 +36,7 @@ namespace DoorofSoul.Library.General
             if(item != null && positionIndex >= 0 && positionIndex < Capacity)
             {
                 itemInfos[positionIndex] = new ItemInfo { item = item, count = count, positionIndex = positionIndex };
+                onItemChange?.Invoke(itemInfos[positionIndex]);
             }
         }
     }

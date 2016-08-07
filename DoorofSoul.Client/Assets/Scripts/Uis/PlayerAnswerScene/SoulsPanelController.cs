@@ -71,7 +71,6 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
             soulPanel.transform.SetParent(soulsPanel);
             RectTransform rect = soulPanel.GetComponent<RectTransform>();
             rect.localScale = Vector3.one;
-            rect.localPosition = Vector3.zero;
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
             soulPanel.Show(soul);
             int soulID = soul.SoulID;

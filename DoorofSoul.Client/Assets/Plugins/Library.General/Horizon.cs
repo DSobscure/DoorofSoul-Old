@@ -87,10 +87,7 @@ namespace DoorofSoul.Client.Library.General
         public void FetchMainScene(int sceneID)
         {
             waitingMainSceneID = sceneID;
-            foreach(World world in Worlds)
-            {
-                Global.Global.Player.PlayerOperationManager.FetchDataResolver.FetchScene(sceneID);
-            }
+            Global.Global.Player.PlayerOperationManager.FetchDataResolver.FetchScene(sceneID);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene.InformData
 
         public override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
         {
-            if (parameters.Count != 24)
+            if (parameters.Count != 3)
             {
                 debugMessage = string.Format("Inform EntityEnter Event Parameter Error, Parameter Count: {0}", parameters.Count);
                 return false;
@@ -34,52 +34,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene.InformData
                 {
                     int entityID = (int)parameters[(byte)InformEntityEnterParameterCode.EntityID];
                     string entityName = (string)parameters[(byte)InformEntityEnterParameterCode.EntityName];
-                    EntitySpaceProperties entitySpaceProperties = new EntitySpaceProperties
-                    {
-                        position = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.PositionX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.PositionY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.PositionZ]
-                        },
-                        rotation = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.RotationX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.RotationY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.RotationZ]
-                        },
-                        scale = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.ScaleX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.ScaleY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.ScaleZ]
-                        },
-                        velocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.VelocityX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.VelocityY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.VelocityZ]
-                        },
-                        maxVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.MaxVelocityX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.MaxVelocityY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.MaxVelocityZ]
-                        },
-                        angularVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.AngularVelocityX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.AngularVelocityY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.AngularVelocityZ]
-                        },
-                        maxAngularVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)InformEntityEnterParameterCode.MaxAngularVelocityX],
-                            y = (float)parameters[(byte)InformEntityEnterParameterCode.MaxAngularVelocityY],
-                            z = (float)parameters[(byte)InformEntityEnterParameterCode.MaxAngularVelocityZ]
-                        },
-                        mass = (float)parameters[(byte)InformEntityEnterParameterCode.Mass]
-                    };
+                    EntitySpaceProperties entitySpaceProperties = (EntitySpaceProperties)parameters[(byte)InformEntityEnterParameterCode.EntitySpaceProperties];
                     General.Entity entity = new General.Entity(entityID, entityName, scene.SceneID, entitySpaceProperties);
                     scene.EntityEnter(entity);
                     return true;

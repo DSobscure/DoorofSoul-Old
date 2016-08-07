@@ -62,6 +62,7 @@ namespace DoorofSoul.Server
         {
             SystemConfiguration = SystemConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "system.config"));
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
         }
 
         protected void SetupDatabase()

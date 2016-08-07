@@ -9,27 +9,6 @@ namespace DoorofSoul.Protocol.Communication.InformDataParameters.Scene
     {
         EntityID,
         EntityName,
-        PositionX,
-        PositionY,
-        PositionZ,
-        RotationX,
-        RotationY,
-        RotationZ,
-        ScaleX,
-        ScaleY,
-        ScaleZ,
-        VelocityX,
-        VelocityY,
-        VelocityZ,
-        MaxVelocityX,
-        MaxVelocityY,
-        MaxVelocityZ,
-        AngularVelocityX,
-        AngularVelocityY,
-        AngularVelocityZ,
-        MaxAngularVelocityX,
-        MaxAngularVelocityY,
-        MaxAngularVelocityZ,
-        Mass
+        EntitySpaceProperties
     }
 }

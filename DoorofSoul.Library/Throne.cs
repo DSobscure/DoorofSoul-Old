@@ -164,7 +164,7 @@ namespace DoorofSoul.Library
                 answer.LoadSouls(new List<Soul> { soul });
                 Container defaultContainer = DataBase.Instance.RepositoryManager.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
                 {
-                    scale = new DSVector3 { x = 1, y = 1, z = 1 },
+                    Scale = new DSVector3 { x = 1, y = 1, z = 1 },
                 });
                 DataBase.Instance.RelationManager.SoulID_ContainerID_Relation.Link_Soul_Container(soul.SoulID, defaultContainer.ContainerID);
                 ProjectSoul(soul);

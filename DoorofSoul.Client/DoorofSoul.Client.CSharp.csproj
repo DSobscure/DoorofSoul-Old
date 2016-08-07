@@ -109,7 +109,7 @@
     <Compile Include="Assets\Scripts\Tests\UI\ViewMaskTest.cs" />
     <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\Uis\ErrorInformPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\InventoryPanel.cs" />
+    <Compile Include="Assets\Scripts\Uis\ExtraPanels\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\CreateSoulPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\DeleteSoulPanelController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\PlayerAnswerController.cs" />

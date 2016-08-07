@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 25)
+                        if (parameters.Count != 4)
                         {
                             LibraryInstance.ErrorFormat(string.Format("Fetch Entity Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -47,52 +47,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Container.FetchData
                     int entityID = (int)parameters[(byte)FetchEntityResponseParameterCode.EntityID];
                     string entityName = (string)parameters[(byte)FetchEntityResponseParameterCode.EntityName];
                     int locatedSceneID = (int)parameters[(byte)FetchEntityResponseParameterCode.LocatedSceneID];
-                    EntitySpaceProperties entitySpaceProperties = new EntitySpaceProperties
-                    {
-                        position = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.PositionX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.PositionY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.PositionZ]
-                        },
-                        rotation = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.RotationX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.RotationY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.RotationZ]
-                        },
-                        scale = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.ScaleX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.ScaleY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.ScaleZ]
-                        },
-                        velocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.VelocityX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.VelocityY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.VelocityZ]
-                        },
-                        maxVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxVelocityX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxVelocityY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxVelocityZ]
-                        },
-                        angularVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.AngularVelocityX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.AngularVelocityY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.AngularVelocityZ]
-                        },
-                        maxAngularVelocity = new DSVector3
-                        {
-                            x = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxAngularVelocityX],
-                            y = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxAngularVelocityY],
-                            z = (float)parameters[(byte)FetchEntityResponseParameterCode.MaxAngularVelocityZ]
-                        },
-                        mass = (float)parameters[(byte)FetchEntityResponseParameterCode.Mass]
-                    };
+                    EntitySpaceProperties entitySpaceProperties = (EntitySpaceProperties)parameters[(byte)FetchEntityResponseParameterCode.EntitySpaceProperties];
                     General.Entity entity = new General.Entity(entityID, entityName, locatedSceneID, entitySpaceProperties);
                     container.BindEntity(entity);
                     return true;

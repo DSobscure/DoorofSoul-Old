@@ -32,28 +32,28 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             {
                 command.Parameters.AddWithValue("@entityName", entityName);
                 command.Parameters.AddWithValue("@locatedSceneID", locatedSceneID);
-                command.Parameters.AddWithValue("@positionX", spaceProperties.position.x);
-                command.Parameters.AddWithValue("@positionY", spaceProperties.position.y);
-                command.Parameters.AddWithValue("@positionZ", spaceProperties.position.z);
-                command.Parameters.AddWithValue("@rotationX", spaceProperties.rotation.x);
-                command.Parameters.AddWithValue("@rotationY", spaceProperties.rotation.y);
-                command.Parameters.AddWithValue("@rotationZ", spaceProperties.rotation.z);
-                command.Parameters.AddWithValue("@scaleX", spaceProperties.scale.x);
-                command.Parameters.AddWithValue("@scaleY", spaceProperties.scale.y);
-                command.Parameters.AddWithValue("@scaleZ", spaceProperties.scale.z);
-                command.Parameters.AddWithValue("@velocityX", spaceProperties.velocity.x);
-                command.Parameters.AddWithValue("@velocityY", spaceProperties.velocity.y);
-                command.Parameters.AddWithValue("@velocityZ", spaceProperties.velocity.z);
-                command.Parameters.AddWithValue("@maxVelocityX", spaceProperties.maxVelocity.x);
-                command.Parameters.AddWithValue("@maxVelocityY", spaceProperties.maxVelocity.y);
-                command.Parameters.AddWithValue("@maxVelocityZ", spaceProperties.maxVelocity.z);
-                command.Parameters.AddWithValue("@angularVelocityX", spaceProperties.angularVelocity.x);
-                command.Parameters.AddWithValue("@angularVelocityY", spaceProperties.angularVelocity.y);
-                command.Parameters.AddWithValue("@angularVelocityZ", spaceProperties.angularVelocity.z);
-                command.Parameters.AddWithValue("@maxAngularVelocityX", spaceProperties.maxAngularVelocity.x);
-                command.Parameters.AddWithValue("@maxAngularVelocityY", spaceProperties.maxAngularVelocity.y);
-                command.Parameters.AddWithValue("@maxAngularVelocityZ", spaceProperties.maxAngularVelocity.z);
-                command.Parameters.AddWithValue("@mass", spaceProperties.mass);
+                command.Parameters.AddWithValue("@positionX", spaceProperties.Position.x);
+                command.Parameters.AddWithValue("@positionY", spaceProperties.Position.y);
+                command.Parameters.AddWithValue("@positionZ", spaceProperties.Position.z);
+                command.Parameters.AddWithValue("@rotationX", spaceProperties.Rotation.x);
+                command.Parameters.AddWithValue("@rotationY", spaceProperties.Rotation.y);
+                command.Parameters.AddWithValue("@rotationZ", spaceProperties.Rotation.z);
+                command.Parameters.AddWithValue("@scaleX", spaceProperties.Scale.x);
+                command.Parameters.AddWithValue("@scaleY", spaceProperties.Scale.y);
+                command.Parameters.AddWithValue("@scaleZ", spaceProperties.Scale.z);
+                command.Parameters.AddWithValue("@velocityX", spaceProperties.Velocity.x);
+                command.Parameters.AddWithValue("@velocityY", spaceProperties.Velocity.y);
+                command.Parameters.AddWithValue("@velocityZ", spaceProperties.Velocity.z);
+                command.Parameters.AddWithValue("@maxVelocityX", spaceProperties.MaxVelocity.x);
+                command.Parameters.AddWithValue("@maxVelocityY", spaceProperties.MaxVelocity.y);
+                command.Parameters.AddWithValue("@maxVelocityZ", spaceProperties.MaxVelocity.z);
+                command.Parameters.AddWithValue("@angularVelocityX", spaceProperties.AngularVelocity.x);
+                command.Parameters.AddWithValue("@angularVelocityY", spaceProperties.AngularVelocity.y);
+                command.Parameters.AddWithValue("@angularVelocityZ", spaceProperties.AngularVelocity.z);
+                command.Parameters.AddWithValue("@maxAngularVelocityX", spaceProperties.MaxAngularVelocity.x);
+                command.Parameters.AddWithValue("@maxAngularVelocityY", spaceProperties.MaxAngularVelocity.y);
+                command.Parameters.AddWithValue("@maxAngularVelocityZ", spaceProperties.MaxAngularVelocity.z);
+                command.Parameters.AddWithValue("@mass", spaceProperties.Mass);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -130,14 +130,14 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 
                         return new Entity(entityID, entityName, locatedSceneID, new EntitySpaceProperties
                         {
-                            position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
-                            rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
-                            scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
-                            velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
-                            maxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
-                            angularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
-                            maxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
-                            mass = mass
+                            Position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
+                            Rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
+                            Scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
+                            Velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
+                            MaxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
+                            AngularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
+                            MaxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
+                            Mass = mass
                         });
                     }
                     else
@@ -195,14 +195,14 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         float mass = reader.GetFloat(24);
                         entities.Add(new Entity(entityID, entityName, locatedSceneID, new EntitySpaceProperties
                         {
-                            position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
-                            rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
-                            scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
-                            velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
-                            maxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
-                            angularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
-                            maxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
-                            mass = mass
+                            Position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
+                            Rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
+                            Scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
+                            Velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
+                            MaxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
+                            AngularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
+                            MaxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
+                            Mass = mass
                         }));
                     }
                     return entities;
@@ -258,14 +258,14 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         float mass = reader.GetFloat(24);
                         entities.Add(new Entity(entityID, entityName, locatedSceneID, new EntitySpaceProperties
                         {
-                            position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
-                            rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
-                            scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
-                            velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
-                            maxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
-                            angularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
-                            maxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
-                            mass = mass
+                            Position = new DSVector3 { x = positionX, y = positionY, z = positionZ },
+                            Rotation = new DSVector3 { x = rotationX, y = rotationY, z = rotationZ },
+                            Scale = new DSVector3 { x = scaleX, y = scaleY, z = scaleZ },
+                            Velocity = new DSVector3 { x = velocityX, y = velocityY, z = velocityZ },
+                            MaxVelocity = new DSVector3 { x = maxVelocityX, y = maxVelocityY, z = maxVelocityZ },
+                            AngularVelocity = new DSVector3 { x = angularVelocityX, y = angularVelocityY, z = angularVelocityZ },
+                            MaxAngularVelocity = new DSVector3 { x = maxAngularVelocityX, y = maxAngularVelocityY, z = maxAngularVelocityZ },
+                            Mass = mass
                         }));
                     }
                     return entities;

@@ -2,6 +2,7 @@
 {
     public enum SerializationClassTypeCode : byte
     {
-        Item
+        Item,
+        EntitySpaceProperties,
     }
 }

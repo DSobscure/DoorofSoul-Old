@@ -178,6 +178,7 @@ namespace DoorofSoul.Client.Communication
         private void RegisterTypes()
         {
             PhotonPeer.RegisterType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
+            PhotonPeer.RegisterType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
         }
     }
 }

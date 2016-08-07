@@ -15,6 +15,7 @@ namespace DoorofSoul.Protocol.Language.UILanguages
                 { "Send", "送出" },
                 { "Source", "來源" },
                 { "Target", "對象" },
+                { "Inventory", "物品欄" },
                 #endregion
             };
         }

@@ -5,27 +5,6 @@
         EntityID,
         EntityName,
         LocatedSceneID,
-        PositionX,
-        PositionY,
-        PositionZ,
-        RotationX,
-        RotationY,
-        RotationZ,
-        ScaleX,
-        ScaleY,
-        ScaleZ,
-        VelocityX,
-        VelocityY,
-        VelocityZ,
-        MaxVelocityX,
-        MaxVelocityY,
-        MaxVelocityZ,
-        AngularVelocityX,
-        AngularVelocityY,
-        AngularVelocityZ,
-        MaxAngularVelocityX,
-        MaxAngularVelocityY,
-        MaxAngularVelocityZ,
-        Mass
+        EntitySpaceProperties
     }
 }

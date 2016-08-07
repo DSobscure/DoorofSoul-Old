@@ -1,20 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using MsgPack.Serialization;
 
 namespace DoorofSoul.Library.General
 {
     public class EntitySpaceProperties
     {
-        public DSVector3 position;
-        public DSVector3 rotation;
-        public DSVector3 scale;
+        public static object Deserialize(byte[] data)
+        {
+            var serializer = MessagePackSerializer.Get<EntitySpaceProperties>();
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return serializer.Unpack(ms);
+            }
+        }
 
-        public DSVector3 velocity;
-        public DSVector3 maxVelocity;
-        public DSVector3 angularVelocity;
-        public DSVector3 maxAngularVelocity;
-        public float mass;
+        public static byte[] Serialize(object customType)
+        {
+            EntitySpaceProperties properties = customType as EntitySpaceProperties;
+            var serializer = MessagePackSerializer.Get<EntitySpaceProperties>();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                serializer.Pack(memoryStream, properties);
+                return memoryStream.ToArray();
+            }
+        }
+
+        public DSVector3 Position { get; set; }
+        public DSVector3 Rotation { get; set; }
+        public DSVector3 Scale { get; set; }
+
+        public DSVector3 Velocity { get; set; }
+        public DSVector3 MaxVelocity { get; set; }
+        public DSVector3 AngularVelocity { get; set; }
+        public DSVector3 MaxAngularVelocity { get; set; }
+        public float Mass { get; set; }
     }
 }

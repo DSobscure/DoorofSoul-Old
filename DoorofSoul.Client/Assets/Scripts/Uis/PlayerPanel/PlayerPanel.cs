@@ -26,7 +26,10 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
     #endregion
     #region general panel
     private RectTransform generalPanel;
+    #region container panel
     private RectTransform containerPanel;
+    private Button inventoryButton;
+    #endregion
     private RectTransform soulPanel;
     #region message input 
     private RectTransform messageInputPanel;
@@ -38,6 +41,11 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
     #endregion
     #region message content panel
     private MessageContentPanel messageContentPanel;
+    #endregion
+
+    #region extra panels
+    [SerializeField]
+    private InventoryPanel inventoryPanelPrefab;
     #endregion
 
     void Awake()
@@ -56,6 +64,13 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
         SetupMessageContentPanel();
         SetupMessageControlPanel();
         SetupGeneralPanel();
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowInventoryPanel();
+        }
     }
 
     public void RegisterEvents()
@@ -101,10 +116,17 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
         foldMessageContentButton = messageControlPanel.transform.FindChild("FoldMessageContentButton").GetComponent<Button>();
         FoldMessageContent();
     }
+    private void SetupContainerPanel()
+    {
+        containerPanel = generalPanel.transform.FindChild("ContainerPanel").GetComponent<RectTransform>();
+        inventoryButton = containerPanel.transform.FindChild("InventoryButton").GetComponent<Button>();
+        inventoryButton.onClick.AddListener(() => ShowInventoryPanel());
+        inventoryButton.GetComponentInChildren<Text>().text = UILanguageSeletor.Instance[SystemManager.SystemLanguage]["Inventory"];
+    }
     private void SetupGeneralPanel()
     {
         generalPanel = transform.FindChild("GeneralPanel").GetComponent<RectTransform>();
-        containerPanel = generalPanel.transform.FindChild("ContainerPanel").GetComponent<RectTransform>();
+        SetupContainerPanel();
         soulPanel = generalPanel.transform.FindChild("SoulPanel").GetComponent<RectTransform>();
 
         messageInputPanel = generalPanel.transform.FindChild("MessageInputPanel").GetComponent<RectTransform>();
@@ -142,5 +164,18 @@ public class PlayerPanel : MonoBehaviour, IEventProvider
         foldMessageContentButton.onClick.RemoveAllListeners();
         foldMessageContentButton.onClick.AddListener(() => FoldMessageContent());
         messageContentPanel.gameObject.SetActive(true);
+    }
+    private void ShowInventoryPanel()
+    {
+        if (transform.FindChild("InventoryPanel") == null)
+        {
+            InventoryPanel inventoryPanel = Instantiate(inventoryPanelPrefab);
+            inventoryPanel.name = "InventoryPanel";
+            inventoryPanel.transform.SetParent(transform);
+            RectTransform rectTransform = inventoryPanel.GetComponent<RectTransform>();
+            rectTransform.localScale = Vector3.one;
+            rectTransform.localPosition = Vector2.zero;
+            inventoryPanel.BindInventory(Global.Seat.MainContainer.Inventory);
+        }
     }
 }

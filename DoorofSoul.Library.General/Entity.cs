@@ -20,44 +20,44 @@ namespace DoorofSoul.Library.General
 
         public DSVector3 Position
         {
-            get { return SpaceProperties.position; }
-            protected set { SpaceProperties.position = value; }
+            get { return SpaceProperties.Position; }
+            protected set { SpaceProperties.Position = value; }
         }
         public DSVector3 Rotation
         {
-            get { return SpaceProperties.rotation; }
-            protected set { SpaceProperties.rotation = value; }
+            get { return SpaceProperties.Rotation; }
+            protected set { SpaceProperties.Rotation = value; }
         }
         public DSVector3 Scale
         {
-            get { return SpaceProperties.scale; }
-            protected set { SpaceProperties.scale = value; }
+            get { return SpaceProperties.Scale; }
+            protected set { SpaceProperties.Scale = value; }
         }
 
         public DSVector3 Velocity
         {
-            get { return SpaceProperties.velocity; }
-            protected set { SpaceProperties.velocity = value; }
+            get { return SpaceProperties.Velocity; }
+            protected set { SpaceProperties.Velocity = value; }
         }
         public DSVector3 MaxVelocity
         {
-            get { return SpaceProperties.maxVelocity; }
-            protected set { SpaceProperties.maxVelocity = value; }
+            get { return SpaceProperties.MaxVelocity; }
+            protected set { SpaceProperties.MaxVelocity = value; }
         }
         public DSVector3 AngularVelocity
         {
-            get { return SpaceProperties.angularVelocity; }
-            protected set { SpaceProperties.angularVelocity = value; }
+            get { return SpaceProperties.AngularVelocity; }
+            protected set { SpaceProperties.AngularVelocity = value; }
         }
         public DSVector3 MaxAngularVelocity
         {
-            get { return SpaceProperties.maxAngularVelocity; }
-            protected set { SpaceProperties.maxAngularVelocity = value; }
+            get { return SpaceProperties.MaxAngularVelocity; }
+            protected set { SpaceProperties.MaxAngularVelocity = value; }
         }
         public float Mass
         {
-            get { return SpaceProperties.mass; }
-            protected set { SpaceProperties.mass = value; }
+            get { return SpaceProperties.Mass; }
+            protected set { SpaceProperties.Mass = value; }
         }
         public SupportLauguages UsingLanguage { get { return LocatedScene.UsingLanguage; } }
         protected IEntityController entityController;

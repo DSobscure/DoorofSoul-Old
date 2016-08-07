@@ -105,8 +105,8 @@ namespace DoorofSoul.Library.General
         {
             if(entityDictionary.ContainsKey(entityID))
             {
-                entityDictionary[entityID].UpdateEntityTransform(spaceProperties.position, spaceProperties.rotation, spaceProperties.scale);
-                entityDictionary[entityID].UpdateEntityVelocity(spaceProperties.velocity, spaceProperties.angularVelocity);
+                entityDictionary[entityID].UpdateEntityTransform(spaceProperties.Position, spaceProperties.Rotation, spaceProperties.Scale);
+                entityDictionary[entityID].UpdateEntityVelocity(spaceProperties.Velocity, spaceProperties.AngularVelocity);
             }
         }
 

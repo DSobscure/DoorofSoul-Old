@@ -14,8 +14,8 @@ public class EntityRotateTest : MonoBehaviour
     {
         entity = new Entity(1, "TestContainer", -1, new EntitySpaceProperties
         {
-            velocity = new DSVector3 { x = 0, y = 0, z =0 },
-            angularVelocity = new DSVector3 { x = 0, y = 0, z = 0 },
+            Velocity = new DSVector3 { x = 0, y = 0, z =0 },
+            AngularVelocity = new DSVector3 { x = 0, y = 0, z = 0 },
         });
         GameObject gameObjectPrefab = Resources.Load<GameObject>("EntityPrefabs/" + entity.EntityName);
         GameObject entities = GameObject.Find("Entities");

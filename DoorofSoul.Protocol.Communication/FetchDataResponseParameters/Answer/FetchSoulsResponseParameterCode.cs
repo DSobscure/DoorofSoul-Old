@@ -3,6 +3,7 @@
     public enum FetchSoulsResponseParameterCode : byte
     {
         SoulID,
-        SoulName
+        SoulName,
+        SoulAttributes
     }
 }

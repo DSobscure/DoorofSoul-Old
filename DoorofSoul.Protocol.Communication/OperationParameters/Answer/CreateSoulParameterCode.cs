@@ -2,6 +2,7 @@
 {
     public enum CreateSoulParameterCode : byte
     {
-        SoulName
+        SoulName,
+        MainSoulType
     }
 }

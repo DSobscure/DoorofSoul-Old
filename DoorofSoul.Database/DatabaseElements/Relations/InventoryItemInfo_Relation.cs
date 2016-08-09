@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.ContainerElements;
 
 namespace DoorofSoul.Database.DatabaseElements.Relations
 {

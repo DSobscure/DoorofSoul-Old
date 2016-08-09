@@ -36,7 +36,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                         var result = new Dictionary<byte, object>
                         {
                             { (byte)FetchSoulsResponseParameterCode.SoulID, soul.SoulID },
-                            { (byte)FetchSoulsResponseParameterCode.SoulName, soul.SoulName }
+                            { (byte)FetchSoulsResponseParameterCode.SoulName, soul.SoulName },
+                            { (byte)FetchSoulsResponseParameterCode.SoulAttributes, soul.Attributes }
                         };
                         SendResponse(fetchCode, result);
                     }

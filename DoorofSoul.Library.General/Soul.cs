@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General.Events.Managers;
+﻿using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Language;
@@ -28,6 +29,7 @@ namespace DoorofSoul.Library.General
             }
         }
         public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
+        public SoulAttributes Attributes { get; protected set; }
         #endregion
 
         #region events
@@ -45,12 +47,13 @@ namespace DoorofSoul.Library.General
         internal SoulResponseManager SoulResponseManager { get; set; }
         #endregion
 
-        public Soul(int soulID, Answer answer, string soulName)
+        public Soul(int soulID, Answer answer, string soulName, SoulAttributes attributes)
         {
             SoulID = soulID;
             AnswerID = answer.AnswerID;
             Answer = answer;
             SoulName = soulName;
+            Attributes = attributes;
             containerDictionary = new Dictionary<int, Container>();
             SoulEventManager = new SoulEventManager(this);
             SoulOperationManager = new SoulOperationManager(this);

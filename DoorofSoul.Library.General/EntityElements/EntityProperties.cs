@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using MsgPack.Serialization;
 
-namespace DoorofSoul.Library.General
+namespace DoorofSoul.Library.General.EntityElements
 {
     public class EntitySpaceProperties
     {
@@ -14,13 +14,13 @@ namespace DoorofSoul.Library.General
             }
         }
 
-        public static byte[] Serialize(object customType)
+        public static byte[] Serialize(object data)
         {
-            EntitySpaceProperties properties = customType as EntitySpaceProperties;
+            EntitySpaceProperties value = data as EntitySpaceProperties;
             var serializer = MessagePackSerializer.Get<EntitySpaceProperties>();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                serializer.Pack(memoryStream, properties);
+                serializer.Pack(memoryStream, value);
                 return memoryStream.ToArray();
             }
         }

@@ -49,10 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
+    <Compile Include="BasicTypeHelperFunctions\DecimalHelperFunction.cs" />
     <Compile Include="Container.cs" />
+    <Compile Include="ContainerElements\ContainerAttributes.cs" />
+    <Compile Include="ContainerElements\ContainerKernelAbility.cs" />
+    <Compile Include="ContainerElements\ContainerKernelAbilityPotential.cs" />
     <Compile Include="DSVector3.cs" />
     <Compile Include="Entity.cs" />
-    <Compile Include="EntityProperties.cs" />
+    <Compile Include="EntityElements\EntityProperties.cs" />
     <Compile Include="Events\Handlers\AnswerEventHandler.cs" />
     <Compile Include="Events\Handlers\Answer\ContainerEventResolver.cs" />
     <Compile Include="Events\Handlers\Answer\InformDataHandler.cs" />
@@ -93,7 +97,7 @@
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
     <Compile Include="IControllers\IEntityController.cs" />
-    <Compile Include="Inventory.cs" />
+    <Compile Include="ContainerElements\Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="LibraryInstance.cs" />
     <Compile Include="Operations\Handlers\AnswerOperationHandler.cs" />
@@ -204,8 +208,10 @@
     <Compile Include="Responses\Managers\WorldResponseManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="SceneElements\MessageLog.cs" />
-    <Compile Include="SerializationClassTypeCode.cs" />
     <Compile Include="Soul.cs" />
+    <Compile Include="SoulElements\SoulAttributes.cs" />
+    <Compile Include="SoulElements\SoulKernelAbility.cs" />
+    <Compile Include="SoulElements\SoulPhase.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldCommunicationInterface.cs" />
   </ItemGroup>

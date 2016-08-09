@@ -14,13 +14,13 @@ namespace DoorofSoul.Library.General
             }
         }
 
-        public static byte[] Serialize(object customType)
+        public static byte[] Serialize(object data)
         {
-            Item item = customType as Item;
+            Item value = data as Item;
             var serializer = MessagePackSerializer.Get<Item>();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                serializer.Pack(memoryStream, item);
+                serializer.Pack(memoryStream, value);
                 return memoryStream.ToArray();
             }
         }

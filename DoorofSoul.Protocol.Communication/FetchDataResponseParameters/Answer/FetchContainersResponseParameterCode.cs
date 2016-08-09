@@ -4,6 +4,7 @@
     {
         ContainerID,
         EntityID,
-        ContainerName
+        ContainerName,
+        ContainerAttributes
     }
 }

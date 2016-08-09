@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace DoorofSoul.Library.General
         public abstract void Logout();
         public abstract bool Login(string account, string password, out string debugMessage, out ErrorCode errorCode);
         public abstract bool DeleteSoul(Answer answer, int soulID);
-        public abstract bool CreateSoul(Answer answer, string soulName);
+        public abstract bool CreateSoul(Answer answer, string soulName, SoulKernelType mainSoulType);
         public abstract bool ActiveSoul(Answer answer, int soulID);
     }
 }

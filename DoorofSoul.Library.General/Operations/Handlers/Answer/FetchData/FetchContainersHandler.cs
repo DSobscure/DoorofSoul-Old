@@ -38,6 +38,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer.FetchData
                             { (byte)FetchContainersResponseParameterCode.ContainerID, container.ContainerID },
                             { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID },
                             { (byte)FetchContainersResponseParameterCode.ContainerName, container.ContainerName },
+                            { (byte)FetchContainersResponseParameterCode.ContainerAttributes, container.Attributes }
                         };
                         SendResponse(fetchCode, result);
                     }

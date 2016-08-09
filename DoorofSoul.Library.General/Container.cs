@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General.Events.Managers;
+﻿using DoorofSoul.Library.General.ContainerElements;
+using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
 using DoorofSoul.Protocol.Language;
@@ -33,6 +34,7 @@ namespace DoorofSoul.Library.General
         public Entity Entity { get; protected set; }
         public SupportLauguages UsingLanguage { get { return soulDictionary.FirstOrDefault().Value.UsingLanguage; } }
         public Inventory Inventory { get; protected set; }
+        public ContainerAttributes Attributes { get; protected set; }
         #endregion
 
         #region communication
@@ -41,12 +43,12 @@ namespace DoorofSoul.Library.General
         internal ContainerResponseManager ContainerResponseManager { get; set; }
         #endregion
 
-        public Container(int containerID, int entityID, string containerName)
+        public Container(int containerID, int entityID, string containerName, ContainerAttributes attributes)
         {
             ContainerID = containerID;
             EntityID = entityID;
             ContainerName = containerName;
-            
+            Attributes = attributes;
             soulDictionary = new Dictionary<int, Soul>();
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);

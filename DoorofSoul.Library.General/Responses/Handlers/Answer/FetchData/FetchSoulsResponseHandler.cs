@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
 using DoorofSoul.Protocol.Language;
@@ -19,7 +20,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 2)
+                        if (parameters.Count != 3)
                         {
                             LibraryInstance.ErrorFormat(string.Format("Fetch Soul Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -46,7 +47,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 {
                     int soulID = (int)parameters[(byte)FetchSoulsResponseParameterCode.SoulID];
                     string soulName = (string)parameters[(byte)FetchSoulsResponseParameterCode.SoulName];
-                    answer.LoadSouls(new List<General.Soul> { new General.Soul(soulID, answer, soulName) });
+                    SoulAttributes attributes = (SoulAttributes)parameters[(byte)FetchSoulsResponseParameterCode.SoulAttributes];
+                    answer.LoadSouls(new List<General.Soul> { new General.Soul(soulID, answer, soulName, attributes) });
                     return true;
                 }
                 catch (InvalidCastException ex)

@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication.OperationCodes;
+﻿using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 
         internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
-            if (parameter.Count != 1)
+            if (parameter.Count != 2)
             {
                 debugMessage = string.Format("Create Soul Operation Parameter Error Parameter Count: {0}", parameter.Count);
                 return false;
@@ -31,9 +32,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             {
                 string debugMessage;
                 string soulName = (string)parameters[(byte)CreateSoulParameterCode.SoulName];
+                SoulKernelType mainSoulType = (SoulKernelType)parameters[(byte)CreateSoulParameterCode.MainSoulType];
                 if (answer.SoulCount < answer.SoulCountLimit)
                 {
-                    if (answer.Player.PlayerCommunicationInterface.CreateSoul(answer, soulName))
+                    if (answer.Player.PlayerCommunicationInterface.CreateSoul(answer, soulName, mainSoulType))
                     {
                         Dictionary<byte, object> responseParameters = new Dictionary<byte, object>();
                         SendResponse(operationCode, responseParameters);

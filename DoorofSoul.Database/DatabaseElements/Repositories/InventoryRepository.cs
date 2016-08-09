@@ -1,5 +1,5 @@
-﻿using System;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.ContainerElements;
+
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
     public abstract class InventoryRepository

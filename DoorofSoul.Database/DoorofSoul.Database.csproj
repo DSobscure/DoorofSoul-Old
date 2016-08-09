@@ -93,6 +93,10 @@
       <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
       <Name>DoorofSoul.Protocol.Language</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol\DoorofSoul.Protocol.csproj">
+      <Project>{9f5b0064-cbfb-4852-b308-ab64760955c8}</Project>
+      <Name>DoorofSoul.Protocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

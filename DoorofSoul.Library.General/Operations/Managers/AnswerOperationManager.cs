@@ -1,7 +1,6 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers;
 using DoorofSoul.Library.General.Operations.Handlers.Answer;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataParameters;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
@@ -64,11 +63,12 @@ namespace DoorofSoul.Library.General.Operations.Managers
             };
             SendOperation(AnswerOperationCode.DeleteSoul, parameters);
         }
-        public void CreateSoul(string soulName)
+        public void CreateSoul(string soulName, SoulKernelType mainSoulType)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)CreateSoulParameterCode.SoulName, soulName }
+                { (byte)CreateSoulParameterCode.SoulName, soulName },
+                { (byte)CreateSoulParameterCode.MainSoulType, (byte)mainSoulType }
             };
             SendOperation(AnswerOperationCode.CreateSoul, parameters);
         }

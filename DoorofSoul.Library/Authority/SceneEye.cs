@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.EntityElements;
+using System;
 
 namespace DoorofSoul.Library.Authority
 {

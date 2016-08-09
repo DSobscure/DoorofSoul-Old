@@ -1,12 +1,17 @@
-﻿using DoorofSoul.Library;
+﻿using DoorofSoul.Database;
+using DoorofSoul.Library;
+using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.BasicTypeHelperFunctions;
+using DoorofSoul.Library.General.ContainerElements;
+using DoorofSoul.Library.General.EntityElements;
+using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Protocol;
 using DoorofSoul.Server.Config;
-using DoorofSoul.Database;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
 using Photon.SocketServer;
 using System.IO;
-using DoorofSoul.Library.General;
 
 namespace DoorofSoul.Server
 {
@@ -49,8 +54,8 @@ namespace DoorofSoul.Server
 
         protected void SetupLog()
         {
-            log4net.GlobalContext.Properties["Photon:ApplicationLogPath"] = Path.Combine(this.ApplicationPath, "log");
-            FileInfo file = new FileInfo(Path.Combine(this.BinaryPath, "log4net.config"));
+            log4net.GlobalContext.Properties["Photon:ApplicationLogPath"] = Path.Combine(ApplicationPath, "log");
+            FileInfo file = new FileInfo(Path.Combine(BinaryPath, "log4net.config"));
             if (file.Exists)
             {
                 LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
@@ -60,9 +65,12 @@ namespace DoorofSoul.Server
         }
         protected void SetupConfiguration()
         {
-            SystemConfiguration = SystemConfiguration.Load(Path.Combine(this.ApplicationPath, "config", "system.config"));
+            SystemConfiguration = SystemConfiguration.Load(Path.Combine(ApplicationPath, "config", "system.config"));
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(decimal), (byte)SerializationClassTypeCode.Decimal, DecimalHelperFunction.Serialize, DecimalHelperFunction.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
         }
 
         protected void SetupDatabase()

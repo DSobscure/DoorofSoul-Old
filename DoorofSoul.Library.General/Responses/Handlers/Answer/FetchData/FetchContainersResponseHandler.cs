@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
 using DoorofSoul.Protocol.Language;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
 {
@@ -21,7 +20,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 3)
+                        if (parameters.Count != 4)
                         {
                             LibraryInstance.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -49,7 +48,8 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     int containerID = (int)parameters[(byte)FetchContainersResponseParameterCode.ContainerID];
                     int entityID = (int)parameters[(byte)FetchContainersResponseParameterCode.EntityID];
                     string containerName = (string)parameters[(byte)FetchContainersResponseParameterCode.ContainerName];
-                    General.Container container = new General.Container(containerID, entityID, containerName);
+                    ContainerAttributes attributes = (ContainerAttributes)parameters[(byte)FetchContainersResponseParameterCode.ContainerAttributes];
+                    General.Container container = new General.Container(containerID, entityID, containerName, attributes);
                     answer.LoadContainers(new List<General.Container> { container });
                     return true;
                 }

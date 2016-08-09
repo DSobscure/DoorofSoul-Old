@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Library;
 using DoorofSoul.Library.General;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
@@ -25,9 +26,9 @@ namespace DoorofSoul.Server
             return Hexagram.Instance.Throne.ActiveSoul(soulID);
         }
 
-        public override bool CreateSoul(Answer answer, string soulName)
+        public override bool CreateSoul(Answer answer, string soulName, SoulKernelType mainSoulType)
         {
-            return Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName);
+            return Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName, mainSoulType);
         }
 
         public override bool DeleteSoul(Answer answer, int soulID)

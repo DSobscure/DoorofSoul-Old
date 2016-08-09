@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.EntityElements;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System;

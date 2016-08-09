@@ -1,6 +1,8 @@
 ﻿using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.EntityElements;
 using System.Collections.Generic;
 using DoorofSoul.Database;
+using DoorofSoul.Protocol;
 
 namespace DoorofSoul.Library
 {
@@ -155,12 +157,12 @@ namespace DoorofSoul.Library
             }
         }
 
-        public bool CreateSoul(int answerID, string soulName)
+        public bool CreateSoul(int answerID, string soulName, SoulKernelType mainSoulType)
         {
             if(answerDictionary.ContainsKey(answerID))
             {
                 Answer answer = answerDictionary[answerID];
-                Soul soul = DataBase.Instance.RepositoryManager.SoulRepository.Create(answer, soulName);
+                Soul soul = DataBase.Instance.RepositoryManager.SoulRepository.Create(answer, soulName, mainSoulType);
                 answer.LoadSouls(new List<Soul> { soul });
                 Container defaultContainer = DataBase.Instance.RepositoryManager.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
                 {

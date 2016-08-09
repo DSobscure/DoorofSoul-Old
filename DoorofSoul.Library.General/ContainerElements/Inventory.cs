@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DoorofSoul.Library.General
+namespace DoorofSoul.Library.General.ContainerElements
 {
     public struct ItemInfo
     {

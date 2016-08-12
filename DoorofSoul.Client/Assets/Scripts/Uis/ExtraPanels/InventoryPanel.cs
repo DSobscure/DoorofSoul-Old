@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Client.HelpFunctions;
 
 public class InventoryPanel : MonoBehaviour

@@ -17,7 +17,7 @@ public class PlayerAnswerController : MonoBehaviour
     }
     public void CreateSoul()
     {
-        answer.AnswerOperationManager.CreateSoul(createSoulPanel.SoulName);
+        answer.AnswerOperationManager.CreateSoul(createSoulPanel.SoulName, createSoulPanel.MainSoulType);
     }
     public void DeleteSoul(int soulID)
     {

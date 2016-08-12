@@ -73,11 +73,11 @@
     <Reference Include="DoorofSoul.Protocol.Language">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
     </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
-    </Reference>
     <Reference Include="MsgPack">
       <HintPath>Assets\Plugins\DLL\MsgPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-UnityScript-firstpass">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\Tests\Entities\EntityRotateTest.cs" />
     <Compile Include="Assets\Scripts\Tests\Inventory\InventoryTest.cs" />
     <Compile Include="Assets\Scripts\Tests\UI\RichTextBoxTest.cs" />
+    <Compile Include="Assets\Scripts\Tests\UI\SoulAndContainerAttributeSlidersTest.cs" />
     <Compile Include="Assets\Scripts\Tests\UI\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\Tests\UI\ViewMaskTest.cs" />
     <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
@@ -113,13 +114,15 @@
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\CreateSoulPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\DeleteSoulPanelController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\PlayerAnswerController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulPanel.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulActivatePanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulsPanelController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\InputNavigationController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginController.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginUI.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerPanel\ContainerPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerPanel\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\PlayerPanel\PlayerPanel.cs" />
+    <Compile Include="Assets\Scripts\Uis\PlayerPanel\SoulPanel.cs" />
     <Compile Include="Assets\Scripts\Uis\ScrollTextArea.cs" />
   </ItemGroup>
   <ItemGroup>

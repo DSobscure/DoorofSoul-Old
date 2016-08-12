@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class SoulPanel : MonoBehaviour
+public class SoulActivatePanel : MonoBehaviour
 {
     private Text soulIDText;
     private Text soulNameText;

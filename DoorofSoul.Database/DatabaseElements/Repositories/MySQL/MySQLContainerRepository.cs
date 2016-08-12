@@ -40,13 +40,14 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 (ContainerID, Sensibility, Regeneration, Explosiveness, Strength, Memory, Coordination, Computation, Conductivity) VALUES 
                 (@containerID, @sensibility, @regeneration, @explosiveness, @strength, @memory, @coordination, @computation, @conductivity) ;
                 INSERT INTO ContainerAttributes_KernelAbility
-                (ContainerID, CreationPoint, DestructionPoint, ConservationPoint, RevolutionPoint, BalancePoint, GuidancePoint, MindPoint) VALUES 
+                (ContainerID, SensibilityPoint, RegenerationPoint, ExplosivenessPoint, StrengthPoint, MemoryPoint, CoordinationPoint, ComputationPoint, ConductivityPoint) VALUES 
                 (@containerID, @sensibilityPoint, @regenerationPoint, @explosivenessPoint, @strengthPoint, @memoryPoint, @coordinationPoint, @computationPoint, @conductivityPoint) ;";
                 using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
                 {
                     command.Parameters.AddWithValue("@containerID", containerID);
                     command.Parameters.AddWithValue("@level", 1);
                     command.Parameters.AddWithValue("@maxLevel", 30);
+                    command.Parameters.AddWithValue("@experience", 0);
                     command.Parameters.AddWithValue("@lifePoint", 100);
                     command.Parameters.AddWithValue("@maxLifePoint", 100);
                     command.Parameters.AddWithValue("@energyPoint", 50);
@@ -218,7 +219,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override void Save(Container container)
         {
             string sqlString = @"UPDATE Containers SET 
-                EntityID = @entityID
+                EntityID = @entityID, ContainerName = @containerName
                 WHERE ContainerID = @containerID;
 
                 UPDATE ContainerAttributes SET 
@@ -235,6 +236,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@entityID", container.EntityID);
+                command.Parameters.AddWithValue("@containerName", container.ContainerName);
                 command.Parameters.AddWithValue("@containerID", container.ContainerID);
 
                 command.Parameters.AddWithValue("@level", container.Attributes.Level);

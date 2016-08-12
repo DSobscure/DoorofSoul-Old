@@ -1,6 +1,11 @@
 ﻿using DoorofSoul.Client.Communication.Events;
 using DoorofSoul.Client.Communication.Responses;
 using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.BasicTypeHelperFunctions;
+using DoorofSoul.Library.General.ContainerElements;
+using DoorofSoul.Library.General.EntityElements;
+using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters;
 using ExitGames.Client.Photon;
@@ -179,6 +184,9 @@ namespace DoorofSoul.Client.Communication
         {
             PhotonPeer.RegisterType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
             PhotonPeer.RegisterType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
+            PhotonPeer.RegisterType(typeof(decimal), (byte)SerializationClassTypeCode.Decimal, DecimalHelperFunction.Serialize, DecimalHelperFunction.Deserialize);
+            PhotonPeer.RegisterType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
+            PhotonPeer.RegisterType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
         }
     }
 }

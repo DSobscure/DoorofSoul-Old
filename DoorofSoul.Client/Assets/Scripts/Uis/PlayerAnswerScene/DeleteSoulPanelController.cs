@@ -10,7 +10,7 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
     private Answer answer;
 
     [SerializeField]
-    private SoulPanel soulPanelPrefab;
+    private SoulActivatePanel soulActivatePanelPrefab;
     [SerializeField]
     private RectTransform deleteSoulsPanel;
 
@@ -46,21 +46,21 @@ public class DeleteSoulPanelController : MonoBehaviour, IEventProvider
     private void ShowSouls()
     {
         deleteSoulsPanel.ClearChild();
-        float blockSize = soulPanelPrefab.GetComponent<RectTransform>().rect.width + 20;
+        float blockSize = soulActivatePanelPrefab.GetComponent<RectTransform>().rect.width + 20;
         deleteSoulsPanel.sizeDelta = new Vector2(blockSize * answer.SoulCount, deleteSoulsPanel.rect.height);
         float xOffest = -1 * answer.SoulCount * blockSize / 2f + blockSize / 2;
         int counter = 0;
         foreach (Soul soul in answer.Souls)
         {
-            SoulPanel soulPanel = Instantiate(soulPanelPrefab);
-            soulPanel.transform.SetParent(deleteSoulsPanel);
-            RectTransform rect = soulPanel.GetComponent<RectTransform>();
+            SoulActivatePanel soulActivatePanel = Instantiate(soulActivatePanelPrefab);
+            soulActivatePanel.transform.SetParent(deleteSoulsPanel);
+            RectTransform rect = soulActivatePanel.GetComponent<RectTransform>();
             rect.localScale = Vector3.one;
             rect.localPosition = Vector3.zero;
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
-            soulPanel.Show(soul);
+            soulActivatePanel.Show(soul);
             int soulID = soul.SoulID;
-            soulPanel.SetButton("刪除", () => { answer.AnswerOperationManager.DeleteSoul(soulID); });
+            soulActivatePanel.SetButton("刪除", () => { answer.AnswerOperationManager.DeleteSoul(soulID); });
             counter++;
         }
     }

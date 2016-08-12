@@ -194,7 +194,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 WHERE SoulID = @soulID;
 
                 UPDATE SoulAttributes SET 
-                MainSoulType = @mainSoulType, MaxReachedLevel = @maxReachedLevel, CorePoint = @corePoint, MaxCorePoint = @maxCorePoint, SpiritPoint = @spiritPoint, MaxSpiritPoint = @maxSpiritPoint
+                MainSoulType = @mainSoulType, MaxReachedPhaseLevel = @maxReachedPhaseLevel, CorePoint = @corePoint, MaxCorePoint = @maxCorePoint, SpiritPoint = @spiritPoint, MaxSpiritPoint = @maxSpiritPoint
                 WHERE SoulID = @soulID;
 
                 UPDATE SoulAttributes_KernelAbility SET 
@@ -206,8 +206,8 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 command.Parameters.AddWithValue("@soulName", soul.SoulName);
                 command.Parameters.AddWithValue("@soulID", soul.SoulID);
 
-                command.Parameters.AddWithValue("@mainSoulType", soul.Attributes.MainSoulType);
-                command.Parameters.AddWithValue("@maxReachedLevel", soul.Attributes.MaxReachedPhaseLevel);
+                command.Parameters.AddWithValue("@mainSoulType", (byte)soul.Attributes.MainSoulType);
+                command.Parameters.AddWithValue("@maxReachedPhaseLevel", soul.Attributes.MaxReachedPhaseLevel);
                 command.Parameters.AddWithValue("@corePoint", soul.Attributes.CorePoint);
                 command.Parameters.AddWithValue("@maxCorePoint", soul.Attributes.MaxCorePoint);
                 command.Parameters.AddWithValue("@spiritPoint", soul.Attributes.SpiritPoint);

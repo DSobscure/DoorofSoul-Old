@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DoorofSoul.Library.General;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
@@ -27,7 +28,7 @@ namespace DoorofSoul.Client.Library.General
             throw new NotImplementedException();
         }
 
-        public override bool CreateSoul(Answer answer, string soulName)
+        public override bool CreateSoul(Answer answer, string soulName, SoulKernelType mainSoulType)
         {
             throw new NotImplementedException();
         }

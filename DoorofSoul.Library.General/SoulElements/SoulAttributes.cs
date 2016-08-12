@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Protocol;
 using MsgPack.Serialization;
+using System;
 using System.IO;
 
 namespace DoorofSoul.Library.General.SoulElements
@@ -27,13 +28,28 @@ namespace DoorofSoul.Library.General.SoulElements
         }
 
         public SoulKernelType MainSoulType { get; protected set; }
+
         public SoulPhase[] Phases { get; protected set; }
+
         public byte MaxReachedPhaseLevel { get; protected set; }
-        public decimal CorePoint { get; protected set; }
-        public decimal MaxCorePoint { get; protected set; }
-        public decimal SpiritPoint { get; protected set; }
-        public decimal MaxSpiritPoint { get; protected set; }
+
+        private decimal corePoint;
+        public decimal CorePoint { get { return corePoint; } set { corePoint = Math.Max(Math.Min(value, MaxCorePoint), 0); onCorePointChange?.Invoke(corePoint); } }
+
+        public decimal MaxCorePoint { get; protected set; } = decimal.MaxValue;
+
+        private decimal spiritPoint;
+        public decimal SpiritPoint { get { return spiritPoint; } set { spiritPoint = Math.Max(Math.Min(value, MaxSpiritPoint), 0); onSpiritPointChange?.Invoke(spiritPoint); } }
+
+        public decimal MaxSpiritPoint { get; protected set; } = decimal.MaxValue;
+
         public SoulKernelAbility KernelAbility { get; protected set; }
+
+        private event Action<decimal> onCorePointChange;
+        public event Action<decimal> OnCorePointChange { add { onCorePointChange += value; } remove { onCorePointChange -= value; } }
+
+        private event Action<decimal> onSpiritPointChange;
+        public event Action<decimal> OnSpiritPointChange { add { onSpiritPointChange += value; } remove { onSpiritPointChange -= value; } }
 
         public SoulAttributes() { }
         public SoulAttributes(SoulKernelType mainSoulType, byte maxReachedPhaseLevel, decimal corePoint, decimal maxCorePoint, decimal spiritPoint, decimal maxSpiritPoint, SoulKernelAbility kernelAbility)

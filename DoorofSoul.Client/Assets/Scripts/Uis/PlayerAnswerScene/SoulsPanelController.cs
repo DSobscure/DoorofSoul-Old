@@ -15,7 +15,7 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
     private Horizon horizon;
 
     [SerializeField]
-    private SoulPanel soulPanelPrefab;
+    private SoulActivatePanel soulActivatePanelPrefab;
     private RectTransform soulsPanel;
     private Text answerIDText;
     private Text soulCountLimitText;
@@ -61,20 +61,20 @@ public class SoulsPanelController : MonoBehaviour, IEventProvider
     private void ShowSouls()
     {
         soulsPanel.ClearChild();
-        float blockSize = soulPanelPrefab.GetComponent<RectTransform>().rect.width + 20;
+        float blockSize = soulActivatePanelPrefab.GetComponent<RectTransform>().rect.width + 20;
         soulsPanel.sizeDelta = new Vector2(blockSize * answer.SoulCount, soulsPanel.rect.height);
         float xOffest = -1 * answer.SoulCount * blockSize / 2f + blockSize / 2;
         int counter = 0;
         foreach (Soul soul in answer.Souls)
         {
-            SoulPanel soulPanel = Instantiate(soulPanelPrefab);
-            soulPanel.transform.SetParent(soulsPanel);
-            RectTransform rect = soulPanel.GetComponent<RectTransform>();
+            SoulActivatePanel soulActivatePanel = Instantiate(soulActivatePanelPrefab);
+            soulActivatePanel.transform.SetParent(soulsPanel);
+            RectTransform rect = soulActivatePanel.GetComponent<RectTransform>();
             rect.localScale = Vector3.one;
             rect.localPosition = new Vector2(xOffest + counter * blockSize, 0);
-            soulPanel.Show(soul);
+            soulActivatePanel.Show(soul);
             int soulID = soul.SoulID;
-            soulPanel.SetButton("連結", () => { answer.AnswerOperationManager.ActivateSoul(soulID); });
+            soulActivatePanel.SetButton("連結", () => { answer.AnswerOperationManager.ActivateSoul(soulID); });
             counter++;
         }
     }

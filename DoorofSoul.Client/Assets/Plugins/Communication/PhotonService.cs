@@ -83,7 +83,6 @@ namespace DoorofSoul.Client.Communication
             switch (statusCode)
             {
                 case StatusCode.Connect:
-                    DebugReturn(DebugLevel.INFO, "Establishing Encryption");
                     peer.EstablishEncryption();
                     break;
                 case StatusCode.Disconnect:

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -90,40 +92,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Authentications\PlayerLogoutController.cs" />
-    <Compile Include="Assets\Scripts\Camera\ViewController.cs" />
-    <Compile Include="Assets\Scripts\Communications\PhotonServiceController.cs" />
-    <Compile Include="Assets\Scripts\Entities\EntityController.cs" />
-    <Compile Include="Assets\Scripts\Input\EntityInputController.cs" />
-    <Compile Include="Assets\Scripts\Systems\ErrorInformController.cs" />
-    <Compile Include="Assets\Scripts\Systems\EternalObject.cs" />
-    <Compile Include="Assets\Scripts\Systems\SceneController.cs" />
-    <Compile Include="Assets\Scripts\Systems\SystemSettingController.cs" />
-    <Compile Include="Assets\Scripts\Systems\SystemVersionController.cs" />
-    <Compile Include="Assets\Scripts\Tests\Camera\ViewFollowMouse.cs" />
-    <Compile Include="Assets\Scripts\Tests\Entities\AngularVelocityTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\Entities\EntityRotateTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\Inventory\InventoryTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\UI\RichTextBoxTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\UI\SoulAndContainerAttributeSlidersTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\UI\SoulsPanelTest.cs" />
-    <Compile Include="Assets\Scripts\Tests\UI\ViewMaskTest.cs" />
-    <Compile Include="Assets\Scripts\Uis\DraggablePanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\ErrorInformPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\ExtraPanels\InventoryPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\CreateSoulPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\DeleteSoulPanelController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\PlayerAnswerController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulActivatePanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerAnswerScene\SoulsPanelController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\InputNavigationController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginController.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerLoginScene\PlayerLoginUI.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerPanel\ContainerPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerPanel\MessageContentPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerPanel\PlayerPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\PlayerPanel\SoulPanel.cs" />
-    <Compile Include="Assets\Scripts\Uis\ScrollTextArea.cs" />
+    <Compile Include="Assets\Scripts\AuthenticationScriptss\PlayerLogoutController.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\ViewController.cs" />
+    <Compile Include="Assets\Scripts\CommunicationScripts\PhotonServiceController.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\EntityController.cs" />
+    <Compile Include="Assets\Scripts\InputScripts\EntityInputController.cs" />
+    <Compile Include="Assets\Scripts\SystemScripts\ErrorInformController.cs" />
+    <Compile Include="Assets\Scripts\SystemScripts\EternalObject.cs" />
+    <Compile Include="Assets\Scripts\SystemScripts\SceneController.cs" />
+    <Compile Include="Assets\Scripts\SystemScripts\SystemSettingController.cs" />
+    <Compile Include="Assets\Scripts\SystemScripts\SystemVersionController.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\CameraTestScripts\ViewFollowMouse.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\AngularVelocityTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\EntityRotateTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\InventoryTestScripts\InventoryTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\RichTextBoxTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulAndContainerAttributeSlidersTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\DraggablePanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\ErrorInformPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\CreateSoulPanel.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\DeleteSoulPanelController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\PlayerAnswerController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulActivatePanel.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulsPanelController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\InputNavigationController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginUI.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\ContainerPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\MessageContentPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\PlayerPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\SoulPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\ScrollTextArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
@@ -199,5 +201,6 @@
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Scripts.CameraScripts;
+using DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.IControllers;
 using UnityEngine;

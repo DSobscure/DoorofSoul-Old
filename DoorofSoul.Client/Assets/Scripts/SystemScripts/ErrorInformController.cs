@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Client.Scripts.UIScripts;
 using UnityEngine;
 
 namespace DoorofSoul.Client.Scripts.SystemScripts

@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts;
+using DoorofSoul.Library.General;
 using DoorofSoul.Protocol.Language;
 using UnityEngine;
 using UnityEngine.UI;

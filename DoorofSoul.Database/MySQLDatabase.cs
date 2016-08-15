@@ -1,6 +1,4 @@
-﻿using DoorofSoul.Database.DatabaseElements.Authentications.MySQL;
-using DoorofSoul.Database.DatabaseElements.Relations.MySQL;
-using DoorofSoul.Database.DatabaseElements.Repositories.MySQL;
+﻿using DoorofSoul.Database.DatabaseElements.MySQLManagers;
 using MySql.Data.MySqlClient;
 using ExitGames.Logging;
 
@@ -8,21 +6,11 @@ namespace DoorofSoul.Database
 {
     public class MySQLDatabase : DataBase
     {
-        public MySQLDatabase(ILogger log) : base(log)
+        public MySQLDatabase(ILogger log, KnowledgeInterface knowledgeInterface) : base(log, knowledgeInterface)
         {
-            AuthenticationManager.PlayerAuthentication = new MySQLPlayerAuthentication();
-            RepositoryManager.PlayerRepository = new MySQLPlayerRepository();
-            RepositoryManager.AnswerRepository = new MySQLAnswerRepository();
-            RepositoryManager.SoulRepository = new MySQLSoulRepository();
-            RepositoryManager.ContainerRepository = new MySQLContainerRepository();
-            RepositoryManager.EntityRepository = new MySQLEntityRepository();
-            RepositoryManager.WorldRepository = new MySQLWorldRepository();
-            RepositoryManager.SceneRepository = new MySQLSceneRepository();
-            RepositoryManager.ItemRepository = new MySQLItemRepository();
-            RepositoryManager.InventoryRepository = new MySQLInventoryRepository();
-
-            RelationManager.SoulID_ContainerID_Relation = new MySQL_SoulID_ContainerID_Relation();
-            RelationManager.InventoryItemInfo_Relation = new MySQL_InventoryItemInfo_Relation();
+            AuthenticationManager = new MySQLAuthenticationManager();
+            RepositoryManager = new MySQLRepositoryManager();
+            RelationManager = new MySQLRelationManager();
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

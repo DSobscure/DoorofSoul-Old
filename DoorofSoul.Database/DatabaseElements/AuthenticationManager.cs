@@ -2,8 +2,8 @@
 
 namespace DoorofSoul.Database.DatabaseElements
 {
-    public class AuthenticationManager
+    public abstract class AuthenticationManager
     {
-        public PlayerAuthentication PlayerAuthentication { get; set; }
+        public PlayerAuthentication PlayerAuthentication { get; protected set; }
     }
 }

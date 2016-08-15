@@ -107,6 +107,7 @@ namespace DoorofSoul.Library
                 foreach(Scene scene in sceneList)
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
+                    scene.SetSceneEye(new ProvidenceEye());
                     scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
                     scene.OnEntityExit += scene.SceneEventManager.EntityExit;
                 }

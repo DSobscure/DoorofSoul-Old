@@ -6,8 +6,8 @@ namespace DoorofSoul.Library.General.SceneElements
 {
     public struct MessageInformation
     {
-        public MessageType messageType;
-        public MessageSourceType messageSourceType;
+        public MessageTypeCode messageType;
+        public MessageSourceTypeCode messageSourceType;
         public string sourceName;
         public string message;
 

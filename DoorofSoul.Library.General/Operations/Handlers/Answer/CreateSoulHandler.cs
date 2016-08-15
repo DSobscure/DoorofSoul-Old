@@ -32,7 +32,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
             {
                 string debugMessage;
                 string soulName = (string)parameters[(byte)CreateSoulParameterCode.SoulName];
-                SoulKernelType mainSoulType = (SoulKernelType)parameters[(byte)CreateSoulParameterCode.MainSoulType];
+                SoulKernelTypeCode mainSoulType = (SoulKernelTypeCode)parameters[(byte)CreateSoulParameterCode.MainSoulType];
                 if (answer.SoulCount < answer.SoulCountLimit)
                 {
                     if (answer.Player.PlayerCommunicationInterface.CreateSoul(answer, soulName, mainSoulType))

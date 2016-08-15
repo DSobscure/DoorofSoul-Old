@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.OperationCodes;
+using DoorofSoul.Protocol.Communication.OperationParameters.Container;
+
+namespace DoorofSoul.Library.General.Operations.Handlers.Container
+{
+    internal class ObserveEntityPositionHandler : ContainerOperationHandler
+    {
+        public ObserveEntityPositionHandler(General.Container container) : base(container)
+        {
+        }
+
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        {
+            if (parameter.Count != 2)
+            {
+                debugMessage = string.Format("Container ObserveEntityPosition Operation Parameter Error Parameter Count: {0}", parameter.Count);
+                return false;
+            }
+            else
+            {
+                debugMessage = null;
+                return true;
+            }
+        }
+
+        internal override bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            if (base.Handle(operationCode, parameters))
+            {
+                try
+                {
+                    int entityID = (int)parameters[(byte)ObserveEntityPositionParameterCode.EntityID];
+                    DSVector3 position = (DSVector3)parameters[(byte)ObserveEntityPositionParameterCode.Position];
+                    if(container.Entity.LocatedScene.SceneEye.Observer == container)
+                    {
+                        container.Entity.LocatedScene.SceneEye.UpdateEntityPosition(entityID, position);
+                        return true;
+                    }
+                    else
+                    {
+                        LibraryInstance.ErrorFormat("Container ObserveEntityPosition PermissionDeny ContainerID: {0}", container.ContainerID);
+                        SendError(operationCode, ErrorCode.PermissionDeny, "Observer is not you");
+                        return false;
+                    }
+                }
+                catch (InvalidCastException ex)
+                {
+                    LibraryInstance.ErrorFormat("Container ObserveEntityPosition Operation Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+}

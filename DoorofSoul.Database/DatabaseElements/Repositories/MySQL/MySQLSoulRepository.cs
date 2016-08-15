@@ -8,7 +8,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLSoulRepository : SoulRepository
     {
-        public override Soul Create(Answer answer, string soulName, SoulKernelType mainSoulType)
+        public override Soul Create(Answer answer, string soulName, SoulKernelTypeCode mainSoulType)
         {
             string sqlString = @"INSERT INTO Souls 
                 (AnswerID, SoulName) VALUES (@answerID, @soulName) ;
@@ -51,13 +51,13 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 command.Parameters.AddWithValue("@phaseLevel", 0);
                 command.Parameters.AddWithValue("@understandingLevel", 1);
                 command.Parameters.AddWithValue("@understandingPoint", 0);
-                command.Parameters.AddWithValue("@creation", mainSoulType == SoulKernelType.Creation ? 5 : 1);
-                command.Parameters.AddWithValue("@destruction", mainSoulType == SoulKernelType.Destruction ? 5 : 1);
-                command.Parameters.AddWithValue("@conservation", mainSoulType == SoulKernelType.Conservation ? 5 : 1);
-                command.Parameters.AddWithValue("@revolution", mainSoulType == SoulKernelType.Revolution ? 5 : 1);
-                command.Parameters.AddWithValue("@balance", mainSoulType == SoulKernelType.Balance ? 5 : 1);
-                command.Parameters.AddWithValue("@guidance", mainSoulType == SoulKernelType.Guidance ? 5 : 1);
-                command.Parameters.AddWithValue("@mind", mainSoulType == SoulKernelType.Mind ? 5 : 1);
+                command.Parameters.AddWithValue("@creation", mainSoulType == SoulKernelTypeCode.Creation ? 5 : 1);
+                command.Parameters.AddWithValue("@destruction", mainSoulType == SoulKernelTypeCode.Destruction ? 5 : 1);
+                command.Parameters.AddWithValue("@conservation", mainSoulType == SoulKernelTypeCode.Conservation ? 5 : 1);
+                command.Parameters.AddWithValue("@revolution", mainSoulType == SoulKernelTypeCode.Revolution ? 5 : 1);
+                command.Parameters.AddWithValue("@balance", mainSoulType == SoulKernelTypeCode.Balance ? 5 : 1);
+                command.Parameters.AddWithValue("@guidance", mainSoulType == SoulKernelTypeCode.Guidance ? 5 : 1);
+                command.Parameters.AddWithValue("@mind", mainSoulType == SoulKernelTypeCode.Mind ? 5 : 1);
                 if (command.ExecuteNonQuery() <= 0)
                 {
                     DataBase.Instance.Log.ErrorFormat("MySQLSoulRepository Create SoulAttributes Error SoulID: {0}", soulID);
@@ -84,7 +84,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         {
             string sqlString = @"SELECT  
                 AnswerID, SoulName, 
-                MainSoulType, MaxReachedPhaseLevel, CorePoint, MaxCorePoint, SpiritPoint, MaxSpiritPoint,
+                MainSoulType, CurrentPhaseLevel, MaxReachedPhaseLevel, CorePoint, MaxCorePoint, SpiritPoint, MaxSpiritPoint,
                 Creation, Destruction, Conservation, Revolution, Balance, Guidance, Mind
                 from Souls,SoulAttributes,SoulAttributes_KernelAbility WHERE Souls.SoulID = @soulID AND SoulAttributes.SoulID = @soulID AND SoulAttributes_KernelAbility.SoulID = @soulID;";
             Soul soul = null;
@@ -98,22 +98,24 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                         int answerID = reader.GetInt32(0);
                         string soulName = reader.IsDBNull(1) ? "" : reader.GetString(1);
 
-                        SoulKernelType mainSoulType = (SoulKernelType)reader.GetByte(2);
-                        byte maxReachedPhaseLevel = reader.GetByte(3);
-                        decimal corePoint = reader.GetDecimal(4);
-                        decimal maxCorePoint = reader.GetDecimal(5);
-                        decimal spiritPoint = reader.GetDecimal(6);
-                        decimal maxSpiritPoint = reader.GetDecimal(7);
+                        SoulKernelTypeCode mainSoulType = (SoulKernelTypeCode)reader.GetByte(2);
+                        byte currentPhaseLevel = reader.GetByte(3);
+                        byte maxReachedPhaseLevel = reader.GetByte(4);
+                        decimal corePoint = reader.GetDecimal(5);
+                        decimal maxCorePoint = reader.GetDecimal(6);
+                        decimal spiritPoint = reader.GetDecimal(7);
+                        decimal maxSpiritPoint = reader.GetDecimal(8);
 
-                        int creation = reader.GetInt32(8);
-                        int destruction = reader.GetInt32(9);
-                        int conservation = reader.GetInt32(10);
-                        int revolution = reader.GetInt32(11);
-                        int balance = reader.GetInt32(12);
-                        int guidance = reader.GetInt32(13);
-                        int mind = reader.GetInt32(14);
+                        int creation = reader.GetInt32(9);
+                        int destruction = reader.GetInt32(10);
+                        int conservation = reader.GetInt32(11);
+                        int revolution = reader.GetInt32(12);
+                        int balance = reader.GetInt32(13);
+                        int guidance = reader.GetInt32(14);
+                        int mind = reader.GetInt32(15);
                         SoulAttributes attributes = new SoulAttributes(
                             mainSoulType: mainSoulType,
+                            currentPhaseLevel: currentPhaseLevel,
                             maxReachedPhaseLevel: maxReachedPhaseLevel,
                             corePoint: corePoint,
                             maxCorePoint: maxCorePoint,
@@ -194,7 +196,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 WHERE SoulID = @soulID;
 
                 UPDATE SoulAttributes SET 
-                MainSoulType = @mainSoulType, MaxReachedPhaseLevel = @maxReachedPhaseLevel, CorePoint = @corePoint, MaxCorePoint = @maxCorePoint, SpiritPoint = @spiritPoint, MaxSpiritPoint = @maxSpiritPoint
+                MainSoulType = @mainSoulType, CurrentPhaseLevel = @currentPhaseLevel, MaxReachedPhaseLevel = @maxReachedPhaseLevel, CorePoint = @corePoint, MaxCorePoint = @maxCorePoint, SpiritPoint = @spiritPoint, MaxSpiritPoint = @maxSpiritPoint
                 WHERE SoulID = @soulID;
 
                 UPDATE SoulAttributes_KernelAbility SET 
@@ -207,6 +209,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 command.Parameters.AddWithValue("@soulID", soul.SoulID);
 
                 command.Parameters.AddWithValue("@mainSoulType", (byte)soul.Attributes.MainSoulType);
+                command.Parameters.AddWithValue("@currentPhaseLevel", (byte)soul.Attributes.CurrentPhaseLevel);
                 command.Parameters.AddWithValue("@maxReachedPhaseLevel", soul.Attributes.MaxReachedPhaseLevel);
                 command.Parameters.AddWithValue("@corePoint", soul.Attributes.CorePoint);
                 command.Parameters.AddWithValue("@maxCorePoint", soul.Attributes.MaxCorePoint);

@@ -33,8 +33,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
             {
                 try
                 {
-                    MessageType messageType = (MessageType)parameters[(byte)BroadcastMessageParameterCode.MessageType]; ;
-                    MessageSourceType messageSourceType = (MessageSourceType)parameters[(byte)BroadcastMessageParameterCode.MessageSourceType];
+                    MessageTypeCode messageType = (MessageTypeCode)parameters[(byte)BroadcastMessageParameterCode.MessageType]; ;
+                    MessageSourceTypeCode messageSourceType = (MessageSourceTypeCode)parameters[(byte)BroadcastMessageParameterCode.MessageSourceType];
                     string sourceName = (string)parameters[(byte)BroadcastMessageParameterCode.SourceName];
                     string message = (string)parameters[(byte)BroadcastMessageParameterCode.Message];
                     scene.MessageLog.ReceiveNewMessage(new MessageInformation

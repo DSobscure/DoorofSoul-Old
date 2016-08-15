@@ -28,13 +28,12 @@ namespace DoorofSoul.Database
         public RepositoryManager RepositoryManager { get; protected set; }
         public RelationManager RelationManager { get; protected set; }
         public ILogger Log { get; protected set; }
+        public KnowledgeInterface KnowledgeInterface { get; protected set; }
 
-        protected DataBase(ILogger log)
+        protected DataBase(ILogger log, KnowledgeInterface knowledgeInterface)
         {
             Log = log;
-            AuthenticationManager = new AuthenticationManager();
-            RepositoryManager = new RepositoryManager();
-            RelationManager = new RelationManager();
+            KnowledgeInterface = knowledgeInterface;
         }
         public abstract bool Connect(string hostName, string userName, string password, string database);
 

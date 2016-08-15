@@ -31,9 +31,25 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
         {
             if (base.Handle(operationCode, parameters))
             {
-                string message = (string)parameters[(byte)SayParameterCode.Message];
-                container.Entity.LocatedScene.SceneEventManager.BroadcastMessage(MessageType.TalkMessage, MessageSourceType.Scene, container.ContainerName, message);
-                return true;
+                try
+                {
+                    string message = (string)parameters[(byte)SayParameterCode.Message];
+                    container.Entity.LocatedScene.SceneEventManager.BroadcastMessage(MessageTypeCode.TalkMessage, MessageSourceTypeCode.Scene, container.ContainerName, message);
+                    return true;
+                }
+                catch (InvalidCastException ex)
+                {
+                    LibraryInstance.ErrorFormat("Container Say Operation Invalid Cast!");
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    LibraryInstance.Error(ex.Message);
+                    LibraryInstance.Error(ex.StackTrace);
+                    return false;
+                }
             }
             else
             {

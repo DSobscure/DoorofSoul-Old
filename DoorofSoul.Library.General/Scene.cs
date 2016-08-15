@@ -21,6 +21,7 @@ namespace DoorofSoul.Library.General
         protected Dictionary<int, Entity> entityDictionary;
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         public SupportLauguages UsingLanguage { get { return World.UsingLanguage; } }
+        public SceneEye SceneEye { get; protected set; }
         #endregion
 
         #region events
@@ -61,6 +62,11 @@ namespace DoorofSoul.Library.General
         {
             World = world;
         }
+        public void SetSceneEye(SceneEye eye)
+        {
+            SceneEye = eye;
+            SceneEye.BindScene(this);
+        }
 
         public void ContainerEnter(Container container)
         {
@@ -78,6 +84,7 @@ namespace DoorofSoul.Library.General
                 entityDictionary.Add(entity.EntityID, entity);
                 entity.LocatedSceneID = SceneID;
                 entity.LocatedScene = this;
+                entity.OnEntityPositionChange += SceneEventManager.SynchronizeEntityPosition;
                 onEntityEnter?.Invoke(entity);
             }
         }
@@ -87,6 +94,7 @@ namespace DoorofSoul.Library.General
             {
                 Entity entity = FindEntity(entityID);
                 entityDictionary.Remove(entity.EntityID);
+                entity.OnEntityPositionChange -= SceneEventManager.SynchronizeEntityPosition;
                 onEntityExit?.Invoke(entity);
                 entity.LocatedSceneID = -1;
                 entity.LocatedScene = null;
@@ -100,14 +108,6 @@ namespace DoorofSoul.Library.General
                 containerDictionary.Remove(containerID);
                 onContainerExit?.Invoke(container);
                 EntityExit(container.Entity.EntityID);
-            }
-        }
-        public void UpdateEntitySpaceProperties(int entityID, EntitySpaceProperties spaceProperties)
-        {
-            if(entityDictionary.ContainsKey(entityID))
-            {
-                entityDictionary[entityID].UpdateEntityTransform(spaceProperties.Position, spaceProperties.Rotation, spaceProperties.Scale);
-                entityDictionary[entityID].UpdateEntityVelocity(spaceProperties.Velocity, spaceProperties.AngularVelocity);
             }
         }
 

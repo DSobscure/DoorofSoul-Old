@@ -31,7 +31,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
             {
                 int direction = (int)parameters[(byte)MoveParameterCode.Direction];
                 direction = Math.Max(Math.Min(direction, 1), -1);
-                entity.EntityEventManager.StartMove(direction * 1);
+                entity.EntityEventManager.StartMove(direction * 5);
                 return true;
             }
             else

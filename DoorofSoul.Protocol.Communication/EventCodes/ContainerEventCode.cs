@@ -3,5 +3,6 @@
     public enum ContainerEventCode : byte
     {
         InformData,
+        ObserveSceneEntitiesPosition
     }
 }

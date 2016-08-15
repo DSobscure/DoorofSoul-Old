@@ -26,6 +26,7 @@ namespace DoorofSoul.Library.General.Events.Managers
                 { SceneEventCode.EntityEvent, new EntityEventResolver(scene) },
                 { SceneEventCode.InformData, new InformDataResolver(scene) },
                 { SceneEventCode.BroadcastMessage, new BroadcastMessageHandler(scene) },
+                { SceneEventCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
             };
         }
 
@@ -89,7 +90,7 @@ namespace DoorofSoul.Library.General.Events.Managers
             };
             SendEvent(SceneEventCode.InformData, parameters);
         }
-        public void BroadcastMessage(MessageType messageType, MessageSourceType messageSourceType, string sourceName, string message)
+        public void BroadcastMessage(MessageTypeCode messageType, MessageSourceTypeCode messageSourceType, string sourceName, string message)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
@@ -99,6 +100,15 @@ namespace DoorofSoul.Library.General.Events.Managers
                 { (byte)BroadcastMessageParameterCode.Message, message }
             };
             SendEvent(SceneEventCode.BroadcastMessage, parameters);
+        }
+        public void SynchronizeEntityPosition(Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)SynchronizeEntityPositionParameterCode.EntityID, entity.EntityID },
+                { (byte)SynchronizeEntityPositionParameterCode.Position, entity.Position }
+            };
+            SendEvent(SceneEventCode.SynchronizeEntityPosition, parameters);
         }
     }
 }

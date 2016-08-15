@@ -27,9 +27,11 @@ namespace DoorofSoul.Library.General.SoulElements
             }
         }
 
-        public SoulKernelType MainSoulType { get; protected set; }
+        public SoulKernelTypeCode MainSoulType { get; protected set; }
 
         public SoulPhase[] Phases { get; protected set; }
+
+        public byte CurrentPhaseLevel { get; protected set; }
 
         public byte MaxReachedPhaseLevel { get; protected set; }
 
@@ -52,9 +54,10 @@ namespace DoorofSoul.Library.General.SoulElements
         public event Action<decimal> OnSpiritPointChange { add { onSpiritPointChange += value; } remove { onSpiritPointChange -= value; } }
 
         public SoulAttributes() { }
-        public SoulAttributes(SoulKernelType mainSoulType, byte maxReachedPhaseLevel, decimal corePoint, decimal maxCorePoint, decimal spiritPoint, decimal maxSpiritPoint, SoulKernelAbility kernelAbility)
+        public SoulAttributes(SoulKernelTypeCode mainSoulType, byte currentPhaseLevel, byte maxReachedPhaseLevel, decimal corePoint, decimal maxCorePoint, decimal spiritPoint, decimal maxSpiritPoint, SoulKernelAbility kernelAbility)
         {
             MainSoulType = mainSoulType;
+            CurrentPhaseLevel = currentPhaseLevel;
             MaxReachedPhaseLevel = maxReachedPhaseLevel;
             Phases = new SoulPhase[MaxReachedPhaseLevel + 1];
             CorePoint = corePoint;

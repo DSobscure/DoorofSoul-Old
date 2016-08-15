@@ -97,6 +97,14 @@
     <Compile Include="Assets\Scripts\CommunicationScripts\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\EntityController.cs" />
     <Compile Include="Assets\Scripts\InputScripts\EntityInputController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\CreateSoulPanel.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\DeleteSoulPanelController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\PlayerAnswerController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulActivatePanel.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulsPanelController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\InputNavigationController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginController.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginUI.cs" />
     <Compile Include="Assets\Scripts\SystemScripts\ErrorInformController.cs" />
     <Compile Include="Assets\Scripts\SystemScripts\EternalObject.cs" />
     <Compile Include="Assets\Scripts\SystemScripts\SceneController.cs" />
@@ -104,6 +112,7 @@
     <Compile Include="Assets\Scripts\SystemScripts\SystemVersionController.cs" />
     <Compile Include="Assets\Scripts\TestScripts\CameraTestScripts\ViewFollowMouse.cs" />
     <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\AngularVelocityTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\ClickEntityTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\EntityRotateTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\InventoryTestScripts\InventoryTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\RichTextBoxTest.cs" />
@@ -113,14 +122,6 @@
     <Compile Include="Assets\Scripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ErrorInformPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\CreateSoulPanel.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\DeleteSoulPanelController.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\PlayerAnswerController.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulActivatePanel.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerAnswerSceneScripts\SoulsPanelController.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\InputNavigationController.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginController.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginUI.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\ContainerPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\PlayerPanel.cs" />
@@ -201,6 +202,5 @@
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

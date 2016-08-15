@@ -35,6 +35,7 @@ namespace DoorofSoul.Library
                 answer.LoadSouls(DataBase.Instance.RepositoryManager.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
+                    soul.SkillLibrary.LoadSkillInfos(DataBase.Instance.RepositoryManager.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
                     ProjectSoul(soul);
                 }
             }
@@ -157,7 +158,7 @@ namespace DoorofSoul.Library
             }
         }
 
-        public bool CreateSoul(int answerID, string soulName, SoulKernelType mainSoulType)
+        public bool CreateSoul(int answerID, string soulName, SoulKernelTypeCode mainSoulType)
         {
             if(answerDictionary.ContainsKey(answerID))
             {

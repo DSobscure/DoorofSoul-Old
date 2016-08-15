@@ -63,7 +63,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             };
             SendOperation(AnswerOperationCode.DeleteSoul, parameters);
         }
-        public void CreateSoul(string soulName, SoulKernelType mainSoulType)
+        public void CreateSoul(string soulName, SoulKernelTypeCode mainSoulType)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {

@@ -30,6 +30,7 @@ namespace DoorofSoul.Library.General
         }
         public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
         public SoulAttributes Attributes { get; protected set; }
+        public SkillLibrary SkillLibrary { get; protected set; }
         #endregion
 
         #region events
@@ -58,6 +59,7 @@ namespace DoorofSoul.Library.General
             SoulEventManager = new SoulEventManager(this);
             SoulOperationManager = new SoulOperationManager(this);
             SoulResponseManager = new SoulResponseManager(this);
+            SkillLibrary = new SkillLibrary(this);
         }
         public void LinkContainer(Container container)
         {

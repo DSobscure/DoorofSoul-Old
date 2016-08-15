@@ -65,6 +65,7 @@
     <Compile Include="Events\Handlers\ContainerEventHandler.cs" />
     <Compile Include="Events\Handlers\Container\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Container\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Container\ObserveSceneEntitiesPositionHandler.cs" />
     <Compile Include="Events\Handlers\EntityEventHandler.cs" />
     <Compile Include="Events\Handlers\Entity\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Entity\InformDataResolver.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Events\Handlers\Scene\InformDataResolver.cs" />
     <Compile Include="Events\Handlers\Scene\InformData\InformEntityEnterHandler.cs" />
     <Compile Include="Events\Handlers\Scene\InformData\InformEntityExitHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\SynchronizeEntityPositionHandler.cs" />
     <Compile Include="Events\Handlers\SoulEventHandler.cs" />
     <Compile Include="Events\Handlers\Soul\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Soul\InformDataResolver.cs" />
@@ -96,6 +98,15 @@
     <Compile Include="Events\Managers\SceneEventManager.cs" />
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
+    <Compile Include="HeptagramSystem.cs" />
+    <Compile Include="HeptagramSystems\AlchemySystem.cs" />
+    <Compile Include="HeptagramSystems\DemonSystem.cs" />
+    <Compile Include="HeptagramSystems\ElementSystem.cs" />
+    <Compile Include="HeptagramSystems\BeliefSystem.cs" />
+    <Compile Include="HeptagramSystems\GenieSystem.cs" />
+    <Compile Include="HeptagramSystems\ChanceSystem.cs" />
+    <Compile Include="HeptagramSystems\Skill.cs" />
+    <Compile Include="HeptagramSystems\TechnologySystem.cs" />
     <Compile Include="IControllers\IEntityController.cs" />
     <Compile Include="ContainerElements\Inventory.cs" />
     <Compile Include="Item.cs" />
@@ -117,6 +128,7 @@
     <Compile Include="Operations\Handlers\Container\FetchData\FetchEntityHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchData\FetchInventoryHandler.cs" />
     <Compile Include="Operations\Handlers\Container\FetchData\FetchInventoryItemsHandler.cs" />
+    <Compile Include="Operations\Handlers\Container\ObserveEntityPositionHandler.cs" />
     <Compile Include="Operations\Handlers\Container\SayHandler.cs" />
     <Compile Include="Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="Operations\Handlers\Entity\FetchDataHandler.cs" />
@@ -208,7 +220,10 @@
     <Compile Include="Responses\Managers\WorldResponseManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="SceneElements\MessageLog.cs" />
+    <Compile Include="SceneElements\SceneEye.cs" />
     <Compile Include="Soul.cs" />
+    <Compile Include="SoulElements\SkillInfo.cs" />
+    <Compile Include="SoulElements\SkillLibrary.cs" />
     <Compile Include="SoulElements\SoulAttributes.cs" />
     <Compile Include="SoulElements\SoulKernelAbility.cs" />
     <Compile Include="SoulElements\SoulPhase.cs" />

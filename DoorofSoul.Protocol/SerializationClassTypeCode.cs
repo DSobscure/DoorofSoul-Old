@@ -6,6 +6,7 @@
         EntitySpaceProperties,
         Decimal,
         ContainerAttributes,
-        SoulAttributes
+        SoulAttributes,
+        DSVector3
     }
 }

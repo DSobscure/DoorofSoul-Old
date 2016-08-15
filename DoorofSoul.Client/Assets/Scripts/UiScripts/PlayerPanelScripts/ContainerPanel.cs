@@ -10,6 +10,9 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
     {
         private Container container;
 
+        private Text containerNameText;
+        private Text containerLevelText;
+
         private Slider lifePointSlider;
         private Slider energyPointSlider;
         private Slider experienceSlider;
@@ -34,6 +37,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
                 this.container = container;
                 SetupSliders(true);
                 SetupInventory();
+                SetupNameAndLevel();
                 this.container.Attributes.OnLifePointChange += UpdateLifePoint;
                 this.container.Attributes.OnEnergyPointChange += UpdateEnergyPoint;
                 this.container.Attributes.OnExperienceChange += UpdateExperiencePoint;
@@ -46,6 +50,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
                 this.container = container;
                 SetupSliders(false);
                 SetupInventory();
+                SetupNameAndLevel();
                 this.container.Attributes.OnLifePointChange += UpdateLifePoint;
                 this.container.Attributes.OnEnergyPointChange += UpdateEnergyPoint;
                 this.container.Attributes.OnExperienceChange += UpdateExperiencePoint;
@@ -73,6 +78,15 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
             inventoryButton.onClick.AddListener(() => ShowInventoryPanel());
             inventoryButton.GetComponentInChildren<Text>().text = UILanguageSeletor.Instance[container.UsingLanguage]["Inventory"];
         }
+        private void SetupNameAndLevel()
+        {
+            containerNameText = transform.FindChild("ContainerNameText").GetComponent<Text>();
+            containerLevelText = transform.FindChild("ContainerLevelText").GetComponent<Text>();
+
+            containerNameText.text = container.ContainerName;
+            containerLevelText.text = string.Format("LV.{0}", container.Attributes.Level);
+        }
+
         private void UpdateLifePoint(decimal value)
         {
             lifePointSlider.value = (float)value;

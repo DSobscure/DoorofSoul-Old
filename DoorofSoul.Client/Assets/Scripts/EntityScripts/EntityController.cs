@@ -27,6 +27,15 @@ namespace DoorofSoul.Client.Scripts.EntityScripts
             }
         }
 
+        void OnMouseEnter()
+        {
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.2f, 0.2f, 0.2f));
+        }
+        void OnMouseExit()
+        {
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        }
+
         public void BindEntity(Entity entity)
         {
             this.entity = entity;

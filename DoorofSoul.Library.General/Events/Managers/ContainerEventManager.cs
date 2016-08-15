@@ -16,7 +16,8 @@ namespace DoorofSoul.Library.General.Events.Managers
             this.container = container;
             eventTable = new Dictionary<ContainerEventCode, ContainerEventHandler>
             {
-                { ContainerEventCode.InformData, new InformDataResolver(container) }
+                { ContainerEventCode.InformData, new InformDataResolver(container) },
+                { ContainerEventCode.ObserveSceneEntitiesPosition, new ObserveSceneEntitiesPositionHandler(container) },
             };
         }
 
@@ -98,6 +99,10 @@ namespace DoorofSoul.Library.General.Events.Managers
                     LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
+        }
+        public void ObserveSceneEntitiesPosition()
+        {
+            SendEvent(ContainerEventCode.ObserveSceneEntitiesPosition, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
         }
     }
 }

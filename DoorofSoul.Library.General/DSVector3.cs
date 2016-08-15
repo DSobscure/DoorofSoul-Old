@@ -1,13 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using MsgPack.Serialization;
+using System;
+using System.IO;
 using UnityEngine;
 
 namespace DoorofSoul.Library.General
 {
     public struct DSVector3
     {
+        public static object Deserialize(byte[] data)
+        {
+            var serializer = MessagePackSerializer.Get<DSVector3>();
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return serializer.Unpack(ms);
+            }
+        }
+
+        public static byte[] Serialize(object data)
+        {
+            DSVector3 value = (DSVector3)data;
+            var serializer = MessagePackSerializer.Get<DSVector3>();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                serializer.Pack(memoryStream, value);
+                return memoryStream.ToArray();
+            }
+        }
+
         public float x;
         public float y;
         public float z;

@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General
         public DSVector3 Position
         {
             get { return SpaceProperties.Position; }
-            protected set { SpaceProperties.Position = value; }
+            set { SpaceProperties.Position = value; onEntityPositionChange?.Invoke(this); }
         }
         public DSVector3 Rotation
         {
@@ -64,11 +64,10 @@ namespace DoorofSoul.Library.General
         protected IEntityController entityController;
         public IEntityController EntityController { get { return entityController; } }
         #endregion
+
         #region events
-        private event Action<Entity> onEntityTranformChange;
-        public event Action<Entity> OnEntityTranformChange { add { onEntityTranformChange += value; } remove { onEntityTranformChange -= value; } }
-        private event Action<Entity> onEntityVelocityChange;
-        public event Action<Entity> OnEntityVelocityChange { add { onEntityVelocityChange += value; } remove { onEntityVelocityChange -= value; } }
+        private event Action<Entity> onEntityPositionChange;
+        public event Action<Entity> OnEntityPositionChange { add { onEntityPositionChange += value; } remove { onEntityPositionChange -= value; } }
         #endregion
 
         #region communication
@@ -88,24 +87,15 @@ namespace DoorofSoul.Library.General
             EntityResponseManager = new EntityResponseManager(this);
         }
 
-        public void UpdateEntityTransform(DSVector3 position, DSVector3 rotation, DSVector3 scale)
-        {
-            Position = position;
-            Rotation = rotation;
-            Scale = scale;
-            onEntityTranformChange?.Invoke(this);
-        }
-        public void UpdateEntityVelocity(DSVector3 velocity, DSVector3 angularVelocity)
-        {
-            Velocity = velocity;
-            AngularVelocity = angularVelocity;
-            onEntityVelocityChange?.Invoke(this);
-        }
-
         public void BindEntityController(IEntityController entityController)
         {
             this.entityController = entityController;
             entityController.BindEntity(this);
+        }
+
+        public void SynchronizePosition(DSVector3 position)
+        {
+            Position = position;
         }
     }
 }

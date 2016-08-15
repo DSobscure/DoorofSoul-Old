@@ -5,6 +5,7 @@
         ContainerEvent,
         EntityEvent,
         InformData,
-        BroadcastMessage
+        BroadcastMessage,
+        SynchronizeEntityPosition
     }
 }

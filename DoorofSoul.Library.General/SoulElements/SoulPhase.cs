@@ -9,8 +9,13 @@ namespace DoorofSoul.Library.General.SoulElements
     {
         public byte PhaseLevel { get; protected set; }
         public byte UnderstandingLevel { get; protected set; }
-        public int UnderstandingPoint { get; protected set; }
-        public int MaxUnderstandingPoint { get; protected set; }
+
+        private int understandingPoint;
+        public int UnderstandingPoint { get { return understandingPoint; } protected set { understandingPoint = Math.Max(Math.Min(value, MaxUnderstandingPoint), 0); onUnderstandingPointChange?.Invoke(understandingPoint); } }
+        public int MaxUnderstandingPoint { get; protected set; } = int.MaxValue;
+
+        private event Action<int> onUnderstandingPointChange;
+        public event Action<int> OnUnderstandingPointChange { add { onUnderstandingPointChange += value; } remove { onUnderstandingPointChange -= value; } }
 
         public SoulPhase() { }
         public SoulPhase(byte phaseLevel, byte understandingLevel, int understandingPoint)

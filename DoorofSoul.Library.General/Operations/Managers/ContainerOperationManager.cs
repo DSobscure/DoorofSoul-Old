@@ -1,9 +1,6 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers;
 using DoorofSoul.Library.General.Operations.Handlers.Container;
-using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.Channels;
-using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Container;
 using System.Collections.Generic;
@@ -24,6 +21,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             {
                 { ContainerOperationCode.FetchData, FetchDataResolver },
                 { ContainerOperationCode.Say, new SayHandler(container) },
+                { ContainerOperationCode.ObserveEntityPosition, new ObserveEntityPositionHandler(container) },
             };
         }
 
@@ -87,6 +85,15 @@ namespace DoorofSoul.Library.General.Operations.Managers
                 { (byte)SayParameterCode.Message, message }
             };
             SendOperation(ContainerOperationCode.Say, parameters, ContainerCommunicationChannel.Answer);
+        }
+        public void ObserveEntityPosition(Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)ObserveEntityPositionParameterCode.EntityID, entity.EntityID },
+                { (byte)ObserveEntityPositionParameterCode.Position, entity.Position }
+            };
+            SendOperation(ContainerOperationCode.ObserveEntityPosition, parameters, ContainerCommunicationChannel.Answer);
         }
     }
 }

@@ -68,13 +68,14 @@ namespace DoorofSoul.Client.Scripts.SystemScripts
                 {
                     GameObject gameObject = Instantiate(gameObjectPrefab);
                     gameObject.transform.SetParent(entities.transform);
-                    gameObject.transform.position = (Vector3)entity.Position;
-                    gameObject.transform.rotation = Quaternion.Euler((Vector3)entity.Rotation);
+                    gameObject.transform.localPosition = (Vector3)entity.Position;
+                    gameObject.transform.localRotation = Quaternion.Euler((Vector3)entity.Rotation);
                     IEntityController entityController = gameObject.GetComponent<IEntityController>();
                     entity.BindEntityController(entityController);
                     if (Global.Global.Seat.MainContainer.EntityID == entity.EntityID)
                     {
-                        Camera.main.transform.SetParent(entity.EntityController.GameObject.transform);
+                        Camera.main.transform.SetParent(entity.EntityController.GameObject.transform.FindChild("ViewPort"));
+                        Camera.main.transform.localPosition = Vector3.zero;
                     }
                 }
             }

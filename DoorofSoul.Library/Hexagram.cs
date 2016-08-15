@@ -18,6 +18,7 @@ namespace DoorofSoul.Library
             instance.Log = log;
         }
 
+        public Knowledge Knowledge { get; protected set; }
         public Nature Nature { get; protected set; }
         public Throne Throne { get; protected set; }
         public ILogger Log { get; protected set; }
@@ -25,6 +26,7 @@ namespace DoorofSoul.Library
         
         protected Hexagram()
         {
+            Knowledge = new Knowledge();
             Nature = new Nature();
             Throne = new Throne();
         }

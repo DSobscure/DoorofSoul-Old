@@ -116,12 +116,15 @@
     <Compile Include="Assets\Scripts\TestScripts\EntityTestScripts\EntityRotateTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\InventoryTestScripts\InventoryTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\RichTextBoxTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SkillPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulAndContainerAttributeSlidersTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
     <Compile Include="Assets\Scripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ErrorInformPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\SkillInfoBlock.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\SkillPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\ContainerPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\PlayerPanel.cs" />

@@ -7,6 +7,7 @@
         Decimal,
         ContainerAttributes,
         SoulAttributes,
-        DSVector3
+        DSVector3,
+        SkillInfo
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DoorofSoul.Client.Scripts.UIScripts
+namespace DoorofSoul.Client.Scripts.UiScripts
 {
     public class ScrollTextArea : MonoBehaviour
     {

@@ -64,7 +64,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.Error("Fetch Souls SoulContainerLinks Parameter Cast Error");
+                    LibraryInstance.Error("Fetch SoulContainerLinks Parameter Cast Error");
                     LibraryInstance.Error(ex.Message);
                     LibraryInstance.Error(ex.StackTrace);
                     return false;

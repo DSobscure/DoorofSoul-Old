@@ -1,10 +1,10 @@
-﻿using DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts;
+﻿using DoorofSoul.Client.Protocol.Language;
+using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
 using DoorofSoul.Library.General;
-using DoorofSoul.Protocol.Language;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
+namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {
     public class ContainerPanel : MonoBehaviour
     {
@@ -104,7 +104,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
         }
         private void ShowInventoryPanel()
         {
-            if (transform.FindChild("InventoryPanel") == null)
+            if (transform.parent.parent.FindChild("InventoryPanel") == null)
             {
                 InventoryPanel inventoryPanel = Instantiate(inventoryPanelPrefab);
                 inventoryPanel.name = "InventoryPanel";
@@ -113,6 +113,10 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
                 rectTransform.localScale = Vector3.one;
                 rectTransform.localPosition = Vector2.zero;
                 inventoryPanel.BindInventory(container.Inventory);
+            }
+            else
+            {
+                transform.parent.parent.FindChild("InventoryPanel").GetComponent<InventoryPanel>().Close();
             }
         }
     }

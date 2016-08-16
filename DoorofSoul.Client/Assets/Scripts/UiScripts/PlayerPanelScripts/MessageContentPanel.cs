@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
+namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {
     public class MessageContentPanel : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {

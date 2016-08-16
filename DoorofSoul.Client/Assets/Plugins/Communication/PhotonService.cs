@@ -187,6 +187,7 @@ namespace DoorofSoul.Client.Communication
             PhotonPeer.RegisterType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
             PhotonPeer.RegisterType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             PhotonPeer.RegisterType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);
+            PhotonPeer.RegisterType(typeof(SkillInfo), (byte)SerializationClassTypeCode.SkillInfo, SkillInfo.Serialize, SkillInfo.Deserialize);
         }
     }
 }

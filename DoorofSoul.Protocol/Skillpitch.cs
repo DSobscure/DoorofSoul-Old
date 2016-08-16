@@ -9,10 +9,10 @@ namespace DoorofSoul.Protocol
     {
         C,
         C_sharp,
-        D_flat = C_sharp,
+        D_flat,
         D,
         D_sharp,
-        E_flat = D_sharp,
+        E_flat,
         E,
         F,
         F_sharp,

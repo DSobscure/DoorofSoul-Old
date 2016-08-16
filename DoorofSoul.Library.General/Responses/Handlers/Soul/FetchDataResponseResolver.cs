@@ -1,7 +1,8 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Responses.Handlers.Soul.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
-using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters;
+using DoorofSoul.Protocol.Communication.OperationCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Soul
@@ -14,7 +15,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
         {
             fetchResponseTable = new Dictionary<SoulFetchDataCode, FetchDataResponseHandler>
             {
-
+                { SoulFetchDataCode.SkillInfos, new FetchSkillInfosResponseHandler(soul) },
             };
         }
 

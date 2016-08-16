@@ -2,5 +2,6 @@
 {
     public enum SoulFetchDataCode : byte
     {
+        SkillInfos
     }
 }

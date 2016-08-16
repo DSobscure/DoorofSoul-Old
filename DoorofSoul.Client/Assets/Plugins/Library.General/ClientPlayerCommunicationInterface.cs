@@ -28,7 +28,7 @@ namespace DoorofSoul.Client.Library.General
             throw new NotImplementedException();
         }
 
-        public override bool CreateSoul(Answer answer, string soulName, SoulKernelType mainSoulType)
+        public override bool CreateSoul(Answer answer, string soulName, SoulKernelTypeCode mainSoulType)
         {
             throw new NotImplementedException();
         }

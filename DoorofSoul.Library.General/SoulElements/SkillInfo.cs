@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MsgPack.Serialization;
+using System.IO;
 using DoorofSoul.Protocol;
 using DoorofSoul.Library.General.HeptagramSystems;
 
@@ -7,6 +7,26 @@ namespace DoorofSoul.Library.General.SoulElements
 {
     public class SkillInfo
     {
+        public static object Deserialize(byte[] data)
+        {
+            var serializer = MessagePackSerializer.Get<SkillInfo>();
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return serializer.Unpack(ms);
+            }
+        }
+
+        public static byte[] Serialize(object data)
+        {
+            SkillInfo value = data as SkillInfo;
+            var serializer = MessagePackSerializer.Get<SkillInfo>();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                serializer.Pack(memoryStream, value);
+                return memoryStream.ToArray();
+            }
+        }
+
         public int SkillInfoID { get; protected set; }
         public int UnderstanderSoulID { get; protected set; }
         public Skill Skill { get; protected set; }
@@ -20,7 +40,7 @@ namespace DoorofSoul.Library.General.SoulElements
             UnderstanderSoulID = understanderSoulID;
             Skill = skill;
             SkillLevel = skillLevel;
-            skillPitch = SkillPitch;
+            SkillPitch = skillPitch;
         }
     }
 }

@@ -48,7 +48,9 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Answer.FetchData
                     int soulID = (int)parameters[(byte)FetchSoulsResponseParameterCode.SoulID];
                     string soulName = (string)parameters[(byte)FetchSoulsResponseParameterCode.SoulName];
                     SoulAttributes attributes = (SoulAttributes)parameters[(byte)FetchSoulsResponseParameterCode.SoulAttributes];
-                    answer.LoadSouls(new List<General.Soul> { new General.Soul(soulID, answer, soulName, attributes) });
+                    General.Soul soul = new General.Soul(soulID, answer, soulName, attributes);
+                    answer.LoadSouls(new List<General.Soul> { soul });
+                    soul.SoulOperationManager.FetchDataResolver.FetchSkillInfos();
                     return true;
                 }
                 catch (InvalidCastException ex)

@@ -2,13 +2,13 @@
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.SceneElements;
-using DoorofSoul.Protocol.Language;
+using DoorofSoul.Client.Protocol.Language;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
+namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {
     public class PlayerPanel : MonoBehaviour, IEventProvider
     {
@@ -18,7 +18,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
         private RectTransform statusPanel;
         #endregion
         #region skill panel
-        private RectTransform skillPanel;
+        private RectTransform skillHotKeyPanel;
         #endregion
         #region message control panel
         private RectTransform messageControlPanel;
@@ -94,7 +94,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
         }
         private void SetupSkillPanel()
         {
-            skillPanel = transform.FindChild("SkillPanel").GetComponent<RectTransform>();
+            skillHotKeyPanel = transform.FindChild("SkillHotKeyPanel").GetComponent<RectTransform>();
         }
         private void SetupMessageControlPanel()
         {

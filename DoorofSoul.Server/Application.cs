@@ -72,6 +72,7 @@ namespace DoorofSoul.Server
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(SkillInfo), (byte)SerializationClassTypeCode.SkillInfo, SkillInfo.Serialize, SkillInfo.Deserialize);
         }
 
         protected void SetupDatabase()

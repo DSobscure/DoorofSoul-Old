@@ -1,8 +1,9 @@
 ﻿using DoorofSoul.Library.General;
 using UnityEngine;
 using UnityEngine.UI;
+using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
 
-namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
+namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {
     public class SoulPanel : MonoBehaviour
     {
@@ -14,7 +15,17 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
         private Slider corePointSlider;
         private Slider spiritPointSlider;
         private Slider understandingPointSlider;
-        
+
+        [SerializeField]
+        private SkillPanel skillPanelPrefab;
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                ShowSkillPanel();
+            }
+        }
 
         public void Setup(Soul soul)
         {
@@ -80,6 +91,24 @@ namespace DoorofSoul.Client.Scripts.UIScripts.PlayerPanelScripts
         {
             understandingPointSlider.value = value;
             understandingPointSlider.GetComponentInChildren<Text>().text = string.Format("{0:N2}/{1:N2}", value, soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].MaxUnderstandingPoint);
+        }
+
+        private void ShowSkillPanel()
+        {
+            if (transform.parent.parent.FindChild("SkillPanel") == null)
+            {
+                SkillPanel skillPanel = Instantiate(skillPanelPrefab);
+                skillPanel.name = "SkillPanel";
+                skillPanel.transform.SetParent(transform.parent.parent);
+                RectTransform rectTransform = skillPanel.GetComponent<RectTransform>();
+                rectTransform.localScale = Vector3.one;
+                rectTransform.localPosition = Vector2.zero;
+                skillPanel.Initial(soul.SkillLibrary);
+            }
+            else
+            {
+                transform.parent.parent.FindChild("SkillPanel").GetComponent<SkillPanel>().Close();
+            }
         }
     }
 }

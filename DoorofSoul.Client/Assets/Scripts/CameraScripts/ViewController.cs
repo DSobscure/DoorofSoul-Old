@@ -26,7 +26,7 @@ namespace DoorofSoul.Client.Scripts.CameraScripts
         }
         void OnGUI()
         {
-            if (MouseInScreen())
+            if (Input.GetMouseButton(2) && MouseInScreen())
             {
                 Vector2 mousePosition = Event.current.mousePosition;
                 float horizontal = (mousePosition.x - Screen.width / 2) / (Screen.width / 2) * 90;

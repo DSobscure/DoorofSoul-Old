@@ -10,7 +10,7 @@ namespace DoorofSoul.Client.Scripts.SceneScripts.PlayerAnswerSceneScripts
         private Dropdown mainSoulTypeDropdown;
 
         public string SoulName { get { return soulNameInputField.text; } }
-        public SoulKernelType MainSoulType { get { return (SoulKernelType)mainSoulTypeDropdown.value; } }
+        public SoulKernelTypeCode MainSoulType { get { return (SoulKernelTypeCode)mainSoulTypeDropdown.value; } }
 
         void Start()
         {

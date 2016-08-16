@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace DoorofSoul.Client.Scripts.UIScripts
+namespace DoorofSoul.Client.Scripts.UiScripts
 {
     public class DraggablePanel : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {

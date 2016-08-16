@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DoorofSoul.Client.Scripts.UIScripts
+namespace DoorofSoul.Client.Scripts.UiScripts
 {
     public class ErrorInformPanel : MonoBehaviour
     {

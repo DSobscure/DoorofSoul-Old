@@ -34,7 +34,7 @@ namespace DoorofSoul.Library.General
         }
         public void LoadSkill(Skill skill)
         {
-            if(ContainsSkill(skill.SystemTypeCode, skill.SkillID))
+            if(!ContainsSkill(skill.SystemTypeCode, skill.SkillID))
             {
                 skillDictionary.Add(skill.SkillID, skill);
             }
@@ -43,7 +43,7 @@ namespace DoorofSoul.Library.General
         {
             foreach(Skill skill in skills)
             {
-                if (ContainsSkill(skill.SystemTypeCode, skill.SkillID))
+                if (!ContainsSkill(skill.SystemTypeCode, skill.SkillID))
                 {
                     skillDictionary.Add(skill.SkillID, skill);
                 }

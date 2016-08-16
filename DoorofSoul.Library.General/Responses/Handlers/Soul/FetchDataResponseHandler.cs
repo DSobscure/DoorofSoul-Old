@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
             this.soul = soul;
         }
 
-        public virtual bool Handle(SoulFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(SoulFetchDataCode fetchCode, ErrorCode returnCode, string fetchDebugMessage, Dictionary<byte, object> parameters)
         {
             if (CheckError(parameters, returnCode, fetchDebugMessage))
             {
@@ -25,6 +25,6 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
                 return false;
             }
         }
-        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
+        internal abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

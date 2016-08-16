@@ -1,25 +1,25 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Operations.Handlers.Soul.FetchData;
+using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataParameters;
 using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Soul
 {
     public class FetchDataResolver : SoulOperationHandler
     {
-        protected readonly Dictionary<SoulFetchDataCode, FetchDataHandler> fetchTable;
+        private readonly Dictionary<SoulFetchDataCode, FetchDataHandler> fetchTable;
 
-        public FetchDataResolver(General.Soul soul) : base(soul)
+        internal FetchDataResolver(General.Soul soul) : base(soul)
         {
             fetchTable = new Dictionary<SoulFetchDataCode, FetchDataHandler>
             {
-
+                { SoulFetchDataCode.SkillInfos, new FetchSkillInfosHandler(soul) },
             };
         }
 
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
+        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
         {
             if (parameter.Count != 2)
             {
@@ -33,7 +33,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
             }
         }
 
-        public override bool Handle(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, parameters))
             {
@@ -64,6 +64,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
                 { (byte)FetchDataParameterCode.Parameters, parameters }
             };
             soul.SoulOperationManager.SendOperation(SoulOperationCode.FetchData, fetchDataParameters);
+        }
+        public void FetchSkillInfos()
+        {
+            SendOperation(SoulFetchDataCode.SkillInfos, new Dictionary<byte, object>());
         }
     }
 }

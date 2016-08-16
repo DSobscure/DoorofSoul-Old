@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.HeptagramSystems
         public decimal BasicSpiritPointCost { get; protected set; }
 
         public Skill() { }
-        public Skill(int skillID, HeptagramSystemTypeCode systemTypeCode, string skillName, decimal basicLifePointCost, decimal basicEnergyPointCost, decimal basicCorePointCost, decimal basicSpiritPointCost)
+        public Skill(int skillID, HeptagramSystemTypeCode systemTypeCode, string skillName, decimal basicLifePointCost = 0, decimal basicEnergyPointCost = 0, decimal basicCorePointCost = 0, decimal basicSpiritPointCost = 0)
         {
             SkillID = skillID;
             SystemTypeCode = systemTypeCode;

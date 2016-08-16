@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DoorofSoul.Protocol.Language.UILanguages;
+using DoorofSoul.Protocol.Language;
+using DoorofSoul.Client.Protocol.Language.UILanguages;
 
-namespace DoorofSoul.Protocol.Language
+namespace DoorofSoul.Client.Protocol.Language
 {
     public class UILanguageSeletor
     {

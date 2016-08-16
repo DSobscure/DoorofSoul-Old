@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Handlers.Soul
 {
-    public abstract class FetchDataHandler
+    internal abstract class FetchDataHandler
     {
         protected General.Soul soul;
 
@@ -15,7 +15,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
             this.soul = soul;
         }
 
-        public virtual bool Handle(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameter)
+        internal virtual bool Handle(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameter)
         {
             string debugMessage;
             if (CheckParameter(parameter, out debugMessage))
@@ -28,8 +28,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
-        public void SendResponse(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameters)
+        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal void SendResponse(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
             };
             soul.SoulResponseManager.SendResponse(SoulOperationCode.FetchData, ErrorCode.NoError, null, eventData);
         }
-        public void SendError(SoulFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
+        internal void SendError(SoulFetchDataCode fetchCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>
             {

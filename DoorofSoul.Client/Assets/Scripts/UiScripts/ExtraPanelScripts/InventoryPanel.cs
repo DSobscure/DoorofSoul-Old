@@ -2,16 +2,19 @@
 using UnityEngine.UI;
 using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Client.HelpFunctions;
+using DoorofSoul.Client.Interfaces;
+using System;
 
-namespace DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts
+namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
 {
-    public class InventoryPanel : MonoBehaviour
+    public class InventoryPanel : MonoBehaviour, IEventProvider
     {
         [SerializeField]
         private Button inventoryItemBlockButtonPrefab;
         private Inventory inventory;
         private ScrollRect inventoryItemsScrollView;
         private RectTransform inventoryItemsContent;
+        private Button closeButton;
         public int columnCount = 4;
 
         private Button[] inventoryItemBlockButtons;
@@ -19,7 +22,7 @@ namespace DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts
 
         void OnDestroy()
         {
-            inventory.OnItemChange -= OnItemChange;
+            EraseEvents();
         }
 
         public void BindInventory(Inventory inventory)
@@ -28,8 +31,9 @@ namespace DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts
             inventoryItemBlockButtons = new Button[inventory.Capacity];
             inventoryItemsScrollView = transform.FindChild("InventoryItemsScrollView").GetComponent<ScrollRect>();
             inventoryItemsContent = inventoryItemsScrollView.transform.FindChild("Viewport").FindChild("InventoryItemsContent").GetComponent<RectTransform>();
-            transform.FindChild("TitleBar").FindChild("CloseButton").GetComponent<Button>().onClick.AddListener(() => Destroy(gameObject)); ;
-            inventory.OnItemChange += OnItemChange;
+            closeButton = transform.FindChild("TitleBar").FindChild("CloseButton").GetComponent<Button>();
+            closeButton.onClick.AddListener(() => Destroy(gameObject));
+            RegisterEvents();
             ShowInventory();
         }
 
@@ -48,9 +52,9 @@ namespace DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts
                 blockRectTransform.anchorMin = new Vector2(0, 1);
                 blockRectTransform.anchorMax = new Vector2(0, 1);
                 blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                float width = 1 + (blockRectTransform.sizeDelta.x + 2) * ((i % columnCount) + 1) - blockRectTransform.sizeDelta.x / 2;
-                float height = 1 + (blockRectTransform.sizeDelta.y + 2) * ((i / columnCount) + 1) - blockRectTransform.sizeDelta.y / 2;
-                blockRectTransform.localPosition = new Vector2(width, -height);
+                float x = 1 + (blockRectTransform.sizeDelta.x + 2) * ((i % columnCount) + 1) - blockRectTransform.sizeDelta.x / 2;
+                float y = 1 + (blockRectTransform.sizeDelta.y + 2) * ((i / columnCount) + 1) - blockRectTransform.sizeDelta.y / 2;
+                blockRectTransform.localPosition = new Vector2(x, -y);
                 int index = i;
                 inventoryItemBlockButtons[i].onClick.AddListener(() => SelectBlock(index));
             }
@@ -76,6 +80,21 @@ namespace DoorofSoul.Client.Scripts.UIScripts.ExtraPanelScripts
                 inventoryItemBlockButtons[info.positionIndex].transform.FindChild("ItemNameText").GetComponent<Text>().text = info.item.ItemName;
                 inventoryItemBlockButtons[info.positionIndex].transform.FindChild("ItemCountText").GetComponent<Text>().text = info.count.ToString();
             }
+        }
+
+        public void RegisterEvents()
+        {
+            inventory.OnItemChange += OnItemChange;
+        }
+
+        public void EraseEvents()
+        {
+            inventory.OnItemChange -= OnItemChange;
+        }
+
+        public void Close()
+        {
+            closeButton.onClick.Invoke();
         }
     }
 }

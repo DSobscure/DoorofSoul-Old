@@ -57,7 +57,7 @@ namespace DoorofSoul.Client.Library.General
 
         public override void SendSceneEvent(Scene scene, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

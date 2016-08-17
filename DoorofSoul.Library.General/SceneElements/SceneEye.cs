@@ -11,7 +11,7 @@ namespace DoorofSoul.Library.General.SceneElements
         public Scene Scene { get; protected set; }
         public Container Observer { get; protected set; }
 
-        public void BindScene(Scene scene)
+        public virtual void BindScene(Scene scene)
         {
             Scene = scene;
         }
@@ -30,8 +30,8 @@ namespace DoorofSoul.Library.General.SceneElements
             }
         }
 
-        public abstract void StartMonitot(int cycleTimeMilliseconds);
-        public abstract void StopMonotot();
+        public abstract void StartMonitor(int cycleTimeMilliseconds);
+        public abstract void StopMonitor();
 
         public void Monitor()
         {

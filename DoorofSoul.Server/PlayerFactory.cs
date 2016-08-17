@@ -161,7 +161,6 @@ namespace DoorofSoul.Server
                     activatedPlayers.Remove(player.PlayerID);
                 }
                 Application.Log.InfoFormat("PlayerID: {0} Deactivate", player.PlayerID);
-                DataBase.Instance.RepositoryManager.PlayerRepository.Save(player);
                 Hexagram.Instance.Throne.ExtractPlayer(player);
             }
         }

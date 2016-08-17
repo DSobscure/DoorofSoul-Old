@@ -267,7 +267,6 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 if (command.ExecuteNonQuery() <= 0)
                 {
                     DataBase.Instance.Log.ErrorFormat("MySQLContainerRepository Save Container Error ContainerID: {0}", container.ContainerID);
-                    DataBase.Instance.RepositoryManager.EntityRepository.Save(container.Entity);
                 }
             }
         }

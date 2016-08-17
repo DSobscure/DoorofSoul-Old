@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.Library.General;
 using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
 using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.HeptagramSystems;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Library.General.SoulElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Language;
@@ -30,17 +30,17 @@ namespace DoorofSoul.Client.Scripts.TestScripts.UITestScripts
                 player.LoadPlayer(1, "", "", SupportLauguages.Chinese_Traditional, 1);
                 Soul soul = new Soul(1, new Answer(1, 1, player), null, null);
                 SkillLibrary sl = new SkillLibrary(soul);
-                Skill s = new Skill(1, HeptagramSystemTypeCode.Alchemy, "技能表練成");
+                Skill s = new Skill(1, HeptagramSystemTypeCode.Alchemy, SkillMediaTypeCode.Knowledge, "技能表練成");
                 sl.LoadSkillInfos(new List<SkillInfo>
                 {
                     new SkillInfo(1, 1, s, 1, SkillPitch.C),
-                    new SkillInfo(2, 1, new Skill(2, HeptagramSystemTypeCode.Alchemy, "擴展技能表練成"), 1, SkillPitch.C),
+                    new SkillInfo(2, 1, new Skill(2, HeptagramSystemTypeCode.Alchemy, SkillMediaTypeCode.Knowledge, "擴展技能表練成"), 1, SkillPitch.C),
                     new SkillInfo(3, 1, s, 1, SkillPitch.C_sharp),
                     new SkillInfo(4, 1, s, 1, SkillPitch.D),
                     new SkillInfo(5, 1, s, 1, SkillPitch.D_flat),
-                    new SkillInfo(6, 1, new Skill(1, HeptagramSystemTypeCode.Belief, "上帝之眼"), 1, SkillPitch.C),
-                    new SkillInfo(7, 1, new Skill(1, HeptagramSystemTypeCode.Chance, "祝福"), 1, SkillPitch.C),
-                    new SkillInfo(8, 1, new Skill(1, HeptagramSystemTypeCode.Demon, "聖光"), 1, SkillPitch.C),
+                    new SkillInfo(6, 1, new Skill(1, HeptagramSystemTypeCode.Belief, SkillMediaTypeCode.Throne, "上帝之眼"), 1, SkillPitch.C),
+                    new SkillInfo(7, 1, new Skill(1, HeptagramSystemTypeCode.Chance, SkillMediaTypeCode.Light, "祝福"), 1, SkillPitch.C),
+                    new SkillInfo(8, 1, new Skill(1, HeptagramSystemTypeCode.Demon, SkillMediaTypeCode.Light, "聖光"), 1, SkillPitch.C),
                 });
                 Debug.Log(sl.SkillInfos.ToList().Count);
                 sk.Initial(sl);

@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Protocol;
 using DoorofSoul.Client.Protocol.Language;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
@@ -70,39 +70,42 @@ namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
         {
             skillInfoBlockDictionary.Clear();
             skillInfosScrollViewContent.transform.ClearChild();
-            HeptagramSystemTypeCode systemTypeCode = skillLibrary.Systems.ToArray()[heptagramSystemSelectDropdown.value];
-            List<SkillInfo> skillInfos = skillLibrary.SkillInfos.Where(x => x.Skill.SystemTypeCode == systemTypeCode).ToList();
-            SkillPanelViewMode viewMode = (SkillPanelViewMode)Enum.GetValues(typeof(SkillPanelViewMode)).GetValue(skillInfosViewModeSelectDropdown.value);
-            switch(viewMode)
+            if(heptagramSystemSelectDropdown.options.Count > 0)
             {
-                case SkillPanelViewMode.List:
-                    skillInfosScrollViewContent.sizeDelta = new Vector2(skillInfoBlockPrefab.Width, 10 + (skillInfoBlockPrefab.Height + 5) * skillInfos.Count);
-                    skillInfosScrollViewContent.anchoredPosition = new Vector2(-skillInfoBlockPrefab.Width/2, 0);
-                    for (int i = 0; i < skillInfos.Count; i++)
-                    {
-                        if(!skillInfoBlockDictionary.ContainsKey(skillInfos[i].Skill.SkillID))
+                HeptagramSystemTypeCode systemTypeCode = skillLibrary.Systems.ToArray()[heptagramSystemSelectDropdown.value];
+                List<SkillInfo> skillInfos = skillLibrary.SkillInfos.Where(x => x.Skill.SystemTypeCode == systemTypeCode).ToList();
+                SkillPanelViewMode viewMode = (SkillPanelViewMode)Enum.GetValues(typeof(SkillPanelViewMode)).GetValue(skillInfosViewModeSelectDropdown.value);
+                switch (viewMode)
+                {
+                    case SkillPanelViewMode.List:
+                        skillInfosScrollViewContent.sizeDelta = new Vector2(skillInfoBlockPrefab.Width, 10 + (skillInfoBlockPrefab.Height + 5) * skillInfos.Count);
+                        skillInfosScrollViewContent.anchoredPosition = new Vector2(-skillInfoBlockPrefab.Width / 2, 0);
+                        for (int i = 0; i < skillInfos.Count; i++)
                         {
-                            SkillInfoBlock skillInfoBlock = Instantiate(skillInfoBlockPrefab);
-                            RectTransform blockRectTransform = skillInfoBlock.GetComponent<RectTransform>();
-                            blockRectTransform.transform.SetParent(skillInfosScrollViewContent.transform);
-                            blockRectTransform.localScale = Vector3.one;
-                            blockRectTransform.anchorMin = new Vector2(0.5f, 1);
-                            blockRectTransform.anchorMax = new Vector2(0.5f, 1);
-                            blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                            float x = 0;
-                            float y = (blockRectTransform.sizeDelta.y + 5) * (i + 1) - blockRectTransform.sizeDelta.y / 2;
-                            blockRectTransform.anchoredPosition = new Vector2(x, -y);
-                            skillInfoBlock.Initial(this, skillInfos[i]);
-                            skillInfoBlockDictionary.Add(skillInfos[i].Skill.SkillID, skillInfoBlock);
+                            if (!skillInfoBlockDictionary.ContainsKey(skillInfos[i].Skill.SkillID))
+                            {
+                                SkillInfoBlock skillInfoBlock = Instantiate(skillInfoBlockPrefab);
+                                RectTransform blockRectTransform = skillInfoBlock.GetComponent<RectTransform>();
+                                blockRectTransform.transform.SetParent(skillInfosScrollViewContent.transform);
+                                blockRectTransform.localScale = Vector3.one;
+                                blockRectTransform.anchorMin = new Vector2(0.5f, 1);
+                                blockRectTransform.anchorMax = new Vector2(0.5f, 1);
+                                blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
+                                float x = 0;
+                                float y = (blockRectTransform.sizeDelta.y + 5) * (i + 1) - blockRectTransform.sizeDelta.y / 2;
+                                blockRectTransform.anchoredPosition = new Vector2(x, -y);
+                                skillInfoBlock.Initial(this, skillInfos[i]);
+                                skillInfoBlockDictionary.Add(skillInfos[i].Skill.SkillID, skillInfoBlock);
+                            }
+                            else
+                            {
+                                skillInfoBlockDictionary[skillInfos[i].Skill.SkillID].ExtendPitch(skillInfos[i]);
+                            }
                         }
-                        else
-                        {
-                            skillInfoBlockDictionary[skillInfos[i].Skill.SkillID].ExtendPitch(skillInfos[i].SkillPitch);
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

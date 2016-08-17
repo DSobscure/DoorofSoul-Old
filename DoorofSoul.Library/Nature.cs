@@ -167,6 +167,7 @@ namespace DoorofSoul.Library
             {
                 if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
                 {
+                    DataBase.Instance.RepositoryManager.EntityRepository.Save(container.Entity);
                     worldDictionary[container.Entity.LocatedScene.WorldID].ContainerExit(container);
                     ExtractEntity(container.Entity);
                 }
@@ -179,6 +180,7 @@ namespace DoorofSoul.Library
             {
                 if (entity.LocatedScene != null && worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
                 {
+                    DataBase.Instance.RepositoryManager.EntityRepository.Save(entity);
                     worldDictionary[entity.LocatedScene.WorldID].EntityExit(entity);
                 }
                 entityDictionary.Remove(entity.EntityID);

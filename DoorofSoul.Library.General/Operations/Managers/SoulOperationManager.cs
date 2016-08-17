@@ -1,7 +1,9 @@
 ﻿using DoorofSoul.Library.General.Operations.Handlers;
 using DoorofSoul.Library.General.Operations.Handlers.Soul;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;
+using DoorofSoul.Protocol.Communication.OperationParameters.Soul;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Operations.Managers
@@ -19,6 +21,7 @@ namespace DoorofSoul.Library.General.Operations.Managers
             operationTable = new Dictionary<SoulOperationCode, SoulOperationHandler>
             {
                 { SoulOperationCode.FetchData, FetchDataResolver },
+                { SoulOperationCode.SkillOperation, new SkillOperationHandler(soul) },
             };
         }
 
@@ -46,6 +49,18 @@ namespace DoorofSoul.Library.General.Operations.Managers
                 { (byte)SoulOperationParameterCode.Parameters, parameters }
             };
             soul.Answer.AnswerOperationManager.SendOperation(AnswerOperationCode.SoulOperation, operationData);
+        }
+
+        public void OperateSkill(int agentContainerID, HeptagramSystemTypeCode heptagramSystemTypeCoe, int skillInfoID, Dictionary<byte, object> skillParameters)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)SkillOperationParameterCode.AgentContainerID, agentContainerID },
+                { (byte)SkillOperationParameterCode.HeptagramSystem, (byte)heptagramSystemTypeCoe },
+                { (byte)SkillOperationParameterCode.SkillInfoID, skillInfoID },
+                { (byte)SkillOperationParameterCode.SkillParameters, skillParameters }
+            };
+            SendOperation(SoulOperationCode.SkillOperation, parameters);
         }
     }
 }

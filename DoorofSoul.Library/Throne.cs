@@ -1,8 +1,9 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Database;
+using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.EntityElements;
-using System.Collections.Generic;
-using DoorofSoul.Database;
+using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
 using DoorofSoul.Protocol;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library
 {
@@ -35,6 +36,7 @@ namespace DoorofSoul.Library
                 answer.LoadSouls(DataBase.Instance.RepositoryManager.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
+                    soul.BindSkillKnowledgeInterface(new HeptagramSkillKnowledgeInterface());
                     soul.SkillLibrary.LoadSkillInfos(DataBase.Instance.RepositoryManager.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
                     ProjectSoul(soul);
                 }
@@ -98,18 +100,19 @@ namespace DoorofSoul.Library
         {
             if (player.Answer != null)
             {
+                DataBase.Instance.RepositoryManager.PlayerRepository.Save(player);
                 ExtractAnswer(player.Answer);
-                DataBase.Instance.RepositoryManager.AnswerRepository.Save(player.Answer);
             }
         }
         protected void ExtractAnswer(Answer answer)
         {
             if (answerDictionary.ContainsKey(answer.AnswerID))
             {
+                DataBase.Instance.RepositoryManager.AnswerRepository.Save(answer);
                 foreach (Soul soul in answer.Souls)
                 {
                     ExtractSoul(soul);
-                    DataBase.Instance.RepositoryManager.SoulRepository.Save(soul);
+
                 }
                 answer.ClearSouls();
                 answerDictionary.Remove(answer.AnswerID);
@@ -119,6 +122,7 @@ namespace DoorofSoul.Library
         {
             if (soulDictionary.ContainsKey(soul.SoulID))
             {
+                DataBase.Instance.RepositoryManager.SoulRepository.Save(soul);
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
@@ -128,7 +132,6 @@ namespace DoorofSoul.Library
                         if (container.IsEmptyContainer)
                         {
                             ExtractContainer(container);
-                            DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
                         }
                     }
                 }
@@ -153,6 +156,7 @@ namespace DoorofSoul.Library
         {
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
+                DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
                 Hexagram.Instance.Nature.ExtractContainer(container);
                 containerDictionary.Remove(container.ContainerID);
             }

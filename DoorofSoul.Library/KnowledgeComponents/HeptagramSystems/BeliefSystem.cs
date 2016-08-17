@@ -1,0 +1,38 @@
+﻿using System.Collections.Generic;
+using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General;
+using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication;
+
+namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
+{
+    public class BeliefSystem : HeptagramSystem
+    { 
+        public override HeptagramSystemTypeCode SystemTypeCode { get { return HeptagramSystemTypeCode.Belief; } }
+
+        public override bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
+        {
+            if (base.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage))
+            {
+                if(skillInfo.Skill.SkillID == 1)
+                {
+                    user.Attributes.SpiritPoint -= skillInfo.Skill.BasicSpiritPointCost;
+                    agent.Entity.LocatedScene.SceneEye.StopMonitor();
+                    agent.Entity.LocatedScene.SceneEye.SetObserver(skillInfo.SkillLevel, agent);
+                    agent.Entity.LocatedScene.SceneEye.StartMonitor(1000);
+                    skillResponseParameters = new Dictionary<byte, object>();
+                    debugMessage = "";
+                }
+                else
+                {
+                    skillResponseParameters = new Dictionary<byte, object>();
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+}

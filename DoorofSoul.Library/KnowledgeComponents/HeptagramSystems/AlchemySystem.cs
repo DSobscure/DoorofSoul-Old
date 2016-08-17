@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library.General.HeptagramSystems
+namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
 {
     public class AlchemySystem : HeptagramSystem
     {

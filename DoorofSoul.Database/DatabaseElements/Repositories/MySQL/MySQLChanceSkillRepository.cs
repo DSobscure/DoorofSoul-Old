@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.HeptagramSystems;
+﻿using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
@@ -7,14 +7,15 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
 {
     public class MySQLChanceSkillRepository : ChanceSkillRepository
     {
-        public override Skill Create(string skillName, decimal basicLifePointCost, decimal basicEnergyPointCost, decimal basicCorePointCost, decimal basicSpiritPointCost)
+        public override Skill Create(string skillName, SkillMediaTypeCode mediaTypeCode, decimal basicLifePointCost, decimal basicEnergyPointCost, decimal basicCorePointCost, decimal basicSpiritPointCost)
         {
             string sqlString = @"INSERT INTO ChanceSkills 
-                (SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost) VALUES (@skillName,@basicLifePointCost,@basicEnergyPointCost,@basicCorePointCost,@basicSpiritPointCost) ;
+                (SkillName,MediaTypeCode,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost) VALUES (@skillName,@mediaTypeCode,@basicLifePointCost,@basicEnergyPointCost,@basicCorePointCost,@basicSpiritPointCost) ;
                 SELECT LAST_INSERT_ID();";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@skillName", skillName);
+                command.Parameters.AddWithValue("@mediaTypeCode", (byte)mediaTypeCode);
                 command.Parameters.AddWithValue("@basicLifePointCost", basicLifePointCost);
                 command.Parameters.AddWithValue("@basicEnergyPointCost", basicEnergyPointCost);
                 command.Parameters.AddWithValue("@basicCorePointCost", basicCorePointCost);
@@ -51,7 +52,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override Skill Find(int skillID)
         {
             string sqlString = @"SELECT  
-                SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost
+                MediaTypeCode,SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost
                 from ChanceSkills WHERE SkillID = @skillID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -60,12 +61,13 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                 {
                     if (reader.Read())
                     {
-                        string skillName = reader.GetString(0);
-                        decimal basicLifePointCost = reader.GetDecimal(1);
-                        decimal basicEnergyPointCost = reader.GetDecimal(2);
-                        decimal basicCorePointCost = reader.GetDecimal(3);
-                        decimal basicSpiritPointCost = reader.GetDecimal(4);
-                        return new Skill(skillID, HeptagramSystemTypeCode.Chance, skillName, basicLifePointCost, basicEnergyPointCost, basicCorePointCost, basicSpiritPointCost);
+                        SkillMediaTypeCode mediaTypeCode = (SkillMediaTypeCode)reader.GetByte(0);
+                        string skillName = reader.GetString(1);
+                        decimal basicLifePointCost = reader.GetDecimal(2);
+                        decimal basicEnergyPointCost = reader.GetDecimal(3);
+                        decimal basicCorePointCost = reader.GetDecimal(4);
+                        decimal basicSpiritPointCost = reader.GetDecimal(5);
+                        return new Skill(skillID, HeptagramSystemTypeCode.Chance, mediaTypeCode, skillName, basicLifePointCost, basicEnergyPointCost, basicCorePointCost, basicSpiritPointCost);
                     }
                     else
                     {
@@ -78,7 +80,7 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override List<Skill> List()
         {
             string sqlString = @"SELECT  
-                SkillID,SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost
+                SkillID,MediaTypeCode,SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost
                 from ChanceSkills;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -88,12 +90,13 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
                     while (reader.Read())
                     {
                         int skillID = reader.GetInt32(0);
-                        string skillName = reader.GetString(1);
-                        decimal basicLifePointCost = reader.GetDecimal(2);
-                        decimal basicEnergyPointCost = reader.GetDecimal(3);
-                        decimal basicCorePointCost = reader.GetDecimal(4);
-                        decimal basicSpiritPointCost = reader.GetDecimal(5);
-                        skills.Add(new Skill(skillID, HeptagramSystemTypeCode.Chance, skillName, basicLifePointCost, basicEnergyPointCost, basicCorePointCost, basicSpiritPointCost));
+                        SkillMediaTypeCode mediaTypeCode = (SkillMediaTypeCode)reader.GetByte(1);
+                        string skillName = reader.GetString(2);
+                        decimal basicLifePointCost = reader.GetDecimal(3);
+                        decimal basicEnergyPointCost = reader.GetDecimal(4);
+                        decimal basicCorePointCost = reader.GetDecimal(5);
+                        decimal basicSpiritPointCost = reader.GetDecimal(6);
+                        skills.Add(new Skill(skillID, HeptagramSystemTypeCode.Chance, mediaTypeCode, skillName, basicLifePointCost, basicEnergyPointCost, basicCorePointCost, basicSpiritPointCost));
                     }
                     return skills;
                 }
@@ -103,11 +106,12 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL
         public override void Save(Skill skill)
         {
             string sqlString = @"UPDATE ChanceSkills SET 
-                SkillName = @skillName, BasicLifePointCost = @basicLifePointCost, BasicEnergyPointCost = @basicEnergyPointCost, BasicCorePointCost = @basicCorePointCost, BasicSpiritPointCost = @basicSpiritPointCost
+                SkillName = @skillName, MediaTypeCode = @mediaTypeCode, BasicLifePointCost = @basicLifePointCost, BasicEnergyPointCost = @basicEnergyPointCost, BasicCorePointCost = @basicCorePointCost, BasicSpiritPointCost = @basicSpiritPointCost
                 WHERE SkillID = @skillID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@skillName", skill.SkillName);
+                command.Parameters.AddWithValue("@mediaTypeCode", (byte)skill.MediaTypeCode);
                 command.Parameters.AddWithValue("@basicLifePointCost", skill.BasicLifePointCost);
                 command.Parameters.AddWithValue("@basicEnergyPointCost", skill.BasicEnergyPointCost);
                 command.Parameters.AddWithValue("@basicCorePointCost", skill.BasicCorePointCost);

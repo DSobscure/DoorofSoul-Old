@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library.General.HeptagramSystems
+namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
 {
     public class DemonSystem : HeptagramSystem
     {

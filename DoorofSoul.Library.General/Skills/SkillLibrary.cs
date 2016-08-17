@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library.General.SoulElements
+namespace DoorofSoul.Library.General.Skills
 {
     public class SkillLibrary
     {
@@ -60,6 +60,21 @@ namespace DoorofSoul.Library.General.SoulElements
             if(skillInfoSystemDictionries.ContainsKey(systemCode))
             {
                 return skillInfoSystemDictionries[systemCode].Values;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public bool ContainsSkillInfo(HeptagramSystemTypeCode heptagramSystem, int skillInfoID)
+        {
+            return skillInfoSystemDictionries.ContainsKey(heptagramSystem) && skillInfoSystemDictionries[heptagramSystem].ContainsKey(skillInfoID);
+        }
+        public SkillInfo FindSkillInfo(HeptagramSystemTypeCode heptagramSystem, int skillInfoID)
+        {
+            if(ContainsSkillInfo(heptagramSystem, skillInfoID))
+            {
+                return skillInfoSystemDictionries[heptagramSystem][skillInfoID];
             }
             else
             {

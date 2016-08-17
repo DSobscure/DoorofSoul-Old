@@ -1,9 +1,9 @@
 ﻿using System;
 using DoorofSoul.Database;
-using DoorofSoul.Library.General.HeptagramSystems;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Library.KnowledgeComponents
 {
     public class HexagramKnowledgeInterface : KnowledgeInterface
     {

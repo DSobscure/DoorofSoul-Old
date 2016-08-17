@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DoorofSoul.Protocol;
-using DoorofSoul.Library.General.HeptagramSystems;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General;
 
-namespace DoorofSoul.Library.General
+namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
 {
     public abstract class HeptagramSystem
     {
@@ -47,6 +49,24 @@ namespace DoorofSoul.Library.General
                 {
                     skillDictionary.Add(skill.SkillID, skill);
                 }
+            }
+        }
+
+        public virtual bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
+        {
+            if(ContainsSkill(skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID))
+            {
+                skillResponseParameters = null;
+                errorCode = ErrorCode.NoError;
+                debugMessage = null;
+                return true;
+            }
+            else
+            {
+                skillResponseParameters = new Dictionary<byte, object>();
+                errorCode = ErrorCode.NotExist;
+                debugMessage = "SkillInfo Not Exist";
+                return false;
             }
         }
     }

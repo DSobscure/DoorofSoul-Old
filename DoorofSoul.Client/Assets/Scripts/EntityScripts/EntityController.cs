@@ -27,6 +27,10 @@ namespace DoorofSoul.Client.Scripts.EntityScripts
             }
         }
 
+        void Update()
+        {
+            Entity.Position = DSVector3.Cast(entityRigidbody.transform.localPosition);
+        }
         void OnMouseEnter()
         {
             gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.2f, 0.2f, 0.2f));

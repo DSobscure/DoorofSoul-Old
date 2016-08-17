@@ -98,15 +98,7 @@
     <Compile Include="Events\Managers\SceneEventManager.cs" />
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
-    <Compile Include="HeptagramSystem.cs" />
-    <Compile Include="HeptagramSystems\AlchemySystem.cs" />
-    <Compile Include="HeptagramSystems\DemonSystem.cs" />
-    <Compile Include="HeptagramSystems\ElementSystem.cs" />
-    <Compile Include="HeptagramSystems\BeliefSystem.cs" />
-    <Compile Include="HeptagramSystems\GenieSystem.cs" />
-    <Compile Include="HeptagramSystems\ChanceSystem.cs" />
-    <Compile Include="HeptagramSystems\Skill.cs" />
-    <Compile Include="HeptagramSystems\TechnologySystem.cs" />
+    <Compile Include="Skills\Skill.cs" />
     <Compile Include="IControllers\IEntityController.cs" />
     <Compile Include="ContainerElements\Inventory.cs" />
     <Compile Include="Item.cs" />
@@ -148,6 +140,7 @@
     <Compile Include="Operations\Handlers\Scene\FetchData\FetchEntitiesInformationHandler.cs" />
     <Compile Include="Operations\Handlers\Soul\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\Soul\FetchData\FetchSkillInfosHandler.cs" />
+    <Compile Include="Operations\Handlers\Soul\SkillOperationHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataHandler.cs" />
     <Compile Include="Operations\Handlers\World\FetchDataResolver.cs" />
     <Compile Include="Operations\Handlers\Player\FetchData\FetchSceneHandler.cs" />
@@ -209,6 +202,7 @@
     <Compile Include="Responses\Handlers\Soul\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\Soul\FetchDataResponseResolver.cs" />
     <Compile Include="Responses\Handlers\Soul\FetchData\FetchSkillInfosResponseHandler.cs" />
+    <Compile Include="Responses\Handlers\Soul\SkillOperationResponseHandler.cs" />
     <Compile Include="Responses\Handlers\WorldResponseHandler.cs" />
     <Compile Include="Responses\Handlers\World\FetchDataResponseHandler.cs" />
     <Compile Include="Responses\Handlers\World\FetchDataResponseResolver.cs" />
@@ -223,9 +217,10 @@
     <Compile Include="Scene.cs" />
     <Compile Include="SceneElements\MessageLog.cs" />
     <Compile Include="SceneElements\SceneEye.cs" />
+    <Compile Include="Skills\SkillKnowledgeInterface.cs" />
     <Compile Include="Soul.cs" />
-    <Compile Include="SoulElements\SkillInfo.cs" />
-    <Compile Include="SoulElements\SkillLibrary.cs" />
+    <Compile Include="Skills\SkillInfo.cs" />
+    <Compile Include="Skills\SkillLibrary.cs" />
     <Compile Include="SoulElements\SoulAttributes.cs" />
     <Compile Include="SoulElements\SoulKernelAbility.cs" />
     <Compile Include="SoulElements\SoulPhase.cs" />

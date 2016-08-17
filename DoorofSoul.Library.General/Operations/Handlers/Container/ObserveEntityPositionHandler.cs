@@ -34,7 +34,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 {
                     int entityID = (int)parameters[(byte)ObserveEntityPositionParameterCode.EntityID];
                     DSVector3 position = (DSVector3)parameters[(byte)ObserveEntityPositionParameterCode.Position];
-                    if(container.Entity.LocatedScene.SceneEye.Observer == container)
+                    if (container.Entity.LocatedScene.SceneEye.Observer == container)
                     {
                         container.Entity.LocatedScene.SceneEye.UpdateEntityPosition(entityID, position);
                         return true;

@@ -1,9 +1,8 @@
 ﻿using MsgPack.Serialization;
 using System.IO;
 using DoorofSoul.Protocol;
-using DoorofSoul.Library.General.HeptagramSystems;
 
-namespace DoorofSoul.Library.General.SoulElements
+namespace DoorofSoul.Library.General.Skills
 {
     public class SkillInfo
     {

@@ -46,9 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hexagram.cs" />
-    <Compile Include="HexagramKnowledgeInterface.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\AlchemySystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\BeliefSystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\ChanceSystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\DemonSystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\ElementSystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\GenieSystem.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\HeptagramSkillKnowledgeInterface.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\HeptagramSystem.cs" />
     <Compile Include="HexagramWorldCommunicationInterface.cs" />
     <Compile Include="Knowledge.cs" />
+    <Compile Include="KnowledgeComponents\HeptagramSystems\TechnologySystem.cs" />
+    <Compile Include="KnowledgeComponents\HexagramKnowledgeInterface.cs" />
     <Compile Include="Nature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidenceEye.cs" />

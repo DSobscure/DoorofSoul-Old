@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
@@ -31,10 +32,11 @@ namespace DoorofSoul.Library.General
         public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
         public SoulAttributes Attributes { get; protected set; }
         public SkillLibrary SkillLibrary { get; protected set; }
-        #endregion
+        public SkillKnowledgeInterface SkillKnowledgeInterface { get; protected set; }
+    #endregion
 
-        #region events
-        private event Action<Soul> onSoulActivate;
+    #region events
+    private event Action<Soul> onSoulActivate;
         public event Action<Soul> OnSoulActivate
         {
             add { onSoulActivate += value; }
@@ -55,6 +57,7 @@ namespace DoorofSoul.Library.General
             Answer = answer;
             SoulName = soulName;
             Attributes = attributes;
+            
             containerDictionary = new Dictionary<int, Container>();
             SoulEventManager = new SoulEventManager(this);
             SoulOperationManager = new SoulOperationManager(this);
@@ -63,14 +66,14 @@ namespace DoorofSoul.Library.General
         }
         public void LinkContainer(Container container)
         {
-            if(!containerDictionary.ContainsKey(container.ContainerID))
+            if(!ContainsContainer(container.ContainerID))
             {
                 containerDictionary.Add(container.ContainerID, container);
             }
         }
         public void UnlinkContainer(Container container)
         {
-            if (containerDictionary.ContainsKey(container.ContainerID))
+            if (ContainsContainer(container.ContainerID))
             {
                 containerDictionary.Remove(container.ContainerID);
             }
@@ -78,6 +81,26 @@ namespace DoorofSoul.Library.General
         public void UnlinkAllContainers()
         {
             containerDictionary.Clear();
+        }
+        public void BindSkillKnowledgeInterface(SkillKnowledgeInterface skillKnowledgeInterface)
+        {
+            SkillKnowledgeInterface = skillKnowledgeInterface;
+        }
+
+        public bool ContainsContainer(int containerID)
+        {
+            return containerDictionary.ContainsKey(containerID);
+        }
+        public Container FindContainer(int containerID)
+        {
+            if(ContainsContainer(containerID))
+            {
+                return containerDictionary[containerID];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

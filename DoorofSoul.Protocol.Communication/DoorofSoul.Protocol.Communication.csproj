@@ -112,6 +112,7 @@
     <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
+    <Compile Include="OperationParameters\Soul\SkillOperationParameterCode.cs" />
     <Compile Include="OperationParameters\World\SceneOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Scene\ContainerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Scene\EntityOperationParameterCode.cs" />
@@ -145,7 +146,6 @@
     <Folder Include="InformDataParameters\Player\" />
     <Folder Include="InformDataParameters\Soul\" />
     <Folder Include="InformDataParameters\World\" />
-    <Folder Include="OperationParameters\Soul\" />
     <Folder Include="ResponseParameters\Container\" />
     <Folder Include="ResponseParameters\Entity\" />
     <Folder Include="ResponseParameters\Soul\" />

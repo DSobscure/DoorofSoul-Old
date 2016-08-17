@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.HeptagramSystems;
+﻿using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Library.General.SoulElements;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;

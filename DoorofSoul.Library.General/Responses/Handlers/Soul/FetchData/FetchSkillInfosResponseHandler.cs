@@ -4,7 +4,7 @@ using DoorofSoul.Protocol.Language;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Soul;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.Skills;
 
 namespace DoorofSoul.Library.General.Responses.Handlers.Soul.FetchData
 {

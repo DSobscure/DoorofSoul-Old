@@ -4,6 +4,7 @@ using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelperFunctions;
 using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Library.General.EntityElements;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Library.General.SoulElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;

@@ -8,12 +8,12 @@ namespace DoorofSoul.Library.General.Responses.Handlers
     {
         protected General.Soul soul;
 
-        protected SoulResponseHandler(General.Soul soul)
+        internal SoulResponseHandler(General.Soul soul)
         {
             this.soul = soul;
         }
 
-        public virtual bool Handle(SoulOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(SoulOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (CheckError(parameters, returnCode, debugMessage))
             {
@@ -24,6 +24,6 @@ namespace DoorofSoul.Library.General.Responses.Handlers
                 return false;
             }
         }
-        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
+        internal abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

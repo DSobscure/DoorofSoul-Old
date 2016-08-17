@@ -35,5 +35,9 @@ namespace DoorofSoul.Library.General
         {
             return new Vector3(vector.x, vector.y, vector.z);
         }
+        public static DSVector3 Cast(Vector3 vector)
+        {
+            return new DSVector3 { x = vector.x, y = vector.y, z = vector.z };
+        }
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using DoorofSoul.Protocol;
 using DoorofSoul.Client.Protocol.Language;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.Skills;
 using System.Text;
 using System.Collections.Generic;
 
@@ -11,7 +11,7 @@ namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
     public class SkillInfoBlock : MonoBehaviour
     {
         private SkillPanel skillPanel;
-        private SkillInfo skillInfo;
+        private List<SkillInfo> skillInfos;
 
         private Button skillIconButton;
         private Text skillNameText;
@@ -24,8 +24,9 @@ namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
 
         public void Initial(SkillPanel skillPanel, SkillInfo skillInfo)
         {
+            skillInfos = new List<SkillInfo>();
             this.skillPanel = skillPanel;
-            this.skillInfo = skillInfo;
+            skillInfos.Add(skillInfo);
             skillIconButton = transform.FindChild("SkillIconButton").GetComponent<Button>();
             skillNameText = transform.FindChild("SkillNameText").GetComponent<Text>();
             skillLevelText = transform.FindChild("SkillLevelText").GetComponent<Text>();
@@ -53,10 +54,18 @@ namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
                 stringBuilder.AppendFormat("{0}: {1:N2}", UILanguageSeletor.Instance[skillPanel.UsingLanguage]["BasicSpiritPointCost"], skillInfo.Skill.BasicSpiritPointCost);
             }
             skillBriefText.text = stringBuilder.ToString();
+
+            skillIconButton.onClick.AddListener(OperateSkill);
         }
-        public void ExtendPitch(SkillPitch pitch)
+        public void ExtendPitch(SkillInfo skillInfo)
         {
-            skillPitchDropdown.AddOptions(new List<Dropdown.OptionData> { new Dropdown.OptionData(UILanguageSeletor.Instance[skillPanel.UsingLanguage][pitch.ToString()]) });
+            skillInfos.Add(skillInfo);
+            skillPitchDropdown.AddOptions(new List<Dropdown.OptionData> { new Dropdown.OptionData(UILanguageSeletor.Instance[skillPanel.UsingLanguage][skillInfo.SkillPitch.ToString()]) });
+        }
+        private void OperateSkill()
+        {
+            SkillInfo skillInfo = skillInfos[skillPitchDropdown.value];
+            Global.Global.Seat.MainSoul.SoulOperationManager.OperateSkill(Global.Global.Seat.MainContainer.ContainerID, skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID, new Dictionary<byte, object>());
         }
     }
 }

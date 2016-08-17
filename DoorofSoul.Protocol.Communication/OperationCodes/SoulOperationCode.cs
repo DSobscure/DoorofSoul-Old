@@ -3,5 +3,6 @@
     public enum SoulOperationCode : byte
     {
         FetchData,
+        SkillOperation
     }
 }

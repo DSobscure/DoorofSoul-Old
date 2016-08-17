@@ -44,6 +44,7 @@
     <Compile Include="MessageTypeCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationClassTypeCode.cs" />
+    <Compile Include="SkillMediaTypeCode.cs" />
     <Compile Include="SkillPitch.cs" />
     <Compile Include="SoulKernelTypeCode.cs" />
   </ItemGroup>

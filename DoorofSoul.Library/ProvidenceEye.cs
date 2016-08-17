@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.SceneElements;
 
 namespace DoorofSoul.Library
@@ -12,28 +13,44 @@ namespace DoorofSoul.Library
     {
         private CancellationTokenSource monitorCancellationTokenSource;
         private Task monitorTask;
+        private int cycleTimeMilliseconds;
 
-        public override void StartMonitot(int cycleTimeMilliseconds)
+        public override void BindScene(Scene scene)
         {
-            StopMonotot();
-            monitorCancellationTokenSource = new CancellationTokenSource();
-            monitorTask = Task.Run(() => MonitorLoop(cycleTimeMilliseconds), monitorCancellationTokenSource.Token);
+            base.BindScene(scene);
+            Scene.OnContainerExit += OnContainerExit;
         }
 
-        public override void StopMonotot()
+        public override void StartMonitor(int cycleTimeMilliseconds)
+        {
+            this.cycleTimeMilliseconds = cycleTimeMilliseconds;
+            monitorCancellationTokenSource = new CancellationTokenSource();
+            monitorTask = Task.Run(() => MonitorLoop(), monitorCancellationTokenSource.Token);
+        }
+
+        public override void StopMonitor()
         {
             monitorCancellationTokenSource?.Cancel();
+            Observer = null;
+            ObserverLevel = 0;
         }
 
-        private async void MonitorLoop(int cycleTimeMilliseconds)
+        private void MonitorLoop()
         {
-            while (!monitorTask.IsCanceled)
+            while (!monitorCancellationTokenSource.Token.IsCancellationRequested)
             {
                 if (Observer != null)
                 {
                     Monitor();
                 }
-                await Task.Delay(cycleTimeMilliseconds);
+                monitorTask.Wait(cycleTimeMilliseconds);
+            }
+        }
+        private void OnContainerExit(Container container)
+        {
+            if (container == Observer)
+            {
+                StopMonitor();
             }
         }
     }

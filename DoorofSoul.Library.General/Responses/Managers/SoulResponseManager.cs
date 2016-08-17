@@ -17,7 +17,8 @@ namespace DoorofSoul.Library.General.Responses.Managers
             this.soul = soul;
             operationTable = new Dictionary<SoulOperationCode, SoulResponseHandler>
             {
-                { SoulOperationCode.FetchData, new FetchDataResponseResolver(soul) }
+                { SoulOperationCode.FetchData, new FetchDataResponseResolver(soul) },
+                { SoulOperationCode.SkillOperation, new SkillOperationResponseHandler(soul) }
             };
         }
 

@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Protocol;
-using DoorofSoul.Library.General.HeptagramSystems;
+using DoorofSoul.Library.General.Skills;
 
 namespace DoorofSoul.Database
 {

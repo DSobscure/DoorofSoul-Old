@@ -1,7 +1,10 @@
 ﻿using DoorofSoul.Database;
+using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
 using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.HeptagramSystems;
+using DoorofSoul.Library.General.Skills;
 using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library
 {
@@ -54,6 +57,22 @@ namespace DoorofSoul.Library
                     return BeliefSystem;
                 default:
                     return null;
+            }
+        }
+
+        public bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
+        {
+            HeptagramSystem system = ChoseSystem(skillInfo.Skill.SystemTypeCode);
+            if(system != null)
+            {
+                return system.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage);
+            }
+            else
+            {
+                skillResponseParameters = new Dictionary<byte, object>();
+                errorCode = ErrorCode.NotExist;
+                debugMessage = "Not Exist System";
+                return false;
             }
         }
     }

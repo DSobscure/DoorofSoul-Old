@@ -11,7 +11,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
     {
         protected readonly Dictionary<SoulFetchDataCode, FetchDataResponseHandler> fetchResponseTable;
 
-        public FetchDataResponseResolver(General.Soul soul) : base(soul)
+        internal FetchDataResponseResolver(General.Soul soul) : base(soul)
         {
             fetchResponseTable = new Dictionary<SoulFetchDataCode, FetchDataResponseHandler>
             {
@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
             };
         }
 
-        public override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
+        internal override bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage)
         {
             if (returnCode == ErrorCode.NoError)
             {
@@ -40,7 +40,7 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
             }
         }
 
-        public override bool Handle(SoulOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal override bool Handle(SoulOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (base.Handle(operationCode, returnCode, debugMessage, parameters))
             {

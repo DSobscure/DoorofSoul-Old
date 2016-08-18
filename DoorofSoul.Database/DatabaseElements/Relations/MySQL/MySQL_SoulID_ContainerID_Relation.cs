@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
 {
-    public class MySQL_SoulID_ContainerID_Relation : SoulID_ContainerID_Relation
+    public class MySQL_SoulID_ContainerID_Relation : SoulID_ContainerID_Relations
     {
         public override List<int> GetContainerIDs(int soulID)
         {
             string sqlString = @"SELECT  
                 ContainerID
-                from SoulID_ContainerID WHERE SoulID = @soulID;";
+                from SoulID_ContainerID_Relations WHERE SoulID = @soulID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
@@ -30,7 +30,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
         {
             string sqlString = @"SELECT  
                 SoulID
-                from SoulID_ContainerID WHERE ContainerID = @containerID;";
+                from SoulID_ContainerID_Relations WHERE ContainerID = @containerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@containerID", containerID);
@@ -49,7 +49,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
 
         public override void Link_Soul_Container(int soulID, int containerID)
         {
-            string sqlString = @"INSERT INTO SoulID_ContainerID 
+            string sqlString = @"INSERT INTO SoulID_ContainerID_Relations 
                 (SoulID, ContainerID) VALUES (@soulID, @containerID) ;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -64,7 +64,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
 
         public override void Unlink_Soul_Container(int soulID, int containerID)
         {
-            string sqlString = @"DELETE FROM SoulID_ContainerID 
+            string sqlString = @"DELETE FROM SoulID_ContainerID_Relations 
                 WHERE SoulID = @soulID AND ContainerID = @containerID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {

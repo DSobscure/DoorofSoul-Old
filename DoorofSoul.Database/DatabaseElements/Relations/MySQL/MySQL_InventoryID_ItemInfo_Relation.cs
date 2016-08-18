@@ -11,11 +11,11 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
         public int itemCount;
         public int positionIndex;
     }
-    public class MySQL_InventoryItemInfo_Relation : InventoryItemInfo_Relation
+    public class MySQL_InventoryID_ItemInfo_Relation : InventoryID_ItemInfo_Relations
     {
         public override void ClearItemInfos(int inventoryID)
         {
-            string sqlString = @"DELETE FROM InventoryIteminfos 
+            string sqlString = @"DELETE FROM InventoryID_ItemInfo_Relations 
                 WHERE InventoryID = @inventoryID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -29,7 +29,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
 
         public override void InsertItemInfo(int inventoryID, ItemInfo itemInfo)
         {
-            string sqlString = @"INSERT INTO InventoryIteminfos 
+            string sqlString = @"INSERT INTO InventoryID_ItemInfo_Relations 
                 (InventoryID,ItemID,ItemCount,PositionIndex) VALUES (@inventoryID,@itemID,@itemCount,@positionIndex) ;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
@@ -48,7 +48,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
         {
             string sqlString = @"SELECT  
                 ItemID, ItemCount, PositionIndex
-                from InventoryIteminfos WHERE InventoryID = @inventoryID;";
+                from InventoryID_ItemInfo_Relations WHERE InventoryID = @inventoryID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, DataBase.Instance.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@inventoryID", inventory.InventoryID);

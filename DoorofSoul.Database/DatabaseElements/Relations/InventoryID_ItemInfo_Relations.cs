@@ -2,7 +2,7 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Relations
 {
-    public abstract class InventoryItemInfo_Relation
+    public abstract class InventoryID_ItemInfo_Relations
     {
         public abstract void LoadItemInfos(Inventory inventory);
         public abstract void ClearItemInfos(int inventoryID);

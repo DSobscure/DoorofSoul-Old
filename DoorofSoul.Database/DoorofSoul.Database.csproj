@@ -55,10 +55,10 @@
     <Compile Include="DatabaseElements\MySQLManagers\MySQLRelationManager.cs" />
     <Compile Include="DatabaseElements\MySQLManagers\MySQLRepositoryManager.cs" />
     <Compile Include="DatabaseElements\RelationManager.cs" />
-    <Compile Include="DatabaseElements\Relations\InventoryItemInfo_Relation.cs" />
-    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_InventoryItemInfo_Relation.cs" />
+    <Compile Include="DatabaseElements\Relations\InventoryID_ItemInfo_Relations.cs" />
+    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_InventoryID_ItemInfo_Relation.cs" />
     <Compile Include="DatabaseElements\Relations\MySQL\MySQL_SoulID_ContainerID_Relation.cs" />
-    <Compile Include="DatabaseElements\Relations\SoulID_ContainerID_Relation.cs" />
+    <Compile Include="DatabaseElements\Relations\SoulID_ContainerID_Relations.cs" />
     <Compile Include="DatabaseElements\Repositories\AlchemySkillRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\AnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\BeliefSkillRepository.cs" />

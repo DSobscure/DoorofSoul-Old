@@ -2,7 +2,7 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Relations
 {
-    public abstract class SoulID_ContainerID_Relation
+    public abstract class SoulID_ContainerID_Relations
     {
         public abstract List<int> GetSoulIDs(int containerID);
         public abstract List<int> GetContainerIDs(int soulID);

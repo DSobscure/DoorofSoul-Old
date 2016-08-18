@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.Skills;
+﻿using DoorofSoul.Library.General.KnowledgeElements.Skills;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;

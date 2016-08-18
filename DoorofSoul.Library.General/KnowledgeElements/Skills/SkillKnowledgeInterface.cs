@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication;
 
-namespace DoorofSoul.Library.General.Skills
+namespace DoorofSoul.Library.General.KnowledgeElements.Skills
 {
     public interface SkillKnowledgeInterface
     {

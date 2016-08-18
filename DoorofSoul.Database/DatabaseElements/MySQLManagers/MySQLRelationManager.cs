@@ -8,7 +8,7 @@ namespace DoorofSoul.Database.DatabaseElements.MySQLManagers
         public MySQLRelationManager()
         {
             SoulID_ContainerID_Relation = new MySQL_SoulID_ContainerID_Relation();
-            InventoryItemInfo_Relation = new MySQL_InventoryItemInfo_Relation();
+            InventoryItemInfo_Relation = new MySQL_InventoryID_ItemInfo_Relation();
         }
     }
 }

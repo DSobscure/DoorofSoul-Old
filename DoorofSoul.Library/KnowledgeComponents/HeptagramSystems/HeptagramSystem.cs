@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General.KnowledgeElements.Skills;
 using DoorofSoul.Library.General;
 
 namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems

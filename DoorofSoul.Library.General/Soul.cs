@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Library.General.SoulElements;
-using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General.KnowledgeElements.Skills;
 using DoorofSoul.Library.General.Events.Managers;
 using DoorofSoul.Library.General.Operations.Managers;
 using DoorofSoul.Library.General.Responses.Managers;
@@ -35,13 +35,9 @@ namespace DoorofSoul.Library.General
         public SkillKnowledgeInterface SkillKnowledgeInterface { get; protected set; }
     #endregion
 
-    #region events
-    private event Action<Soul> onSoulActivate;
-        public event Action<Soul> OnSoulActivate
-        {
-            add { onSoulActivate += value; }
-            remove { onSoulActivate -= value; }
-        }
+        #region events
+        private event Action<Soul> onSoulActivate;
+        public event Action<Soul> OnSoulActivate { add { onSoulActivate += value; } remove { onSoulActivate -= value; } }
         #endregion
 
         #region communication

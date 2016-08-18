@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library.General.Skills
+namespace DoorofSoul.Library.General.KnowledgeElements.Skills
 {
     public class Skill
     {

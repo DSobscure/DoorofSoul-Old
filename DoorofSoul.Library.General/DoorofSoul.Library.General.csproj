@@ -54,6 +54,7 @@
     <Compile Include="ContainerElements\ContainerAttributes.cs" />
     <Compile Include="ContainerElements\ContainerKernelAbility.cs" />
     <Compile Include="ContainerElements\ContainerKernelAbilityPotential.cs" />
+    <Compile Include="ContainerElements\ContainerStatusInfo.cs" />
     <Compile Include="DSVector3.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityElements\EntityProperties.cs" />
@@ -102,7 +103,7 @@
     <Compile Include="Events\Managers\SceneEventManager.cs" />
     <Compile Include="Events\Managers\SoulEventManager.cs" />
     <Compile Include="Events\Managers\WorldEventManager.cs" />
-    <Compile Include="Skills\Skill.cs" />
+    <Compile Include="KnowledgeElements\Skills\Skill.cs" />
     <Compile Include="IControllers\IEntityController.cs" />
     <Compile Include="ContainerElements\Inventory.cs" />
     <Compile Include="Item.cs" />
@@ -221,10 +222,10 @@
     <Compile Include="Scene.cs" />
     <Compile Include="SceneElements\MessageLog.cs" />
     <Compile Include="SceneElements\SceneEye.cs" />
-    <Compile Include="Skills\SkillKnowledgeInterface.cs" />
+    <Compile Include="KnowledgeElements\Skills\SkillKnowledgeInterface.cs" />
     <Compile Include="Soul.cs" />
-    <Compile Include="Skills\SkillInfo.cs" />
-    <Compile Include="Skills\SkillLibrary.cs" />
+    <Compile Include="KnowledgeElements\Skills\SkillInfo.cs" />
+    <Compile Include="KnowledgeElements\Skills\SkillLibrary.cs" />
     <Compile Include="SoulElements\SoulAttributes.cs" />
     <Compile Include="SoulElements\SoulKernelAbility.cs" />
     <Compile Include="SoulElements\SoulPhase.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DoorofSoul.Library.General;
 using MySql.Data.MySqlClient;
-using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General.KnowledgeElements.Skills;
 using DoorofSoul.Library.General.SoulElements;
 using DoorofSoul.Protocol;
 

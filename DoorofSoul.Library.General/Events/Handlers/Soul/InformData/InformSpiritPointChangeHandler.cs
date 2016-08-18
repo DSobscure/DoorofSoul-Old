@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Soul;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Library.General.BasicTypeHelpers;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Soul.InformData
 {
@@ -17,7 +18,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul.InformData
             {
                 try
                 {
-                    decimal newSpiritPoint = (decimal)parameters[(byte)InformSpiritPointChangeParameterCode.NewSpiritPoint];
+                    decimal newSpiritPoint = (decimal)(DSDecimal)parameters[(byte)InformSpiritPointChangeParameterCode.NewSpiritPoint];
                     soul.Attributes.SpiritPoint = newSpiritPoint;
                     return true;
                 }

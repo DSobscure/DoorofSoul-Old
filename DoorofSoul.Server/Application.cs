@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Database;
 using DoorofSoul.Library;
 using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.BasicTypeHelperFunctions;
+using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Library.General.EntityElements;
 using DoorofSoul.Library.General.Skills;
@@ -70,7 +70,7 @@ namespace DoorofSoul.Server
             SystemConfiguration = SystemConfiguration.Load(Path.Combine(ApplicationPath, "config", "system.config"));
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
-            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(decimal), (byte)SerializationClassTypeCode.Decimal, DecimalHelperFunction.Serialize, DecimalHelperFunction.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(DSDecimal), (byte)SerializationClassTypeCode.DSDecimal, DSDecimal.Serialize, DSDecimal.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);

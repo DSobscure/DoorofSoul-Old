@@ -34,6 +34,11 @@ namespace DoorofSoul.Library.General.Responses.Handlers.Soul
                         LibraryInstance.ErrorFormat("SkillOperationResponse Error DebugMessage: {0}", debugMessage);
                         return false;
                     }
+                case ErrorCode.InvalidOperation:
+                    {
+                        LibraryInstance.ErrorFormat("SkillOperationResponse Error DebugMessage: {0}", debugMessage);
+                        return false;
+                    }
                 default:
                     {
                         LibraryInstance.ErrorFormat("SkillOperationResponse Error DebugMessage: {0}", debugMessage);

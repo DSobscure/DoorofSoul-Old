@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General.Events.Handlers.Soul.InformData;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Library.General.Events.Handlers.Soul.InformData;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
@@ -54,7 +55,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformCorePointChangeParameterCode.NewCorePoint, corePoint },
+                { (byte)InformCorePointChangeParameterCode.NewCorePoint, new DSDecimal { value = corePoint } },
             };
             SendInform(SoulInformDataCode.CorePointChange, parameters);
         }
@@ -62,7 +63,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformSpiritPointChangeParameterCode.NewSpiritPoint, spiritPoint },
+                { (byte)InformSpiritPointChangeParameterCode.NewSpiritPoint, new DSDecimal { value = spiritPoint } },
             };
             SendInform(SoulInformDataCode.SpiritPointChange, parameters);
         }

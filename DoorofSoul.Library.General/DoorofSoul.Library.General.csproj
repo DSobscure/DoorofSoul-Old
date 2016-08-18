@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
-    <Compile Include="BasicTypeHelperFunctions\DecimalHelperFunction.cs" />
+    <Compile Include="BasicTypeHelpers\DSDecimal.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="ContainerElements\ContainerAttributes.cs" />
     <Compile Include="ContainerElements\ContainerKernelAbility.cs" />

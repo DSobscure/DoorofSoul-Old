@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General.Events.Handlers.Container.InformData;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Library.General.Events.Handlers.Container.InformData;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
@@ -55,7 +56,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformLifePointChangeParameterCode.NewLifePoint, lifePoint },
+                { (byte)InformLifePointChangeParameterCode.NewLifePoint, new DSDecimal { value = lifePoint } },
             };
             SendInform(ContainerInformDataCode.LifePointChange, parameters);
         }
@@ -63,7 +64,7 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformEnergyPointChangeParameterCode.NewEnergyPoint, energyPoint },
+                { (byte)InformEnergyPointChangeParameterCode.NewEnergyPoint, new DSDecimal { value = energyPoint } },
             };
             SendInform(ContainerInformDataCode.EnergyPointChange, parameters);
         }

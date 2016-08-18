@@ -37,6 +37,10 @@ namespace DoorofSoul.Library
                 foreach (Soul soul in answer.Souls)
                 {
                     soul.BindSkillKnowledgeInterface(new HeptagramSkillKnowledgeInterface());
+
+                    soul.Attributes.OnCorePointChange += soul.SoulEventManager.InformDataResolver.InformCorePointChange;
+                    soul.Attributes.OnSpiritPointChange += soul.SoulEventManager.InformDataResolver.InformSpiritPointChange;
+
                     soul.SkillLibrary.LoadSkillInfos(DataBase.Instance.RepositoryManager.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
                     ProjectSoul(soul);
                 }
@@ -59,6 +63,10 @@ namespace DoorofSoul.Library
                     else
                     {
                         container = DataBase.Instance.RepositoryManager.ContainerRepository.Find(containerID);
+
+                        container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
+                        container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
+
                         containerDictionary.Add(containerID, container);
                     }
                     soul.LinkContainer(container);
@@ -138,6 +146,8 @@ namespace DoorofSoul.Library
                 soul.UnlinkAllContainers();
                 DeactiveSoul(soul.SoulID);
                 soulDictionary.Remove(soul.SoulID);
+                soul.Attributes.OnCorePointChange -= soul.SoulEventManager.InformDataResolver.InformCorePointChange;
+                soul.Attributes.OnSpiritPointChange -= soul.SoulEventManager.InformDataResolver.InformSpiritPointChange;
             }
         }
         public bool DeactiveSoul(int soulID)
@@ -159,6 +169,8 @@ namespace DoorofSoul.Library
                 DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
                 Hexagram.Instance.Nature.ExtractContainer(container);
                 containerDictionary.Remove(container.ContainerID);
+                container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
+                container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
             }
         }
 

@@ -16,12 +16,21 @@ namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
             {
                 if(skillInfo.Skill.SkillID == 1)
                 {
-                    user.Attributes.SpiritPoint -= skillInfo.Skill.BasicSpiritPointCost;
-                    agent.Entity.LocatedScene.SceneEye.StopMonitor();
-                    agent.Entity.LocatedScene.SceneEye.SetObserver(skillInfo.SkillLevel, agent);
-                    agent.Entity.LocatedScene.SceneEye.StartMonitor(1000);
-                    skillResponseParameters = new Dictionary<byte, object>();
-                    debugMessage = "";
+                    if(user.Attributes.SpiritPoint >= skillInfo.Skill.BasicSpiritPointCost)
+                    {
+                        user.Attributes.SpiritPoint -= skillInfo.Skill.BasicSpiritPointCost;
+                        agent.Entity.LocatedScene.SceneEye.StopMonitor();
+                        agent.Entity.LocatedScene.SceneEye.SetObserver(skillInfo.SkillLevel, agent);
+                        agent.Entity.LocatedScene.SceneEye.StartMonitor(1000);
+                        skillResponseParameters = new Dictionary<byte, object>();
+                        debugMessage = "";
+                    }
+                    else
+                    {
+                        errorCode = ErrorCode.InvalidOperation;
+                        debugMessage = "SP Not Enough";
+                        return false;
+                    }
                 }
                 else
                 {

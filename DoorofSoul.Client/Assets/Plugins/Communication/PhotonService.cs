@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.Communication.Events;
 using DoorofSoul.Client.Communication.Responses;
 using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.BasicTypeHelperFunctions;
+using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ContainerElements;
 using DoorofSoul.Library.General.EntityElements;
 using DoorofSoul.Library.General.Skills;
@@ -184,7 +184,7 @@ namespace DoorofSoul.Client.Communication
         {
             PhotonPeer.RegisterType(typeof(Item), (byte)SerializationClassTypeCode.Item, Item.Serialize, Item.Deserialize);
             PhotonPeer.RegisterType(typeof(EntitySpaceProperties), (byte)SerializationClassTypeCode.EntitySpaceProperties, EntitySpaceProperties.Serialize, EntitySpaceProperties.Deserialize);
-            PhotonPeer.RegisterType(typeof(decimal), (byte)SerializationClassTypeCode.Decimal, DecimalHelperFunction.Serialize, DecimalHelperFunction.Deserialize);
+            PhotonPeer.RegisterType(typeof(DSDecimal), (byte)SerializationClassTypeCode.DSDecimal, DSDecimal.Serialize, DSDecimal.Deserialize);
             PhotonPeer.RegisterType(typeof(SoulAttributes), (byte)SerializationClassTypeCode.SoulAttributes, SoulAttributes.Serialize, SoulAttributes.Deserialize);
             PhotonPeer.RegisterType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             PhotonPeer.RegisterType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);

@@ -4,7 +4,7 @@
     {
         Item,
         EntitySpaceProperties,
-        Decimal,
+        DSDecimal,
         ContainerAttributes,
         SoulAttributes,
         DSVector3,

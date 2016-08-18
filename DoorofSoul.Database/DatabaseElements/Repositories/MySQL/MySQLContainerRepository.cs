@@ -1,6 +1,6 @@
-﻿using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.ContainerElements;
-using DoorofSoul.Library.General.EntityElements;
+﻿using DoorofSoul.Library.General.NatureComponents.ContainerElements;
+using DoorofSoul.Library.General.NatureComponents.EntityElements;
+using DoorofSoul.Library.General.NatureComponents;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 

@@ -1,5 +1,6 @@
 ﻿using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;

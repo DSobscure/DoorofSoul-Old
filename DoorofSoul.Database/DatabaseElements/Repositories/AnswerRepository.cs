@@ -1,5 +1,5 @@
-﻿using DoorofSoul.Database.Library;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.ThroneComponents;
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.NatureComponents;
 
 namespace DoorofSoul.Client.Scripts.InputScripts
 {

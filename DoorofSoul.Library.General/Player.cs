@@ -1,12 +1,9 @@
-﻿using DoorofSoul.Library.General.Events.Managers;
-using DoorofSoul.Library.General.Operations.Managers;
-using DoorofSoul.Library.General.Responses.Managers;
-using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.OperationCodes;
+﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
+using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
+using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol.Language;
 using System;
-using System.Collections.Generic;
 using System.Net;
 
 namespace DoorofSoul.Library.General

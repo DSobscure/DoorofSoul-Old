@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Client.Protocol.Language;
 using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.NatureComponents;
 using UnityEngine;
 using UnityEngine.UI;
 

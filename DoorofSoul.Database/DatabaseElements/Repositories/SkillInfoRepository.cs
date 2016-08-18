@@ -1,5 +1,5 @@
-﻿using DoorofSoul.Library.General.KnowledgeElements.Skills;
-using DoorofSoul.Library.General.SoulElements;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
 

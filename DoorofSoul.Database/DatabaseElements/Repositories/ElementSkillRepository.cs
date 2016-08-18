@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.KnowledgeElements.Skills;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
 namespace DoorofSoul.Database.DatabaseElements.Repositories

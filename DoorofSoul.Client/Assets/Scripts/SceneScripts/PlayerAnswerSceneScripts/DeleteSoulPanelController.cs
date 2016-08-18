@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.ThroneComponents;
 using System.Collections.Generic;
 using UnityEngine;
 

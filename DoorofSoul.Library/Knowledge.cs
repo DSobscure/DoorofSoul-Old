@@ -1,7 +1,8 @@
 ﻿using DoorofSoul.Database;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
-using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.KnowledgeElements.Skills;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;

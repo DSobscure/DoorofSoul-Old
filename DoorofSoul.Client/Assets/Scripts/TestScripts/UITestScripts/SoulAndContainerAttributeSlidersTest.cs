@@ -1,5 +1,5 @@
-﻿using DoorofSoul.Client.Global;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.ThroneComponents;
 using System.Collections;
 using UnityEngine;
 

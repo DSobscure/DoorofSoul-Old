@@ -1,11 +1,12 @@
 ﻿using DoorofSoul.Client.Communication.Events;
 using DoorofSoul.Client.Communication.Responses;
-using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelpers;
-using DoorofSoul.Library.General.ContainerElements;
-using DoorofSoul.Library.General.EntityElements;
-using DoorofSoul.Library.General.Skills;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.KnowledgeComponents;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
+using DoorofSoul.Library.General.NatureComponents.EntityElements;
+using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters;

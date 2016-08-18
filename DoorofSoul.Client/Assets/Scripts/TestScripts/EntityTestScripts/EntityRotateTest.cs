@@ -1,9 +1,9 @@
 ﻿using DoorofSoul.Client.Scripts.CameraScripts;
 using DoorofSoul.Client.Scripts.EntityScripts;
 using DoorofSoul.Client.Scripts.TestScripts.UITestScripts;
-using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.EntityElements;
-using DoorofSoul.Library.General.IControllers;
+using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using UnityEngine;
 
 namespace DoorofSoul.Client.Scripts.TestScripts.EntityTestScripts

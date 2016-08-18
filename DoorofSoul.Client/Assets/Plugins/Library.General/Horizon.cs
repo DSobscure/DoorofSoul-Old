@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Client.Global;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +9,7 @@ namespace DoorofSoul.Client.Library.General
     {
         protected readonly Dictionary<int, World> worldDictionary;
         public IEnumerable<World> Worlds { get { return worldDictionary.Values; } }
-        public DoorofSoul.Library.General.Scene MainScene { get; protected set; }
+        public DoorofSoul.Library.General.NatureComponents.Scene MainScene { get; protected set; }
         private int waitingMainSceneID;
 
         public Horizon()
@@ -43,11 +43,11 @@ namespace DoorofSoul.Client.Library.General
                 SystemManager.ErrorFormat("World alreay Exist WorldID: {0}", world.WorldID);
             }
         }
-        public void LoadScene(DoorofSoul.Library.General.Scene scene)
+        public void LoadScene(DoorofSoul.Library.General.NatureComponents.Scene scene)
         {
             if(ContainsWorld(scene.WorldID))
             {
-                FindWorld(scene.WorldID).LoadScenes(new List<DoorofSoul.Library.General.Scene> { scene });
+                FindWorld(scene.WorldID).LoadScenes(new List<DoorofSoul.Library.General.NatureComponents.Scene> { scene });
                 foreach(Container container in Global.Global.Player.Answer.Containers)
                 {
                     if (container.Entity.LocatedSceneID == scene.SceneID)
@@ -65,7 +65,7 @@ namespace DoorofSoul.Client.Library.General
                 SystemManager.ErrorFormat("Load Scene Error World Not Exist WorldID: {0}, SceneID: {1}", scene.WorldID, scene.SceneID);
             }
         }
-        public void ChangeToScene(DoorofSoul.Library.General.Scene scene)
+        public void ChangeToScene(DoorofSoul.Library.General.NatureComponents.Scene scene)
         {
             if(ContainsWorld(scene.WorldID))
             {

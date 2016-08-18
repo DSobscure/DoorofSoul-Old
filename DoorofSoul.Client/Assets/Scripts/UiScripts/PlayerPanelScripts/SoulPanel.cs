@@ -1,7 +1,7 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
+using DoorofSoul.Library.General.ThroneComponents;
 using UnityEngine;
 using UnityEngine.UI;
-using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
 
 namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {

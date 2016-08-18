@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Library.General.KnowledgeElements.Skills;
-using DoorofSoul.Library.General;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
 {

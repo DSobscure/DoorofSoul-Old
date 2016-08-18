@@ -2,8 +2,8 @@
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Scripts.CameraScripts;
 using DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts;
-using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.IControllers;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +16,7 @@ namespace DoorofSoul.Client.Scripts.SystemScripts
         [SerializeField]
         private ViewController viewControllerPrefab;
         private Canvas canvas;
-        private DoorofSoul.Library.General.Scene scene;
+        private DoorofSoul.Library.General.NatureComponents.Scene scene;
         void Awake()
         {
             RegisterEvents();

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using DoorofSoul.Library.General;
 using MySql.Data.MySqlClient;
-using DoorofSoul.Library.General.KnowledgeElements.Skills;
-using DoorofSoul.Library.General.SoulElements;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol;
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.MySQL

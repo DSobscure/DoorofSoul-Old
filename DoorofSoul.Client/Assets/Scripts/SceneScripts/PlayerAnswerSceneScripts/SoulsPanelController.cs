@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Library.General;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 using System.Linq;

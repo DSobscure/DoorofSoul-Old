@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.NatureComponents;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories

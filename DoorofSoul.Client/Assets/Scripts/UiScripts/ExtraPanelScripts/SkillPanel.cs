@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Protocol;
 using DoorofSoul.Client.Protocol.Language;
-using DoorofSoul.Library.General.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;

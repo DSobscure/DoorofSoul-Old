@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.KnowledgeComponents;
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {

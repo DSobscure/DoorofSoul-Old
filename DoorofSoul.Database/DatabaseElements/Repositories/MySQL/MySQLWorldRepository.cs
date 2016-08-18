@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Database.Library;
-using DoorofSoul.Library.General;
+using DoorofSoul.Library.General.NatureComponents;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 

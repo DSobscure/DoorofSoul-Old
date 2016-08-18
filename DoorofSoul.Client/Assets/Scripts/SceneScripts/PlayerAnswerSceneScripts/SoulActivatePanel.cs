@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.ThroneComponents;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;

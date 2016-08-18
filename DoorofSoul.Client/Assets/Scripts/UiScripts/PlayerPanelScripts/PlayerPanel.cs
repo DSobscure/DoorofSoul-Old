@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.SceneElements;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Client.Protocol.Language;
 using System.Collections.Generic;
 using System.Text;

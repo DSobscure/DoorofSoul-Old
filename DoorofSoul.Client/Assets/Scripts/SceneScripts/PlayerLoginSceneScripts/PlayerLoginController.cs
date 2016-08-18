@@ -1,7 +1,6 @@
-﻿using DoorofSoul.Client.Global;
-using DoorofSoul.Client.Interfaces;
+﻿using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General;
-using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Library.General.ThroneComponents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

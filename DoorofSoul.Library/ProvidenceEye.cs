@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using System.Threading;
 using System.Threading.Tasks;
-using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.SceneElements;
 
 namespace DoorofSoul.Library
 {

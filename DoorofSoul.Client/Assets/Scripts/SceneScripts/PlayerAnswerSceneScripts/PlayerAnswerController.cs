@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.ThroneComponents;
 using UnityEngine;
 
 namespace DoorofSoul.Client.Scripts.SceneScripts.PlayerAnswerSceneScripts

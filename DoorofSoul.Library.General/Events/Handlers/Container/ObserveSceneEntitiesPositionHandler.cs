@@ -8,22 +8,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
 {
     internal class ObserveSceneEntitiesPositionHandler : ContainerEventHandler
     {
-        public ObserveSceneEntitiesPositionHandler(General.Container container) : base(container)
+        public ObserveSceneEntitiesPositionHandler(General.Container container) : base(container, 0)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 0)
-            {
-                debugMessage = string.Format("ObserveSceneEntitiesPosition Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(ContainerEventCode eventCode, Dictionary<byte, object> parameters)

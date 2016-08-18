@@ -9,10 +9,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
     internal abstract class FetchDataHandler
     {
         protected General.Scene scene;
+        protected int correctParameterCount;
 
-        protected FetchDataHandler(General.Scene scene)
+        protected FetchDataHandler(General.Scene scene, int correctParameterCount)
         {
             this.scene = scene;
+            this.correctParameterCount = correctParameterCount;
         }
 
         internal virtual bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)
@@ -28,7 +30,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         internal void SendResponse(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>

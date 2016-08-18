@@ -5,6 +5,8 @@
         ContainerEvent,
         EntityEvent,
         InformData,
+        EntityEnter,
+        EntityExit,
         BroadcastMessage,
         SynchronizeEntityPosition
     }

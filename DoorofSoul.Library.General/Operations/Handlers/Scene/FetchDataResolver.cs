@@ -12,26 +12,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
     {
         private readonly Dictionary<SceneFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(General.Scene scene) : base(scene)
+        internal FetchDataResolver(General.Scene scene) : base(scene, 2)
         {
             fetchTable = new Dictionary<SceneFetchDataCode, FetchDataHandler>
             {
                 { SceneFetchDataCode.Entities, new FetchEntitiesHandler(scene) },
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Scene Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)

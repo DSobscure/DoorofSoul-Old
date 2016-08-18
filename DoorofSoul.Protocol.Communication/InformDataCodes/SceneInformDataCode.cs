@@ -2,8 +2,6 @@
 {
     public enum SceneInformDataCode : byte
     {
-        EntityEnter,
-        EntityExit,
-        
+
     }
 }

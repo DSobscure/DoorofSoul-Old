@@ -1,22 +1,23 @@
-﻿using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Container
 {
-    public abstract class InformDataHandler
+    internal abstract class InformDataHandler
     {
         protected General.Container container;
+        protected int correctParameterCount;
 
-        protected InformDataHandler(General.Container container)
+        protected InformDataHandler(General.Container container, int correctParameterCount)
         {
             this.container = container;
+            this.correctParameterCount = correctParameterCount;
         }
 
-        public virtual bool Handle(ContainerInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameter)
+        internal virtual bool Handle(ContainerInformDataCode informCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckParameter(parameters, out debugMessage))
             {
                 return true;
             }
@@ -26,6 +27,18 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
     }
 }

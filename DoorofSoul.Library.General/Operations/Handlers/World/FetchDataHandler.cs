@@ -9,10 +9,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
     public abstract class FetchDataHandler
     {
         protected General.World world;
+        protected int correctParameterCount;
 
-        protected FetchDataHandler(General.World world)
+        protected FetchDataHandler(General.World world, int correctParameterCount)
         {
             this.world = world;
+            this.correctParameterCount = correctParameterCount;
         }
 
         public virtual bool Handle(WorldFetchDataCode fetchCode, Dictionary<byte, object> parameter)
@@ -28,7 +30,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         public void SendResponse(WorldFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>

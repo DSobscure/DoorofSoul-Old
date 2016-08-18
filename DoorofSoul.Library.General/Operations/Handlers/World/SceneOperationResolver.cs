@@ -9,22 +9,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
 {
     public class SceneOperationResolver : WorldOperationHandler
     {
-        public SceneOperationResolver(General.World world) : base(world)
+        public SceneOperationResolver(General.World world) : base(world, 3)
         {
-        }
-
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Scene Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         public override bool Handle(WorldOperationCode operationCode, Dictionary<byte, object> parameters)

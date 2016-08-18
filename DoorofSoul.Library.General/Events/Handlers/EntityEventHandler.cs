@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers
 {
-    internal abstract class EntityEventHandler
+    public abstract class EntityEventHandler
     {
         protected General.Entity entity;
+        protected int correctParameterCount;
 
-        protected EntityEventHandler(General.Entity entity)
+        protected EntityEventHandler(General.Entity entity, int correctParameterCount)
         {
             this.entity = entity;
+            this.correctParameterCount = correctParameterCount;
         }
 
         internal virtual bool Handle(EntityEventCode eventCode, Dictionary<byte, object> parameters)
@@ -25,6 +27,18 @@ namespace DoorofSoul.Library.General.Events.Handlers
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
     }
 }

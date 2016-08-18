@@ -1,16 +1,15 @@
-﻿using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.EventCodes;
+﻿using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Player
 {
-    internal class InformDataResolver : PlayerEventHandler
+    public class InformDataResolver : PlayerEventHandler
     {
         protected readonly Dictionary<PlayerInformDataCode, InformDataHandler> informTable;
 
-        internal InformDataResolver(General.Player player) : base(player)
+        internal InformDataResolver(General.Player player) : base(player, 2)
         {
             informTable = new Dictionary<PlayerInformDataCode, InformDataHandler>
             {
@@ -18,30 +17,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             };
         }
 
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Player Inform Data Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
-        }
-
         internal override bool Handle(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {
                 PlayerInformDataCode informCode = (PlayerInformDataCode)parameters[(byte)InformDataEventParameterCode.InformCode];
-                ErrorCode returnCode = (ErrorCode)parameters[(byte)InformDataEventParameterCode.ReturnCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)InformDataEventParameterCode.Parameters];
                 if (informTable.ContainsKey(informCode))
                 {
-                    return informTable[informCode].Handle(informCode, returnCode, resolvedParameters);
+                    return informTable[informCode].Handle(informCode, resolvedParameters);
                 }
                 else
                 {
@@ -53,6 +37,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Player
             {
                 return false;
             }
+        }
+        internal void SendInform(PlayerInformDataCode informCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> informDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
+                { (byte)InformDataEventParameterCode.Parameters, parameters }
+            };
+            player.PlayerEventManager.SendEvent(PlayerEventCode.InformData, informDataParameters);
         }
     }
 }

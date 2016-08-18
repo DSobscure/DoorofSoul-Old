@@ -8,22 +8,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul.FetchData
 {
     internal class FetchSkillInfosHandler : FetchDataHandler
     {
-        internal FetchSkillInfosHandler(General.Soul soul) : base(soul)
+        internal FetchSkillInfosHandler(General.Soul soul) : base(soul, 0)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 0)
-            {
-                debugMessage = string.Format("Soul Fetch SkillInfos Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SoulFetchDataCode fetchCode, Dictionary<byte, object> parameter)

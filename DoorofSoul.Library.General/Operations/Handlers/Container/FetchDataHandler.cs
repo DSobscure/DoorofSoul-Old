@@ -10,10 +10,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
     internal abstract class FetchDataHandler
     {
         protected General.Container container;
+        protected int correctParameterCount;
 
-        protected FetchDataHandler(General.Container container)
+        protected FetchDataHandler(General.Container container, int correctParameterCount)
         {
             this.container = container;
+            this.correctParameterCount = correctParameterCount;
         }
 
         internal virtual bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
@@ -29,7 +31,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         internal void SendResponse(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>

@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.Entity
 {
     internal class StartRotateHandler : EntityEventHandler
     {
-        internal StartRotateHandler(General.Entity entity) : base(entity)
+        internal StartRotateHandler(General.Entity entity) : base(entity, 1)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
-        {
-            if (parameters.Count != 1)
-            {
-                debugMessage = string.Format("StartRotate Event Parameter Error Parameter Count: {0}", parameters.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(EntityEventCode eventCode, Dictionary<byte, object> parameters)

@@ -11,13 +11,15 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<EntityEventCode, EntityEventHandler> eventTable;
         protected readonly Entity entity;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal EntityEventManager(Entity entity)
         {
             this.entity = entity;
+            InformDataResolver = new InformDataResolver(entity);
             eventTable = new Dictionary<EntityEventCode, EntityEventHandler>
             {
-                { EntityEventCode.InformData, new InformDataResolver(entity) },
+                { EntityEventCode.InformData, InformDataResolver },
                 { EntityEventCode.StartRotate, new StartRotateHandler(entity) },
                 { EntityEventCode.StartMove, new StartMoveHandler(entity) },
             };

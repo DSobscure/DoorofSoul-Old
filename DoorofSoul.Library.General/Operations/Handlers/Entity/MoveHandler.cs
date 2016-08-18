@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
 {
     internal class MoveHandler : EntityOperationHandler
     {
-        internal MoveHandler(General.Entity entity) : base(entity)
+        internal MoveHandler(General.Entity entity) : base(entity, 1)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 1)
-            {
-                debugMessage = string.Format("Entity Move Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)

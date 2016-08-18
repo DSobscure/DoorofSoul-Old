@@ -1,35 +1,24 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Events.Handlers.Container.InformData;
+using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Container;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Container
 {
-    internal class InformDataResolver : ContainerEventHandler
+    public class InformDataResolver : ContainerEventHandler
     {
-        protected readonly Dictionary<ContainerInformDataCode, InformDataHandler> informTable;
+        private readonly Dictionary<ContainerInformDataCode, InformDataHandler> informTable;
 
-        internal InformDataResolver(General.Container container) : base(container)
+        internal InformDataResolver(General.Container container) : base(container, 2)
         {
             informTable = new Dictionary<ContainerInformDataCode, InformDataHandler>
             {
-
+                { ContainerInformDataCode.LifePointChange, new InformLifePointChangeHandler(container) },
+                { ContainerInformDataCode.EnergyPointChange, new InformEnergyPointChangeHandler(container) }
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Container Inform Data Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(ContainerEventCode eventCode, Dictionary<byte, object> parameters)
@@ -37,11 +26,10 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
             if (base.Handle(eventCode, parameters))
             {
                 ContainerInformDataCode informCode = (ContainerInformDataCode)parameters[(byte)InformDataEventParameterCode.InformCode];
-                ErrorCode returnCode = (ErrorCode)parameters[(byte)InformDataEventParameterCode.ReturnCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)InformDataEventParameterCode.Parameters];
                 if (informTable.ContainsKey(informCode))
                 {
-                    return informTable[informCode].Handle(informCode, returnCode, resolvedParameters);
+                    return informTable[informCode].Handle(informCode, resolvedParameters);
                 }
                 else
                 {
@@ -53,6 +41,31 @@ namespace DoorofSoul.Library.General.Events.Handlers.Container
             {
                 return false;
             }
+        }
+        internal void SendInform(ContainerInformDataCode informCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> informDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
+                { (byte)InformDataEventParameterCode.Parameters, parameters }
+            };
+            container.ContainerEventManager.SendEvent(ContainerEventCode.InformData, informDataParameters, ContainerCommunicationChannel.Answer);
+        }
+        public void InformLifePointChange(decimal lifePoint)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformLifePointChangeParameterCode.NewLifePoint, lifePoint },
+            };
+            SendInform(ContainerInformDataCode.LifePointChange, parameters);
+        }
+        public void InformEnergyPointChange(decimal energyPoint)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformEnergyPointChangeParameterCode.NewEnergyPoint, energyPoint },
+            };
+            SendInform(ContainerInformDataCode.EnergyPointChange, parameters);
         }
     }
 }

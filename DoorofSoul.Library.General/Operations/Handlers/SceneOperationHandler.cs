@@ -8,10 +8,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
     public abstract class SceneOperationHandler
     {
         protected General.Scene scene;
+        protected int correctParameterCount;
 
-        protected SceneOperationHandler(General.Scene scene)
+        protected SceneOperationHandler(General.Scene scene, int correctParameterCount)
         {
             this.scene = scene;
+            this.correctParameterCount = correctParameterCount;
         }
 
         internal virtual bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)
@@ -27,7 +29,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         internal void SendError(SceneOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();

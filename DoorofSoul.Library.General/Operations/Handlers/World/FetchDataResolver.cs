@@ -10,26 +10,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.World
     {
         protected readonly Dictionary<WorldFetchDataCode, FetchDataHandler> fetchTable;
 
-        public FetchDataResolver(General.World world) : base(world)
+        public FetchDataResolver(General.World world) : base(world, 2)
         {
             fetchTable = new Dictionary<WorldFetchDataCode, FetchDataHandler>
             {
                 
             };
-        }
-
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("World Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         public override bool Handle(WorldOperationCode operationCode, Dictionary<byte, object> parameters)

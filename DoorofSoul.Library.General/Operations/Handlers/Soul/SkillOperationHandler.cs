@@ -9,22 +9,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
 {
     internal class SkillOperationHandler : SoulOperationHandler
     {
-        internal SkillOperationHandler(General.Soul soul) : base(soul)
+        internal SkillOperationHandler(General.Soul soul) : base(soul, 4)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 4)
-            {
-                debugMessage = string.Format("Soul SkillOperation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SoulOperationCode operationCode, Dictionary<byte, object> parameters)

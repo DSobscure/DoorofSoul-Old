@@ -1,5 +1,4 @@
-﻿using DoorofSoul.Protocol.Communication;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Entity
@@ -7,13 +6,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Entity
     public abstract class InformDataHandler
     {
         protected General.Entity entity;
+        protected int correctParameterCount;
 
-        protected InformDataHandler(General.Entity entity)
+        protected InformDataHandler(General.Entity entity, int correctParameterCount)
         {
             this.entity = entity;
+            this.correctParameterCount = correctParameterCount;
         }
 
-        public virtual bool Handle(EntityInformDataCode informCode, ErrorCode returnCode, Dictionary<byte, object> parameter)
+        public virtual bool Handle(EntityInformDataCode informCode, Dictionary<byte, object> parameter)
         {
             string debugMessage;
             if (CheckParameter(parameter, out debugMessage))
@@ -26,6 +27,18 @@ namespace DoorofSoul.Library.General.Events.Handlers.Entity
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
     }
 }

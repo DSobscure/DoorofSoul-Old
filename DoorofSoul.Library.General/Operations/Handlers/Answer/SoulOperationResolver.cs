@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Answer
 {
     internal class SoulOperationResolver : AnswerOperationHandler
     {
-        internal SoulOperationResolver(General.Answer answer) : base(answer)
+        internal SoulOperationResolver(General.Answer answer) : base(answer, 3)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Soul Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(AnswerOperationCode operationCode, Dictionary<byte, object> parameters)

@@ -9,22 +9,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
 {
     public class FetchSceneHandler : FetchDataHandler
     {
-        public FetchSceneHandler(General.Player player) : base(player)
+        public FetchSceneHandler(General.Player player) : base(player, 1)
         {
-        }
-
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 1)
-            {
-                debugMessage = string.Format("Player Fetch Scene Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)

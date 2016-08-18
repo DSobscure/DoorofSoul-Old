@@ -9,23 +9,9 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
 {
     public class FetchWorldsHandler : FetchDataHandler
     {
-        public FetchWorldsHandler(General.Player player) : base(player)
+        public FetchWorldsHandler(General.Player player) : base(player, 0)
         {
             
-        }
-
-        public override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
-        {
-            if (parameters.Count != 0)
-            {
-                debugMessage = string.Format("Player Fetch Worlds Parameter Error Parameter Count: {0}", parameters.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)

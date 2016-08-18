@@ -84,7 +84,11 @@
     <Compile Include="InformDataCodes\SceneInformDataCode.cs" />
     <Compile Include="InformDataCodes\SoulInformDataCode.cs" />
     <Compile Include="InformDataCodes\WorldInformDataCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformEnergyPointChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformLifePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformMessageParameterCode.cs" />
+    <Compile Include="InformDataParameters\Soul\InformCorePointChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Soul\InformSpiritPointChangeParameterCode.cs" />
     <Compile Include="OperationCodes\AnswerOperationCode.cs" />
     <Compile Include="OperationCodes\ContainerOperationCode.cs" />
     <Compile Include="OperationCodes\EntityOperationCode.cs" />
@@ -94,8 +98,8 @@
     <Compile Include="FetchDataCodes\PlayerFetchDataCode.cs" />
     <Compile Include="FetchDataParameters\Player\FetchSceneParameterCode.cs" />
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
-    <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
-    <Compile Include="InformDataParameters\Scene\InformEntityExitParameterCode.cs" />
+    <Compile Include="EventParameters\Scene\EntityEnterParameterCode.cs" />
+    <Compile Include="EventParameters\Scene\EntityExitParameterCode.cs" />
     <Compile Include="OperationCodes\OperationCode.cs" />
     <Compile Include="OperationCodes\PlayerOperationCode.cs" />
     <Compile Include="OperationCodes\WorldOperationCode.cs" />
@@ -144,7 +148,7 @@
     <Folder Include="InformDataParameters\Answer\" />
     <Folder Include="InformDataParameters\Entity\" />
     <Folder Include="InformDataParameters\Player\" />
-    <Folder Include="InformDataParameters\Soul\" />
+    <Folder Include="InformDataParameters\Scene\" />
     <Folder Include="InformDataParameters\World\" />
     <Folder Include="ResponseParameters\Container\" />
     <Folder Include="ResponseParameters\Entity\" />

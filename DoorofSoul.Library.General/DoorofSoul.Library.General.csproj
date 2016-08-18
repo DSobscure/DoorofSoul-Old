@@ -65,6 +65,8 @@
     <Compile Include="Events\Handlers\ContainerEventHandler.cs" />
     <Compile Include="Events\Handlers\Container\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Container\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Container\InformData\InformEnergyPointChangeHandler.cs" />
+    <Compile Include="Events\Handlers\Container\InformData\InformLifePointChangeHandler.cs" />
     <Compile Include="Events\Handlers\Container\ObserveSceneEntitiesPositionHandler.cs" />
     <Compile Include="Events\Handlers\EntityEventHandler.cs" />
     <Compile Include="Events\Handlers\Entity\InformDataHandler.cs" />
@@ -81,12 +83,14 @@
     <Compile Include="Events\Handlers\Scene\EntityEventResolver.cs" />
     <Compile Include="Events\Handlers\Scene\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Scene\InformDataResolver.cs" />
-    <Compile Include="Events\Handlers\Scene\InformData\InformEntityEnterHandler.cs" />
-    <Compile Include="Events\Handlers\Scene\InformData\InformEntityExitHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\EntityEnterHandler.cs" />
+    <Compile Include="Events\Handlers\Scene\EntityExitHandler.cs" />
     <Compile Include="Events\Handlers\Scene\SynchronizeEntityPositionHandler.cs" />
     <Compile Include="Events\Handlers\SoulEventHandler.cs" />
     <Compile Include="Events\Handlers\Soul\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\Soul\InformDataResolver.cs" />
+    <Compile Include="Events\Handlers\Soul\InformData\InformCorePointChangeHandler.cs" />
+    <Compile Include="Events\Handlers\Soul\InformData\InformSpiritPointChangeHandler.cs" />
     <Compile Include="Events\Handlers\WorldEventHandler.cs" />
     <Compile Include="Events\Handlers\World\InformDataHandler.cs" />
     <Compile Include="Events\Handlers\World\InformDataResolver.cs" />
@@ -243,10 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\Handlers\Answer\InformData\" />
-    <Folder Include="Events\Handlers\Container\InformData\" />
     <Folder Include="Events\Handlers\Entity\InformData\" />
     <Folder Include="Events\Handlers\Player\InformData\" />
-    <Folder Include="Events\Handlers\Soul\InformData\" />
+    <Folder Include="Events\Handlers\Scene\InformData\" />
     <Folder Include="Events\Handlers\World\InformData\" />
     <Folder Include="Operations\Handlers\Entity\FetchData\" />
     <Folder Include="Operations\Handlers\World\FetchData\" />

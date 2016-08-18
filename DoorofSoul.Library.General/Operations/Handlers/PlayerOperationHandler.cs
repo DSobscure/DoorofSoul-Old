@@ -9,10 +9,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers
     public abstract class PlayerOperationHandler
     {
         protected General.Player player;
+        protected int correctParameterCount;
 
-        internal PlayerOperationHandler(General.Player player)
+        internal PlayerOperationHandler(General.Player player, int correctParameterCount)
         {
             this.player = player;
+            this.correctParameterCount = correctParameterCount;
         }
 
         internal virtual bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)
@@ -28,7 +30,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers
                 return false;
             }
         }
-        internal abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         internal void SendError(PlayerOperationCode operationCode, ErrorCode errorCode, string debugMessage)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>();

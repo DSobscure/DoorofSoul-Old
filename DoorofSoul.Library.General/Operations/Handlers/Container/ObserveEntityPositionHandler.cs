@@ -8,22 +8,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
 {
     internal class ObserveEntityPositionHandler : ContainerOperationHandler
     {
-        public ObserveEntityPositionHandler(General.Container container) : base(container)
+        public ObserveEntityPositionHandler(General.Container container) : base(container, 2)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Container ObserveEntityPosition Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)

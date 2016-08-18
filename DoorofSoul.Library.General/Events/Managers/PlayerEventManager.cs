@@ -9,14 +9,16 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<PlayerEventCode, PlayerEventHandler> eventTable;
         protected readonly Player player;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal PlayerEventManager(Player player)
         {
             this.player = player;
+            InformDataResolver = new InformDataResolver(player);
             eventTable = new Dictionary<PlayerEventCode, PlayerEventHandler>
             {
                 { PlayerEventCode.AnswerEvent, new AnswerEventResolver(player) },
-                { PlayerEventCode.InformData, new InformDataResolver(player) },
+                { PlayerEventCode.InformData, InformDataResolver },
             };
         }
 

@@ -10,13 +10,15 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<SoulEventCode, SoulEventHandler> eventTable;
         protected readonly Soul soul;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal SoulEventManager(Soul soul)
         {
             this.soul = soul;
+            InformDataResolver = new InformDataResolver(soul);
             eventTable = new Dictionary<SoulEventCode, SoulEventHandler>
             {
-                { SoulEventCode.InformData, new InformDataResolver(soul) },
+                { SoulEventCode.InformData, InformDataResolver },
             };
         }
 

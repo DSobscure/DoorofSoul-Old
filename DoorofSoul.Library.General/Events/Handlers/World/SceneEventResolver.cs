@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.World
 {
     internal class SceneEventResolver : WorldEventHandler
     {
-        public SceneEventResolver(General.World world) : base(world)
+        public SceneEventResolver(General.World world) : base(world, 3)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Scene Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(WorldEventCode eventCode, Dictionary<byte, object> parameters)

@@ -10,13 +10,15 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<ContainerEventCode, ContainerEventHandler> eventTable;
         protected readonly Container container;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal ContainerEventManager(Container container)
         {
             this.container = container;
+            InformDataResolver = new InformDataResolver(container);
             eventTable = new Dictionary<ContainerEventCode, ContainerEventHandler>
             {
-                { ContainerEventCode.InformData, new InformDataResolver(container) },
+                { ContainerEventCode.InformData, InformDataResolver },
                 { ContainerEventCode.ObserveSceneEntitiesPosition, new ObserveSceneEntitiesPositionHandler(container) },
             };
         }

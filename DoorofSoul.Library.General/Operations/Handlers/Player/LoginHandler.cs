@@ -10,22 +10,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
 {
     internal class LoginHandler : PlayerOperationHandler
     {
-        internal LoginHandler(General.Player player) : base(player)
+        internal LoginHandler(General.Player player) : base(player, 2)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Login Operation Parameter Erro Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)

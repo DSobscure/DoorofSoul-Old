@@ -6,8 +6,6 @@ using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.EventParameters.World;
 using DoorofSoul.Protocol.Communication.EventParameters.Scene;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Managers
@@ -16,15 +14,19 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<SceneEventCode, SceneEventHandler> eventTable;
         protected readonly Scene scene;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal SceneEventManager(Scene scene)
         {
             this.scene = scene;
+            InformDataResolver = new InformDataResolver(scene);
             eventTable = new Dictionary<SceneEventCode, SceneEventHandler>
             {
                 { SceneEventCode.ContainerEvent, new ContainerEventResolver(scene) },
                 { SceneEventCode.EntityEvent, new EntityEventResolver(scene) },
-                { SceneEventCode.InformData, new InformDataResolver(scene) },
+                { SceneEventCode.InformData, InformDataResolver },
+                { SceneEventCode.EntityEnter, new EntityEnterHandler(scene) },
+                { SceneEventCode.EntityExit, new EntityExitHandler(scene) },
                 { SceneEventCode.BroadcastMessage, new BroadcastMessageHandler(scene) },
                 { SceneEventCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
             };
@@ -62,33 +64,21 @@ namespace DoorofSoul.Library.General.Events.Managers
 
         public void EntityEnter(Entity entity)
         {
-            Dictionary<byte, object> informParameters = new Dictionary<byte, object>
-            {
-                { (byte)InformEntityEnterParameterCode.EntityID, entity.EntityID },
-                { (byte)InformEntityEnterParameterCode.EntityName, entity.EntityName },
-                { (byte)InformEntityEnterParameterCode.EntitySpaceProperties, entity.SpaceProperties },
-            };
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformDataEventParameterCode.InformCode, SceneInformDataCode.EntityEnter },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
-                { (byte)InformDataEventParameterCode.Parameters, informParameters }
+                { (byte)EntityEnterParameterCode.EntityID, entity.EntityID },
+                { (byte)EntityEnterParameterCode.EntityName, entity.EntityName },
+                { (byte)EntityEnterParameterCode.EntitySpaceProperties, entity.SpaceProperties },
             };
-            SendEvent(SceneEventCode.InformData, parameters);
+            SendEvent(SceneEventCode.EntityEnter, parameters);
         }
         public void EntityExit(Entity entity)
         {
-            Dictionary<byte, object> informParameters = new Dictionary<byte, object>
-            {
-                { (byte)InformEntityExitParameterCode.EntityID, entity.EntityID }
-            };
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformDataEventParameterCode.InformCode, SceneInformDataCode.EntityExit },
-                { (byte)InformDataEventParameterCode.ReturnCode, (short)ErrorCode.NoError },
-                { (byte)InformDataEventParameterCode.Parameters, informParameters }
+                { (byte)EntityExitParameterCode.EntityID, entity.EntityID }
             };
-            SendEvent(SceneEventCode.InformData, parameters);
+            SendEvent(SceneEventCode.EntityExit, parameters);
         }
         public void BroadcastMessage(MessageTypeCode messageType, MessageSourceTypeCode messageSourceType, string sourceName, string message)
         {

@@ -8,7 +8,6 @@ namespace DoorofSoul.Protocol.Communication.EventParameters
     public enum InformDataEventParameterCode : byte
     {
         InformCode,
-        ReturnCode,
         Parameters
     }
 }

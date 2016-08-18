@@ -12,7 +12,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
     {
         private readonly Dictionary<ContainerFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(General.Container container) : base(container)
+        internal FetchDataResolver(General.Container container) : base(container, 2)
         {
             fetchTable = new Dictionary<ContainerFetchDataCode, FetchDataHandler>
             {
@@ -20,20 +20,6 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container
                 { ContainerFetchDataCode.Inventory, new FetchInventoryHandler(container) },
                 { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsHandler(container) },
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Container Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)

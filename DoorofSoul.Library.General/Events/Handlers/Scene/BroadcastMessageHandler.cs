@@ -9,22 +9,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.Scene
 {
     internal class BroadcastMessageHandler : SceneEventHandler
     {
-        internal BroadcastMessageHandler(General.Scene scene) : base(scene)
+        internal BroadcastMessageHandler(General.Scene scene) : base(scene, 4)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 4)
-            {
-                debugMessage = string.Format("BroadcastMessage Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)

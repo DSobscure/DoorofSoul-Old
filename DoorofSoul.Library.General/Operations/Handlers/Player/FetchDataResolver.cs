@@ -12,7 +12,7 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
     {
         private readonly Dictionary<PlayerFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(General.Player player) : base(player)
+        internal FetchDataResolver(General.Player player) : base(player, 2)
         {
             fetchTable = new Dictionary<PlayerFetchDataCode, FetchDataHandler>
             {
@@ -21,20 +21,6 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 { PlayerFetchDataCode.Worlds, new FetchWorldsHandler(player) },
                 { PlayerFetchDataCode.Scene, new FetchSceneHandler(player) },
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Player Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(PlayerOperationCode operationCode, Dictionary<byte, object> parameters)

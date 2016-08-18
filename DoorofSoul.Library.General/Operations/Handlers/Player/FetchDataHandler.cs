@@ -9,10 +9,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
     public abstract class FetchDataHandler
     {
         protected General.Player player;
+        protected int correctParameterCount;
 
-        protected FetchDataHandler(General.Player player)
+        protected FetchDataHandler(General.Player player, int correctParameterCount)
         {
             this.player = player;
+            this.correctParameterCount = correctParameterCount;
         }
 
         public virtual bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)
@@ -28,7 +30,19 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player
                 return false;
             }
         }
-        public abstract bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage);
+        internal virtual bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
+        {
+            if (parameters.Count != correctParameterCount)
+            {
+                debugMessage = string.Format("Parameter Count: {0} Should be {1}", parameters.Count, correctParameterCount);
+                return false;
+            }
+            else
+            {
+                debugMessage = "";
+                return true;
+            }
+        }
         public void SendResponse(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventData = new Dictionary<byte, object>

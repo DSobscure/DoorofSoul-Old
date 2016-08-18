@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene.FetchData
 {
     internal class FetchEntitiesHandler : FetchDataHandler
     {
-        internal FetchEntitiesHandler(General.Scene scene) : base(scene)
+        internal FetchEntitiesHandler(General.Scene scene) : base(scene, 0)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 0)
-            {
-                debugMessage = string.Format("Scene Fetch Entities Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SceneFetchDataCode fetchCode, Dictionary<byte, object> parameter)

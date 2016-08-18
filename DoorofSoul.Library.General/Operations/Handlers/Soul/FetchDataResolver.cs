@@ -11,26 +11,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Soul
     {
         private readonly Dictionary<SoulFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(General.Soul soul) : base(soul)
+        internal FetchDataResolver(General.Soul soul) : base(soul, 2)
         {
             fetchTable = new Dictionary<SoulFetchDataCode, FetchDataHandler>
             {
                 { SoulFetchDataCode.SkillInfos, new FetchSkillInfosHandler(soul) },
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Soul Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SoulOperationCode operationCode, Dictionary<byte, object> parameters)

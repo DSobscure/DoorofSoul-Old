@@ -9,14 +9,16 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<WorldEventCode, WorldEventHandler> eventTable;
         protected readonly World world;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal WorldEventManager(World world)
         {
             this.world = world;
+            InformDataResolver = new InformDataResolver(world);
             eventTable = new Dictionary<WorldEventCode, WorldEventHandler>
             {
                 { WorldEventCode.SceneEvent, new SceneEventResolver(world) },
-                { WorldEventCode.InformData, new InformDataResolver(world) },
+                { WorldEventCode.InformData, InformDataResolver },
             };
         }
 

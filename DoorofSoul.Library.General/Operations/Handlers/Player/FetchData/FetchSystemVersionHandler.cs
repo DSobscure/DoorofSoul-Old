@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Player.FetchData
 {
     public class FetchSystemVersionHandler : FetchDataHandler
     {
-        public FetchSystemVersionHandler(General.Player player) : base(player)
+        public FetchSystemVersionHandler(General.Player player) : base(player, 0)
         {
-        }
-
-        public override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 0)
-            {
-                debugMessage = string.Format("Player Fetch System Version Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         public override bool Handle(PlayerFetchDataCode fetchCode, Dictionary<byte, object> parameter)

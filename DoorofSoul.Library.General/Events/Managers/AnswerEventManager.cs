@@ -10,15 +10,17 @@ namespace DoorofSoul.Library.General.Events.Managers
     {
         private readonly Dictionary<AnswerEventCode, AnswerEventHandler> eventTable;
         protected readonly Answer answer;
+        public InformDataResolver InformDataResolver { get; protected set; }
 
         internal AnswerEventManager(Answer answer)
         {
             this.answer = answer;
+            InformDataResolver = new InformDataResolver(answer);
             eventTable = new Dictionary<AnswerEventCode, AnswerEventHandler>
             {
                 { AnswerEventCode.SoulEvent, new SoulEventResolver(answer) },
                 { AnswerEventCode.ContainerEvent, new ContainerEventResolver(answer) },
-                { AnswerEventCode.InformData, new InformDataResolver(answer) },
+                { AnswerEventCode.InformData, InformDataResolver },
             };
         }
 

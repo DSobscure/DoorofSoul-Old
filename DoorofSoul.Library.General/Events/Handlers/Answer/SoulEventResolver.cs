@@ -7,22 +7,8 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
 {
     internal class SoulEventResolver : AnswerEventHandler
     {
-        internal SoulEventResolver(General.Answer answer) : base(answer)
+        internal SoulEventResolver(General.Answer answer) : base(answer, 3)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Soul Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(AnswerEventCode eventCode, Dictionary<byte, object> parameters)

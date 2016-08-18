@@ -7,23 +7,10 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Container.FetchData
 {
     internal class FetchInventoryHandler : FetchDataHandler
     {
-        internal FetchInventoryHandler(General.Container container) : base(container)
+        internal FetchInventoryHandler(General.Container container) : base(container, 0)
         {
         }
 
-        internal override bool CheckParameter(Dictionary<byte, object> parameters, out string debugMessage)
-        {
-            if (parameters.Count != 0)
-            {
-                debugMessage = string.Format("Container Fetch Inventory Parameter Error Parameter Count: {0}", parameters.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
-        }
         internal override bool Handle(ContainerFetchDataCode fetchCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(fetchCode, parameters))

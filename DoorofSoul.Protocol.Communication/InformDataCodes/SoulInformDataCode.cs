@@ -2,6 +2,7 @@
 {
     public enum SoulInformDataCode : byte
     {
-
+        CorePointChange,
+        SpiritPointChange
     }
 }

@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Answer
 {
-    internal class InformDataResolver : AnswerEventHandler
+    public class InformDataResolver : AnswerEventHandler
     {
         protected readonly Dictionary<AnswerInformDataCode, InformDataHandler> informTable;
 
-        internal InformDataResolver(General.Answer answer) : base(answer)
+        internal InformDataResolver(General.Answer answer) : base(answer, 2)
         {
             informTable = new Dictionary<AnswerInformDataCode, InformDataHandler>
             {
@@ -18,30 +18,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
             };
         }
 
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Answer Inform Data Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
-        }
-
         internal override bool Handle(AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             if (base.Handle(eventCode, parameters))
             {
                 AnswerInformDataCode informCode = (AnswerInformDataCode)parameters[(byte)InformDataEventParameterCode.InformCode];
-                ErrorCode returnCode = (ErrorCode)parameters[(byte)InformDataEventParameterCode.ReturnCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)InformDataEventParameterCode.Parameters];
                 if (informTable.ContainsKey(informCode))
                 {
-                    return informTable[informCode].Handle(informCode, returnCode, resolvedParameters);
+                    return informTable[informCode].Handle(informCode, resolvedParameters);
                 }
                 else
                 {
@@ -53,6 +38,15 @@ namespace DoorofSoul.Library.General.Events.Handlers.Answer
             {
                 return false;
             }
+        }
+        internal void SendInform(AnswerInformDataCode informCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> informDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
+                { (byte)InformDataEventParameterCode.Parameters, parameters }
+            };
+            answer.AnswerEventManager.SendEvent(AnswerEventCode.InformData, informDataParameters);
         }
     }
 }

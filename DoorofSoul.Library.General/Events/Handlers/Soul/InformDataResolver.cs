@@ -1,35 +1,23 @@
-﻿using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Library.General.Events.Handlers.Soul.InformData;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Soul;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.Events.Handlers.Soul
 {
-    internal class InformDataResolver : SoulEventHandler
+    public class InformDataResolver : SoulEventHandler
     {
-        protected readonly Dictionary<SoulInformDataCode, InformDataHandler> informTable;
+        private readonly Dictionary<SoulInformDataCode, InformDataHandler> informTable;
 
-        internal InformDataResolver(General.Soul soul) : base(soul)
+        internal InformDataResolver(General.Soul soul) : base(soul, 2)
         {
             informTable = new Dictionary<SoulInformDataCode, InformDataHandler>
             {
-
+                { SoulInformDataCode.CorePointChange, new InformCorePointChangeHandler(soul) },
+                { SoulInformDataCode.SpiritPointChange, new InformSpiritPointChangeHandler(soul) }
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Soul Inform Data Event Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SoulEventCode eventCode, Dictionary<byte, object> parameters)
@@ -37,11 +25,10 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul
             if (base.Handle(eventCode, parameters))
             {
                 SoulInformDataCode informCode = (SoulInformDataCode)parameters[(byte)InformDataEventParameterCode.InformCode];
-                ErrorCode returnCode = (ErrorCode)parameters[(byte)InformDataEventParameterCode.ReturnCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)InformDataEventParameterCode.Parameters];
                 if (informTable.ContainsKey(informCode))
                 {
-                    return informTable[informCode].Handle(informCode, returnCode, resolvedParameters);
+                    return informTable[informCode].Handle(informCode, resolvedParameters);
                 }
                 else
                 {
@@ -53,6 +40,31 @@ namespace DoorofSoul.Library.General.Events.Handlers.Soul
             {
                 return false;
             }
+        }
+        internal void SendInform(SoulInformDataCode informCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> informDataParameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDataEventParameterCode.InformCode, (byte)informCode },
+                { (byte)InformDataEventParameterCode.Parameters, parameters }
+            };
+            soul.SoulEventManager.SendEvent(SoulEventCode.InformData, informDataParameters);
+        }
+        public void InformCorePointChange(decimal corePoint)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformCorePointChangeParameterCode.NewCorePoint, corePoint },
+            };
+            SendInform(SoulInformDataCode.CorePointChange, parameters);
+        }
+        public void InformSpiritPointChange(decimal spiritPoint)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformSpiritPointChangeParameterCode.NewSpiritPoint, spiritPoint },
+            };
+            SendInform(SoulInformDataCode.SpiritPointChange, parameters);
         }
     }
 }

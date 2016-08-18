@@ -11,26 +11,12 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Entity
     {
         private readonly Dictionary<EntityFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(General.Entity entity) : base(entity)
+        internal FetchDataResolver(General.Entity entity) : base(entity, 2)
         {
             fetchTable = new Dictionary<EntityFetchDataCode, FetchDataHandler>
             {
                 
             };
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 2)
-            {
-                debugMessage = string.Format("Entity Fetch Data Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(EntityOperationCode operationCode, Dictionary<byte, object> parameters)

@@ -2,6 +2,8 @@
 {
     public enum ContainerInformDataCode : byte
     {
-        Message
+        Message,
+        LifePointChange,
+        EnergyPointChange
     }
 }

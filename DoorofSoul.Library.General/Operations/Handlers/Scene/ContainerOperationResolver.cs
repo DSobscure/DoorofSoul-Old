@@ -9,22 +9,8 @@ namespace DoorofSoul.Library.General.Operations.Handlers.Scene
 {
     internal class ContainerOperationResolver : SceneOperationHandler
     {
-        internal ContainerOperationResolver(General.Scene scene) : base(scene)
+        internal ContainerOperationResolver(General.Scene scene) : base(scene, 3)
         {
-        }
-
-        internal override bool CheckParameter(Dictionary<byte, object> parameter, out string debugMessage)
-        {
-            if (parameter.Count != 3)
-            {
-                debugMessage = string.Format("Container Operation Parameter Error Parameter Count: {0}", parameter.Count);
-                return false;
-            }
-            else
-            {
-                debugMessage = null;
-                return true;
-            }
         }
 
         internal override bool Handle(SceneOperationCode operationCode, Dictionary<byte, object> parameters)

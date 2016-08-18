@@ -13,7 +13,7 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
         private ScrollTextArea messageContent;
         private Text heightHelperText;
 
-        void Start()
+        void Awake()
         {
             self = GetComponent<RectTransform>();
             messageContent = transform.FindChild("ScrollTextArea").GetComponent<ScrollTextArea>();

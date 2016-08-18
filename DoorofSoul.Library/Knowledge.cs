@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Database;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.Skill;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
@@ -29,13 +29,13 @@ namespace DoorofSoul.Library
             TechnologySystem = new TechnologySystem();
             BeliefSystem = new BeliefSystem();
 
-            AlchemySystem.LoadSkills(DataBase.Instance.RepositoryManager.AlchemySkillRepository.List());
-            ElementSystem.LoadSkills(DataBase.Instance.RepositoryManager.ElementSkillRepository.List());
-            GenieSystem.LoadSkills(DataBase.Instance.RepositoryManager.GenieSkillRepository.List());
-            DemonSystem.LoadSkills(DataBase.Instance.RepositoryManager.DemonSkillRepository.List());
-            ChanceSystem.LoadSkills(DataBase.Instance.RepositoryManager.ChanceSkillRepository.List());
-            TechnologySystem.LoadSkills(DataBase.Instance.RepositoryManager.TechnologySkillRepository.List());
-            BeliefSystem.LoadSkills(DataBase.Instance.RepositoryManager.BeliefSkillRepository.List());
+            AlchemySystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.AlchemySkillRepository.List());
+            ElementSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.ElementSkillRepository.List());
+            GenieSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.GenieSkillRepository.List());
+            DemonSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.DemonSkillRepository.List());
+            ChanceSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.ChanceSkillRepository.List());
+            TechnologySystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.TechnologySkillRepository.List());
+            BeliefSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.BeliefSkillRepository.List());
         }
 
         public HeptagramSystem ChoseSystem(HeptagramSystemTypeCode systemTypeCode)

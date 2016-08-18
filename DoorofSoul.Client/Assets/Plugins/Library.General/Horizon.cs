@@ -48,14 +48,14 @@ namespace DoorofSoul.Client.Library.General
             if(ContainsWorld(scene.WorldID))
             {
                 FindWorld(scene.WorldID).LoadScenes(new List<DoorofSoul.Library.General.NatureComponents.Scene> { scene });
-                foreach(Container container in Global.Global.Player.Answer.Containers)
+                foreach (Container container in Global.Global.Seat.MainSoul.Containers)
                 {
                     if (container.Entity.LocatedSceneID == scene.SceneID)
                     {
                         scene.ContainerEnter(container);
                     }
                 }
-                if(scene.SceneID == waitingMainSceneID)
+                if (scene.SceneID == waitingMainSceneID)
                 {
                     ChangeToScene(scene);
                 }

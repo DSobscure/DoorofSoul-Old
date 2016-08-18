@@ -93,7 +93,7 @@ namespace DoorofSoul.Library
         protected void LoadNature()
         {
             List<World> worldList = new List<World>();
-            DataBase.Instance.RepositoryManager.WorldRepository.List().ForEach(world => 
+            DataBase.Instance.RepositoryManager.NatureList.WorldRepository.List().ForEach(world => 
             {
                 HexagramWorldCommunicationInterface communicationInterface = new HexagramWorldCommunicationInterface();
                 World newWorld = new World(communicationInterface, world.worldID, world.worldName);
@@ -103,7 +103,7 @@ namespace DoorofSoul.Library
             foreach (World world in worldList)
             {
                 worldDictionary.Add(world.WorldID, world);
-                List<Scene> sceneList = DataBase.Instance.RepositoryManager.SceneRepository.ListOfWorld(world.WorldID);
+                List<Scene> sceneList = DataBase.Instance.RepositoryManager.NatureList.SceneRepository.ListOfWorld(world.WorldID);
                 world.LoadScenes(sceneList);
                 foreach(Scene scene in sceneList)
                 {
@@ -168,7 +168,7 @@ namespace DoorofSoul.Library
             {
                 if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
                 {
-                    DataBase.Instance.RepositoryManager.EntityRepository.Save(container.Entity);
+                    DataBase.Instance.RepositoryManager.NatureList.EntityRepository.Save(container.Entity);
                     worldDictionary[container.Entity.LocatedScene.WorldID].ContainerExit(container);
                     ExtractEntity(container.Entity);
                 }
@@ -181,7 +181,7 @@ namespace DoorofSoul.Library
             {
                 if (entity.LocatedScene != null && worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
                 {
-                    DataBase.Instance.RepositoryManager.EntityRepository.Save(entity);
+                    DataBase.Instance.RepositoryManager.NatureList.EntityRepository.Save(entity);
                     worldDictionary[entity.LocatedScene.WorldID].EntityExit(entity);
                 }
                 entityDictionary.Remove(entity.EntityID);

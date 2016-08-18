@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Protocol;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.Skill;
 
 namespace DoorofSoul.Database
 {

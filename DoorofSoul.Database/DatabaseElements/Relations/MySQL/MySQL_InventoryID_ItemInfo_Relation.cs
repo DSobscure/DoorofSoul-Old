@@ -64,7 +64,7 @@ namespace DoorofSoul.Database.DatabaseElements.Relations.MySQL
                     }
                     foreach(DatabaseInventoryInfo info in infos)
                     {
-                        Item item = DataBase.Instance.RepositoryManager.ItemRepository.Find(info.itemID);
+                        Item item = DataBase.Instance.RepositoryManager.KnowledgeList.ItemRepository.Find(info.itemID);
                         inventory.LoadItem(item, info.itemCount, info.positionIndex);
                     }
                 }

@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.Skill;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;

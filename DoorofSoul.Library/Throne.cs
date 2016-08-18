@@ -14,18 +14,16 @@ namespace DoorofSoul.Library
     {
         private Dictionary<int, Answer> answerDictionary;
         private Dictionary<int, Soul> soulDictionary;
-        private Dictionary<int, Container> containerDictionary;
 
         public Throne()
         {
             answerDictionary = new Dictionary<int, Answer>();
             soulDictionary = new Dictionary<int, Soul>();
-            containerDictionary = new Dictionary<int, Container>();
         }
 
         public void ProjectPlayer(Player player)
         {
-            Answer answer = DataBase.Instance.RepositoryManager.AnswerRepository.Find(player.AnswerID, player);
+            Answer answer = DataBase.Instance.RepositoryManager.ThroneList.AnswerRepository.Find(player.AnswerID, player);
             if(answer != null)
             {
                 ProjectAnswer(answer);
@@ -36,7 +34,7 @@ namespace DoorofSoul.Library
             if (!answerDictionary.ContainsKey(answer.AnswerID))
             {
                 answerDictionary.Add(answer.AnswerID, answer);
-                answer.LoadSouls(DataBase.Instance.RepositoryManager.SoulRepository.ListOfAnswer(answer));
+                answer.LoadSouls(DataBase.Instance.RepositoryManager.ThroneList.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
                     soul.BindSkillKnowledgeInterface(new HeptagramSkillKnowledgeInterface());
@@ -44,7 +42,7 @@ namespace DoorofSoul.Library
                     soul.Attributes.OnCorePointChange += soul.SoulEventManager.InformDataResolver.InformCorePointChange;
                     soul.Attributes.OnSpiritPointChange += soul.SoulEventManager.InformDataResolver.InformSpiritPointChange;
 
-                    soul.SkillLibrary.LoadSkillInfos(DataBase.Instance.RepositoryManager.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
+                    soul.SkillLibrary.LoadSkillInfos(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
                     ProjectSoul(soul);
                 }
             }
@@ -59,18 +57,16 @@ namespace DoorofSoul.Library
                 foreach (int containerID in containerIDs)
                 {
                     Container container;
-                    if (containerDictionary.ContainsKey(containerID))
+                    if (Hexagram.Instance.Nature.ContainsContainer(containerID))
                     {
-                        container = containerDictionary[containerID];
+                        container = Hexagram.Instance.Nature.FindContainer(containerID);
                     }
                     else
                     {
-                        container = DataBase.Instance.RepositoryManager.ContainerRepository.Find(containerID);
+                        container = DataBase.Instance.RepositoryManager.NatureList.ContainerRepository.Find(containerID);
 
                         container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
                         container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-
-                        containerDictionary.Add(containerID, container);
                     }
                     soul.LinkContainer(container);
                     container.LinkSoul(soul);
@@ -88,7 +84,7 @@ namespace DoorofSoul.Library
                 soul.IsActivate = true;
                 foreach(Container container in soul.Containers)
                 {
-                    ProjectContainer(container);
+                    Hexagram.Instance.Nature.ProjectContainer(container);
                 }
                 return true;
             }
@@ -96,15 +92,6 @@ namespace DoorofSoul.Library
             {
                 return false;
             }
-        }
-        public void ProjectContainer(Container container)
-        {
-            if (!containerDictionary.ContainsKey(container.ContainerID))
-            {
-                containerDictionary.Add(container.ContainerID, container);
-                
-            }
-            Hexagram.Instance.Nature.ProjectContainer(container);
         }
 
         public void ExtractPlayer(Player player)
@@ -119,7 +106,7 @@ namespace DoorofSoul.Library
         {
             if (answerDictionary.ContainsKey(answer.AnswerID))
             {
-                DataBase.Instance.RepositoryManager.AnswerRepository.Save(answer);
+                DataBase.Instance.RepositoryManager.ThroneList.AnswerRepository.Save(answer);
                 foreach (Soul soul in answer.Souls)
                 {
                     ExtractSoul(soul);
@@ -133,17 +120,16 @@ namespace DoorofSoul.Library
         {
             if (soulDictionary.ContainsKey(soul.SoulID))
             {
-                DataBase.Instance.RepositoryManager.SoulRepository.Save(soul);
+                DataBase.Instance.RepositoryManager.ThroneList.SoulRepository.Save(soul);
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
-                    if(soul.IsActivate)
+                    if (container.IsEmptyContainer)
                     {
-                        Scene locatedScene = container.Entity.LocatedScene;
-                        if (container.IsEmptyContainer)
-                        {
-                            ExtractContainer(container);
-                        }
+                        DataBase.Instance.RepositoryManager.NatureList.ContainerRepository.Save(container);
+                        Hexagram.Instance.Nature.ExtractContainer(container);
+                        container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
+                        container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
                     }
                 }
                 soul.UnlinkAllContainers();
@@ -165,26 +151,15 @@ namespace DoorofSoul.Library
                 return false;
             }
         }
-        public void ExtractContainer(Container container)
-        {
-            if (containerDictionary.ContainsKey(container.ContainerID))
-            {
-                DataBase.Instance.RepositoryManager.ContainerRepository.Save(container);
-                Hexagram.Instance.Nature.ExtractContainer(container);
-                containerDictionary.Remove(container.ContainerID);
-                container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
-                container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-            }
-        }
 
         public bool CreateSoul(int answerID, string soulName, SoulKernelTypeCode mainSoulType)
         {
             if(answerDictionary.ContainsKey(answerID))
             {
                 Answer answer = answerDictionary[answerID];
-                Soul soul = DataBase.Instance.RepositoryManager.SoulRepository.Create(answer, soulName, mainSoulType);
+                Soul soul = DataBase.Instance.RepositoryManager.ThroneList.SoulRepository.Create(answer, soulName, mainSoulType);
                 answer.LoadSouls(new List<Soul> { soul });
-                Container defaultContainer = DataBase.Instance.RepositoryManager.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
+                Container defaultContainer = DataBase.Instance.RepositoryManager.NatureList.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
                 {
                     Scale = new DSVector3 { x = 1, y = 1, z = 1 },
                 });
@@ -206,7 +181,7 @@ namespace DoorofSoul.Library
                 {
                     Soul soul = soulDictionary[soulID];
                     ExtractSoul(soul);
-                    DataBase.Instance.RepositoryManager.SoulRepository.Delete(soulID);
+                    DataBase.Instance.RepositoryManager.ThroneList.SoulRepository.Delete(soulID);
                     answer.RemoveSoul(soulID);
                     return true;
                 }

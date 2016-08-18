@@ -1,6 +1,6 @@
 ﻿using System;
 using DoorofSoul.Database;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.Skill;
 using DoorofSoul.Protocol;
 
 namespace DoorofSoul.Library.KnowledgeComponents

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using DoorofSoul.Library.General.NatureComponents.ContainerElements;
-using DoorofSoul.Client.HelpFunctions;
+﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
-using System;
+using DoorofSoul.Library.General.ElementComponents.Items;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts
 {

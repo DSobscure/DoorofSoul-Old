@@ -25,6 +25,39 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 return memoryStream.ToArray();
             }
         }
+        public static ContainerAttributes GetDefaultAttribute()
+        {
+            ContainerAttributes attributes = new ContainerAttributes(
+                level: 1,
+                maxLevel: 30,
+                experience: 0,
+                lifePoint: 100,
+                maxEnergyPoint: 100,
+                energyPoint: 50,
+                maxLifePoint: 50,
+                kernelAbilitiesPotential: new ContainerKernelAbilitiesPotential(
+                    sensibility: 1,
+                    regeneration: 1,
+                    explosiveness: 1,
+                    strength: 1,
+                    memory: 1,
+                    coordination: 1,
+                    computation: 1,
+                    conductivity: 1
+                ),
+                kernelAbilities: new ContainerKernelAbilities(
+                    sensibilityPoint: 3,
+                    regenerationPoint: 3,
+                    explosivenessPoint: 3,
+                    strengthPoint: 3,
+                    memoryPoint: 3,
+                    coordinationPoint: 3,
+                    computationPoint: 3,
+                    conductivityPoint: 3
+                )
+            );
+            return attributes;
+        }
 
         private byte level;
         public byte Level { get { return level; } protected set { level = Math.Max(Math.Min(value, MaxLevel), (byte)0); onLevelChange?.Invoke(level); } }
@@ -46,9 +79,9 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 
         public decimal MaxEnergyPoint { get; protected set; } = decimal.MaxValue;
 
-        public ContainerKernelAbilityPotential KernelAbilityPotential { get; protected set; }
+        public ContainerKernelAbilitiesPotential KernelAbilitiesPotential { get; protected set; }
 
-        public ContainerKernelAbility KernelAbility { get; protected set; }
+        public ContainerKernelAbilities KernelAbilities { get; protected set; }
 
         private event Action<byte> onLevelChange;
         public event Action<byte> OnLevelChange { add { onLevelChange += value; } remove { onLevelChange -= value; } }
@@ -63,7 +96,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         public event Action<decimal> OnEnergyPointChange { add { onEnergyPointChange += value; } remove { onEnergyPointChange -= value; } }
 
         public ContainerAttributes() { }
-        public ContainerAttributes(byte level, byte maxLevel, int experience, decimal lifePoint, decimal maxLifePoint, decimal energyPoint, decimal maxEnergyPoint, ContainerKernelAbilityPotential kernelAbilityPotential, ContainerKernelAbility kernelAbility)
+        public ContainerAttributes(byte level, byte maxLevel, int experience, decimal lifePoint, decimal maxLifePoint, decimal energyPoint, decimal maxEnergyPoint, ContainerKernelAbilitiesPotential kernelAbilitiesPotential, ContainerKernelAbilities kernelAbilities)
         {
             Level = level;
             MaxLevel = maxLevel;
@@ -72,8 +105,8 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
             MaxLifePoint = maxLifePoint;
             EnergyPoint = energyPoint;
             MaxEnergyPoint = maxEnergyPoint;
-            KernelAbilityPotential = kernelAbilityPotential;
-            KernelAbility = kernelAbility;
+            KernelAbilitiesPotential = kernelAbilitiesPotential;
+            KernelAbilities = kernelAbilities;
         }
     }
 }

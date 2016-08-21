@@ -1,19 +1,18 @@
-﻿using DoorofSoul.Library.General.KnowledgeComponents;
+﻿using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.ElementComponents.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 {
-    public struct ItemInfo
-    {
-        public Item item;
-        public int count;
-        public int positionIndex;
-    }
-
     public class Inventory
     {
+        public static int GetDefaultCapacity()
+        {
+            return 40;
+        }
+
         public int InventoryID { get; protected set; }
         public int ContainerID { get; protected set; }
         public int Capacity { get; protected set; }

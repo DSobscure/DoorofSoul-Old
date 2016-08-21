@@ -69,6 +69,10 @@
     <Compile Include="ServerPlayerCommunicationInterface.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoorofSoul.Database.MySQL\DoorofSoul.Database.MySQL.csproj">
+      <Project>{38a70138-98a6-48f0-b729-a3c39a6d0871}</Project>
+      <Name>DoorofSoul.Database.MySQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoorofSoul.Database\DoorofSoul.Database.csproj">
       <Project>{d03ef50d-28c2-4c75-8f24-8dc094680e05}</Project>
       <Name>DoorofSoul.Database</Name>

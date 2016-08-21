@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.KnowledgeComponents;
+﻿using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Container;

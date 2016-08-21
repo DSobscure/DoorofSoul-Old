@@ -1,5 +1,5 @@
-﻿using DoorofSoul.Database;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+﻿using DoorofSoul.Library.General.KnowledgeComponents;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
@@ -11,6 +11,8 @@ namespace DoorofSoul.Library
 {
     public class Knowledge
     {
+        protected Dictionary<int, Skill> skillDictionary;
+
         public AlchemySystem AlchemySystem { get; protected set; }
         public ElementSystem ElementSystem { get; protected set; }
         public GenieSystem GenieSystem { get; protected set; }
@@ -21,6 +23,9 @@ namespace DoorofSoul.Library
 
         public Knowledge()
         {
+            skillDictionary = new Dictionary<int, Skill>();
+            LoadSkills(Database.Database.RepositoryList.KnowledgeRepositoryList.SkillRepository.List());
+
             AlchemySystem = new AlchemySystem();
             ElementSystem = new ElementSystem();
             GenieSystem = new GenieSystem();
@@ -28,14 +33,39 @@ namespace DoorofSoul.Library
             ChanceSystem = new ChanceSystem();
             TechnologySystem = new TechnologySystem();
             BeliefSystem = new BeliefSystem();
+        }
 
-            AlchemySystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.AlchemySkillRepository.List());
-            ElementSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.ElementSkillRepository.List());
-            GenieSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.GenieSkillRepository.List());
-            DemonSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.DemonSkillRepository.List());
-            ChanceSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.ChanceSkillRepository.List());
-            TechnologySystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.TechnologySkillRepository.List());
-            BeliefSystem.LoadSkills(DataBase.Instance.RepositoryManager.KnowledgeList.SkillsList.BeliefSkillRepository.List());
+        public bool ContainsSkill(int skillID)
+        {
+            return skillDictionary.ContainsKey(skillID);
+        }
+        public Skill FindSkill(int skillID)
+        {
+            if (ContainsSkill(skillID))
+            {
+                return skillDictionary[skillID];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void LoadSkill(Skill skill)
+        {
+            if (!ContainsSkill(skill.SkillID))
+            {
+                skillDictionary.Add(skill.SkillID, skill);
+            }
+        }
+        public void LoadSkills(List<Skill> skills)
+        {
+            foreach (Skill skill in skills)
+            {
+                if (!ContainsSkill(skill.SkillID))
+                {
+                    skillDictionary.Add(skill.SkillID, skill);
+                }
+            }
         }
 
         public HeptagramSystem ChoseSystem(HeptagramSystemTypeCode systemTypeCode)
@@ -63,16 +93,26 @@ namespace DoorofSoul.Library
 
         public bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
         {
-            HeptagramSystem system = ChoseSystem(skillInfo.Skill.SystemTypeCode);
-            if(system != null)
+            if (ContainsSkill(skillInfo.SkillInfoID))
             {
-                return system.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage);
+                HeptagramSystem system = ChoseSystem(skillInfo.Skill.SystemTypeCode);
+                if (system != null)
+                {
+                    return system.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage);
+                }
+                else
+                {
+                    skillResponseParameters = new Dictionary<byte, object>();
+                    errorCode = ErrorCode.NotExist;
+                    debugMessage = "Not Exist System";
+                    return false;
+                }
             }
             else
             {
                 skillResponseParameters = new Dictionary<byte, object>();
                 errorCode = ErrorCode.NotExist;
-                debugMessage = "Not Exist System";
+                debugMessage = "SkillInfo Not Exist";
                 return false;
             }
         }

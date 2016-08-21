@@ -48,14 +48,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KnowledgeComponents\Status\Status.cs" />
-    <Compile Include="KnowledgeComponents\Status\StatusInfo.cs" />
+    <Compile Include="ElementComponents\Items\ItemInfo.cs" />
+    <Compile Include="KnowledgeComponents\Status.cs" />
+    <Compile Include="KnowledgeComponents\Statuses\StatusInfo.cs" />
     <Compile Include="ThroneComponents\Answer.cs" />
     <Compile Include="BasicTypeHelpers\DSDecimal.cs" />
     <Compile Include="NatureComponents\Container.cs" />
     <Compile Include="NatureComponents\ContainerElements\ContainerAttributes.cs" />
-    <Compile Include="NatureComponents\ContainerElements\ContainerKernelAbility.cs" />
-    <Compile Include="NatureComponents\ContainerElements\ContainerKernelAbilityPotential.cs" />
+    <Compile Include="NatureComponents\ContainerElements\ContainerKernelAbilities.cs" />
+    <Compile Include="NatureComponents\ContainerElements\ContainerKernelAbilitiesPotential.cs" />
     <Compile Include="ElementComponents\DSVector3.cs" />
     <Compile Include="NatureComponents\Entity.cs" />
     <Compile Include="NatureComponents\EntityElements\EntityProperties.cs" />
@@ -104,7 +105,7 @@
     <Compile Include="LightComponents\Communications\Events\Managers\SceneEventManager.cs" />
     <Compile Include="LightComponents\Communications\Events\Managers\SoulEventManager.cs" />
     <Compile Include="LightComponents\Communications\Events\Managers\WorldEventManager.cs" />
-    <Compile Include="KnowledgeComponents\Skill\Skill.cs" />
+    <Compile Include="KnowledgeComponents\Skill.cs" />
     <Compile Include="NatureComponents\EntityElements\IEntityController.cs" />
     <Compile Include="NatureComponents\ContainerElements\Inventory.cs" />
     <Compile Include="ElementComponents\Item.cs" />
@@ -223,12 +224,12 @@
     <Compile Include="NatureComponents\Scene.cs" />
     <Compile Include="NatureComponents\SceneElements\MessageLog.cs" />
     <Compile Include="NatureComponents\SceneElements\SceneEye.cs" />
-    <Compile Include="KnowledgeComponents\Skill\SkillKnowledgeInterface.cs" />
+    <Compile Include="KnowledgeComponents\Skills\SkillKnowledgeInterface.cs" />
     <Compile Include="ThroneComponents\Soul.cs" />
-    <Compile Include="KnowledgeComponents\Skill\SkillInfo.cs" />
-    <Compile Include="KnowledgeComponents\Skill\SkillLibrary.cs" />
+    <Compile Include="KnowledgeComponents\Skills\SkillInfo.cs" />
+    <Compile Include="KnowledgeComponents\Skills\SkillLibrary.cs" />
     <Compile Include="ThroneComponents\SoulElements\SoulAttributes.cs" />
-    <Compile Include="ThroneComponents\SoulElements\SoulKernelAbility.cs" />
+    <Compile Include="ThroneComponents\SoulElements\SoulKernelAbilities.cs" />
     <Compile Include="ThroneComponents\SoulElements\SoulPhase.cs" />
     <Compile Include="NatureComponents\World.cs" />
     <Compile Include="NatureComponents\WorldCommunicationInterface.cs" />

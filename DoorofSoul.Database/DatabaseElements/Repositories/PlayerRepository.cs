@@ -8,5 +8,6 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories
         public abstract bool Contains(string account, out int playerID);
         public abstract PlayerData Find(int playerID);
         public abstract void Save(Player player);
+        public abstract bool LoginCheck(string account, string password);
     }
 }

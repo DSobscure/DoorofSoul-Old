@@ -33,10 +33,6 @@
     <Reference Include="ExitGamesLibs">
       <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,71 +43,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase.cs" />
-    <Compile Include="DatabaseElements\AuthenticationManager.cs" />
-    <Compile Include="DatabaseElements\Authentications\MySQL\MySQLPlayerAuthentication.cs" />
-    <Compile Include="DatabaseElements\Authentications\PlayerAuthentication.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\MySQLAuthenticationManager.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\MySQLRelationManager.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\MySQLRepositoryManager.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\MySQLKnowledgeList.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\Knowledge\MySQLSkillsList.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\MySQLNatureList.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\Nature\MySQLContainerElementsList.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\Nature\MySQLEntityElementsList.cs" />
-    <Compile Include="DatabaseElements\MySQLManagers\RepositoryList\MySQLThroneList.cs" />
-    <Compile Include="DatabaseElements\RelationManager.cs" />
-    <Compile Include="DatabaseElements\Relations\InventoryID_ItemInfo_Relations.cs" />
-    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_InventoryID_ItemInfo_Relation.cs" />
-    <Compile Include="DatabaseElements\Relations\MySQL\MySQL_SoulID_ContainerID_Relation.cs" />
-    <Compile Include="DatabaseElements\Relations\SoulID_ContainerID_Relations.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\AlchemySkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\EntityElements\MySQLEntitySpacePropertiesRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\EntityElements\EntitySpacePropertiesRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Throne\AnswerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\BeliefSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\ChanceSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\ContainerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\DemonSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\ElementSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\EntityRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\GenieSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\ContainerElements\InventoryRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\ItemRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLAlchemySkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Throne\MySQLAnswerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLBeliefSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLChanceSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\MySQLContainerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLDemonSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLElementSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\MySQLEntityRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLGenieSkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\ContainerElements\MySQLInventoryRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\MySQLItemRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\MySQLPlayerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\MySQLSceneRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLSkillInfoRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Throne\MySQLSoulRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Knowledge\Skills\MySQLTechnologySkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\MySQL\Nature\MySQLWorldRepository.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DatabaseElements\ConnectionList.cs" />
+    <Compile Include="DatabaseElements\Connections\ElementConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\ElementConnections\ItemsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\KnowledgeConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\KnowledgeConnections\SkillsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\LoveConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\ContainerElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\EntityElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\ThroneConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\ThroneConnections\SoulElementsConnection.cs" />
+    <Compile Include="DatabaseElements\DatabaseConnection.cs" />
+    <Compile Include="DatabaseElements\InstantiableRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\ItemInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\LoveRepositories\SoulContainerLinkRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LoveRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerAttributesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerKernelAbilitiesPotentialRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerKernelAbilitiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\SoulAttributesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\SoulKernelAbilitiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\SoulPhaseRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositories\EntitySpacePropertiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\AnswerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\InventoryRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\PlayerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\SceneRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\SkillInfoRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Throne\SoulRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Knowledge\Skills\TechnologySkillRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\Nature\WorldRepository.cs" />
-    <Compile Include="DatabaseElements\RepositoryManager.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\KnowledgeList.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\Knowledge\SkillsList.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\NatureList.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\Nature\ContainerElementsList.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\Nature\EntityElementsList.cs" />
-    <Compile Include="DatabaseElements\RepositoryList\ThroneList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositories\SkillInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\WorldRepository.cs" />
+    <Compile Include="DatabaseElements\RepositoryList.cs" />
     <Compile Include="KnowledgeInterface.cs" />
     <Compile Include="Library\PlayerData.cs" />
     <Compile Include="Library\WorldData.cs" />
-    <Compile Include="MySQLDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

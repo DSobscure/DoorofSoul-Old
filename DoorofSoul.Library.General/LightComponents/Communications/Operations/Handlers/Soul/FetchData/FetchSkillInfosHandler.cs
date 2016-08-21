@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Soul;
 

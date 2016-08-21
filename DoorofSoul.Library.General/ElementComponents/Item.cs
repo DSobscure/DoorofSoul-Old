@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using MsgPack.Serialization;
 
-namespace DoorofSoul.Library.General.KnowledgeComponents
+namespace DoorofSoul.Library.General.ElementComponents
 {
     public class Item
     {

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using DoorofSoul.Protocol;
 using DoorofSoul.Client.Protocol.Language;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using System.Text;
 using System.Collections.Generic;
 

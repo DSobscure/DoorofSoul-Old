@@ -1,10 +1,11 @@
 ﻿using DoorofSoul.Database;
+using DoorofSoul.Database.MySQL;
 using DoorofSoul.Library;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.KnowledgeComponents;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;
@@ -42,7 +43,7 @@ namespace DoorofSoul.Server
 
         protected override void TearDown()
         {
-            DataBase.Instance.Dispose();
+            Database.Database.Dispose();
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
@@ -81,8 +82,11 @@ namespace DoorofSoul.Server
 
         protected void SetupDatabase()
         {
-            DataBase.Initial(new MySQLDatabase(Log, new HexagramKnowledgeInterface()));
-            DataBase.Instance.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database);
+            Database.Database.Initial(new MySQLDatabase(Log, new HexagramKnowledgeInterface()));
+            if(Database.Database.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database))
+            {
+                Log.Info("Database Setup Successiful.......");
+            }
         }
         protected void SetupHexagram()
         {

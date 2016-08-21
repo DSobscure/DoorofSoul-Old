@@ -1,10 +1,9 @@
-﻿using DoorofSoul.Protocol;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+﻿using DoorofSoul.Library.General.KnowledgeComponents;
 
 namespace DoorofSoul.Database
 {
     public interface KnowledgeInterface
     {
-        Skill FindSkill(HeptagramSystemTypeCode systemTypeCode, int skillID);
+        Skill FindSkill(int skillID);
     }
 }

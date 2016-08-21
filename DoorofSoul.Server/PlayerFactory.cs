@@ -51,13 +51,13 @@ namespace DoorofSoul.Server
         public bool PlayerLogin(ServerPlayer player, string account, string password, out string debugMessage, out ErrorCode errorCode)
         {
             int playerID;
-            if (DataBase.Instance.RepositoryManager.PlayerRepository.Contains(account, out playerID))
+            if (Database.Database.RepositoryList.PlayerRepository.Contains(account, out playerID))
             {
-                if (DataBase.Instance.AuthenticationManager.PlayerAuthentication.LoginCheck(account, password))
+                if (Database.Database.RepositoryList.PlayerRepository.LoginCheck(account, password))
                 {
                     debugMessage = null;
                     errorCode = ErrorCode.NoError;
-                    player.LoadPlayer(DataBase.Instance.RepositoryManager.PlayerRepository.Find(playerID));
+                    player.LoadPlayer(Database.Database.RepositoryList.PlayerRepository.Find(playerID));
                     if(PlayerOnline(player))
                     {
                         return true;

@@ -3,7 +3,7 @@ using DoorofSoul.Client.Communication.Responses;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.KnowledgeComponents;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;

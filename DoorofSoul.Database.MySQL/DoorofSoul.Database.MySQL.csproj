@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38A70138-98A6-48F0-B729-A3C39A6D0871}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DoorofSoul.Database.MySQL</RootNamespace>
+    <AssemblyName>DoorofSoul.Database.MySQL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExitGamesLibs">
+      <HintPath>..\..\..\..\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DatabaseElements\Connections\ElementConnections\MySQLItemsConnection.cs" />
+    <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLItemInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLSkillRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLSkillsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositories\MySQLSkillInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LoveRepositories\MySQLSoulContainerLinkRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLElementRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLKnowledgeRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLLoveRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLNatureRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLPlayerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLThroneRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLSkillsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLElementConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLKnowledgeConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLLoveConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLNatureConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLThroneConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLContainerElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLEntityElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\ThroneConnections\MySQLSoulElementsConnection.cs" />
+    <Compile Include="DatabaseElements\MySQLConnectionList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLContainerAttributesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLContainerKernelAbilitiesPotentialRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLContainerKernelAbilitiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLInventoryRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositories\MySQLEntitySpacePropertiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLContainerElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLContainerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLEntityElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLEntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLSceneRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLWorldRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulAttributesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulKernelAbilitiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulPhaseRepository.cs" />
+    <Compile Include="MySQLDatabase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoorofSoul.Database\DoorofSoul.Database.csproj">
+      <Project>{d03ef50d-28c2-4c75-8f24-8dc094680e05}</Project>
+      <Name>DoorofSoul.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Library.General\DoorofSoul.Library.General.csproj">
+      <Project>{28e98488-b39a-471d-ae89-740f9c09f7d8}</Project>
+      <Name>DoorofSoul.Library.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
+      <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>
+      <Name>DoorofSoul.Protocol.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol.Language\DoorofSoul.Protocol.Language.csproj">
+      <Project>{ecd0c890-9f0d-49cc-bd3d-a6656686e18f}</Project>
+      <Name>DoorofSoul.Protocol.Language</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoorofSoul.Protocol\DoorofSoul.Protocol.csproj">
+      <Project>{9f5b0064-cbfb-4852-b308-ab64760955c8}</Project>
+      <Name>DoorofSoul.Protocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

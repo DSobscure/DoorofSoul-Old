@@ -1,47 +1,39 @@
 ﻿using DoorofSoul.Database.DatabaseElements;
-using System.Data.Common;
-using System;
 using ExitGames.Logging;
+using System;
 
 namespace DoorofSoul.Database
 {
-    public abstract class DataBase : IDisposable
+    public abstract class Database
     {
-        protected static DataBase instance;
-        public static DataBase Instance { get { return instance; } }
-        public static void Initial(DataBase instance)
+        protected static Database instance;
+        public static Database Instance { get { return instance; } }
+        public static ConnectionList ConnectionList { get { return instance.connectionList; } }
+        public static RepositoryList RepositoryList { get { return instance.repositoryList; } }
+        public static ILogger Log { get { return instance.log; } }
+        public static void Initial(Database instance)
         {
-            DataBase.instance = instance;
+            Database.instance = instance;
         }
-
-        protected DbConnection connection;
-        public DbConnection Connection
-        {
-            get
-            {
-                connection.Close();
-                connection.Open();
-                return connection;
-            }
-        }
-        public AuthenticationManager AuthenticationManager { get; protected set; }
-        public RepositoryManager RepositoryManager { get; protected set; }
-        public RelationManager RelationManager { get; protected set; }
-        public ILogger Log { get; protected set; }
+        protected ConnectionList connectionList;
+        protected RepositoryList repositoryList;
+        protected ILogger log;
         public KnowledgeInterface KnowledgeInterface { get; protected set; }
 
-        protected DataBase(ILogger log, KnowledgeInterface knowledgeInterface)
+        protected Database(ILogger log, KnowledgeInterface knowledgeInterface)
         {
-            Log = log;
+            this.log = log;
             KnowledgeInterface = knowledgeInterface;
         }
-        public abstract bool Connect(string hostName, string userName, string password, string database);
-
-        public void Dispose()
+        public static bool Connect(string hostName, string userName, string password, string database)
         {
-            connection.Close();
+            ConnectionList.Connect(hostName, userName, password, database);
+            return ConnectionList.Connected;
         }
 
-        
+        public static void Dispose()
+        {
+            ConnectionList.Dispose();
+        }
     }
 }

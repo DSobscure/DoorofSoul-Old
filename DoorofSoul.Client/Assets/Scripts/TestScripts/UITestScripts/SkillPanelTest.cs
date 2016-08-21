@@ -1,7 +1,8 @@
 ﻿using DoorofSoul.Client.Library.General;
 using DoorofSoul.Client.Scripts.UiScripts.ExtraPanelScripts;
 using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.KnowledgeComponents.Skill;
+using DoorofSoul.Library.General.KnowledgeComponents;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Language;

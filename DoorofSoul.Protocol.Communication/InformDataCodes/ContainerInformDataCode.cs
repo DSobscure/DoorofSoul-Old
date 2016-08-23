@@ -4,6 +4,7 @@
     {
         Message,
         LifePointChange,
-        EnergyPointChange
+        EnergyPointChange,
+        ContainerStatusEffectInfoChange
     }
 }

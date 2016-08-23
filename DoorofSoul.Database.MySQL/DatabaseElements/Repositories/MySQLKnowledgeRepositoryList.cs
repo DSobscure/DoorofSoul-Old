@@ -8,9 +8,10 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories
         protected override void InstantiateRepositories()
         {
             SkillRepository = new MySQLSkillRepository();
+            StatusEffectRepository = new MySQLStatusEffectRepository();
 
             SkillsRepositoryList = new MySQLSkillsRepositoryList();
-
+            StatusEffectsRepositoryList = new MySQLStatusEffectsRepositoryList();
         }
     }
 }

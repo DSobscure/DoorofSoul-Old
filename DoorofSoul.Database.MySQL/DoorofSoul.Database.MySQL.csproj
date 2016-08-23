@@ -48,13 +48,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseElements\Connections\ElementConnections\MySQLItemsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLSkillRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLSkillsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLStatusEffectRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLStatusEffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositories\MySQLSkillInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositories\MySQLContainerStatusEffectInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LoveRepositories\MySQLSoulContainerLinkRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLElementRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLKnowledgeRepositoryList.cs" />

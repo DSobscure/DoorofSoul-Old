@@ -14,6 +14,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
             string sqlString = @"INSERT INTO SkillInfoCollection 
                 (UnderstanderSoulID,SkillID,SkillLevel,SkillPitch) VALUES (@understanderSoulID,@skillID,@skillLevel,@skillPitch) ;
                 SELECT LAST_INSERT_ID();";
+            int skillInfoID;
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.KnowledgeConnection.SkillsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@understanderSoulID", understanderSoulID);
@@ -24,8 +25,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                 {
                     if (reader.Read())
                     {
-                        int skillInfoID = reader.GetInt32(0);
-                        return Find(skillInfoID);
+                        skillInfoID = reader.GetInt32(0);
                     }
                     else
                     {
@@ -33,6 +33,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                     }
                 }
             }
+            return Find(skillInfoID);
         }
 
         public override void Delete(int skillInfoID)
@@ -44,7 +45,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                 command.Parameters.AddWithValue("@skillInfoID", skillInfoID);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLSkillInfoRepository Delete SkillInfo Error SceneID: {0}", skillInfoID);
+                    Database.Log.ErrorFormat("MySQLSkillInfoRepository Delete SkillInfo Error SkillID: {0}", skillInfoID);
                 }
             }
         }
@@ -115,7 +116,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                 command.Parameters.AddWithValue("@skillInfoID", skillInfo.SkillInfoID);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLSkillInfoRepository Save SkillInfo Error SceneID: {0}", skillInfo.SkillInfoID);
+                    Database.Log.ErrorFormat("MySQLSkillInfoRepository Save SkillInfo Error SkillID: {0}", skillInfo.SkillInfoID);
                 }
             }
         }

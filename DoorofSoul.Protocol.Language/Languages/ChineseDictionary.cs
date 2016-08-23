@@ -38,6 +38,8 @@ namespace DoorofSoul.Protocol.Language.Languages
                 { "Fetch Worlds Error", "讀取世界錯誤" },
                 { "Fetch Entity Error", "讀取實體錯誤" },
                 { "Fetch SkillInfos Error", "讀取技能資訊錯誤" },
+                { "Fetch InventoryItems Error", "讀取道具欄內容資訊錯誤" },
+                { "Fetch ContainerStatusEffectInfos Error", "讀取容器狀態資訊錯誤" },
                 #endregion
 
                 #region UI

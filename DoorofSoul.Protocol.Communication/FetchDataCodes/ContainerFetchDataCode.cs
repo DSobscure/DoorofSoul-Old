@@ -5,5 +5,6 @@
         Entity,
         Inventory,
         InventoryItems,
+        ContainerStatusEffectInfos
     }
 }

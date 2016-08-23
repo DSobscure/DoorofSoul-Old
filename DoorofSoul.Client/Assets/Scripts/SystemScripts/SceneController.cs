@@ -47,10 +47,12 @@ namespace DoorofSoul.Client.Scripts.SystemScripts
                 {
                     InstantiateEntity(entity);
                 }
-                RectTransform playerPanel = Instantiate(playerPanelPrefab).GetComponent<RectTransform>();
-                playerPanel.transform.SetParent(canvas.transform);
-                playerPanel.localScale = Vector3.one;
-                playerPanel.localPosition = Vector3.zero;
+                PlayerPanel playerPanel = Instantiate(playerPanelPrefab);
+                RectTransform panel = playerPanel.GetComponent<RectTransform>();
+                panel.transform.SetParent(canvas.transform);
+                panel.localScale = Vector3.one;
+                panel.localPosition = Vector3.zero;
+                playerPanel.Initial(scene, Global.Global.Seat.MainSoul, Global.Global.Seat.MainContainer);
             }
         }
 

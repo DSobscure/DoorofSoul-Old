@@ -1,8 +1,9 @@
 ﻿using DoorofSoul.Database;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Library.General.NatureComponents.EntityElements;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
 using DoorofSoul.Protocol;
@@ -38,11 +39,6 @@ namespace DoorofSoul.Library
                 foreach (Soul soul in answer.Souls)
                 {
                     soul.BindSkillKnowledgeInterface(new HeptagramSkillKnowledgeInterface());
-
-                    soul.Attributes.OnCorePointChange += soul.SoulEventManager.InformDataResolver.InformCorePointChange;
-                    soul.Attributes.OnSpiritPointChange += soul.SoulEventManager.InformDataResolver.InformSpiritPointChange;
-
-                    soul.SkillLibrary.LoadSkillInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.SkillsRepositoryList.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
                     ProjectSoul(soul);
                 }
             }
@@ -52,6 +48,12 @@ namespace DoorofSoul.Library
             if (!soulDictionary.ContainsKey(soul.SoulID))
             {
                 soulDictionary.Add(soul.SoulID, soul);
+
+                soul.Attributes.OnCorePointChange += soul.SoulEventManager.InformDataResolver.InformCorePointChange;
+                soul.Attributes.OnSpiritPointChange += soul.SoulEventManager.InformDataResolver.InformSpiritPointChange;
+
+                soul.SkillLibrary.LoadSkillInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.SkillsRepositoryList.SkillInfoRepository.ListOfUnderstander(soul.SoulID));
+
                 List<int> containerIDs = Database.Database.RepositoryList.LoveRepositoryList.SoulContainerLinkRepository.GetContainerIDs(soul.SoulID);
                 List<Container> containers = new List<Container>();
                 foreach (int containerID in containerIDs)
@@ -64,9 +66,6 @@ namespace DoorofSoul.Library
                     else
                     {
                         container = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Find(containerID);
-
-                        container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
-                        container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
                     }
                     soul.LinkContainer(container);
                     container.LinkSoul(soul);
@@ -121,15 +120,16 @@ namespace DoorofSoul.Library
             if (soulDictionary.ContainsKey(soul.SoulID))
             {
                 Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.Save(soul);
+                foreach(SkillInfo info in soul.SkillLibrary.SkillInfos)
+                {
+                    Database.Database.RepositoryList.KnowledgeRepositoryList.SkillsRepositoryList.SkillInfoRepository.Save(info);
+                }
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
                     if (container.IsEmptyContainer)
                     {
-                        Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Save(container);
                         Hexagram.Instance.Nature.ExtractContainer(container);
-                        container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
-                        container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
                     }
                 }
                 soul.UnlinkAllContainers();

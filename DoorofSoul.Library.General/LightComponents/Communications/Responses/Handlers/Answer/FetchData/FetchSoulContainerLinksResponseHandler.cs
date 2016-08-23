@@ -54,6 +54,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                             answer.LinkSoulContainer(soulID, containerID);
                             container.ContainerOperationManager.FetchDataResolver.FetchEntity();
                             container.ContainerOperationManager.FetchDataResolver.FetchInventory();
+                            container.ContainerOperationManager.FetchDataResolver.FetchContainerStatusEffectInfos();
                         }
                         else
                         {

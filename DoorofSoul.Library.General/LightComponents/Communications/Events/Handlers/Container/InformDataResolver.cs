@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Container.InformData;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
@@ -18,7 +19,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             informTable = new Dictionary<ContainerInformDataCode, InformDataHandler>
             {
                 { ContainerInformDataCode.LifePointChange, new InformLifePointChangeHandler(container) },
-                { ContainerInformDataCode.EnergyPointChange, new InformEnergyPointChangeHandler(container) }
+                { ContainerInformDataCode.EnergyPointChange, new InformEnergyPointChangeHandler(container) },
+                { ContainerInformDataCode.ContainerStatusEffectInfoChange, new InformContainerStatusEffectInfoChangeHandler(container) }
             };
         }
 
@@ -67,6 +69,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformEnergyPointChangeParameterCode.NewEnergyPoint, new DSDecimal { value = energyPoint } },
             };
             SendInform(ContainerInformDataCode.EnergyPointChange, parameters);
+        }
+        public void InformLoadContainerStatusEffectInfo(ContainerStatusEffectInfo info, bool isLoad)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformContainerStatusEffectInfoChangeParameterCode.ContainerStatusEffectInfo, info },
+                { (byte)InformContainerStatusEffectInfoChangeParameterCode.IsLoad, isLoad }
+            };
+            SendInform(ContainerInformDataCode.ContainerStatusEffectInfoChange, parameters);
         }
     }
 }

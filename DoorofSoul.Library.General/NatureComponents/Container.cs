@@ -36,6 +36,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public SupportLauguages UsingLanguage { get { return soulDictionary.FirstOrDefault().Value.UsingLanguage; } }
         public Inventory Inventory { get; protected set; }
         public ContainerAttributes Attributes { get; protected set; }
+        public ContainerStatusEffectManager ContainerStatusEffectManager { get; protected set; }
         #endregion
 
         #region communication
@@ -50,6 +51,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             EntityID = entityID;
             ContainerName = containerName;
             Attributes = attributes;
+            ContainerStatusEffectManager = new ContainerStatusEffectManager(this);
             soulDictionary = new Dictionary<int, Soul>();
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);

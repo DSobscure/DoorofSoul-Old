@@ -49,8 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElementComponents\Items\ItemInfo.cs" />
-    <Compile Include="KnowledgeComponents\Status.cs" />
-    <Compile Include="KnowledgeComponents\Statuses\StatusInfo.cs" />
+    <Compile Include="KnowledgeComponents\StatusEffect.cs" />
+    <Compile Include="KnowledgeComponents\StatusEffects\ContainerStatusEffectInfo.cs" />
+    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformContainerStatusEffectInfoChangeHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\FetchData\FetchContainerStatusEffectInfosHandler.cs" />
+    <Compile Include="LightComponents\Communications\Responses\Handlers\Container\FetchData\FetchContainerStatusEffectInfosResponseHandler.cs" />
+    <Compile Include="NatureComponents\ContainerElements\ContainerStatusEffectManager.cs" />
     <Compile Include="ThroneComponents\Answer.cs" />
     <Compile Include="BasicTypeHelpers\DSDecimal.cs" />
     <Compile Include="NatureComponents\Container.cs" />

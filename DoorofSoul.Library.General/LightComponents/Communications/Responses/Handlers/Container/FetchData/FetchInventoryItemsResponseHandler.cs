@@ -32,8 +32,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                     }
                 default:
                     {
-                        LibraryInstance.ErrorFormat("Fetch Inventory Response Error DebugMessage: {0}", debugMessage);
-                        container.ContainerEventManager.ErrorInform(LauguageDictionarySelector.Instance[container.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[container.UsingLanguage]["Fetch Entity Error"], Protocol.Communication.Channels.ContainerCommunicationChannel.Answer);
+                        LibraryInstance.ErrorFormat("Fetch InventoryItems Response Error DebugMessage: {0}", debugMessage);
+                        container.ContainerEventManager.ErrorInform(LauguageDictionarySelector.Instance[container.UsingLanguage]["Unknown Error"], LauguageDictionarySelector.Instance[container.UsingLanguage]["Fetch InventoryItems Error"], Protocol.Communication.Channels.ContainerCommunicationChannel.Answer);
                         return false;
                     }
             }
@@ -55,7 +55,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                     }
                     else
                     {
-                        LibraryInstance.Error("InventoryItems Response Fail, No Inventory");
+                        LibraryInstance.Error("Fetch InventoryItems Response Fail, No Inventory");
                         return false;
                     }
                 }

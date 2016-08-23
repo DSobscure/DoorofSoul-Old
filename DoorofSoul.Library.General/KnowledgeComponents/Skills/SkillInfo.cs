@@ -1,6 +1,6 @@
-﻿using MsgPack.Serialization;
+﻿using DoorofSoul.Protocol;
+using MsgPack.Serialization;
 using System.IO;
-using DoorofSoul.Protocol;
 
 namespace DoorofSoul.Library.General.KnowledgeComponents.Skills
 {

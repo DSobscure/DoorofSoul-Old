@@ -17,7 +17,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
             {
                 { ContainerFetchDataCode.Entity, new FetchEntityResponseHandler(container) },
                 { ContainerFetchDataCode.Inventory, new FetchInventoryResponseHandler(container) },
-                { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsResponseHandler(container) }
+                { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsResponseHandler(container) },
+                { ContainerFetchDataCode.ContainerStatusEffectInfos, new FetchContainerStatusEffectInfosResponseHandler(container) },
             };
         }
 

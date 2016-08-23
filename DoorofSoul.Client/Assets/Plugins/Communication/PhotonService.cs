@@ -2,8 +2,8 @@
 using DoorofSoul.Client.Communication.Responses;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;
@@ -190,6 +190,7 @@ namespace DoorofSoul.Client.Communication
             PhotonPeer.RegisterType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             PhotonPeer.RegisterType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);
             PhotonPeer.RegisterType(typeof(SkillInfo), (byte)SerializationClassTypeCode.SkillInfo, SkillInfo.Serialize, SkillInfo.Deserialize);
+            PhotonPeer.RegisterType(typeof(ContainerStatusEffectInfo), (byte)SerializationClassTypeCode.ContainerStatusEffectInfo, ContainerStatusEffectInfo.Serialize, ContainerStatusEffectInfo.Deserialize);
         }
     }
 }

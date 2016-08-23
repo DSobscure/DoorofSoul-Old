@@ -1,6 +1,8 @@
 ﻿using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
+using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using System.Threading;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoorofSoul.Library
@@ -47,6 +49,12 @@ namespace DoorofSoul.Library
             if (container == Observer)
             {
                 StopMonitor();
+                if(container.ContainerStatusEffectManager.StatusEffectInfos.Any(x => x.StatusEffect.StatusEffectID == 1))
+                {
+                    ContainerStatusEffectInfo info = container.ContainerStatusEffectManager.StatusEffectInfos.First(x => x.StatusEffect.StatusEffectID == 1);
+                    Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.Delete(info.ContainerStatusEffectInfoID);
+                    container.ContainerStatusEffectManager.UnloadStatusEffectInfo(info);
+                }
             }
         }
     }

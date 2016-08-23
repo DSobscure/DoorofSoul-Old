@@ -17,6 +17,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         public int ContainerID { get; protected set; }
         public int Capacity { get; protected set; }
         protected ItemInfo[] itemInfos;
+
         public IEnumerable<ItemInfo> ItemInfos { get { return itemInfos.Where(x => x.item != null).OrderBy(x => x.positionIndex); } }
 
         private event Action<ItemInfo> onItemChange;

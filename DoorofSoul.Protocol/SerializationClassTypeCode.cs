@@ -8,6 +8,7 @@
         ContainerAttributes,
         SoulAttributes,
         DSVector3,
-        SkillInfo
+        SkillInfo,
+        ContainerStatusEffectInfo
     }
 }

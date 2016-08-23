@@ -9,7 +9,10 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
         public MySQLKnowledgeConnection()
         {
             SkillsConnection = new MySQLSkillsConnection();
+            StatusEffectsConnection = new MySQLStatusEffectsConnection();
+
             childConnections.Add(SkillsConnection);
+            childConnections.Add(StatusEffectsConnection);
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

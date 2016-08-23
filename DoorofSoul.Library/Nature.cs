@@ -3,6 +3,7 @@ using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.NatureComponents;
 using System.Collections.Generic;
 using System.Linq;
+using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 
 namespace DoorofSoul.Library
 {
@@ -120,6 +121,13 @@ namespace DoorofSoul.Library
             if (!ContainsContainer(container.ContainerID))
             {
                 containerDictionary.Add(container.ContainerID, container);
+
+                container.ContainerStatusEffectManager.LoadStatusEffectInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.ListOfAffected(container.ContainerID));
+
+                container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
+                container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
+                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformLoadContainerStatusEffectInfo;
+
                 if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
                 {
                     Scene scene = sceneDictionary[container.Entity.LocatedSceneID];
@@ -166,6 +174,11 @@ namespace DoorofSoul.Library
         {
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
+                Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Save(container);
+                foreach (ContainerStatusEffectInfo info in container.ContainerStatusEffectManager.StatusEffectInfos)
+                {
+                    Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.Save(info);
+                }
                 if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
                 {
                     Database.Database.RepositoryList.NatureRepositoryList.EntityRepository.Save(container.Entity);
@@ -173,6 +186,9 @@ namespace DoorofSoul.Library
                     ExtractEntity(container.Entity);
                 }
                 containerDictionary.Remove(container.ContainerID);
+                container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
+                container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
+                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformLoadContainerStatusEffectInfo;
             }
         }
         public void ExtractEntity(Entity entity)

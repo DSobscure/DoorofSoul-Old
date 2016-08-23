@@ -49,6 +49,7 @@
     <Compile Include="DatabaseElements\Connections\ElementConnections\ItemsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\SkillsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\KnowledgeConnections\StatusEffectsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\LoveConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\ContainerElementsConnection.cs" />
@@ -62,6 +63,9 @@
     <Compile Include="DatabaseElements\Repositories\ElementRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositories\ContainerStatusEffectInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\LoveRepositories\SoulContainerLinkRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LoveRepositoryList.cs" />

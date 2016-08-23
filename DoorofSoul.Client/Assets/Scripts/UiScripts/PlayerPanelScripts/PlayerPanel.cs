@@ -1,6 +1,8 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Client.Protocol.Language;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
         private Scene scene;
 
         #region status panel
-        private RectTransform statusPanel;
+        private StatusPanel statusPanel;
         #endregion
         #region skill panel
         private RectTransform skillHotKeyPanel;
@@ -44,22 +46,20 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
         private MessageContentPanel messageContentPanel;
         #endregion
 
-        void Awake()
-        {
-            scene = Global.Global.Horizon.MainScene;
-            RegisterEvents();
-        }
         void OnDestroy()
         {
             EraseEvents();
         }
-        void Start()
+        public void Initial(Scene scene, Soul soul, Container container)
         {
-            SetupStatusPanel();
+            this.scene = scene;
+            RegisterEvents();
+
+            SetupStatusPanel(container.ContainerStatusEffectManager);
             SetupSkillPanel();
             SetupMessageContentPanel();
             SetupMessageControlPanel();
-            SetupGeneralPanel();
+            SetupGeneralPanel(soul, container);
         }
 
         public void RegisterEvents()
@@ -70,8 +70,11 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 
         public void EraseEvents()
         {
-            scene.MessageLog.OnReceiveNewMessage -= OnReceiveNewMessage;
-            scene.MessageLog.OnMessageChange -= OnMessageChange;
+            if(scene != null)
+            {
+                scene.MessageLog.OnReceiveNewMessage -= OnReceiveNewMessage;
+                scene.MessageLog.OnMessageChange -= OnMessageChange;
+            }
         }
 
         private void OnReceiveNewMessage(MessageInformation messageInformation)
@@ -88,9 +91,10 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
             messageContentPanel.ShowMessage(stringBuilder.ToString());
         }
 
-        private void SetupStatusPanel()
+        private void SetupStatusPanel(ContainerStatusEffectManager containerStatusEffectManager)
         {
-            statusPanel = transform.FindChild("StatusPanel").GetComponent<RectTransform>();
+            statusPanel = transform.FindChild("StatusPanel").GetComponent<StatusPanel>();
+            statusPanel.BindContainerStatusEffectManager(containerStatusEffectManager);
         }
         private void SetupSkillPanel()
         {
@@ -105,13 +109,13 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
             foldMessageContentButton = messageControlPanel.transform.FindChild("FoldMessageContentButton").GetComponent<Button>();
             FoldMessageContent();
         }
-        private void SetupGeneralPanel()
+        private void SetupGeneralPanel(Soul soul, Container container)
         {
             generalPanel = transform.FindChild("GeneralPanel").GetComponent<RectTransform>();
             containerPanel = generalPanel.transform.FindChild("ContainerPanel").GetComponent<ContainerPanel>();
-            containerPanel.Setup(Global.Global.Seat.MainContainer);
+            containerPanel.Setup(container);
             soulPanel = generalPanel.transform.FindChild("SoulPanel").GetComponent<SoulPanel>();
-            soulPanel.Setup(Global.Global.Seat.MainSoul);
+            soulPanel.Setup(soul);
 
             messageInputPanel = generalPanel.transform.FindChild("MessageInputPanel").GetComponent<RectTransform>();
             messageInputField = messageInputPanel.transform.FindChild("MessageInputField").GetComponent<InputField>();
@@ -125,7 +129,7 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
             {
                 if (messageInputField.text.Length > 0)
                 {
-                    Global.Global.Seat.MainContainer.ContainerOperationManager.Say(messageInputField.text);
+                    container.ContainerOperationManager.Say(messageInputField.text);
                     messageInputField.text = "";
                 }
             });

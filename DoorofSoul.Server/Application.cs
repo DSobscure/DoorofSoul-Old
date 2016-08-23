@@ -4,8 +4,8 @@ using DoorofSoul.Library;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;
@@ -78,6 +78,7 @@ namespace DoorofSoul.Server
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(ContainerAttributes), (byte)SerializationClassTypeCode.ContainerAttributes, ContainerAttributes.Serialize, ContainerAttributes.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(DSVector3), (byte)SerializationClassTypeCode.DSVector3, DSVector3.Serialize, DSVector3.Deserialize);
             Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(SkillInfo), (byte)SerializationClassTypeCode.SkillInfo, SkillInfo.Serialize, SkillInfo.Deserialize);
+            Photon.SocketServer.Protocol.TryRegisterCustomType(typeof(ContainerStatusEffectInfo), (byte)SerializationClassTypeCode.ContainerStatusEffectInfo, ContainerStatusEffectInfo.Serialize, ContainerStatusEffectInfo.Deserialize);
         }
 
         protected void SetupDatabase()

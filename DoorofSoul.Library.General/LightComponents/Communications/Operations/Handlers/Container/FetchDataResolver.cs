@@ -19,6 +19,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                 { ContainerFetchDataCode.Entity, new FetchEntityHandler(container) },
                 { ContainerFetchDataCode.Inventory, new FetchInventoryHandler(container) },
                 { ContainerFetchDataCode.InventoryItems, new FetchInventoryItemsHandler(container) },
+                { ContainerFetchDataCode.ContainerStatusEffectInfos, new FetchContainerStatusEffectInfosHandler(container) },
             };
         }
 
@@ -66,6 +67,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
         public void FetchInventoryItems()
         {
             SendOperation(ContainerFetchDataCode.InventoryItems, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
+        }
+        public void FetchContainerStatusEffectInfos()
+        {
+            SendOperation(ContainerFetchDataCode.ContainerStatusEffectInfos, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
         }
     }
 }

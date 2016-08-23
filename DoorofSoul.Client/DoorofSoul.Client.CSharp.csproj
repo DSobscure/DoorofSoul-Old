@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SkillPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulAndContainerAttributeSlidersTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UITestScripts\StatusPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
     <Compile Include="Assets\Scripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ErrorInformPanel.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\PlayerPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\SoulPanel.cs" />
+    <Compile Include="Assets\Scripts\UiScripts\PlayerPanelScripts\StatusPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ScrollTextArea.cs" />
   </ItemGroup>
   <ItemGroup>

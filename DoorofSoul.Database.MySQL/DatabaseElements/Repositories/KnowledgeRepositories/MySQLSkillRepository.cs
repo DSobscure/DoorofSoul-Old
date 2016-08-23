@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories;
 using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepositories
 {
@@ -14,6 +13,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
             string sqlString = @"INSERT INTO SkillCollection 
                 (SystemTypeCode,MediaTypeCode,SkillName,BasicLifePointCost,BasicEnergyPointCost,BasicCorePointCost,BasicSpiritPointCost) VALUES (@systemTypeCode,@mediaTypeCode,@skillName,@basicLifePointCost,@basicEnergyPointCost,@basicCorePointCost,@basicSpiritPointCost) ;
                 SELECT LAST_INSERT_ID();";
+            int skillID;
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.KnowledgeConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@systemTypeCode", (byte)systemTypeCode);
@@ -27,8 +27,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                 {
                     if (reader.Read())
                     {
-                        int skillID = reader.GetInt32(0);
-                        return Find(skillID);
+                        skillID = reader.GetInt32(0);
                     }
                     else
                     {
@@ -36,6 +35,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepos
                     }
                 }
             }
+            return Find(skillID);
         }
 
         public override void Delete(int skillID)

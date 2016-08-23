@@ -69,6 +69,7 @@
     <Compile Include="FetchDataResponseParameters\Answer\FetchContainersResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulContainerLinksResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Answer\FetchSoulsResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Container\FetchContainerStatusEffectInfosResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Container\FetchEntityResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Container\FetchInventoryItemsResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Container\FetchInventoryResponseParameterCode.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="InformDataCodes\WorldInformDataCode.cs" />
     <Compile Include="InformDataParameters\Container\InformEnergyPointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformLifePointChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformContainerStatusEffectInfoChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformMessageParameterCode.cs" />
     <Compile Include="InformDataParameters\Soul\InformCorePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Soul\InformSpiritPointChangeParameterCode.cs" />

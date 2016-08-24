@@ -16,6 +16,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             fetchTable = new Dictionary<SceneFetchDataCode, FetchDataHandler>
             {
                 { SceneFetchDataCode.Entities, new FetchEntitiesHandler(scene) },
+                { SceneFetchDataCode.ItemEntities, new FetchItemEntitiesHandler(scene) },
             };
         }
 
@@ -55,6 +56,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
         public void FetchEntities()
         {
             SendOperation(SceneFetchDataCode.Entities, new Dictionary<byte, object>());
+        }
+        public void FetchItemEntities()
+        {
+            SendOperation(SceneFetchDataCode.ItemEntities, new Dictionary<byte, object>());
         }
     }
 }

@@ -15,7 +15,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
         {
             fetchResponseTable = new Dictionary<SceneFetchDataCode, FetchDataResponseHandler>
             {
-                { SceneFetchDataCode.Entities, new FetchEntitiesResponseHandler(scene) }
+                { SceneFetchDataCode.Entities, new FetchEntitiesResponseHandler(scene) },
+                { SceneFetchDataCode.ItemEntities, new FetchItemEntitiesResponseHandler(scene) },
             };
         }
 

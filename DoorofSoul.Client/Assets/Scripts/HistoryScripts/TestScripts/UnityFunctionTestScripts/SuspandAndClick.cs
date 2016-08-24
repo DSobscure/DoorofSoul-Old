@@ -4,9 +4,10 @@ namespace DoorofSoul.Client.Scripts.HistoryScripts.TestScripts.UnityFunctionTest
 {
     public class SuspandAndClick : MonoBehaviour
     {
+        private Vector3 originPosition;
         void Start()
         {
-            
+            originPosition = transform.localPosition;
         }
         void OnMouseEnter()
         {
@@ -19,7 +20,8 @@ namespace DoorofSoul.Client.Scripts.HistoryScripts.TestScripts.UnityFunctionTest
         }
         void Update()
         {
-            transform.Rotate(Time.deltaTime * Vector3.up * 50);
+            transform.Rotate(Time.deltaTime * Vector3.up * 25);
+            transform.localPosition = originPosition + (Vector3.up * Mathf.Sin(Time.time) * 0.05f);
         }
         void OnMouseUpAsButton()
         {

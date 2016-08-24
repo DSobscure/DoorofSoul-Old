@@ -78,6 +78,7 @@
     <Compile Include="FetchDataResponseParameters\Player\FetchSceneResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Player\FetchSystemVersionResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Scene\FetchEntitiesResponseParameterCode.cs" />
+    <Compile Include="FetchDataResponseParameters\Scene\FetchItemEntitiesResponseParameterCode.cs" />
     <Compile Include="FetchDataResponseParameters\Soul\FetchSkillInfosResponseParameterCode.cs" />
     <Compile Include="InformDataCodes\AnswerInformDataCode.cs" />
     <Compile Include="InformDataCodes\ContainerInformDataCode.cs" />

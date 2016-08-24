@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Client.Scripts.CameraScripts;
+using DoorofSoul.Client.Scripts.MindScripts.CameraScripts;
 using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
@@ -38,6 +38,7 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
             if (scene != null)
             {
                 scene.SceneOperationManager.FetchDataResolver.FetchEntities();
+                scene.SceneOperationManager.FetchDataResolver.FetchItemEntities();
                 scene.OnEntityEnter += InstantiateEntity;
                 scene.OnEntityEnter += AttachEntity;
                 scene.OnEntityExit += DestroyEntity;

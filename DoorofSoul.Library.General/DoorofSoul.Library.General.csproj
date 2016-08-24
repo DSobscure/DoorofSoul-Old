@@ -54,7 +54,9 @@
     <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformContainerStatusEffectInfoChangeHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformItemEntityChangeHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Container\FetchData\FetchContainerStatusEffectInfosHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Scene\FetchData\FetchItemEntitiesHandler.cs" />
     <Compile Include="LightComponents\Communications\Responses\Handlers\Container\FetchData\FetchContainerStatusEffectInfosResponseHandler.cs" />
+    <Compile Include="LightComponents\Communications\Responses\Handlers\Scene\FetchData\FetchItemEntitiesResponseHandler.cs" />
     <Compile Include="NatureComponents\ContainerElements\ContainerStatusEffectManager.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntity.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntityManager.cs" />

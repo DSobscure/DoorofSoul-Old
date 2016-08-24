@@ -3,5 +3,6 @@
     public enum SceneFetchDataCode : byte
     {
         Entities,
+        ItemEntities
     }
 }

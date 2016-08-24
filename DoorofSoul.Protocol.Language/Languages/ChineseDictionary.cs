@@ -40,6 +40,7 @@ namespace DoorofSoul.Protocol.Language.Languages
                 { "Fetch SkillInfos Error", "讀取技能資訊錯誤" },
                 { "Fetch InventoryItems Error", "讀取道具欄內容資訊錯誤" },
                 { "Fetch ContainerStatusEffectInfos Error", "讀取容器狀態資訊錯誤" },
+                { "Fetch ItemEntities Error", "讀取場景物品實體錯誤" },
                 #endregion
 
                 #region UI

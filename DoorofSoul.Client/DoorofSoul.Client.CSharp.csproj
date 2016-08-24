@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\StatusPanelTest.cs" />
     <Compile Include="Assets\Scripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\UnityFunctionTestScripts\SuspandAndClick.cs" />
     <Compile Include="Assets\Scripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ErrorInformPanel.cs" />
     <Compile Include="Assets\Scripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />

@@ -28,7 +28,7 @@ namespace DoorofSoul.Client.Scripts.TestScripts.UITestScripts
             Soul soul = new Soul(1, new Answer(1, 1, player), "TestSoul", SoulAttributes.GetDefaultAttribute(DoorofSoul.Protocol.SoulKernelTypeCode.Creation));
             Container container = new Container(1, 1, "TestContainer", ContainerAttributes.GetDefaultAttribute());
             container.LinkSoul(soul);
-            container.ContainerStatusEffectManager.LoadStatusEffectInfos(new List<ContainerStatusEffectInfo>
+            container.ContainerStatusEffectManager.InitialStatusEffectInfos(new List<ContainerStatusEffectInfo>
             {
                 new ContainerStatusEffectInfo(1, 1, new StatusEffect(1, "測試1", 0), 0, DateTime.Now),
                 new ContainerStatusEffectInfo(2, 1, new StatusEffect(2, "測試2", 10), 10, DateTime.Now),

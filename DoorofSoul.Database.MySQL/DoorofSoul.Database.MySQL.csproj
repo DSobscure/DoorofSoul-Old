@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DatabaseElements\Connections\ElementConnections\MySQLItemsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLSceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
@@ -85,8 +86,10 @@
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLContainerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLEntityElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLEntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLSceneElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLSceneRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLWorldRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositories\MySQLItemEntityRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulRepository.cs" />

@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataChangeTypeCode.cs" />
     <Compile Include="HeptagramSystemTypeCode.cs" />
     <Compile Include="MessageSourceTypeCode.cs" />
     <Compile Include="MessageTargetTypeCode.cs" />

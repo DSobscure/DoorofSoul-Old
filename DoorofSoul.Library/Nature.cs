@@ -112,6 +112,7 @@ namespace DoorofSoul.Library
                     scene.SetSceneEye(new ProvidenceEye());
                     scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
                     scene.OnEntityExit += scene.SceneEventManager.EntityExit;
+                    scene.ItemEntityManager.InitialItemEntities(Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.ListOfScene(scene.SceneID));
                 }
             }
         }
@@ -122,11 +123,11 @@ namespace DoorofSoul.Library
             {
                 containerDictionary.Add(container.ContainerID, container);
 
-                container.ContainerStatusEffectManager.LoadStatusEffectInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.ListOfAffected(container.ContainerID));
+                container.ContainerStatusEffectManager.InitialStatusEffectInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.ListOfAffected(container.ContainerID));
 
                 container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
                 container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformLoadContainerStatusEffectInfo;
+                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
 
                 if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
                 {
@@ -188,7 +189,7 @@ namespace DoorofSoul.Library
                 containerDictionary.Remove(container.ContainerID);
                 container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
                 container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformLoadContainerStatusEffectInfo;
+                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
             }
         }
         public void ExtractEntity(Entity entity)

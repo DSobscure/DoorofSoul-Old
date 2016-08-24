@@ -10,8 +10,11 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
         {
             ContainerElementsConnection = new MySQLContainerElementsConnection();
             EntityElementsConnection = new MySQLEntityElementsConnection();
+            SceneElementsConnection = new MySQLSceneElementsConnection();
+
             childConnections.Add(ContainerElementsConnection);
             childConnections.Add(EntityElementsConnection);
+            childConnections.Add(SceneElementsConnection);
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

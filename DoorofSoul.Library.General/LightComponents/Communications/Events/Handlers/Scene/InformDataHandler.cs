@@ -14,10 +14,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             this.correctParameterCount = correctParameterCount;
         }
 
-        public virtual bool Handle(SceneInformDataCode informCode, Dictionary<byte, object> parameter)
+        internal virtual bool Handle(SceneInformDataCode informCode, Dictionary<byte, object> parameters)
         {
             string debugMessage;
-            if (CheckParameter(parameter, out debugMessage))
+            if (CheckParameter(parameters, out debugMessage))
             {
                 return true;
             }

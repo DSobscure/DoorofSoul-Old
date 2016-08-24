@@ -21,6 +21,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         public SupportLauguages UsingLanguage { get { return World.UsingLanguage; } }
         public SceneEye SceneEye { get; protected set; }
+        public ItemEntityManager ItemEntityManager { get; protected set; }
         #endregion
 
         #region events
@@ -56,6 +57,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             SceneOperationManager = new SceneOperationManager(this);
             SceneResponseManager = new SceneResponseManager(this);
             MessageLog = new MessageLog();
+            ItemEntityManager = new ItemEntityManager(this);
         }
         public void BindWorld(World world)
         {

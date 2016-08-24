@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DoorofSoul.Protocol;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Container;
@@ -21,28 +21,37 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 try
                 {
                     ContainerStatusEffectInfo info = (ContainerStatusEffectInfo)parameters[(byte)InformContainerStatusEffectInfoChangeParameterCode.ContainerStatusEffectInfo];
-                    bool isLoad = (bool)parameters[(byte)InformContainerStatusEffectInfoChangeParameterCode.IsLoad];
+                    DataChangeTypeCode changeTypeCode = (DataChangeTypeCode)parameters[(byte)InformContainerStatusEffectInfoChangeParameterCode.DataChangeType];
                     if (container.ContainerID == info.AffectedContainerID)
                     {
-                        if(isLoad)
+                        switch(changeTypeCode)
                         {
-                            container.ContainerStatusEffectManager.LoadStatusEffectInfo(info);
-                        }
-                        else
-                        {
-                            container.ContainerStatusEffectManager.UnloadStatusEffectInfo(info);
+                            case DataChangeTypeCode.Load:
+                                container.ContainerStatusEffectManager.LoadStatusEffectInfo(info);
+                                break;
+                            case DataChangeTypeCode.Unload:
+                                container.ContainerStatusEffectManager.UnloadStatusEffectInfo(info);
+                                break;
+                            case DataChangeTypeCode.Update:
+                                break;
+                            case DataChangeTypeCode.Initial:
+                                break;
+                            case DataChangeTypeCode.ClearAll:
+                                break;
+                            default:
+                                break;
                         }
                         return true;
                     }
                     else
                     {
-                        LibraryInstance.ErrorFormat("InformLoadContainerStatusEffectInfo Error, AffectedContainerID: {0}, ContainerID: {1}", info.AffectedContainerID, container.ContainerID);
+                        LibraryInstance.ErrorFormat("InformContainerStatusEffectInfoChange Error, AffectedContainerID: {0}, ContainerID: {1}", info.AffectedContainerID, container.ContainerID);
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.Error("InformLoadContainerStatusEffectInfo Parameter Cast Error");
+                    LibraryInstance.Error("InformContainerStatusEffectInfoChange Parameter Cast Error");
                     LibraryInstance.Error(ex.Message);
                     LibraryInstance.Error(ex.StackTrace);
                     return false;

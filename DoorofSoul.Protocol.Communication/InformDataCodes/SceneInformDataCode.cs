@@ -2,6 +2,6 @@
 {
     public enum SceneInformDataCode : byte
     {
-
+        ItemEntityChange
     }
 }

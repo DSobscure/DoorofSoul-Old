@@ -54,6 +54,7 @@
     <Compile Include="DatabaseElements\Connections\NatureConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\ContainerElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\EntityElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\NatureConnections\SceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\ThroneConnection.cs" />
     <Compile Include="DatabaseElements\Connections\ThroneConnections\SoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\DatabaseConnection.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerKernelAbilitiesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositories\ItemEntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\SoulAttributesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\SoulKernelAbilitiesRepository.cs" />

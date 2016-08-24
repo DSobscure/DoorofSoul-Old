@@ -3,6 +3,6 @@
     public enum InformContainerStatusEffectInfoChangeParameterCode : byte
     {
         ContainerStatusEffectInfo,
-        IsLoad
+        DataChangeType
     }
 }

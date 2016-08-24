@@ -11,5 +11,6 @@ namespace DoorofSoul.Database.DatabaseElements.Repositories
 
         public ContainerElementsRepositoryList ContainerElementsRepositoryList { get; protected set; }
         public EntityElementsRepositoryList EntityElementsRepositoryList { get; protected set; }
+        public SceneElementsRepositoryList SceneElementsRepositoryList { get; protected set; }
     }
 }

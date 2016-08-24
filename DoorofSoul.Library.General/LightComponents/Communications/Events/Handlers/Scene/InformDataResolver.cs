@@ -1,6 +1,10 @@
-﻿using DoorofSoul.Protocol.Communication.EventCodes;
+﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
+using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene
@@ -13,7 +17,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
         {
             informTable = new Dictionary<SceneInformDataCode, InformDataHandler>
             {
-                
+                { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
             };
         }
 
@@ -46,6 +50,17 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformDataEventParameterCode.Parameters, parameters }
             };
             scene.SceneEventManager.SendEvent(SceneEventCode.InformData, informDataParameters);
+        }
+        public void InformItemEntityChange(ItemEntity itemEntity, DataChangeTypeCode changeTypeCode)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformItemEntityChangeParameterCode.ItemEntityID, itemEntity.ItemEntityID },
+                { (byte)InformItemEntityChangeParameterCode.ItemID, itemEntity.ItemID },
+                { (byte)InformItemEntityChangeParameterCode.Position, itemEntity.Position },
+                { (byte)InformItemEntityChangeParameterCode.DataChangeType, changeTypeCode },
+            };
+            SendInform(SceneInformDataCode.ItemEntityChange, parameters);
         }
     }
 }

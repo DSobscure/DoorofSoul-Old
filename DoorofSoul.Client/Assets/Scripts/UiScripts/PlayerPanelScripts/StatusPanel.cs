@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using DoorofSoul.Protocol;
 using UnityEngine;
 using UnityEngine.UI;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
+using DoorofSoul.Client.HelpFunctions;
 
 namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
 {
@@ -28,54 +29,77 @@ namespace DoorofSoul.Client.Scripts.UiScripts.PlayerPanelScripts
                 
                 this.containerStatusEffectManager = containerStatusEffectManager;
                 containerStatusEffectManager.OnContainerStatusEffectInfoChange += OnContainerStatusEffectInfoChange;
-                foreach (ContainerStatusEffectInfo info in containerStatusEffectManager.StatusEffectInfos)
-                {
-                    OnContainerStatusEffectInfoChange(info, true);
-                }
+                OnContainerStatusEffectInfoChange(null, DataChangeTypeCode.Initial);
             }
             else
             {
-                foreach (ContainerStatusEffectInfo info in containerStatusEffectManager.StatusEffectInfos)
-                {
-                    OnContainerStatusEffectInfoChange(info, false);
-                }
+                OnContainerStatusEffectInfoChange(null, DataChangeTypeCode.ClearAll);
                 containerStatusEffectManager.OnContainerStatusEffectInfoChange -= OnContainerStatusEffectInfoChange;
 
                 this.containerStatusEffectManager = containerStatusEffectManager;
                 containerStatusEffectManager.OnContainerStatusEffectInfoChange += OnContainerStatusEffectInfoChange;
-                foreach (ContainerStatusEffectInfo info in containerStatusEffectManager.StatusEffectInfos)
-                {
-                    OnContainerStatusEffectInfoChange(info, true);
-                }
+                OnContainerStatusEffectInfoChange(null, DataChangeTypeCode.Initial);
             }
         }
 
-        private void OnContainerStatusEffectInfoChange(ContainerStatusEffectInfo info, bool isLoad)
+        private void OnContainerStatusEffectInfoChange(ContainerStatusEffectInfo info, DataChangeTypeCode changeTypeCode)
         {
-            if(isLoad)
+            switch(changeTypeCode)
             {
-                if (!containerStatusEffectIconDictionary.ContainsKey(info.ContainerStatusEffectInfoID))
-                {
-                    Button newIcon = Instantiate(statusEffectIconPrefab);
-                    RectTransform blockRectTransform = newIcon.GetComponent<RectTransform>();
-                    blockRectTransform.transform.SetParent(transform);
-                    blockRectTransform.localScale = Vector3.one;
-                    blockRectTransform.anchorMin = new Vector2(1, 0.5f);
-                    blockRectTransform.anchorMax = new Vector2(1, 0.5f);
-                    blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                    float x = (blockRectTransform.sizeDelta.y + 5) * (containerStatusEffectIconDictionary.Count + 1) - (blockRectTransform.sizeDelta.y + 5) / 2;
-                    float y = 0;
-                    blockRectTransform.anchoredPosition = new Vector2(-x, y);
-                    containerStatusEffectIconDictionary.Add(info.ContainerStatusEffectInfoID, newIcon);
-                }
-            }
-            else
-            {
-                if(containerStatusEffectIconDictionary.ContainsKey(info.ContainerStatusEffectInfoID))
-                {
-                    Destroy(containerStatusEffectIconDictionary[info.ContainerStatusEffectInfoID].gameObject);
-                    containerStatusEffectIconDictionary.Remove(info.ContainerStatusEffectInfoID);
-                }
+                case DataChangeTypeCode.Load:
+                    if (!containerStatusEffectIconDictionary.ContainsKey(info.ContainerStatusEffectInfoID))
+                    {
+                        Button newIcon = Instantiate(statusEffectIconPrefab);
+                        RectTransform blockRectTransform = newIcon.GetComponent<RectTransform>();
+                        blockRectTransform.transform.SetParent(transform);
+                        blockRectTransform.localScale = Vector3.one;
+                        blockRectTransform.anchorMin = new Vector2(1, 0.5f);
+                        blockRectTransform.anchorMax = new Vector2(1, 0.5f);
+                        blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
+                        float x = (blockRectTransform.sizeDelta.y + 5) * (containerStatusEffectIconDictionary.Count + 1) - (blockRectTransform.sizeDelta.y + 5) / 2;
+                        float y = 0;
+                        blockRectTransform.anchoredPosition = new Vector2(-x, y);
+                        containerStatusEffectIconDictionary.Add(info.ContainerStatusEffectInfoID, newIcon);
+                    }
+                    break;
+                case DataChangeTypeCode.Unload:
+                    if (containerStatusEffectIconDictionary.ContainsKey(info.ContainerStatusEffectInfoID))
+                    {
+                        Destroy(containerStatusEffectIconDictionary[info.ContainerStatusEffectInfoID].gameObject);
+                        containerStatusEffectIconDictionary.Remove(info.ContainerStatusEffectInfoID);
+                    }
+                    break;
+                case DataChangeTypeCode.Update:
+                    if (containerStatusEffectIconDictionary.ContainsKey(info.ContainerStatusEffectInfoID))
+                    {
+
+                    }
+                    break;
+                case DataChangeTypeCode.Initial:
+                    foreach(ContainerStatusEffectInfo initialInfo in containerStatusEffectManager.StatusEffectInfos)
+                    {
+                        if (!containerStatusEffectIconDictionary.ContainsKey(initialInfo.ContainerStatusEffectInfoID))
+                        {
+                            Button newIcon = Instantiate(statusEffectIconPrefab);
+                            RectTransform blockRectTransform = newIcon.GetComponent<RectTransform>();
+                            blockRectTransform.transform.SetParent(transform);
+                            blockRectTransform.localScale = Vector3.one;
+                            blockRectTransform.anchorMin = new Vector2(1, 0.5f);
+                            blockRectTransform.anchorMax = new Vector2(1, 0.5f);
+                            blockRectTransform.pivot = new Vector2(0.5f, 0.5f);
+                            float x = (blockRectTransform.sizeDelta.y + 5) * (containerStatusEffectIconDictionary.Count + 1) - (blockRectTransform.sizeDelta.y + 5) / 2;
+                            float y = 0;
+                            blockRectTransform.anchoredPosition = new Vector2(-x, y);
+                            containerStatusEffectIconDictionary.Add(info.ContainerStatusEffectInfoID, newIcon);
+                        }
+                    }
+                    break;
+                case DataChangeTypeCode.ClearAll:
+                    transform.ClearChild();
+                    containerStatusEffectIconDictionary.Clear();
+                    break;
+                default:
+                    break;
             }
         }
     }

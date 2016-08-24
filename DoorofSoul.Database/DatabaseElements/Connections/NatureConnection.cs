@@ -6,5 +6,6 @@ namespace DoorofSoul.Database.DatabaseElements.Connections
     {
         public ContainerElementsConnection ContainerElementsConnection { get; protected set; }
         public EntityElementsConnection EntityElementsConnection { get; protected set; }
+        public SceneElementsConnection SceneElementsConnection { get; protected set; }
     }
 }

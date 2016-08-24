@@ -14,6 +14,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories
 
             ContainerElementsRepositoryList = new MySQLContainerElementsRepositoryList();
             EntityElementsRepositoryList = new MySQLEntityElementsRepositoryList();
+            SceneElementsRepositoryList = new MySQLSceneElementsRepositoryList();
         }
     }
 }

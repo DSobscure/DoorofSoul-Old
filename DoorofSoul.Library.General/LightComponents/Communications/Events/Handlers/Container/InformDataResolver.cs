@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Container.InformData;
+using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters;
@@ -70,12 +71,12 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             };
             SendInform(ContainerInformDataCode.EnergyPointChange, parameters);
         }
-        public void InformLoadContainerStatusEffectInfo(ContainerStatusEffectInfo info, bool isLoad)
+        public void InformContainerStatusEffectInfoChange(ContainerStatusEffectInfo info, DataChangeTypeCode changeTypeCode)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
                 { (byte)InformContainerStatusEffectInfoChangeParameterCode.ContainerStatusEffectInfo, info },
-                { (byte)InformContainerStatusEffectInfoChangeParameterCode.IsLoad, isLoad }
+                { (byte)InformContainerStatusEffectInfoChangeParameterCode.DataChangeType, (byte)changeTypeCode }
             };
             SendInform(ContainerInformDataCode.ContainerStatusEffectInfoChange, parameters);
         }

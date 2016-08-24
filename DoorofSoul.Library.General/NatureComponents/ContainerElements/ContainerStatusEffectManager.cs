@@ -1,8 +1,7 @@
-﻿using System;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
+using DoorofSoul.Protocol;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 
 namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 {
@@ -13,8 +12,8 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 
         public IEnumerable<ContainerStatusEffectInfo> StatusEffectInfos { get { return statusEffectInfoDictionary.Values; } }
 
-        private event Action<ContainerStatusEffectInfo, bool> onContainerStatusEffectInfoChange;
-        public event Action<ContainerStatusEffectInfo, bool> OnContainerStatusEffectInfoChange { add { onContainerStatusEffectInfoChange += value; } remove { onContainerStatusEffectInfoChange -= value; } }
+        private event Action<ContainerStatusEffectInfo, DataChangeTypeCode> onContainerStatusEffectInfoChange;
+        public event Action<ContainerStatusEffectInfo, DataChangeTypeCode> OnContainerStatusEffectInfoChange { add { onContainerStatusEffectInfoChange += value; } remove { onContainerStatusEffectInfoChange -= value; } }
 
         public ContainerStatusEffectManager(Container container)
         {
@@ -46,20 +45,32 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 if (!ContainsStatusEffectInfo(info.ContainerStatusEffectInfoID))
                 {
                     statusEffectInfoDictionary.Add(info.ContainerStatusEffectInfoID, info);
+                    onContainerStatusEffectInfoChange?.Invoke(info, DataChangeTypeCode.Load);
                 }
                 else
                 {
                     statusEffectInfoDictionary[info.ContainerStatusEffectInfoID] = info;
+                    onContainerStatusEffectInfoChange?.Invoke(info, DataChangeTypeCode.Update);
                 }
-                onContainerStatusEffectInfoChange?.Invoke(info, true);
             }
         }
-        public void LoadStatusEffectInfos(List<ContainerStatusEffectInfo> infos)
+        public void InitialStatusEffectInfos(List<ContainerStatusEffectInfo> infos)
         {
             foreach(ContainerStatusEffectInfo info in infos)
             {
-                LoadStatusEffectInfo(info);
+                if (info.AffectedContainerID == container.ContainerID)
+                {
+                    if (!ContainsStatusEffectInfo(info.ContainerStatusEffectInfoID))
+                    {
+                        statusEffectInfoDictionary.Add(info.ContainerStatusEffectInfoID, info);
+                    }
+                    else
+                    {
+                        statusEffectInfoDictionary[info.ContainerStatusEffectInfoID] = info;
+                    }
+                }
             }
+            onContainerStatusEffectInfoChange?.Invoke(null, DataChangeTypeCode.Initial);
         }
         public void UnloadStatusEffectInfo(ContainerStatusEffectInfo info)
         {
@@ -67,18 +78,15 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
             {
                 if (ContainsStatusEffectInfo(info.ContainerStatusEffectInfoID))
                 {
-                    onContainerStatusEffectInfoChange?.Invoke(info, false);
                     statusEffectInfoDictionary.Remove(info.ContainerStatusEffectInfoID);
+                    onContainerStatusEffectInfoChange?.Invoke(info, DataChangeTypeCode.Unload);
                 }
             }
         }
-        public void UnloadAllStatusEffectInfo()
+        public void ClearAllStatusEffectInfo()
         {
-            foreach(ContainerStatusEffectInfo info in StatusEffectInfos)
-            {
-                onContainerStatusEffectInfoChange?.Invoke(info, false);
-                statusEffectInfoDictionary.Remove(info.ContainerStatusEffectInfoID);
-            }
+            statusEffectInfoDictionary.Clear();
+            onContainerStatusEffectInfoChange?.Invoke(null, DataChangeTypeCode.ClearAll);
         }
     }
 }

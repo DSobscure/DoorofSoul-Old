@@ -108,6 +108,7 @@
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\StatusPanelTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
+    <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\SelectAndDragIcon.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\SuspandAndClick.cs" />
     <Compile Include="Assets\Scripts\LightScripts\CommunicationScripts\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\LightScripts\InputScripts\EntityInputController.cs" />

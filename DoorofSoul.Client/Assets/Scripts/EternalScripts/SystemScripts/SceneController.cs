@@ -152,7 +152,7 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                         }
                         else
                         {
-                            Destroy(entities.transform.FindChild("ItemEntity" + itemEntity.ItemEntityID));
+                            Destroy(entities.transform.FindChild("ItemEntity" + itemEntity.ItemEntityID).gameObject);
                         }
                     }
                     break;

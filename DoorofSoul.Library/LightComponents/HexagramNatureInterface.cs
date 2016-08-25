@@ -29,6 +29,7 @@ namespace DoorofSoul.Hexagram.LightComponents
         public HexagramNatureInterface()
         {
             containerElementsInterface = new HexagramContainerElementsInterface();
+            sceneElementsInterface = new HexagramSceneElementsInterface();
         }
     }
 }

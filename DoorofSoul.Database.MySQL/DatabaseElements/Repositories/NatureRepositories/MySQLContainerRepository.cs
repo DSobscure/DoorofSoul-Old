@@ -135,6 +135,11 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
                 }
             }
             Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.ContainerAttributesRepository.Save(container.ContainerID, container.Attributes);
+            Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.InventoryRepository.Save(container.Inventory);
+            foreach (var info in container.ContainerStatusEffectManager.StatusEffectInfos)
+            {
+                Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.Save(info);
+            }
         }
     }
 }

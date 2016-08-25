@@ -2,7 +2,7 @@
 
 namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 {
-    public struct InventoryItemInfo
+    public class InventoryItemInfo
     {
         public Item item;
         public int count;

@@ -128,6 +128,7 @@ namespace DoorofSoul.Hexagram
                 container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
                 container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
                 container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
+                container.Inventory.OnItemChange += container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
 
                 if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
                 {
@@ -176,10 +177,6 @@ namespace DoorofSoul.Hexagram
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
                 Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Save(container);
-                foreach (ContainerStatusEffectInfo info in container.ContainerStatusEffectManager.StatusEffectInfos)
-                {
-                    Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.Save(info);
-                }
                 if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
                 {
                     Database.Database.RepositoryList.NatureRepositoryList.EntityRepository.Save(container.Entity);
@@ -190,6 +187,7 @@ namespace DoorofSoul.Hexagram
                 container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
                 container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
                 container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
+                container.Inventory.OnItemChange -= container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
             }
         }
         public void ExtractEntity(Entity entity)

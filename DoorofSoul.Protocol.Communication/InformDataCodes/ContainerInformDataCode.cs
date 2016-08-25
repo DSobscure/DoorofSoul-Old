@@ -5,6 +5,7 @@
         Message,
         LifePointChange,
         EnergyPointChange,
-        ContainerStatusEffectInfoChange
+        ContainerStatusEffectInfoChange,
+        InventoryItemIntoChange
     }
 }

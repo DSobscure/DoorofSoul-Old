@@ -22,18 +22,19 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                 try
                 {
                     int itemEntityID = (int)parameters[(byte)PickupItemEntityParameterCode.ItemEntityID];
-                    lock(container.Entity.LocatedScene.ItemEntityManager)
+                    var itemEntityManager = container.Entity.LocatedScene.ItemEntityManager;
+                    lock (itemEntityManager)
                     {
-                        if (container.Entity.LocatedScene.ItemEntityManager.ContainsItemEntity(itemEntityID))
+                        if (itemEntityManager.ContainsItemEntity(itemEntityID))
                         {
-                            ItemEntity itemEntity = container.Entity.LocatedScene.ItemEntityManager.FindItemEntity(itemEntityID);
+                            ItemEntity itemEntity = itemEntityManager.FindItemEntity(itemEntityID);
                             Item item = LibraryInstance.ElementInterface.FindItem(itemEntity.ItemID);
                             InventoryItemInfo info;
-                            if (container.Inventory.AddItem(item, 1, out info))
+                            if (itemEntityManager.CanPickupItemEntity(container, itemEntityID) && container.Inventory.AddItem(item, 1, out info))
                             {
-                                if (info.item != null)
+                                if (info != null)
                                 {
-                                    container.Entity.LocatedScene.ItemEntityManager.DeleteItemEntity(itemEntity.ItemEntityID);
+                                    itemEntityManager.DeleteItemEntity(itemEntity.ItemEntityID);
                                 }
                                 return true;
                             }

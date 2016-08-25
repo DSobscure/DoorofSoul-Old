@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Container.InformData;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.Channels;
 using DoorofSoul.Protocol.Communication.EventCodes;
@@ -21,7 +22,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 { ContainerInformDataCode.LifePointChange, new InformLifePointChangeHandler(container) },
                 { ContainerInformDataCode.EnergyPointChange, new InformEnergyPointChangeHandler(container) },
-                { ContainerInformDataCode.ContainerStatusEffectInfoChange, new InformContainerStatusEffectInfoChangeHandler(container) }
+                { ContainerInformDataCode.ContainerStatusEffectInfoChange, new InformContainerStatusEffectInfoChangeHandler(container) },
+                { ContainerInformDataCode.InventoryItemIntoChange, new InformInventoryItemIntoChangeHandler(container) }
             };
         }
 
@@ -79,6 +81,16 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformContainerStatusEffectInfoChangeParameterCode.DataChangeType, (byte)changeTypeCode }
             };
             SendInform(ContainerInformDataCode.ContainerStatusEffectInfoChange, parameters);
+        }
+        public void InformInventoryItemInfoChange(InventoryItemInfo info)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformInventoryItemInfoChangeParameterCode.Item, info.item },
+                { (byte)InformInventoryItemInfoChangeParameterCode.Count, info.count },
+                { (byte)InformInventoryItemInfoChangeParameterCode.PositionIndex, info.positionIndex }
+            };
+            SendInform(ContainerInformDataCode.InventoryItemIntoChange, parameters);
         }
     }
 }

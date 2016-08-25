@@ -1,5 +1,4 @@
 ﻿using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
             itemInfos = new InventoryItemInfo[Capacity];
             for(int i = 0; i < Capacity; i++)
             {
-                itemInfos[i].positionIndex = i;
+                itemInfos[i] = new InventoryItemInfo { positionIndex = i };
             }
         }
 
@@ -67,7 +66,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         {
             if(CanAddItem(item, count))
             {
-                if(ItemCount(item.ItemID) > 0)
+                if(ItemCount(item.ItemID) == 0)
                 {
                     InventoryItemInfo info = itemInfos.First(x => x.item == null);
                     info.item = item;
@@ -79,13 +78,14 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 {
                     InventoryItemInfo existItems = ItemInfos.First(x => x.item.ItemID == item.ItemID);
                     existItems.count += count;
-                    newInfo = new InventoryItemInfo();
+                    newInfo = existItems;
                 }
+                onItemChange?.Invoke(newInfo);
                 return true;
             }
             else
             {
-                newInfo = new InventoryItemInfo();
+                newInfo = null;
                 return false;
             }
         }

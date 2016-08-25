@@ -87,6 +87,7 @@
     <Compile Include="InformDataCodes\SoulInformDataCode.cs" />
     <Compile Include="InformDataCodes\WorldInformDataCode.cs" />
     <Compile Include="InformDataParameters\Container\InformEnergyPointChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformInventoryItemInfoChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformLifePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformContainerStatusEffectInfoChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformMessageParameterCode.cs" />

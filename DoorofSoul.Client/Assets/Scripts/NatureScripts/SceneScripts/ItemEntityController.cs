@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
@@ -17,6 +15,10 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
         void OnMouseExit()
         {
             GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        }
+        void OnMouseUpAsButton()
+        {
+            Global.Global.Seat.MainContainer.ContainerOperationManager.PickupItemEntity(itemEntity.ItemEntityID);
         }
         void Update()
         {

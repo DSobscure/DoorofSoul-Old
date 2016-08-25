@@ -137,6 +137,7 @@
     <Compile Include="ResponseParameters\Scene\ContainerResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\Scene\EntityResponseParameterCode.cs" />
     <Compile Include="ResponseParameters\World\SceneResponseParameterCode.cs" />
+    <Compile Include="SkillParameters\AlchemySystem\CreateItemParameterCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EventParameters\Container\" />

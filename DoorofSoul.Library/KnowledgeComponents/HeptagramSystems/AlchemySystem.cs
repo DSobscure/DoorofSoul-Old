@@ -1,13 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
+using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication;
+using DoorofSoul.Protocol.Communication.SkillParameters.AlchemySystem;
 
 namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
 {
     public class AlchemySystem : HeptagramSystem
     {
         public override HeptagramSystemTypeCode SystemTypeCode { get { return HeptagramSystemTypeCode.Alchemy; } }
+
+        public override bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
+        {
+            if (base.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage))
+            {
+                try
+                {
+                    if ((SkillIDCode)skillInfo.Skill.SkillID == SkillIDCode.CreateItemEntity)
+                    {
+                        int itemID = (int)skillParameters[(byte)CreateItemEntityParameterCode.ItemID];
+                        int itemCount = (int)skillParameters[(byte)CreateItemEntityParameterCode.SceneID];
+                        int sceneID = (int)skillParameters[(byte)CreateItemEntityParameterCode.ItemID];
+                        DSVector3 itemEntityPosition = (DSVector3)skillParameters[(byte)CreateItemEntityParameterCode.ItemEntityPosition];
+                        if (Hexagram.Instance.Nature.ContainsScene(sceneID))
+                        {
+                            Scene scene = Hexagram.Instance.Nature.FindScene(sceneID);
+                            for (int i = 0; i < itemCount; i++)
+                            {
+                                ItemEntity itemEntity = Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.Create(itemID, sceneID, itemEntityPosition);
+                                scene.ItemEntityManager.LoadItemEntity(itemEntity);
+                            }
+                            skillResponseParameters = new Dictionary<byte, object>();
+                            debugMessage = "";
+                            return true;
+                        }
+                        else
+                        {
+                            debugMessage = string.Format("AlchemySystem OperateSkill Scene Not Exist SceneID: {0}", sceneID);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        skillResponseParameters = new Dictionary<byte, object>();
+                        debugMessage = string.Format("Skill Not Exist SkillID: {0}", skillInfo.Skill.SkillID);
+                        return false;
+                    }
+                }
+                catch (InvalidCastException ex)
+                {
+                    Hexagram.Instance.Log.ErrorFormat("AlchemySystem OperateSkill Invalid Cast SkillID: {0}", skillInfo.Skill.SkillID);
+                    Hexagram.Instance.Log.Error(ex.Message);
+                    Hexagram.Instance.Log.Error(ex.StackTrace);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Hexagram.Instance.Log.Error(ex.Message);
+                    Hexagram.Instance.Log.Error(ex.StackTrace);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

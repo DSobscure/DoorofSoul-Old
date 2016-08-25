@@ -30,6 +30,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
         public void Initial(ItemEntity itemEntity)
         {
             this.itemEntity = itemEntity;
+            gameObject.name = "ItemEntity" + itemEntity.ItemEntityID;
             transform.localPosition = (Vector3)itemEntity.Position;
         }
     }

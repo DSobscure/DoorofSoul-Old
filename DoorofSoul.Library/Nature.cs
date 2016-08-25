@@ -110,9 +110,11 @@ namespace DoorofSoul.Library
                 {
                     sceneDictionary.Add(scene.SceneID, scene);
                     scene.SetSceneEye(new ProvidenceEye());
+                    scene.ItemEntityManager.InitialItemEntities(Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.ListOfScene(scene.SceneID));
+
                     scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
                     scene.OnEntityExit += scene.SceneEventManager.EntityExit;
-                    scene.ItemEntityManager.InitialItemEntities(Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.ListOfScene(scene.SceneID));
+                    scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
                 }
             }
         }

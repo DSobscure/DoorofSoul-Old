@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DoorofSoul.Protocol;
+using DoorofSoul.Protocol.Communication.SkillParameters.AlchemySystem;
 using DoorofSoul.Client.Protocol.Language;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using System.Text;
@@ -65,7 +66,22 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
         private void OperateSkill()
         {
             SkillInfo skillInfo = skillInfos[skillPitchDropdown.value];
-            Global.Global.Seat.MainSoul.SoulOperationManager.OperateSkill(Global.Global.Seat.MainContainer.ContainerID, skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID, new Dictionary<byte, object>());
+            switch((SkillIDCode)skillInfo.Skill.SkillID)
+            {
+                case SkillIDCode.ObserverEye:
+                    Global.Global.Seat.MainSoul.SoulOperationManager.OperateSkill(Global.Global.Seat.MainContainer.ContainerID, skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID, new Dictionary<byte, object>());
+                    break;
+                case SkillIDCode.CreateItemEntity:
+                    Global.Global.Seat.MainSoul.SoulOperationManager.OperateSkill(Global.Global.Seat.MainContainer.ContainerID, skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID, new Dictionary<byte, object>
+                    {
+                        { (byte)CreateItemEntityParameterCode.ItemID, 1},
+                        { (byte)CreateItemEntityParameterCode.ItemCount, 1},
+                        { (byte)CreateItemEntityParameterCode.SceneID, Global.Global.Horizon.MainScene.SceneID},
+                        { (byte)CreateItemEntityParameterCode.ItemEntityPosition, Global.Global.Seat.MainContainer.Entity.Position}
+                    });
+                    break;
+
+            }
         }
     }
 }

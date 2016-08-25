@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
         {
             if (base.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage))
             {
-                if(skillInfo.Skill.SkillID == 1)
+                if((SkillIDCode)skillInfo.Skill.SkillID == SkillIDCode.ObserverEye)
                 {
                     if(user.Attributes.SpiritPoint >= skillInfo.Skill.BasicSpiritPointCost)
                     {
@@ -33,6 +33,12 @@ namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
                             agent.Entity.LocatedScene.SceneEye.StartMonitor(1000);
                             skillResponseParameters = new Dictionary<byte, object>();
                             debugMessage = "";
+                            return true;
+                        }
+                        else
+                        {
+                            debugMessage = "Alreay be the observer";
+                            return false;
                         }
                     }
                     else
@@ -45,8 +51,9 @@ namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
                 else
                 {
                     skillResponseParameters = new Dictionary<byte, object>();
+                    debugMessage = string.Format("Skill Not Exist SkillID: {0}", skillInfo.Skill.SkillID);
+                    return false;
                 }
-                return true;
             }
             else
             {

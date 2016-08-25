@@ -1,18 +1,25 @@
-﻿using DoorofSoul.Database.MySQL.DatabaseElements.Connections.KnowledgeConnections;
-using DoorofSoul.Database.DatabaseElements.Connections;
+﻿using DoorofSoul.Database.DatabaseElements.Connections;
+using DoorofSoul.Database.DatabaseElements.Connections.KnowledgeConnections;
+using DoorofSoul.Database.MySQL.DatabaseElements.Connections.KnowledgeConnections;
 using MySql.Data.MySqlClient;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
 {
     class MySQLKnowledgeConnection : KnowledgeConnection
     {
+        private MySQLSkillsConnection skillsConnection;
+        private MySQLStatusEffectsConnection statusEffectsConnection;
+
+        public override SkillsConnection SkillsConnection { get { return skillsConnection; } }
+        public override StatusEffectsConnection StatusEffectsConnection { get { return statusEffectsConnection; } }
+
         public MySQLKnowledgeConnection()
         {
-            SkillsConnection = new MySQLSkillsConnection();
-            StatusEffectsConnection = new MySQLStatusEffectsConnection();
+            skillsConnection = new MySQLSkillsConnection();
+            statusEffectsConnection = new MySQLStatusEffectsConnection();
 
-            childConnections.Add(SkillsConnection);
-            childConnections.Add(StatusEffectsConnection);
+            childConnections.Add(skillsConnection);
+            childConnections.Add(statusEffectsConnection);
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

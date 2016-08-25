@@ -1,13 +1,10 @@
-﻿using System;
-using DoorofSoul.Database.DatabaseElements.Repositories.ElementRepositories.ItemsRepositories;
-using DoorofSoul.Library.General.ElementComponents.Items;
-using DoorofSoul.Library.General.NatureComponents.ContainerElements;
-using DoorofSoul.Library.General.KnowledgeComponents;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.NatureRepositories.ContainerElementsRepositories;
 using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementRepositories.ItemsRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureRepositories.ContainerElementsRepositories
 {
     struct DatabaseInventoryInfo
     {
@@ -15,27 +12,27 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
         public int itemCount;
         public int positionIndex;
     }
-    class MySQLItemInfoRepository : ItemInfoRepository
+    class MySQLInventoryItemInfoRepository : InventoryItemInfoRepository
     {
-        public override void ClearItemInfos(int inventoryID)
+        public override void ClearInventoryItemInfos(int inventoryID)
         {
-            string sqlString = @"DELETE FROM ItemInfoCollection 
+            string sqlString = @"DELETE FROM InventoryItemInfoCollection 
                 WHERE InventoryID = @inventoryID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.ItemsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.NatureConnection.ContainerElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@inventoryID", inventoryID);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLItemInfoRepository Clear ItemInfos Error InventoryID: {0}", inventoryID);
+                    Database.Log.ErrorFormat("MySQLInventoryItemInfoCollection Clear ItemInfos Error InventoryID: {0}", inventoryID);
                 }
             }
         }
 
-        public override void InsertItemInfo(int inventoryID, ItemInfo itemInfo)
+        public override void InsertInventoryItemInfo(int inventoryID, InventoryItemInfo itemInfo)
         {
-            string sqlString = @"INSERT INTO ItemInfoCollection 
+            string sqlString = @"INSERT INTO InventoryItemInfoCollection 
                 (InventoryID,ItemID,ItemCount,PositionIndex) VALUES (@inventoryID,@itemID,@itemCount,@positionIndex) ;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.ItemsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.NatureConnection.ContainerElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("inventoryID", inventoryID);
                 command.Parameters.AddWithValue("itemID", itemInfo.item.ItemID);
@@ -43,17 +40,17 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                 command.Parameters.AddWithValue("positionIndex", itemInfo.positionIndex);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLItemInfoRepository Insert ItemInfos Error InventoryID: {0}, ItemID: {1}, ItemCount: {1}, PositionIndex: {2}", inventoryID, itemInfo.item.ItemID, itemInfo.count, itemInfo.positionIndex);
+                    Database.Log.ErrorFormat("MySQLInventoryItemInfoCollection Insert ItemInfos Error InventoryID: {0}, ItemID: {1}, ItemCount: {1}, PositionIndex: {2}", inventoryID, itemInfo.item.ItemID, itemInfo.count, itemInfo.positionIndex);
                 }
             }
         }
 
-        public override void LoadItemInfos(Inventory inventory)
+        public override void LoadInventoryItemInfos(Inventory inventory)
         {
             string sqlString = @"SELECT  
                 ItemID, ItemCount, PositionIndex
-                from ItemInfoCollection WHERE InventoryID = @inventoryID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.ItemsConnection.Connection as MySqlConnection))
+                from InventoryItemInfoCollection WHERE InventoryID = @inventoryID;";
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.NatureConnection.ContainerElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@inventoryID", inventory.InventoryID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -75,12 +72,12 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
             }
         }
 
-        public override void SaveItemInfos(Inventory inventory)
+        public override void SaveInventoryItemInfos(Inventory inventory)
         {
-            ClearItemInfos(inventory.InventoryID);
-            foreach (ItemInfo info in inventory.ItemInfos)
+            ClearInventoryItemInfos(inventory.InventoryID);
+            foreach (InventoryItemInfo info in inventory.ItemInfos)
             {
-                InsertItemInfo(inventory.InventoryID, info);
+                InsertInventoryItemInfo(inventory.InventoryID, info);
             }
         }
     }

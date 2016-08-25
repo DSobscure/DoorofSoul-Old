@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Hexagram.LightComponents.Skills;
+﻿using DoorofSoul.Hexagram.LightComponents.Knowledge;
 using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Library.General.LightComponents;
 using DoorofSoul.Library.General.LightComponents.Knowledge;
@@ -7,18 +7,18 @@ namespace DoorofSoul.Hexagram.LightComponents
 {
     public class HexagramKnowledgeInterface : KnowledgeInterface
     {
-        private HexagramSkillInterface skillKnowledgeInterface;
-        public SkillKnowledgeInterface SkillKnowledgeInterface
+        private HexagramSkillInterface skillInterface;
+        public SkillIgeInterface SkillInterface
         {
             get
             {
-                return skillKnowledgeInterface;
+                return skillInterface;
             }
         }
 
         public HexagramKnowledgeInterface()
         {
-            skillKnowledgeInterface = new HexagramSkillInterface();
+            skillInterface = new HexagramSkillInterface();
         }
 
         public Skill FindSkill(int skillID)

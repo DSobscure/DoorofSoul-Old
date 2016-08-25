@@ -58,8 +58,7 @@
     <Compile Include="DatabaseElements\Connections\ThroneConnection.cs" />
     <Compile Include="DatabaseElements\Connections\ThroneConnections\SoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\DatabaseConnection.cs" />
-    <Compile Include="DatabaseElements\InstantiableRepositoryList.cs" />
-    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\ItemInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillRepository.cs" />
@@ -117,7 +116,9 @@
       <Name>DoorofSoul.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

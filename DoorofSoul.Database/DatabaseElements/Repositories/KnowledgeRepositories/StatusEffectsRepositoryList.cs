@@ -2,8 +2,8 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories
 {
-    public abstract class StatusEffectsRepositoryList : InstantiableRepositoryList
+    public abstract class StatusEffectsRepositoryList
     {
-        public ContainerStatusEffectInfoRepository ContainerStatusEffectInfoRepository { get; protected set; }
+        public abstract ContainerStatusEffectInfoRepository ContainerStatusEffectInfoRepository { get; }
     }
 }

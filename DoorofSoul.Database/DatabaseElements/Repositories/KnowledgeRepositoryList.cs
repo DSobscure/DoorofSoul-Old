@@ -2,11 +2,11 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
-    public abstract class KnowledgeRepositoryList : InstantiableRepositoryList
+    public abstract class KnowledgeRepositoryList
     {
-        public SkillRepository SkillRepository { get; protected set; }
-        public StatusEffectRepository StatusEffectRepository { get; protected set; }
-        public SkillsRepositoryList SkillsRepositoryList { get; protected set; }
-        public StatusEffectsRepositoryList StatusEffectsRepositoryList { get; protected set; }
+        public abstract SkillRepository SkillRepository { get; }
+        public abstract StatusEffectRepository StatusEffectRepository { get; }
+        public abstract SkillsRepositoryList SkillsRepositoryList { get; }
+        public abstract StatusEffectsRepositoryList StatusEffectsRepositoryList { get; }
     }
 }

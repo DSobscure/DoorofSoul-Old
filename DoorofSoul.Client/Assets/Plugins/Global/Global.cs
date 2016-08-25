@@ -15,7 +15,7 @@ namespace DoorofSoul.Client.Global
 
         static Global()
         {
-            LibraryInstance.Initial(SystemManager.Error, SystemManager.ErrorFormat);
+            LibraryInstance.Initial(SystemManager.Error, SystemManager.ErrorFormat, null);
             Horizon = new Horizon();
             PhotonService = new PhotonService("DoorofSoul.Server", "127.0.0.1", 5055);
             SystemManager = new SystemManager();

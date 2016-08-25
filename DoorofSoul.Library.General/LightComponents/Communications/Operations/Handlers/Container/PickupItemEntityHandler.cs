@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Container;
@@ -26,8 +27,20 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                         if (container.Entity.LocatedScene.ItemEntityManager.ContainsItemEntity(itemEntityID))
                         {
                             ItemEntity itemEntity = container.Entity.LocatedScene.ItemEntityManager.FindItemEntity(itemEntityID);
-                            //container.Inventory.
-                            return true;
+                            Item item = LibraryInstance.ElementInterface.FindItem(itemEntity.ItemID);
+                            InventoryItemInfo info;
+                            if (container.Inventory.AddItem(item, 1, out info))
+                            {
+                                if (info.item != null)
+                                {
+                                    container.Entity.LocatedScene.ItemEntityManager.DeleteItemEntity(itemEntity.ItemEntityID);
+                                }
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         else
                         {

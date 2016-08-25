@@ -1,7 +1,5 @@
-﻿using DoorofSoul.Database;
-using DoorofSoul.Database.MySQL;
-using DoorofSoul.Library;
-using DoorofSoul.Library.LightComponents;
+﻿using DoorofSoul.Database.MySQL;
+using DoorofSoul.Hexagram.LightComponents;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
@@ -10,7 +8,6 @@ using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;
-using DoorofSoul.Library.KnowledgeComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Server.Config;
 using ExitGames.Logging;
@@ -71,7 +68,7 @@ namespace DoorofSoul.Server
         }
         protected void SetupLibrary()
         {
-            LibraryInstance.Initial(Log.Error, Log.ErrorFormat, new HexagramKnowledgeInterface());
+            LibraryInstance.Initial(Log.Error, Log.ErrorFormat, new HexagramInterface());
         }
         protected void SetupConfiguration()
         {
@@ -96,7 +93,7 @@ namespace DoorofSoul.Server
         }
         protected void SetupHexagram()
         {
-            Hexagram.Initial(Log);
+            Hexagram.Hexagram.Initial(Log);
         }
     }
 }

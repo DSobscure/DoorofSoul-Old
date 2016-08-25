@@ -4,8 +4,8 @@ namespace DoorofSoul.Database.DatabaseElements.Connections
 {
     public abstract class NatureConnection : DatabaseConnection
     {
-        public ContainerElementsConnection ContainerElementsConnection { get; protected set; }
-        public EntityElementsConnection EntityElementsConnection { get; protected set; }
-        public SceneElementsConnection SceneElementsConnection { get; protected set; }
+        public abstract ContainerElementsConnection ContainerElementsConnection { get; }
+        public abstract EntityElementsConnection EntityElementsConnection { get; }
+        public abstract SceneElementsConnection SceneElementsConnection { get; }
     }
 }

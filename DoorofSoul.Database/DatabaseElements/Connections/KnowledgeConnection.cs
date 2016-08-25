@@ -4,7 +4,7 @@ namespace DoorofSoul.Database.DatabaseElements.Connections
 {
     public abstract class KnowledgeConnection : DatabaseConnection
     {
-        public SkillsConnection SkillsConnection { get; protected set; }
-        public StatusEffectsConnection StatusEffectsConnection { get; protected set; }
+        public abstract SkillsConnection SkillsConnection { get; }
+        public abstract StatusEffectsConnection StatusEffectsConnection { get; }
     }
 }

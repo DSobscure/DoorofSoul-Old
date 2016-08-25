@@ -1,6 +1,5 @@
 ﻿using DoorofSoul.Client.HelpFunctions;
 using DoorofSoul.Client.Interfaces;
-using DoorofSoul.Library.General.ElementComponents.Items;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,7 +72,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
             selectedIndex = index;
             inventoryItemBlockButtons[selectedIndex].GetComponent<Image>().color = new Color(50, 50, 50, 50);
         }
-        private void OnItemChange(ItemInfo info)
+        private void OnItemChange(InventoryItemInfo info)
         {
             if (info.positionIndex >= 0 && info.positionIndex < inventory.Capacity)
             {

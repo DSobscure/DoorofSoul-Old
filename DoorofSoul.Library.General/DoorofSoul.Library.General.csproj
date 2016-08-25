@@ -48,7 +48,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElementComponents\Items\ItemInfo.cs" />
+    <Compile Include="LightComponents\Nature\ContainerElements\InventoryInterface.cs" />
+    <Compile Include="LightComponents\Nature\SceneElementsInterface.cs" />
+    <Compile Include="NatureComponents\ContainerElements\InventoryItemInfo.cs" />
     <Compile Include="KnowledgeComponents\StatusEffect.cs" />
     <Compile Include="KnowledgeComponents\StatusEffects\ContainerStatusEffectInfo.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformContainerStatusEffectInfoChangeHandler.cs" />
@@ -58,7 +60,11 @@
     <Compile Include="LightComponents\Communications\Operations\Handlers\Scene\FetchData\FetchItemEntitiesHandler.cs" />
     <Compile Include="LightComponents\Communications\Responses\Handlers\Container\FetchData\FetchContainerStatusEffectInfosResponseHandler.cs" />
     <Compile Include="LightComponents\Communications\Responses\Handlers\Scene\FetchData\FetchItemEntitiesResponseHandler.cs" />
+    <Compile Include="LightComponents\ElementInterface.cs" />
     <Compile Include="LightComponents\KnowledgeInterface.cs" />
+    <Compile Include="LightComponents\LibraryHexagramInterface.cs" />
+    <Compile Include="LightComponents\NatureInterface.cs" />
+    <Compile Include="LightComponents\Nature\ContainerElementsInterface.cs" />
     <Compile Include="NatureComponents\ContainerElements\ContainerStatusEffectManager.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntity.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntityManager.cs" />
@@ -235,7 +241,7 @@
     <Compile Include="NatureComponents\Scene.cs" />
     <Compile Include="NatureComponents\SceneElements\MessageLog.cs" />
     <Compile Include="NatureComponents\SceneElements\SceneEye.cs" />
-    <Compile Include="LightComponents\Knowledge\SkillKnowledgeInterface.cs" />
+    <Compile Include="LightComponents\Knowledge\SkillIgeInterface.cs" />
     <Compile Include="ThroneComponents\Soul.cs" />
     <Compile Include="KnowledgeComponents\Skills\SkillInfo.cs" />
     <Compile Include="KnowledgeComponents\Skills\SkillLibrary.cs" />
@@ -268,6 +274,7 @@
     <Folder Include="LightComponents\Communications\Operations\Handlers\World\FetchData\" />
     <Folder Include="LightComponents\Communications\Responses\Handlers\Entity\FetchData\" />
     <Folder Include="LightComponents\Communications\Responses\Handlers\World\FetchData\" />
+    <Folder Include="LightComponents\Element\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

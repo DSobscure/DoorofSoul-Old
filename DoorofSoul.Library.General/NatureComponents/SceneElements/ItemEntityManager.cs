@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Protocol;
 using System;
 using System.Collections.Generic;
+using DoorofSoul.Library.General.ElementComponents;
 
 namespace DoorofSoul.Library.General.NatureComponents.SceneElements
 {
@@ -69,6 +70,23 @@ namespace DoorofSoul.Library.General.NatureComponents.SceneElements
         {
             itemEntityDictionary.Clear();
             onItemEntityChange?.Invoke(null, DataChangeTypeCode.ClearAll);
+        }
+        public void CreateItemEntity(int itemID, DSVector3 position)
+        {
+            ItemEntity itemEntity = LibraryInstance.NatureInterface?.SceneElementsInterface.CreateItemEntity(itemID, scene.SceneID, position);
+            if (itemEntity != null)
+            {
+                LoadItemEntity(itemEntity);
+            }
+        }
+        public void DeleteItemEntity(int itemEntityID)
+        {
+            if (ContainsItemEntity(itemEntityID))
+            {
+                ItemEntity itemEntity = itemEntityDictionary[itemEntityID];
+                UnloadItemEntity(itemEntity);
+                LibraryInstance.NatureInterface?.SceneElementsInterface.DeleteItemEntity(itemEntityID);
+            }
         }
     }
 }

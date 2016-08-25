@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.ElementComponents.Items;
+﻿using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Container;
 using System;
@@ -18,7 +18,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 try
                 {
-                    foreach(ItemInfo info in container.Inventory.ItemInfos)
+                    foreach(InventoryItemInfo info in container.Inventory.ItemInfos)
                     {
                         var result = new Dictionary<byte, object>
                         {

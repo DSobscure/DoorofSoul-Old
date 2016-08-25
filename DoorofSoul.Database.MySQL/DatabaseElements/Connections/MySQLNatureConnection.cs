@@ -1,20 +1,30 @@
 ﻿using DoorofSoul.Database.MySQL.DatabaseElements.Connections.NatureConnections;
 using DoorofSoul.Database.DatabaseElements.Connections;
 using MySql.Data.MySqlClient;
+using DoorofSoul.Database.DatabaseElements.Connections.NatureConnections;
+using System;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
 {
     class MySQLNatureConnection : NatureConnection
     {
+        private MySQLContainerElementsConnection containerElementsConnection;
+        private MySQLEntityElementsConnection entityElementsConnection;
+        private MySQLSceneElementsConnection sceneElementsConnection;
+
+        public override ContainerElementsConnection ContainerElementsConnection { get { return containerElementsConnection; } }
+        public override EntityElementsConnection EntityElementsConnection { get { return entityElementsConnection; } }
+        public override SceneElementsConnection SceneElementsConnection { get { return sceneElementsConnection; } }
+
         public MySQLNatureConnection()
         {
-            ContainerElementsConnection = new MySQLContainerElementsConnection();
-            EntityElementsConnection = new MySQLEntityElementsConnection();
-            SceneElementsConnection = new MySQLSceneElementsConnection();
+            containerElementsConnection = new MySQLContainerElementsConnection();
+            entityElementsConnection = new MySQLEntityElementsConnection();
+            sceneElementsConnection = new MySQLSceneElementsConnection();
 
-            childConnections.Add(ContainerElementsConnection);
-            childConnections.Add(EntityElementsConnection);
-            childConnections.Add(SceneElementsConnection);
+            childConnections.Add(containerElementsConnection);
+            childConnections.Add(entityElementsConnection);
+            childConnections.Add(sceneElementsConnection);
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

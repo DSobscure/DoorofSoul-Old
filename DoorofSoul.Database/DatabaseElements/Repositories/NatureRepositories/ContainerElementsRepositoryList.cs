@@ -2,11 +2,12 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.NatureRepositories
 {
-    public abstract class ContainerElementsRepositoryList : InstantiableRepositoryList
+    public abstract class ContainerElementsRepositoryList
     {
-        public ContainerAttributesRepository ContainerAttributesRepository { get; protected set; }
-        public ContainerKernelAbilitiesRepository ContainerKernelAbilitiesRepository { get; protected set; }
-        public ContainerKernelAbilitiesPotentialRepository ContainerKernelAbilitiesPotentialRepository { get; protected set; }
-        public InventoryRepository InventoryRepository { get; protected set; }
+        public abstract ContainerAttributesRepository ContainerAttributesRepository { get; }
+        public abstract ContainerKernelAbilitiesRepository ContainerKernelAbilitiesRepository { get; }
+        public abstract ContainerKernelAbilitiesPotentialRepository ContainerKernelAbilitiesPotentialRepository { get; }
+        public abstract InventoryRepository InventoryRepository { get; }
+        public abstract InventoryItemInfoRepository InventoryItemInfoRepository { get; }
     }
 }

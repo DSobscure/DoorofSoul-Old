@@ -2,10 +2,10 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
-    public abstract class ThroneRepositoryList : InstantiableRepositoryList
+    public abstract class ThroneRepositoryList
     {
-        public AnswerRepository AnswerRepository { get; protected set; }
-        public SoulRepository SoulRepository { get; protected set; }
-        public SoulElementsRepositoryList SoulElementsRepositoryList { get; protected set; }
+        public abstract AnswerRepository AnswerRepository { get; }
+        public abstract SoulRepository SoulRepository { get; }
+        public abstract SoulElementsRepositoryList SoulElementsRepositoryList { get; }
     }
 }

@@ -6,9 +6,9 @@ using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Hexagram.LightComponents.Skills
+namespace DoorofSoul.Hexagram.LightComponents.Knowledge
 {
-    public class HexagramSkillInterface : SkillKnowledgeInterface
+    class HexagramSkillInterface : SkillIgeInterface
     {
         public bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
         {

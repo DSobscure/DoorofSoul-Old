@@ -147,7 +147,7 @@ namespace DoorofSoul.Server
                 {
                     activatedPlayers.Add(player.PlayerID, player);
                 }
-                Hexagram.Instance.Throne.ProjectPlayer(player);
+                Hexagram.Hexagram.Instance.Throne.ProjectPlayer(player);
                 return true;
             }
         }
@@ -161,7 +161,7 @@ namespace DoorofSoul.Server
                     activatedPlayers.Remove(player.PlayerID);
                 }
                 Application.Log.InfoFormat("PlayerID: {0} Deactivate", player.PlayerID);
-                Hexagram.Instance.Throne.ExtractPlayer(player);
+                Hexagram.Hexagram.Instance.Throne.ExtractPlayer(player);
             }
         }
     }

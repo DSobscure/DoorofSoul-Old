@@ -2,15 +2,15 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
-    public abstract class NatureRepositoryList : InstantiableRepositoryList
+    public abstract class NatureRepositoryList
     {
-        public WorldRepository WorldRepository { get; protected set; }
-        public SceneRepository SceneRepository { get; protected set; }
-        public ContainerRepository ContainerRepository { get; protected set; }
-        public EntityRepository EntityRepository { get; protected set; }
+        public abstract WorldRepository WorldRepository { get; }
+        public abstract SceneRepository SceneRepository { get; }
+        public abstract ContainerRepository ContainerRepository { get; }
+        public abstract EntityRepository EntityRepository { get; }
 
-        public ContainerElementsRepositoryList ContainerElementsRepositoryList { get; protected set; }
-        public EntityElementsRepositoryList EntityElementsRepositoryList { get; protected set; }
-        public SceneElementsRepositoryList SceneElementsRepositoryList { get; protected set; }
+        public abstract ContainerElementsRepositoryList ContainerElementsRepositoryList { get; }
+        public abstract EntityElementsRepositoryList EntityElementsRepositoryList { get; }
+        public abstract SceneElementsRepositoryList SceneElementsRepositoryList { get; }
     }
 }

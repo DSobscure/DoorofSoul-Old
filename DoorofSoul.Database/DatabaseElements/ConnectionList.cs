@@ -4,10 +4,10 @@ namespace DoorofSoul.Database.DatabaseElements
 {
     public abstract class ConnectionList : DatabaseConnection
     {
-        public KnowledgeConnection KnowledgeConnection { get; protected set; }
-        public ElementConnection ElementConnection { get; protected set; }
-        public LoveConnection LoveConnection { get; protected set; }
-        public NatureConnection NatureConnection { get; protected set; }
-        public ThroneConnection ThroneConnection { get; protected set; }
+        public abstract KnowledgeConnection KnowledgeConnection { get; }
+        public abstract ElementConnection ElementConnection { get; }
+        public abstract LoveConnection LoveConnection { get; }
+        public abstract NatureConnection NatureConnection { get; }
+        public abstract ThroneConnection ThroneConnection { get; }
     }
 }

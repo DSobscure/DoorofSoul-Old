@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DoorofSoul.Database.DatabaseElements.Repositories.ElementRepositories;
 using DoorofSoul.Library.General.ElementComponents;
 using MySql.Data.MySqlClient;
@@ -66,6 +67,28 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                     {
                         return null;
                     }
+                }
+            }
+        }
+
+        public override List<Item> List()
+        {
+            string sqlString = @"SELECT  
+                ItemID,ItemName, Description
+                from ItemCollection;";
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.Connection as MySqlConnection))
+            {
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    List<Item> items = new List<Item>();
+                    while (reader.Read())
+                    {
+                        int itemID = reader.GetInt32(0);
+                        string itemName = reader.GetString(1);
+                        string description = reader.GetString(2);
+                        items.Add(new Item(itemID, itemName, description));
+                    }
+                    return items;
                 }
             }
         }

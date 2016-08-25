@@ -32,8 +32,7 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
                             Scene scene = Hexagram.Instance.Nature.FindScene(sceneID);
                             for (int i = 0; i < itemCount; i++)
                             {
-                                ItemEntity itemEntity = Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.Create(itemID, sceneID, itemEntityPosition);
-                                scene.ItemEntityManager.LoadItemEntity(itemEntity);
+                                scene.ItemEntityManager.CreateItemEntity(itemID, itemEntityPosition);
                             }
                             skillResponseParameters = new Dictionary<byte, object>();
                             debugMessage = "";

@@ -1,15 +1,20 @@
 ﻿using DoorofSoul.Database.MySQL.DatabaseElements.Connections.ElementConnections;
 using DoorofSoul.Database.DatabaseElements.Connections;
 using MySql.Data.MySqlClient;
+using DoorofSoul.Database.DatabaseElements.Connections.ElementConnections;
+using System;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
 {
     class MySQLElementConnection : ElementConnection
     {
+        private MySQLItemsConnection itemsConnection;
+        public override ItemsConnection ItemsConnection { get { return itemsConnection; } }
+
         public MySQLElementConnection()
         {
-            ItemsConnection = new MySQLItemsConnection();
-            childConnections.Add(ItemsConnection);
+            itemsConnection = new MySQLItemsConnection();
+            childConnections.Add(itemsConnection);
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

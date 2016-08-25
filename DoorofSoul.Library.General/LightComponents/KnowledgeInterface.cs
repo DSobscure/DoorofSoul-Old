@@ -8,6 +8,6 @@ namespace DoorofSoul.Library.General.LightComponents
         Skill FindSkill(int skillID);
         StatusEffect FindStatusEffect(int statusEffectID);
 
-        SkillKnowledgeInterface SkillKnowledgeInterface { get;}
+        SkillIgeInterface SkillInterface { get;}
     }
 }

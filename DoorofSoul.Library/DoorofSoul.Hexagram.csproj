@@ -7,7 +7,7 @@
     <ProjectGuid>{352197E1-395E-4D07-9844-2C8918016303}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DoorofSoul.Library</RootNamespace>
+    <RootNamespace>DoorofSoul.Hexagram</RootNamespace>
     <AssemblyName>DoorofSoul.Library</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Element.cs" />
+    <Compile Include="ElementComponents\ItemManager.cs" />
     <Compile Include="Hexagram.cs" />
     <Compile Include="KnowledgeComponents\HeptagramSystems\AlchemySystem.cs" />
     <Compile Include="KnowledgeComponents\HeptagramSystems\BeliefSystem.cs" />
@@ -52,7 +54,10 @@
     <Compile Include="KnowledgeComponents\HeptagramSystems\DemonSystem.cs" />
     <Compile Include="KnowledgeComponents\HeptagramSystems\ElementSystem.cs" />
     <Compile Include="KnowledgeComponents\HeptagramSystems\GenieSystem.cs" />
-    <Compile Include="LightComponents\Skills\HexagramSkillInterface.cs" />
+    <Compile Include="LightComponents\HexagramElementInterface.cs" />
+    <Compile Include="LightComponents\HexagramInterface.cs" />
+    <Compile Include="LightComponents\HexagramNatureInterface.cs" />
+    <Compile Include="LightComponents\Knowledge\HexagramSkillInterface.cs" />
     <Compile Include="KnowledgeComponents\HeptagramSystems\HeptagramSystem.cs" />
     <Compile Include="HexagramWorldCommunicationInterface.cs" />
     <Compile Include="Knowledge.cs" />
@@ -60,6 +65,9 @@
     <Compile Include="KnowledgeComponents\SkillManager.cs" />
     <Compile Include="KnowledgeComponents\StatusEffectManager.cs" />
     <Compile Include="LightComponents\HexagramKnowledgeInterface.cs" />
+    <Compile Include="LightComponents\Nature\ContainerElements\HexagramInventoryInterface.cs" />
+    <Compile Include="LightComponents\Nature\HexagramContainerElementsInterface.cs" />
+    <Compile Include="LightComponents\Nature\HexagramSceneElementsInterface.cs" />
     <Compile Include="Nature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidenceEye.cs" />
@@ -87,7 +95,9 @@
       <Name>DoorofSoul.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LightComponents\Element\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

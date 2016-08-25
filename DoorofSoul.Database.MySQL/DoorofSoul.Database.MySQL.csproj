@@ -51,7 +51,7 @@
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLSceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
-    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLItemInfoRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLInventoryItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLSkillRepository.cs" />
@@ -121,7 +121,9 @@
       <Name>DoorofSoul.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

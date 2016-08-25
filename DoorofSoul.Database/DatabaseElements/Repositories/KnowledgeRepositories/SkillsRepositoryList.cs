@@ -2,8 +2,8 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories
 {
-    public abstract class SkillsRepositoryList : InstantiableRepositoryList
+    public abstract class SkillsRepositoryList
     {
-        public SkillInfoRepository SkillInfoRepository { get; protected set; }
+        public abstract SkillInfoRepository SkillInfoRepository { get; }
     }
 }

@@ -1,26 +1,39 @@
 ﻿using DoorofSoul.Database.MySQL.DatabaseElements.Connections;
 using DoorofSoul.Database.DatabaseElements;
 using MySql.Data.MySqlClient;
+using DoorofSoul.Database.DatabaseElements.Connections;
+using System;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements
 {
     class MySQLConnectionList : ConnectionList
     {
+        private MySQLKnowledgeConnection knowledgeConnection;
+        private MySQLElementConnection elementConnection;
+        private MySQLLoveConnection loveConnection;
+        private MySQLNatureConnection natureConnection;
+        private MySQLThroneConnection throneConnection;
+
+        public override KnowledgeConnection KnowledgeConnection { get { return knowledgeConnection; } }
+        public override ElementConnection ElementConnection { get { return elementConnection; } }
+        public override LoveConnection LoveConnection { get { return loveConnection; } }
+        public override NatureConnection NatureConnection { get { return natureConnection; } }
+        public override ThroneConnection ThroneConnection { get { return throneConnection; } }
+
         public MySQLConnectionList()
         {
-            KnowledgeConnection = new MySQLKnowledgeConnection();
-            ElementConnection = new MySQLElementConnection();
-            LoveConnection = new MySQLLoveConnection();
-            NatureConnection = new MySQLNatureConnection();
-            ThroneConnection = new MySQLThroneConnection();
+            knowledgeConnection = new MySQLKnowledgeConnection();
+            elementConnection = new MySQLElementConnection();
+            loveConnection = new MySQLLoveConnection();
+            natureConnection = new MySQLNatureConnection();
+            throneConnection = new MySQLThroneConnection();
 
-            childConnections.Add(KnowledgeConnection);
-            childConnections.Add(ElementConnection);
-            childConnections.Add(LoveConnection);
-            childConnections.Add(NatureConnection);
-            childConnections.Add(ThroneConnection);
+            childConnections.Add(knowledgeConnection);
+            childConnections.Add(elementConnection);
+            childConnections.Add(loveConnection);
+            childConnections.Add(natureConnection);
+            childConnections.Add(throneConnection);
         }
-
         public override bool Connect(string hostName, string userName, string password, string database)
         {
             string connectString = string.Format("server={0};uid={1};pwd={2};database={3}", hostName, userName, password, database);

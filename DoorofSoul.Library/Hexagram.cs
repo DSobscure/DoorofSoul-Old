@@ -17,6 +17,7 @@ namespace DoorofSoul.Hexagram
         }
 
         public Knowledge Knowledge { get; protected set; }
+        public Element Element { get; protected set; }
         public Nature Nature { get; protected set; }
         public Throne Throne { get; protected set; }
         public ILogger Log { get; protected set; }
@@ -25,6 +26,7 @@ namespace DoorofSoul.Hexagram
         protected Hexagram()
         {
             Knowledge = new Knowledge();
+            Element = new Element();
             Nature = new Nature();
             Throne = new Throne();
         }

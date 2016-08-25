@@ -1,13 +1,19 @@
 ﻿using DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepositories.StatusEffectsRepositories;
 using DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories;
+using DoorofSoul.Database.DatabaseElements.Repositories.KnowledgeRepositories.StatusEffectsRepositories;
+using System;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.KnowledgeRepositories
 {
     class MySQLStatusEffectsRepositoryList : StatusEffectsRepositoryList
     {
-        protected override void InstantiateRepositories()
+        private MySQLContainerStatusEffectInfoRepository containerStatusEffectInfoRepository;
+
+        public override ContainerStatusEffectInfoRepository ContainerStatusEffectInfoRepository { get { return containerStatusEffectInfoRepository; } }
+
+        public MySQLStatusEffectsRepositoryList()
         {
-            ContainerStatusEffectInfoRepository = new MySQLContainerStatusEffectInfoRepository();
+            containerStatusEffectInfoRepository = new MySQLContainerStatusEffectInfoRepository();
         }
     }
 }

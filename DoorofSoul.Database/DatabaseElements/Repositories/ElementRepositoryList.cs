@@ -2,9 +2,9 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
-    public abstract class ElementRepositoryList : InstantiableRepositoryList
+    public abstract class ElementRepositoryList
     {
-        public ItemRepository ItemRepository { get; protected set; }
-        public ItemsRepositoryList ItemsRepositoryList { get; protected set; }
+        public abstract ItemRepository ItemRepository { get; }
+        public abstract ItemsRepositoryList ItemsRepositoryList { get; }
     }
 }

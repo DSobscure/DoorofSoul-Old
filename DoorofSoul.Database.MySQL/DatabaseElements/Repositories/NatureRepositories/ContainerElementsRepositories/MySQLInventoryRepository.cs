@@ -68,7 +68,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
                     }
                 }
             }
-            Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ItemInfoRepository.LoadItemInfos(inventory);
+            Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.InventoryItemInfoRepository.LoadInventoryItemInfos(inventory);
             return inventory;
         }
 
@@ -95,7 +95,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
                     }
                 }
             }
-            Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ItemInfoRepository.LoadItemInfos(inventory);
+            Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.InventoryItemInfoRepository.LoadInventoryItemInfos(inventory);
             return inventory;
         }
 
@@ -114,7 +114,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
                     Database.Log.ErrorFormat("MySQLInventoryRepository Save Inventory Error InventoryID: {0}", inventory.InventoryID);
                 }
             }
-            Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ItemInfoRepository.SaveItemInfos(inventory);
+            Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.InventoryItemInfoRepository.SaveInventoryItemInfos(inventory);
         }
     }
 }

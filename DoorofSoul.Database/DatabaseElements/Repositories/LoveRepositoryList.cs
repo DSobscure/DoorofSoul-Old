@@ -2,8 +2,8 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories
 {
-    public abstract class LoveRepositoryList : InstantiableRepositoryList
+    public abstract class LoveRepositoryList
     {
-        public SoulContainerLinkRepository SoulContainerLinkRepository { get; protected set; }
+        public abstract SoulContainerLinkRepository SoulContainerLinkRepository { get; }
     }
 }

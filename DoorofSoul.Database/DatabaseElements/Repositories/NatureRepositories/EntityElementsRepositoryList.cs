@@ -2,8 +2,8 @@
 
 namespace DoorofSoul.Database.DatabaseElements.Repositories.NatureRepositories
 {
-    public abstract class EntityElementsRepositoryList : InstantiableRepositoryList
+    public abstract class EntityElementsRepositoryList
     {
-        public EntitySpacePropertiesRepository EntitySpacePropertiesRepository { get; protected set; }
+        public abstract EntitySpacePropertiesRepository EntitySpacePropertiesRepository { get; }
     }
 }

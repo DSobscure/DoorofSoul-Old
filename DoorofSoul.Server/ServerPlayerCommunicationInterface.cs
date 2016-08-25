@@ -25,17 +25,17 @@ namespace DoorofSoul.Server
 
         public override bool ActiveSoul(Answer answer, int soulID)
         {
-            return Hexagram.Instance.Throne.ActiveSoul(soulID);
+            return Hexagram.Hexagram.Instance.Throne.ActiveSoul(soulID);
         }
 
         public override bool CreateSoul(Answer answer, string soulName, SoulKernelTypeCode mainSoulType)
         {
-            return Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName, mainSoulType);
+            return Hexagram.Hexagram.Instance.Throne.CreateSoul(answer.AnswerID, soulName, mainSoulType);
         }
 
         public override bool DeleteSoul(Answer answer, int soulID)
         {
-            return Hexagram.Instance.Throne.DeleteSoul(answer.AnswerID, soulID);
+            return Hexagram.Hexagram.Instance.Throne.DeleteSoul(answer.AnswerID, soulID);
         }
 
         public override void ErrorInform(string title, string message)
@@ -45,7 +45,7 @@ namespace DoorofSoul.Server
 
         public override Scene FindScene(int sceneID)
         {
-            return Hexagram.Instance.Nature.FindScene(sceneID);
+            return Hexagram.Hexagram.Instance.Nature.FindScene(sceneID);
         }
 
         public override void GetSystemVersion(out string serverVersion, out string clientVersion)
@@ -56,7 +56,7 @@ namespace DoorofSoul.Server
 
         public override List<World> ListWorlds()
         {
-            return Hexagram.Instance.Nature.ListWorlds();
+            return Hexagram.Hexagram.Instance.Nature.ListWorlds();
         }
 
         public override void LoadScene(int sceneID, string sceneName, int worldID)

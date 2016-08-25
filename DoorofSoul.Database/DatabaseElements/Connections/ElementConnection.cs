@@ -4,6 +4,6 @@ namespace DoorofSoul.Database.DatabaseElements.Connections
 {
     public abstract class ElementConnection : DatabaseConnection
     {
-        public ItemsConnection ItemsConnection { get; protected set; }
+        public abstract ItemsConnection ItemsConnection { get; }
     }
 }

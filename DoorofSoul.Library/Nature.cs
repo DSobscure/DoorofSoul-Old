@@ -1,11 +1,9 @@
-﻿using DoorofSoul.Database;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents;
 using System.Collections.Generic;
 using System.Linq;
-using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class Nature
     {

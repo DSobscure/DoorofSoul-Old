@@ -4,6 +4,7 @@
     {
         FetchData,
         Say,
-        ObserveEntityPosition
+        ObserveEntityPosition,
+        PickupItemEntity
     }
 }

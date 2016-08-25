@@ -95,7 +95,6 @@
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\WorldRepository.cs" />
     <Compile Include="DatabaseElements\RepositoryList.cs" />
-    <Compile Include="KnowledgeInterface.cs" />
     <Compile Include="Library\PlayerData.cs" />
     <Compile Include="Library\WorldData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

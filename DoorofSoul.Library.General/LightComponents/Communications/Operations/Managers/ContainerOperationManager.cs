@@ -23,6 +23,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { ContainerOperationCode.FetchData, FetchDataResolver },
                 { ContainerOperationCode.Say, new SayHandler(container) },
                 { ContainerOperationCode.ObserveEntityPosition, new ObserveEntityPositionHandler(container) },
+                { ContainerOperationCode.PickupItemEntity, new PickupItemEntityHandler(container) },
             };
         }
 
@@ -95,6 +96,14 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { (byte)ObserveEntityPositionParameterCode.Position, entity.Position }
             };
             SendOperation(ContainerOperationCode.ObserveEntityPosition, parameters, ContainerCommunicationChannel.Answer);
+        }
+        public void PickupItemEntity(int itemEntityID)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)PickupItemEntityParameterCode.ItemEntityID, itemEntityID }
+            };
+            SendOperation(ContainerOperationCode.PickupItemEntity, parameters, ContainerCommunicationChannel.Answer);
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using DoorofSoul.Library.General;
-using DoorofSoul.Library.General.NatureComponents;
+﻿using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class HexagramWorldCommunicationInterface : WorldCommunicationInterface
     {

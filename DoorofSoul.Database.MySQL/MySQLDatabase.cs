@@ -1,7 +1,6 @@
 ﻿using DoorofSoul.Database.MySQL.DatabaseElements;
-using MySql.Data.MySqlClient;
+using DoorofSoul.Library.General.LightComponents;
 using ExitGames.Logging;
-using DoorofSoul.Database.DatabaseElements.Connections;
 
 namespace DoorofSoul.Database.MySQL
 {

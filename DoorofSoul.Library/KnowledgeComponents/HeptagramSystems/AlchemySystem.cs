@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DoorofSoul.Library.General.ElementComponents;
+﻿using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
@@ -9,8 +6,10 @@ using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.SkillParameters.AlchemySystem;
+using System;
+using System.Collections.Generic;
 
-namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
+namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
 {
     public class AlchemySystem : HeptagramSystem
     {

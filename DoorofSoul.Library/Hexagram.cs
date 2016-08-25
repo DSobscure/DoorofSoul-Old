@@ -1,8 +1,6 @@
-﻿using DoorofSoul.Library.General;
-using System.Collections.Generic;
-using ExitGames.Logging;
+﻿using ExitGames.Logging;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class Hexagram
     {

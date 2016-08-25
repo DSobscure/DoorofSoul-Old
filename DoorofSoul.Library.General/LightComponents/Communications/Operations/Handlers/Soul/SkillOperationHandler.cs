@@ -30,7 +30,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                             Dictionary<byte, object> skillResponseParameters;
                             ErrorCode errorCode;
                             string debugMessage;
-                            if (soul.SkillKnowledgeInterface.OperateSkill(soul, soul.FindContainer(agentContainerID), soul.SkillLibrary.FindSkillInfo(heptagramSystem, skillInfoID), skillParameters, out skillResponseParameters, out errorCode, out debugMessage))
+                            if (LibraryInstance.KnowledgeInterface.SkillKnowledgeInterface.OperateSkill(soul, soul.FindContainer(agentContainerID), soul.SkillLibrary.FindSkillInfo(heptagramSystem, skillInfoID), skillParameters, out skillResponseParameters, out errorCode, out debugMessage))
                             {
                                 SendResponse(operationCode, skillResponseParameters);
                                 return true;

@@ -1,8 +1,8 @@
-﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
-using DoorofSoul.Library.General.NatureComponents;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol.Language;
 using System;
@@ -33,7 +33,6 @@ namespace DoorofSoul.Library.General.ThroneComponents
         public SupportLauguages UsingLanguage { get { return Answer.UsingLanguage; } }
         public SoulAttributes Attributes { get; protected set; }
         public SkillLibrary SkillLibrary { get; protected set; }
-        public SkillKnowledgeInterface SkillKnowledgeInterface { get; protected set; }
     #endregion
 
         #region events
@@ -78,10 +77,6 @@ namespace DoorofSoul.Library.General.ThroneComponents
         public void UnlinkAllContainers()
         {
             containerDictionary.Clear();
-        }
-        public void BindSkillKnowledgeInterface(SkillKnowledgeInterface skillKnowledgeInterface)
-        {
-            SkillKnowledgeInterface = skillKnowledgeInterface;
         }
 
         public bool ContainsContainer(int containerID)

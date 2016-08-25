@@ -1,14 +1,6 @@
-﻿using DoorofSoul.Library.General.KnowledgeComponents;
-using DoorofSoul.Library.General.KnowledgeComponents.Skills;
-using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.ThroneComponents;
-using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
-using DoorofSoul.Library.KnowledgeComponents;
-using DoorofSoul.Protocol;
-using DoorofSoul.Protocol.Communication;
-using System.Collections.Generic;
+﻿using DoorofSoul.Hexagram.KnowledgeComponents;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class Knowledge
     {

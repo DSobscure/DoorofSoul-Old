@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Protocol;
 
-namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
+namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
 {
     public class ElementSystem : HeptagramSystem
     {

@@ -1,11 +1,11 @@
-﻿using DoorofSoul.Library.General.NatureComponents;
+﻿using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
-using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
-using System.Threading;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class ProvidenceEye : SceneEye
     {

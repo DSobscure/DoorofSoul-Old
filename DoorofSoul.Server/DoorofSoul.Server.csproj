@@ -81,9 +81,9 @@
       <Project>{28e98488-b39a-471d-ae89-740f9c09f7d8}</Project>
       <Name>DoorofSoul.Library.General</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DoorofSoul.Library\DoorofSoul.Library.csproj">
+    <ProjectReference Include="..\DoorofSoul.Library\DoorofSoul.Hexagram.csproj">
       <Project>{352197e1-395e-4d07-9844-2c8918016303}</Project>
-      <Name>DoorofSoul.Library</Name>
+      <Name>DoorofSoul.Hexagram</Name>
     </ProjectReference>
     <ProjectReference Include="..\DoorofSoul.Protocol.Communication\DoorofSoul.Protocol.Communication.csproj">
       <Project>{3e824c64-df4c-4504-b478-f594b7db3244}</Project>

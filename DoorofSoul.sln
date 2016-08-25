@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Server", "Doorof
 		{28E98488-B39A-471D-AE89-740F9C09F7D8} = {28E98488-B39A-471D-AE89-740F9C09F7D8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Library", "DoorofSoul.Library\DoorofSoul.Library.csproj", "{352197E1-395E-4D07-9844-2C8918016303}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorofSoul.Hexagram", "DoorofSoul.Library\DoorofSoul.Hexagram.csproj", "{352197E1-395E-4D07-9844-2C8918016303}"
 	ProjectSection(ProjectDependencies) = postProject
 		{28E98488-B39A-471D-AE89-740F9C09F7D8} = {28E98488-B39A-471D-AE89-740F9C09F7D8}
 	EndProjectSection

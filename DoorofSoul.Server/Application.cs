@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Database;
 using DoorofSoul.Database.MySQL;
 using DoorofSoul.Library;
+using DoorofSoul.Library.LightComponents;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Library.General.ElementComponents;
@@ -34,6 +35,7 @@ namespace DoorofSoul.Server
         {
             instance = this;
             SetupLog();
+            SetupLibrary();
             SetupConfiguration();
             SetupDatabase();
             SetupHexagram();
@@ -66,7 +68,10 @@ namespace DoorofSoul.Server
                 LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
                 XmlConfigurator.ConfigureAndWatch(file);
             }
-            LibraryInstance.Initial(Log.Error, Log.ErrorFormat);
+        }
+        protected void SetupLibrary()
+        {
+            LibraryInstance.Initial(Log.Error, Log.ErrorFormat, new HexagramKnowledgeInterface());
         }
         protected void SetupConfiguration()
         {
@@ -83,7 +88,7 @@ namespace DoorofSoul.Server
 
         protected void SetupDatabase()
         {
-            Database.Database.Initial(new MySQLDatabase(Log, new HexagramKnowledgeInterface()));
+            Database.Database.Initial(new MySQLDatabase(Log, LibraryInstance.KnowledgeInterface));
             if(Database.Database.Connect(SystemConfiguration.DatabaseHostname, SystemConfiguration.DatabaseUsername, SystemConfiguration.DatabasePassword, SystemConfiguration.Database))
             {
                 Log.Info("Database Setup Successiful.......");

@@ -1,15 +1,13 @@
-﻿using DoorofSoul.Database;
-using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents;
-using DoorofSoul.Library.KnowledgeComponents.HeptagramSystems;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library
+namespace DoorofSoul.Hexagram
 {
     public class Throne
     {
@@ -38,7 +36,6 @@ namespace DoorofSoul.Library
                 answer.LoadSouls(Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
-                    soul.BindSkillKnowledgeInterface(new HeptagramSkillKnowledgeInterface());
                     ProjectSoul(soul);
                 }
             }

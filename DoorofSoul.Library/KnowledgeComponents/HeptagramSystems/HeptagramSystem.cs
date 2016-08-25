@@ -5,7 +5,7 @@ using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.KnowledgeComponents.HeptagramSystems
+namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
 {
     public abstract class HeptagramSystem
     {

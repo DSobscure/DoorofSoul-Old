@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Database.DatabaseElements;
+using DoorofSoul.Library.General.LightComponents;
 using ExitGames.Logging;
-using System;
 
 namespace DoorofSoul.Database
 {

@@ -123,6 +123,7 @@
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerLoginSceneScripts\InputNavigationController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerLoginSceneScripts\PlayerLoginUI.cs" />
+    <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerLoginSceneScripts\PlayerRegisterUI.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ErrorInformPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />

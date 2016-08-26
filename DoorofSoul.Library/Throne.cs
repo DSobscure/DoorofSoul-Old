@@ -6,6 +6,7 @@ using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DoorofSoul.Hexagram
 {
@@ -156,7 +157,7 @@ namespace DoorofSoul.Hexagram
                 Answer answer = answerDictionary[answerID];
                 Soul soul = Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.Create(answer, soulName, mainSoulType);
                 answer.LoadSouls(new List<Soul> { soul });
-                Container defaultContainer = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Create("TestContainer", 1, new EntitySpaceProperties
+                Container defaultContainer = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Create("TestContainer", Hexagram.Instance.Nature.Scenes.First().SceneID, new EntitySpaceProperties
                 {
                     Scale = new DSVector3 { x = 1, y = 1, z = 1 },
                 });

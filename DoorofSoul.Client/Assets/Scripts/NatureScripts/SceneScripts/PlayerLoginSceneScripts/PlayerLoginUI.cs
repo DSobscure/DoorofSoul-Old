@@ -1,8 +1,6 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Client.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
-using DoorofSoul.Client.Global;
-using DoorofSoul.Client.Interfaces;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerLoginSceneScripts
 {

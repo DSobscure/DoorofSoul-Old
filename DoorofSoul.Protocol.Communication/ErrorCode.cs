@@ -13,5 +13,6 @@ namespace DoorofSoul.Protocol.Communication
         PermissionDeny,
         Fail,
         NotExist,
+        AlreadyExisted
     }
 }

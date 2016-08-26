@@ -5,13 +5,49 @@ using DoorofSoul.Protocol.Language;
 using MySql.Data.MySqlClient;
 using System;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories
 {
     class MySQLPlayerRepository : PlayerRepository
     {
+        public override bool Register(string account, string password)
+        {
+            int playerID;
+            if(Contains(account, out playerID))
+            {
+                return false;
+            }
+            else
+            {
+                int answerID = Database.RepositoryList.ThroneRepositoryList.AnswerRepository.Create(3);
+                if(answerID == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    string sqlString = @"INSERT INTO PlayerCollection 
+                        (Account, PasswordHash, RegisterDate, UsingLanguage, AnswerID) VALUES (@account, @passwordHash, @registerDate, @usingLanguage, @answerID) ;";
+                    using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.Connection as MySqlConnection))
+                    {
+                        command.Parameters.AddWithValue("@account", account);
+                        command.Parameters.AddWithValue("@passwordHash", HashPassword(password));
+                        command.Parameters.AddWithValue("@registerDate", DateTime.Now);
+                        command.Parameters.AddWithValue("@usingLanguage", SupportLauguages.Chinese_Traditional);
+                        command.Parameters.AddWithValue("@answerID", answerID);
+                        if(command.ExecuteNonQuery() <= 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
         public override bool Contains(string account, out int playerID)
         {
             using (MySqlCommand command = new MySqlCommand("SELECT PlayerID FROM PlayerCollection WHERE Account = @account;", Database.ConnectionList.Connection as MySqlConnection))
@@ -64,11 +100,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories
         {
             using (MySqlCommand command = new MySqlCommand("SELECT 1 FROM PlayerCollection WHERE Account = @account and PasswordHash = @passwordHash;", Database.ConnectionList.Connection as MySqlConnection))
             {
-                SHA512 sha512 = new SHA512CryptoServiceProvider();
-                string passwordHash = Convert.ToBase64String(sha512.ComputeHash(Encoding.Default.GetBytes(password)));
-
                 command.Parameters.AddWithValue("@account", account);
-                command.Parameters.AddWithValue("@passwordHash", passwordHash);
+                command.Parameters.AddWithValue("@passwordHash", HashPassword(password));
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())

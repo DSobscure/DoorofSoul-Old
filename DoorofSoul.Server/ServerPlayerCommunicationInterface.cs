@@ -79,6 +79,22 @@ namespace DoorofSoul.Server
             Application.ServerInstance.PlayerFactory.PlayerLogout(player as ServerPlayer);
         }
 
+        public override bool Register(string account, string password, out string debugMessage, out ErrorCode errorCode)
+        {
+            if (Database.Database.RepositoryList.PlayerRepository.Register(account, password))
+            {
+                debugMessage = "";
+                errorCode = ErrorCode.NoError;
+                return true;
+            }
+            else
+            {
+                debugMessage = "account already existed";
+                errorCode = ErrorCode.AlreadyExisted;
+                return false;
+            }
+        }
+
         public override void SendEvent(PlayerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>

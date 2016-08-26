@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories;
+﻿using System;
+using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories;
 using DoorofSoul.Library.General;
 using DoorofSoul.Library.General.ThroneComponents;
 using MySql.Data.MySqlClient;
@@ -7,6 +8,26 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
 {
     public class MySQLAnswerRepository : AnswerRepository
     {
+        public override int Create(int soulCountLimit)
+        {
+            string sqlString = @"INSERT INTO AnswerCollection 
+                (SoulCountLimit) VALUES (@soulCountLimit) ;
+                SELECT LAST_INSERT_ID();";
+            int answerID = 0;
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            {
+                command.Parameters.AddWithValue("@soulCountLimit", soulCountLimit);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        answerID = reader.GetInt32(0);
+                    }
+                }
+            }
+            return answerID;
+        }
+
         public override Answer Find(int answerID, Player correspondingPlayer)
         {
             string sqlString = @"SELECT  

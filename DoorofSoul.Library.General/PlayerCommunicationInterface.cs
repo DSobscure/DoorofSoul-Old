@@ -34,5 +34,6 @@ namespace DoorofSoul.Library.General
         public abstract bool DeleteSoul(Answer answer, int soulID);
         public abstract bool CreateSoul(Answer answer, string soulName, SoulKernelTypeCode mainSoulType);
         public abstract bool ActiveSoul(Answer answer, int soulID);
+        public abstract bool Register(string account, string password, out string debugMessage, out ErrorCode errorCode);
     }
 }

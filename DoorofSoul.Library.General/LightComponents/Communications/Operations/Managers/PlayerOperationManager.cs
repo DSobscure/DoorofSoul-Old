@@ -25,6 +25,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { PlayerOperationCode.FetchData, FetchDataResolver },
                 { PlayerOperationCode.Login, new LoginHandler(player) },
                 { PlayerOperationCode.Logout, new LogoutHandler(player) },
+                { PlayerOperationCode.Register, new RegisterHandler(player) },
             };
         }
 
@@ -80,6 +81,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { (byte)FetchDataParameterCode.Parameters, new Dictionary<byte, object>() }
             };
             SendOperation(PlayerOperationCode.FetchData, parameters);
+        }
+        public void Register(string account, string password)
+        {
+            var parameters = new Dictionary<byte, object>
+            {
+                { (byte)RegisterParameterCode.Account, account },
+                { (byte)RegisterParameterCode.Password, password }
+            };
+            SendOperation(PlayerOperationCode.Register, parameters);
         }
     }
 }

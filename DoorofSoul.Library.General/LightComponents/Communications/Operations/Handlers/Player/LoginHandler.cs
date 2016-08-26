@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DoorofSoul.Protocol.Communication;
+﻿using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Player;
 using DoorofSoul.Protocol.Communication.ResponseParameters.Player;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers.Player
 {

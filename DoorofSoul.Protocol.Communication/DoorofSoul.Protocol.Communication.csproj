@@ -122,6 +122,7 @@
     <Compile Include="OperationParameters\OperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\AnswerOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Player\LoginParameterCode.cs" />
+    <Compile Include="OperationParameters\Player\RegisterParameterCode.cs" />
     <Compile Include="OperationParameters\Soul\SkillOperationParameterCode.cs" />
     <Compile Include="OperationParameters\World\SceneOperationParameterCode.cs" />
     <Compile Include="OperationParameters\Scene\ContainerOperationParameterCode.cs" />

@@ -22,6 +22,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ma
                 { PlayerOperationCode.FetchData, new FetchDataResponseResolver(player) },
                 { PlayerOperationCode.Login, new LoginResponseHandler(player) },
                 { PlayerOperationCode.Logout, new LogoutResponseHandler(player) },
+                { PlayerOperationCode.Register, new RegisterResponseHandler(player) },
             };
         }
 

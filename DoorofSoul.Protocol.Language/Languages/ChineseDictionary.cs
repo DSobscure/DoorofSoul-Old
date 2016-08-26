@@ -41,6 +41,9 @@ namespace DoorofSoul.Protocol.Language.Languages
                 { "Fetch InventoryItems Error", "讀取道具欄內容資訊錯誤" },
                 { "Fetch ContainerStatusEffectInfos Error", "讀取容器狀態資訊錯誤" },
                 { "Fetch ItemEntities Error", "讀取場景物品實體錯誤" },
+                { "Register Error", "註冊錯誤" },
+                { "Account Used", "此帳號已經被使用了" },
+                { "AccountOrPasswordInvalid", "帳號或密碼不合法" },
                 #endregion
 
                 #region UI

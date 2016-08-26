@@ -78,8 +78,9 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
                 switch (viewMode)
                 {
                     case SkillPanelViewMode.List:
-                        skillInfosScrollViewContent.sizeDelta = new Vector2(skillInfoBlockPrefab.Width, 10 + (skillInfoBlockPrefab.Height + 5) * skillInfos.Count);
-                        skillInfosScrollViewContent.anchoredPosition = new Vector2(-skillInfoBlockPrefab.Width / 2, 0);
+                        float width = (skillInfoBlockPrefab.Width < skillInfosScrollView.GetComponent<RectTransform>().sizeDelta.x) ? skillInfosScrollView.GetComponent<RectTransform>().sizeDelta.x : skillInfoBlockPrefab.Width;
+                        skillInfosScrollViewContent.sizeDelta = new Vector2(width, 10 + (skillInfoBlockPrefab.Height + 5) * skillInfos.Count);
+                        skillInfosScrollViewContent.anchoredPosition = new Vector2(-width/2, 0);
                         for (int i = 0; i < skillInfos.Count; i++)
                         {
                             if (!skillInfoBlockDictionary.ContainsKey(skillInfos[i].Skill.SkillID))

@@ -10,6 +10,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerLoginSceneS
     {
         [SerializeField]
         private PlayerLoginUI playerLoginUI;
+        [SerializeField]
+        private PlayerRegisterUI playerRegisterUI;
 
         private DoorofSoul.Library.General.Player player;
 
@@ -41,6 +43,31 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerLoginSceneS
         {
             Global.Global.Seat.MainAnswer = answer;
             SceneManager.LoadScene("PlayerAnswerScene");
+        }
+        public void PlayerRegister()
+        {
+            if(playerRegisterUI.Account != null && playerRegisterUI.Account.Length >= 2)
+            {
+                if(playerRegisterUI.Password != null && playerRegisterUI.Password.Length >= 2)
+                {
+                    if(playerRegisterUI.PasswordCheck != null && playerRegisterUI.Password == playerRegisterUI.PasswordCheck)
+                    {
+                        player.PlayerOperationManager.Register(playerRegisterUI.Account, playerRegisterUI.Password);
+                    }
+                    else
+                    {
+                        player.PlayerEventManager.ErrorInform("錯誤", "密碼與確認密碼不同");
+                    }
+                }
+                else
+                {
+                    player.PlayerEventManager.ErrorInform("錯誤", "密碼太短");
+                }
+            }
+            else
+            {
+                player.PlayerEventManager.ErrorInform("錯誤","帳號太短");
+            }
         }
     }
 }

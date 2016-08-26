@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformInventoryItemIntoChangeHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Player\RegisterHandler.cs" />
+    <Compile Include="LightComponents\Communications\Responses\Handlers\Player\RegisterResponseHandler.cs" />
     <Compile Include="LightComponents\Nature\ContainerElements\InventoryInterface.cs" />
     <Compile Include="LightComponents\Nature\SceneElementsInterface.cs" />
     <Compile Include="NatureComponents\ContainerElements\InventoryItemInfo.cs" />

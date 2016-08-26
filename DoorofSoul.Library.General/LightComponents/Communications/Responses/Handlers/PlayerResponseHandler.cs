@@ -13,7 +13,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
             this.player = player;
         }
 
-        public virtual bool Handle(PlayerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
+        internal virtual bool Handle(PlayerOperationCode operationCode, ErrorCode returnCode, string debugMessage, Dictionary<byte, object> parameters)
         {
             if (CheckError(parameters, returnCode, debugMessage))
             {
@@ -24,6 +24,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                 return false;
             }
         }
-        public abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
+        internal abstract bool CheckError(Dictionary<byte, object> parameters, ErrorCode returnCode, string debugMessage);
     }
 }

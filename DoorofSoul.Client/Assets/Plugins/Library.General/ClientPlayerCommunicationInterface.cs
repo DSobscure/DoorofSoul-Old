@@ -118,5 +118,10 @@ namespace DoorofSoul.Client.Library.General
         {
             horizon.LoadScene(new Scene(sceneID, sceneName, worldID));
         }
+
+        public override bool Register(string account, string password, out string debugMessage, out ErrorCode errorCode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

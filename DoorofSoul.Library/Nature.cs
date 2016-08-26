@@ -45,6 +45,7 @@ namespace DoorofSoul.Hexagram
         #endregion
         #region Scene
         private Dictionary<int, Scene> sceneDictionary;
+        public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
         public bool ContainsScene(int sceneID)
         {
             return sceneDictionary.ContainsKey(sceneID);

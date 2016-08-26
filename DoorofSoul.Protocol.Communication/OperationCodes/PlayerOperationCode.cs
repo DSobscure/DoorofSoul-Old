@@ -6,5 +6,6 @@
         FetchData,
         Login,
         Logout,
+        Register
     }
 }

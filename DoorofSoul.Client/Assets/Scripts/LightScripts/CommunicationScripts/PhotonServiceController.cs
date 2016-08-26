@@ -17,18 +17,6 @@ namespace DoorofSoul.Client.Scripts.LightScripts.CommunicationScripts
             player = Global.Global.Player;
             RegisterEvents();
         }
-        void Start()
-        {
-            if (photonService.ServerConnected)
-            {
-
-            }
-            else
-            {
-                photonService.Connect();
-            }
-        }
-
         void OnGUI()
         {
             if (photonService.ServerConnected)
@@ -38,6 +26,14 @@ namespace DoorofSoul.Client.Scripts.LightScripts.CommunicationScripts
             else
             {
                 GUI.Label(new Rect(20, 10, 100, 20), "connect failed");
+                if (GUI.Button(new Rect(Screen.width/2-200, Screen.height/2-150, 400, 100), "連接至開發伺服器"))
+                {
+                    photonService.Connect(Global.Global.ServerName, Global.Global.ServerAddress, Global.Global.ServerPort);
+                }
+                if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 , 400, 100), "連接至Alpha伺服器"))
+                {
+                    photonService.Connect(Global.Global.AlphaServerName, Global.Global.AlphaServerAddress, Global.Global.AlphaServerPort);
+                }
             }
         }
 

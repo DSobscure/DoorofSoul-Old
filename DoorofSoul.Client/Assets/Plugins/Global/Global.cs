@@ -13,11 +13,20 @@ namespace DoorofSoul.Client.Global
         public static Horizon Horizon { get; private set; }
         public static Seat Seat { get; private set; }
 
+        public static readonly string ServerName = "DoorofSoul.Server";
+        public static readonly string ServerAddress = "127.0.0.1";
+        public static readonly int ServerPort = 5055;
+
+        public static readonly string AlphaServerName = "DoorofSoul.AlphaServer";
+        public static readonly string AlphaServerAddress = "doorofsoul.duckdns.org";
+        public static readonly int AlphaServerPort = 5056;
+
+
         static Global()
         {
             LibraryInstance.Initial(SystemManager.Error, SystemManager.ErrorFormat, null);
             Horizon = new Horizon();
-            PhotonService = new PhotonService("DoorofSoul.Server", "127.0.0.1", 5055);
+            PhotonService = new PhotonService();
             SystemManager = new SystemManager();
 
             ClientPlayerCommunicationInterface communicationInterface = new ClientPlayerCommunicationInterface(SystemManager, PhotonService, Horizon);

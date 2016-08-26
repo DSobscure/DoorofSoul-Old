@@ -23,8 +23,11 @@ namespace DoorofSoul.Client.Scripts.HistoryScripts.TestScripts.UnityFunctionTest
                 float y = -(mousePosition.y - Screen.height / 2);
                 rectTransform.localPosition = new Vector2(x, y);
             }
+            if(Event.current.isMouse && Event.current.button == 0 && Event.current.clickCount > 1)
+            {
+                Debug.Log(Event.current.clickCount);
+            }
         }
-
         private void SelectIcon()
         {
             selectIcon = Instantiate(iconButton);

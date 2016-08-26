@@ -53,12 +53,8 @@ namespace DoorofSoul.Client.Communication
         private string serverAddress;
         private int udpPort;
 
-        public PhotonService(string serverName, string serverAddress, int udpPort)
+        public PhotonService()
         {
-            this.serverName = serverName;
-            this.serverAddress = serverAddress;
-            this.udpPort = udpPort;
-
             eventResolver = new EventResolver(this);
             responseResolver = new ResponseResolver(this);
 
@@ -96,8 +92,11 @@ namespace DoorofSoul.Client.Communication
             }
         }
 
-        public void Connect()
+        public void Connect(string serverName, string serverAddress, int udpPort)
         {
+            this.serverName = serverName;
+            this.serverAddress = serverAddress;
+            this.udpPort = udpPort;
             try
             {
                 peer = new PhotonPeer(this, ConnectionProtocol.Udp);
@@ -136,7 +135,8 @@ namespace DoorofSoul.Client.Communication
         {
             try
             {
-                peer.Service();
+                if(peer != null)
+                    peer.Service();
             }
             catch (Exception ex)
             {

@@ -8,9 +8,9 @@ namespace DoorofSoul.Database
     {
         protected static Database instance;
         public static Database Instance { get { return instance; } }
-        public static ConnectionList ConnectionList { get { return instance.connectionList; } }
-        public static RepositoryList RepositoryList { get { return instance.repositoryList; } }
-        public static ILogger Log { get { return instance.log; } }
+        public static ConnectionList ConnectionList { get { return instance?.connectionList; } }
+        public static RepositoryList RepositoryList { get { return instance?.repositoryList; } }
+        public static ILogger Log { get { return instance?.log; } }
         public static void Initial(Database instance)
         {
             Database.instance = instance;
@@ -33,7 +33,7 @@ namespace DoorofSoul.Database
 
         public static void Dispose()
         {
-            ConnectionList.Dispose();
+            ConnectionList?.Dispose();
         }
     }
 }

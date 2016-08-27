@@ -10,5 +10,9 @@ namespace DoorofSoul.Hexagram
         {
             ItemManager = new ItemManager();
         }
+        public void Initial()
+        {
+            ItemManager.Initial();
+        }
     }
 }

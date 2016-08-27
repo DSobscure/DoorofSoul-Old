@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Client.Communication;
+using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Library.General;
 using DoorofSoul.Library.General;
 
@@ -20,6 +21,8 @@ namespace DoorofSoul.Client.Global
         public static readonly string AlphaServerName = "DoorofSoul.AlphaServer";
         public static readonly string AlphaServerAddress = "doorofsoul.duckdns.org";
         public static readonly int AlphaServerPort = 5056;
+
+        public static IInputScenario InputManager { get; set; }
 
 
         static Global()

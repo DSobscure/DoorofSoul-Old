@@ -58,10 +58,6 @@ namespace DoorofSoul.Library.General.NatureComponents
                 containerDictionary.Add(container.ContainerID, container);
                 EntityEnter(container.Entity);
             }
-            if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
-            {
-                sceneDictionary[container.Entity.LocatedSceneID].ContainerEnter(container);
-            }
         }
         public void EntityEnter(Entity entity)
         {
@@ -69,17 +65,9 @@ namespace DoorofSoul.Library.General.NatureComponents
             {
                 entityDictionary.Add(entity.EntityID, entity);
             }
-            if (sceneDictionary.ContainsKey(entity.LocatedSceneID))
-            {
-                sceneDictionary[entity.LocatedSceneID].EntityEnter(entity);
-            }
         }
         public void ContainerExit(Container container)
         {
-            if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
-            {
-                sceneDictionary[container.Entity.LocatedSceneID].ContainerExit(container.ContainerID);
-            }
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
                 containerDictionary.Remove(container.ContainerID);
@@ -88,10 +76,6 @@ namespace DoorofSoul.Library.General.NatureComponents
         }
         public void EntityExit(Entity entity)
         {
-            if (sceneDictionary.ContainsKey(entity.LocatedSceneID))
-            {
-                sceneDictionary[entity.LocatedSceneID].EntityExit(entity.EntityID);
-            }
             if (entityDictionary.ContainsKey(entity.EntityID))
             {
                 entityDictionary.Remove(entity.EntityID);

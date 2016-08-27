@@ -69,9 +69,15 @@
     <Compile Include="LightComponents\Nature\HexagramContainerElementsInterface.cs" />
     <Compile Include="LightComponents\Nature\HexagramSceneElementsInterface.cs" />
     <Compile Include="Nature.cs" />
+    <Compile Include="NatureComponents\ContainerManager.cs" />
+    <Compile Include="NatureComponents\EntityManager.cs" />
+    <Compile Include="NatureComponents\SceneManager.cs" />
+    <Compile Include="NatureComponents\WorldManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidenceEye.cs" />
     <Compile Include="Throne.cs" />
+    <Compile Include="ThroneComponents\AnswerManager.cs" />
+    <Compile Include="ThroneComponents\SoulManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoorofSoul.Database\DoorofSoul.Database.csproj">

@@ -1,212 +1,27 @@
-﻿using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
-using DoorofSoul.Library.General.NatureComponents;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DoorofSoul.Hexagram.NatureComponents;
 
 namespace DoorofSoul.Hexagram
 {
     public class Nature
     {
-        #region Container
-        private Dictionary<int, Container> containerDictionary;
-        public bool ContainsContainer(int container)
-        {
-            return containerDictionary.ContainsKey(container);
-        }
-        public Container FindContainer(int container)
-        {
-            if (ContainsContainer(container))
-            {
-                return containerDictionary[container];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
-        #region Entity
-        private Dictionary<int, Entity> entityDictionary;
-        public bool ContainsEntity(int entityID)
-        {
-            return entityDictionary.ContainsKey(entityID);
-        }
-        public Entity FindEntity(int entityID)
-        {
-            if(ContainsEntity(entityID))
-            {
-                return entityDictionary[entityID];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
-        #region Scene
-        private Dictionary<int, Scene> sceneDictionary;
-        public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
-        public bool ContainsScene(int sceneID)
-        {
-            return sceneDictionary.ContainsKey(sceneID);
-        }
-        public Scene FindScene(int sceneID)
-        {
-            if (ContainsScene(sceneID))
-            {
-                return sceneDictionary[sceneID];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
-        #region world
-        private Dictionary<int, World> worldDictionary;
-        public bool ContainsWorld(int worldID)
-        {
-            return worldDictionary.ContainsKey(worldID);
-        }
-        public World FindWorld(int worldID)
-        {
-            if (ContainsWorld(worldID))
-            {
-                return worldDictionary[worldID];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
+        public WorldManager WorldManager { get; protected set; }
+        public SceneManager SceneManager { get; protected set; }
+        public ContainerManager ContainerManager { get; protected set; }
+        public EntityManager EntityManager { get; protected set; }
 
         public Nature()
         {
-            containerDictionary = new Dictionary<int, Container>();
-            entityDictionary = new Dictionary<int, Entity>();
-            sceneDictionary = new Dictionary<int, Scene>();
-            worldDictionary = new Dictionary<int, World>();
-            LoadNature();
+            WorldManager = new WorldManager();
+            SceneManager = new SceneManager();
+            ContainerManager = new ContainerManager();
+            EntityManager = new EntityManager();
         }
-
-        protected void LoadNature()
+        public void Initial()
         {
-            List<World> worldList = new List<World>();
-            Database.Database.RepositoryList.NatureRepositoryList.WorldRepository.List().ForEach(world => 
-            {
-                HexagramWorldCommunicationInterface communicationInterface = new HexagramWorldCommunicationInterface();
-                World newWorld = new World(communicationInterface, world.worldID, world.worldName);
-                communicationInterface.BindWorld(newWorld);
-                worldList.Add(newWorld);
-            });
-            foreach (World world in worldList)
-            {
-                worldDictionary.Add(world.WorldID, world);
-                List<Scene> sceneList = Database.Database.RepositoryList.NatureRepositoryList.SceneRepository.ListOfWorld(world.WorldID);
-                world.LoadScenes(sceneList);
-                foreach(Scene scene in sceneList)
-                {
-                    sceneDictionary.Add(scene.SceneID, scene);
-                    scene.SetSceneEye(new ProvidenceEye());
-                    scene.ItemEntityManager.InitialItemEntities(Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.ListOfScene(scene.SceneID));
-
-                    scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
-                    scene.OnEntityExit += scene.SceneEventManager.EntityExit;
-                    scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
-                }
-            }
-        }
-
-        public void ProjectContainer(Container container)
-        {
-            if (!ContainsContainer(container.ContainerID))
-            {
-                containerDictionary.Add(container.ContainerID, container);
-
-                container.ContainerStatusEffectManager.InitialStatusEffectInfos(Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.ListOfAffected(container.ContainerID));
-
-                container.Attributes.OnLifePointChange += container.ContainerEventManager.InformDataResolver.InformLifePointChange;
-                container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
-                container.Inventory.OnItemChange += container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
-
-                if (sceneDictionary.ContainsKey(container.Entity.LocatedSceneID))
-                {
-                    Scene scene = sceneDictionary[container.Entity.LocatedSceneID];
-                    if (worldDictionary.ContainsKey(scene.WorldID))
-                    {
-                        worldDictionary[scene.WorldID].ContainerEnter(container);
-                        ProjectEntity(container.Entity);
-                    }
-                    else
-                    {
-                        Hexagram.Instance.Log.ErrorFormat("Hexagram: World Not Exist WorldID: {0}", scene.WorldID);
-                    }
-                }
-                else
-                {
-                    Hexagram.Instance.Log.ErrorFormat("Hexagram: Scene Not Exist SceneID: {0}", container.Entity.LocatedSceneID);
-                }
-            }
-        }
-        public void ProjectEntity(Entity entity)
-        {
-            if (!entityDictionary.ContainsKey(entity.EntityID))
-            {
-                entityDictionary.Add(entity.EntityID, entity);
-                if(sceneDictionary.ContainsKey(entity.LocatedSceneID))
-                {
-                    Scene scene = sceneDictionary[entity.LocatedSceneID];
-                    if (worldDictionary.ContainsKey(scene.WorldID))
-                    {
-                        worldDictionary[scene.WorldID].EntityEnter(entity);
-                    }
-                    else
-                    {
-                        Hexagram.Instance.Log.ErrorFormat("Hexagram: World Not Exist WorldID: {0}", scene.WorldID);
-                    }
-                }
-                else
-                {
-                    Hexagram.Instance.Log.ErrorFormat("Hexagram: Scene Not Exist SceneID: {0}", entity.LocatedSceneID);
-                }
-            }
-        }
-        public void ExtractContainer(Container container)
-        {
-            if (containerDictionary.ContainsKey(container.ContainerID))
-            {
-                Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Save(container);
-                if (worldDictionary.ContainsKey(container.Entity.LocatedScene.WorldID))
-                {
-                    Database.Database.RepositoryList.NatureRepositoryList.EntityRepository.Save(container.Entity);
-                    worldDictionary[container.Entity.LocatedScene.WorldID].ContainerExit(container);
-                    ExtractEntity(container.Entity);
-                }
-                containerDictionary.Remove(container.ContainerID);
-                container.Attributes.OnLifePointChange -= container.ContainerEventManager.InformDataResolver.InformLifePointChange;
-                container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
-                container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
-                container.Inventory.OnItemChange -= container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
-            }
-        }
-        public void ExtractEntity(Entity entity)
-        {
-            if (entityDictionary.ContainsKey(entity.EntityID))
-            {
-                if (entity.LocatedScene != null && worldDictionary.ContainsKey(entity.LocatedScene.WorldID))
-                {
-                    Database.Database.RepositoryList.NatureRepositoryList.EntityRepository.Save(entity);
-                    worldDictionary[entity.LocatedScene.WorldID].EntityExit(entity);
-                }
-                entityDictionary.Remove(entity.EntityID);
-            }
-        }
-
-        public List<World> ListWorlds()
-        {
-            return worldDictionary.Values.ToList();
+            WorldManager.Initial();
+            SceneManager.Initial();
+            ContainerManager.Initial();
+            EntityManager.Initial();
         }
     }
 }

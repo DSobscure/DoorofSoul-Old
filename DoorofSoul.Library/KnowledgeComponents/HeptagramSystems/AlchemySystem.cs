@@ -27,9 +27,9 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
                         int itemCount = (int)skillParameters[(byte)CreateItemEntityParameterCode.SceneID];
                         int sceneID = (int)skillParameters[(byte)CreateItemEntityParameterCode.ItemID];
                         DSVector3 itemEntityPosition = (DSVector3)skillParameters[(byte)CreateItemEntityParameterCode.ItemEntityPosition];
-                        if (Hexagram.Instance.Nature.ContainsScene(sceneID))
+                        if (Hexagram.Nature.SceneManager.ContainsScene(sceneID))
                         {
-                            Scene scene = Hexagram.Instance.Nature.FindScene(sceneID);
+                            Scene scene = Hexagram.Nature.SceneManager.FindScene(sceneID);
                             for (int i = 0; i < itemCount; i++)
                             {
                                 scene.ItemEntityManager.CreateItemEntity(itemID, itemEntityPosition);
@@ -53,15 +53,15 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
                 }
                 catch (InvalidCastException ex)
                 {
-                    Hexagram.Instance.Log.ErrorFormat("AlchemySystem OperateSkill Invalid Cast SkillID: {0}", skillInfo.Skill.SkillID);
-                    Hexagram.Instance.Log.Error(ex.Message);
-                    Hexagram.Instance.Log.Error(ex.StackTrace);
+                    Hexagram.Log.ErrorFormat("AlchemySystem OperateSkill Invalid Cast SkillID: {0}", skillInfo.Skill.SkillID);
+                    Hexagram.Log.Error(ex.Message);
+                    Hexagram.Log.Error(ex.StackTrace);
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    Hexagram.Instance.Log.Error(ex.Message);
-                    Hexagram.Instance.Log.Error(ex.StackTrace);
+                    Hexagram.Log.Error(ex.Message);
+                    Hexagram.Log.Error(ex.StackTrace);
                     return false;
                 }
             }

@@ -20,7 +20,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 try
                 {
-                    List<NatureComponents.World> worlds = player.PlayerCommunicationInterface.ListWorlds();
+                    IEnumerable<NatureComponents.World> worlds = player.PlayerCommunicationInterface.GetWorlds();
                     foreach(NatureComponents.World world in worlds)
                     {
                         var result = new Dictionary<byte, object>

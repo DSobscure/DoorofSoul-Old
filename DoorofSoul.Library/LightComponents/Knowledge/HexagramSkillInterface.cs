@@ -12,7 +12,7 @@ namespace DoorofSoul.Hexagram.LightComponents.Knowledge
     {
         public bool OperateSkill(Soul user, Container agent, SkillInfo skillInfo, Dictionary<byte, object> skillParameters, out Dictionary<byte, object> skillResponseParameters, out ErrorCode errorCode, out string debugMessage)
         {
-            HeptagramSystem system = Hexagram.Instance.Knowledge.SkillManager.ChoseSystem(skillInfo.Skill.SystemTypeCode);
+            HeptagramSystem system = Hexagram.Knowledge.SkillManager.ChoseSystem(skillInfo.Skill.SystemTypeCode);
             if(system != null)
             {
                 return system.OperateSkill(user, agent, skillInfo, skillParameters, out skillResponseParameters, out errorCode, out debugMessage);

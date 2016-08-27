@@ -96,6 +96,7 @@
     <Compile Include="Assets\Plugins\Global\SystemManager.cs" />
     <Compile Include="Assets\Plugins\HelpFunctions\TransformHelpFunctions.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
+    <Compile Include="Assets\Plugins\Interfaces\IInputScenario.cs" />
     <Compile Include="Assets\Plugins\Protocol\Language\UILanguageSeletor.cs" />
     <Compile Include="Assets\Plugins\Protocol\Language\UILanguages\ChineseUIDictionary.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientPlayerCommunicationInterface.cs" />

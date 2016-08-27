@@ -14,32 +14,47 @@ namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
             get { return Global.Global.Seat.MainContainer.Entity; }
         }
 
-        void Update()
+        void Start()
+        {
+            Global.Global.InputManager.OnKeyDown += OnKeyDown;
+            Global.Global.InputManager.OnKeyUp += OnKeyUp;
+        }
+        void OnDestroy()
+        {
+            Global.Global.InputManager.OnKeyDown -= OnKeyDown;
+            Global.Global.InputManager.OnKeyUp -= OnKeyUp;
+        }
+        private void OnKeyDown(KeyCode keyCode)
         {
             if (HasEntity)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (keyCode == KeyCode.A)
                 {
                     Entity.EntityOperationManager.Rotate(-1);
                 }
-                else if (Input.GetKeyDown(KeyCode.D))
+                if (keyCode == KeyCode.D)
                 {
                     Entity.EntityOperationManager.Rotate(1);
                 }
-                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-                {
-                    Entity.EntityOperationManager.Rotate(0);
-                }
-
-                if (Input.GetKey(KeyCode.W))
+                if (keyCode == KeyCode.W)
                 {
                     Entity.EntityOperationManager.Move(1);
                 }
-                else if (Input.GetKey(KeyCode.S))
+                if (keyCode == KeyCode.S)
                 {
                     Entity.EntityOperationManager.Move(-1);
                 }
-                else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+            }
+        }
+        private void OnKeyUp(KeyCode keyCode)
+        {
+            if (HasEntity)
+            {
+                if (keyCode == KeyCode.A || keyCode == KeyCode.D)
+                {
+                    Entity.EntityOperationManager.Rotate(0);
+                }
+                if (keyCode == KeyCode.W || keyCode == KeyCode.S)
                 {
                     Entity.EntityOperationManager.Move(0);
                 }

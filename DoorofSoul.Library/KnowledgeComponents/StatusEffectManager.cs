@@ -10,10 +10,11 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents
         public StatusEffectManager()
         {
             statusEffectDictionary = new Dictionary<int, StatusEffect>();
-
+        }
+        public void Initial()
+        {
             LoadStatusEffects(Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectRepository.List());
         }
-
         public bool ContainsStatusEffect(int statusEffectID)
         {
             return statusEffectDictionary.ContainsKey(statusEffectID);

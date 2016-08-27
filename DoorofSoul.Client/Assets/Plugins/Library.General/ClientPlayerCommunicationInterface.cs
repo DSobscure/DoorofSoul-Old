@@ -50,10 +50,6 @@ namespace DoorofSoul.Client.Library.General
             throw new NotImplementedException();
         }
 
-        public override List<World> ListWorlds()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void LoadWorld(int worldID, string worldName)
         {
@@ -120,6 +116,11 @@ namespace DoorofSoul.Client.Library.General
         }
 
         public override bool Register(string account, string password, out string debugMessage, out ErrorCode errorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<World> GetWorlds()
         {
             throw new NotImplementedException();
         }

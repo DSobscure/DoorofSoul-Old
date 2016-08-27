@@ -24,9 +24,6 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents
         public SkillManager()
         {
             skillDictionary = new Dictionary<int, Skill>();
-
-            LoadSkills(Database.Database.RepositoryList.KnowledgeRepositoryList.SkillRepository.List());
-
             AlchemySystem = new AlchemySystem();
             ElementSystem = new ElementSystem();
             GenieSystem = new GenieSystem();
@@ -34,6 +31,11 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents
             ChanceSystem = new ChanceSystem();
             TechnologySystem = new TechnologySystem();
             BeliefSystem = new BeliefSystem();
+        }
+
+        public void Initial()
+        {
+            LoadSkills(Database.Database.RepositoryList.KnowledgeRepositoryList.SkillRepository.List());
         }
 
         public bool ContainsSkill(int skillID)

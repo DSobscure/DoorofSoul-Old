@@ -12,5 +12,10 @@ namespace DoorofSoul.Hexagram
             SkillManager = new SkillManager();
             StatusEffectManager = new StatusEffectManager();
         }
+        public void Initial()
+        {
+            SkillManager.Initial();
+            StatusEffectManager.Initial();
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace DoorofSoul.Hexagram
 
         public override void ErrorInform(string title, string message)
         {
-            Hexagram.Instance.Log.ErrorFormat("WorldErrorInform WorldID: {0} Title: {1}, Message: {2}", world.WorldID, title, message);
+            Hexagram.Log.ErrorFormat("WorldErrorInform WorldID: {0} Title: {1}, Message: {2}", world.WorldID, title, message);
         }
 
         public override void LoadScene(int sceneID, string sceneName)

@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General
 
         public abstract void GetSystemVersion(out string serverVersion, out string clientVersion);
         public abstract void UpdateSystemVersion(string serverVersion, string clientVersion);
-        public abstract List<World> ListWorlds();
+        public abstract IEnumerable<World> GetWorlds();
         public abstract Scene FindScene(int sceneID);
         public abstract void LoadWorld(int worldID, string worldName);
         public abstract void LoadScene(int sceneID, string sceneName, int worldID);

@@ -11,6 +11,9 @@ namespace DoorofSoul.Hexagram.ElementComponents
         public ItemManager()
         {
             itemDictionary = new Dictionary<int, Item>();
+        }
+        public void Initial()
+        {
             LoadItems(Database.Database.RepositoryList.ElementRepositoryList.ItemRepository.List());
         }
         public bool ContainsItem(int itemID)

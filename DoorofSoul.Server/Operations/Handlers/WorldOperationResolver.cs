@@ -38,9 +38,9 @@ namespace DoorofSoul.Server.Operations.Handlers
                     int worldID = (int)parameters[(byte)OperationParameterCode.ID];
                     WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)OperationParameterCode.OperationCode];
                     Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)OperationParameterCode.Parameters];
-                    if (Hexagram.Hexagram.Instance.Nature.ContainsWorld(worldID))
+                    if (Hexagram.Hexagram.Nature.WorldManager.ContainsWorld(worldID))
                     {
-                        Hexagram.Hexagram.Instance.Nature.FindWorld(worldID).WorldOperationManager.Operate(resolvedOperationCode, resolvedParameters);
+                        Hexagram.Hexagram.Nature.WorldManager.FindWorld(worldID).WorldOperationManager.Operate(resolvedOperationCode, resolvedParameters);
                         return true;
                     }
                     else

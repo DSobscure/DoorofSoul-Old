@@ -8,7 +8,7 @@ namespace DoorofSoul.Hexagram.LightComponents
     {
         public Item FindItem(int itemID)
         {
-            return Hexagram.Instance.Element.ItemManager.FindItem(itemID);
+            return Hexagram.Element.ItemManager.FindItem(itemID);
         }
     }
 }

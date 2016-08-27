@@ -25,7 +25,7 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
                         user.Attributes.SpiritPoint -= skillInfo.Skill.BasicSpiritPointCost;
                         if(agent.Entity.LocatedScene.SceneEye.Observer != agent)
                         {
-                            StatusEffect statusEffect = Hexagram.Instance.Knowledge.StatusEffectManager.FindStatusEffect(1);
+                            StatusEffect statusEffect = Hexagram.Knowledge.StatusEffectManager.FindStatusEffect(1);
                             ContainerStatusEffectInfo statusEffectInfo = Database.Database.RepositoryList.KnowledgeRepositoryList.StatusEffectsRepositoryList.ContainerStatusEffectInfoRepository.Create(agent.ContainerID, statusEffect, statusEffect.StandardEffectDuration, DateTime.Now + new TimeSpan(7, 0, 0, 0));
                             agent.ContainerStatusEffectManager.LoadStatusEffectInfo(statusEffectInfo);
                             agent.Entity.LocatedScene.SceneEye.StopMonitor();

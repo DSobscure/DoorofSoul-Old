@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\ErrorInformController.cs" />
     <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\EternalObject.cs" />
+    <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\SystemSettingController.cs" />
     <Compile Include="Assets\Scripts\EternalScripts\SystemScripts\SystemVersionController.cs" />

@@ -5,7 +5,6 @@ namespace DoorofSoul.Hexagram
     public class Hexagram
     {
         private static Hexagram instance;
-        public static Hexagram Instance { get { return instance; } }
 
         static Hexagram()
         {
@@ -13,14 +12,18 @@ namespace DoorofSoul.Hexagram
         }
         public static void Initial(ILogger log)
         {
-            instance.Log = log;
+            Log = log;
+            Knowledge.Initial();
+            Element.Initial();
+            Nature.Initial();
+            Throne.Initial();
         }
 
-        public Knowledge Knowledge { get; protected set; }
-        public Element Element { get; protected set; }
-        public Nature Nature { get; protected set; }
-        public Throne Throne { get; protected set; }
-        public ILogger Log { get; protected set; }
+        public static Knowledge Knowledge { get; protected set; }
+        public static Element Element { get; protected set; }
+        public static Nature Nature { get; protected set; }
+        public static Throne Throne { get; protected set; }
+        public static ILogger Log { get; protected set; }
 
         
         protected Hexagram()

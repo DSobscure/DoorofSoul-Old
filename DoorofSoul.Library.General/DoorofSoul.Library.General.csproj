@@ -71,6 +71,7 @@
     <Compile Include="NatureComponents\ContainerElements\ContainerStatusEffectManager.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntity.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntityManager.cs" />
+    <Compile Include="ShadowComponents\UIComponents\IUsableObject.cs" />
     <Compile Include="ThroneComponents\Answer.cs" />
     <Compile Include="BasicTypeHelpers\DSDecimal.cs" />
     <Compile Include="NatureComponents\Container.cs" />

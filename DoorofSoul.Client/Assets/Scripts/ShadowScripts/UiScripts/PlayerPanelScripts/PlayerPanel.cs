@@ -19,8 +19,8 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
         #region status panel
         private StatusPanel statusPanel;
         #endregion
-        #region skill panel
-        private RectTransform skillHotKeyPanel;
+        #region hotkey panel
+        private HotKeyPanel hotKeyPanel;
         #endregion
         #region message control panel
         private RectTransform messageControlPanel;
@@ -98,7 +98,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
         }
         private void SetupSkillPanel()
         {
-            skillHotKeyPanel = transform.FindChild("SkillHotKeyPanel").GetComponent<RectTransform>();
+            hotKeyPanel = transform.FindChild("HotKeyPanel").GetComponent<HotKeyPanel>();
         }
         private void SetupMessageControlPanel()
         {

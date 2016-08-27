@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\EntityTestScripts\ClickEntityTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\EntityTestScripts\EntityRotateTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\InventoryTestScripts\InventoryTest.cs" />
+    <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\DraggableIconTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\RichTextBoxTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\SkillPanelTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\SoulAndContainerAttributeSlidersTest.cs" />
@@ -129,7 +130,10 @@
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\SkillInfoBlock.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\SkillPanel.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\IconScripts\DraggableIcon.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\IconScripts\DraggableIconEventTrigger.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\PlayerPanelScripts\ContainerPanel.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\PlayerPanelScripts\HotKeyPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\PlayerPanelScripts\MessageContentPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\PlayerPanelScripts\PlayerPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\PlayerPanelScripts\SoulPanel.cs" />
@@ -211,5 +215,6 @@
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

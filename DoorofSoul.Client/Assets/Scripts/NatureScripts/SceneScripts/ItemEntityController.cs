@@ -6,6 +6,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
     class ItemEntityController : MonoBehaviour
     {
         private ItemEntity itemEntity;
+        private float randomValue;
 
         void OnMouseEnter()
         {
@@ -24,8 +25,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
         {
             if(itemEntity != null)
             {
-                transform.Rotate(Time.deltaTime * Vector3.up * 25);
-                transform.localPosition = (Vector3)itemEntity.Position + (Vector3.up * Mathf.Sin(Time.time) * 0.05f);
+                transform.Rotate((Time.deltaTime) * Vector3.up * 25);
+                transform.localPosition = (Vector3)itemEntity.Position + (Vector3.up * Mathf.Sin(Time.time+ randomValue) * 0.05f);
             }
         }
 
@@ -34,6 +35,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
             this.itemEntity = itemEntity;
             gameObject.name = "ItemEntity" + itemEntity.ItemEntityID;
             transform.localPosition = (Vector3)itemEntity.Position;
+            randomValue = Random.Range(0, 360);
+            transform.Rotate(randomValue * Vector3.up);
         }
     }
 }

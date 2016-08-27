@@ -70,8 +70,8 @@ namespace DoorofSoul.Library.General.NatureComponents
         {
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
-                containerDictionary.Remove(container.ContainerID);
                 EntityExit(container.Entity);
+                containerDictionary.Remove(container.ContainerID);
             }
         }
         public void EntityExit(Entity entity)

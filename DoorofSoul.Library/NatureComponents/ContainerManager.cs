@@ -66,11 +66,11 @@ namespace DoorofSoul.Hexagram.NatureComponents
         {
             if (containerDictionary.ContainsKey(container.ContainerID))
             {
-
                 Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Save(container);
                 Scene scene = container.Entity.LocatedScene;
                 Hexagram.Nature.EntityManager.ExtractEntity(container.Entity);
                 scene.ContainerExit(container.ContainerID);
+                scene.World.ContainerExit(container);
                 containerDictionary.Remove(container.ContainerID);
                 DisassemblyContainer(container);
             }

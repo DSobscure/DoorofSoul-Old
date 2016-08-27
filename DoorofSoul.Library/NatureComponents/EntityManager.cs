@@ -64,9 +64,9 @@ namespace DoorofSoul.Hexagram.NatureComponents
                 if (entity.LocatedScene != null && Hexagram.Nature.WorldManager.ContainsWorld(entity.LocatedScene.WorldID))
                 {
                     Database.Database.RepositoryList.NatureRepositoryList.EntityRepository.Save(entity);
-                    int worldID = entity.LocatedScene.WorldID;
-                    entity.LocatedScene.EntityExit(entity.EntityID);
-                    Hexagram.Nature.WorldManager.FindWorld(worldID).EntityExit(entity);
+                    Scene scene = entity.LocatedScene;
+                    scene.EntityExit(entity.EntityID);
+                    scene.World.EntityExit(entity);
                 }
                 entityDictionary.Remove(entity.EntityID);
             }

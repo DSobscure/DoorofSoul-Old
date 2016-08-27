@@ -5,6 +5,7 @@
         FetchData,
         Say,
         ObserveEntityPosition,
-        PickupItemEntity
+        PickupItemEntity,
+        MoveInventoryItemInfo
     }
 }

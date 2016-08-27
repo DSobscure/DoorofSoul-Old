@@ -37,7 +37,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 
         public void LoadItem(Item item, int count, int positionIndex)
         {
-            if(item != null && positionIndex >= 0 && positionIndex < Capacity)
+            if(positionIndex >= 0 && positionIndex < Capacity)
             {
                 itemInfos[positionIndex] = new InventoryItemInfo { item = item, count = count, positionIndex = positionIndex };
                 onItemChange?.Invoke(itemInfos[positionIndex]);
@@ -88,6 +88,17 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 newInfo = null;
                 return false;
             }
+        }
+        public void SwapItemInfo(int originPosition, int newPosition)
+        {
+            itemInfos[originPosition].positionIndex = newPosition;
+            itemInfos[newPosition].positionIndex = originPosition;
+
+            InventoryItemInfo selectedInfo = itemInfos[originPosition];
+            itemInfos[originPosition] = itemInfos[newPosition];
+            itemInfos[newPosition] = selectedInfo;
+            onItemChange?.Invoke(itemInfos[originPosition]);
+            onItemChange?.Invoke(itemInfos[newPosition]);
         }
     }
 }

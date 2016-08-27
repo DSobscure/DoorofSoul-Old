@@ -10,6 +10,6 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         public int count;
         public int positionIndex;
 
-        public string Name { get { return item.ItemName; } }
+        public string Name { get { return item?.ItemName ?? ""; } }
     }
 }

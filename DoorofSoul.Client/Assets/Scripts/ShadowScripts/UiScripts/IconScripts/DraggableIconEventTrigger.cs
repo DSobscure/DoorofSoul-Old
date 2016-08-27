@@ -27,7 +27,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.IconScripts
         private event Action<IUsableObject> onDisplayUsableObject;
         public event Action<IUsableObject> OnDisplayUsableObject { add { onDisplayUsableObject += value; } remove { onDisplayUsableObject -= value; } }
 
-        private DraggableIcon draggableIconForDisplay;
+        protected DraggableIcon draggableIconForDisplay;
 
         public override void OnPointerClick(PointerEventData eventData)
         {

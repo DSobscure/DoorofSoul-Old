@@ -128,6 +128,8 @@
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerLoginSceneScripts\PlayerRegisterUI.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\DraggablePanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ErrorInformPanel.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryItemInfoIcon.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryItemInfoIconEventTrigger.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\SkillInfoBlock.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\SkillPanel.cs" />

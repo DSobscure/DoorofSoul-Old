@@ -11,13 +11,16 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.IconScripts
 {
     public class DraggableIcon : MonoBehaviour
     {
-        private DraggableIconEventTrigger eventTrigger;
+        protected DraggableIconEventTrigger eventTrigger;
         public IUsableObject UsableObject { get; protected set; }
-        private Text text;
+        protected Text iconText;
         private DraggableIcon draggingIcon;
         private Vector2 pressPosition;
-
         void Awake()
+        {
+            Instantiate();
+        }
+        public virtual void Instantiate()
         {
             eventTrigger = GetComponent<DraggableIconEventTrigger>();
             eventTrigger.OnDoubleClick += OnDoubleClick;
@@ -26,19 +29,27 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.IconScripts
             eventTrigger.OnDragging += OnDragging;
             eventTrigger.OnDisplayUsableObject += OnDisplayDraggableIcon;
 
-            text = GetComponentInChildren<Text>();
+            iconText = transform.FindChild("IconText").GetComponent<Text>();
         }
-        public void Initial(IUsableObject usableObject)
+
+        public virtual void Initial(IUsableObject usableObject)
         {
             UsableObject = usableObject;
-            text.text = UsableObject.Name;
+            if (usableObject != null)
+            {
+                iconText.text = UsableObject.Name;
+            }
+            else
+            {
+                iconText.text = "";
+            }
         }
 
-        private void OnDoubleClick(PointerEventData eventData)
+        protected virtual void OnDoubleClick(PointerEventData eventData)
         {
 
         }
-        private void OnStartDrag(PointerEventData eventData)
+        protected virtual void OnStartDrag(PointerEventData eventData)
         {
             pressPosition = eventData.pressPosition;
 
@@ -51,14 +62,21 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.IconScripts
             draggingIcon.GetComponent<Selectable>().interactable = false;
             draggingIcon.GetComponent<Image>().raycastTarget = false;
         }
-        private void OnStopDrag(PointerEventData eventData)
+        protected virtual void OnStopDrag(PointerEventData eventData)
         {
-            Destroy(draggingIcon.gameObject);
+            if(draggingIcon != null)
+            {
+                Destroy(draggingIcon.gameObject);
+                draggingIcon = null;
+            }
         }
-        private void OnDragging(PointerEventData eventData)
+        protected virtual void OnDragging(PointerEventData eventData)
         {
-            Vector3 displacement = eventData.position - pressPosition;
-            draggingIcon.GetComponent<RectTransform>().position = transform.position + displacement;
+            if (draggingIcon != null)
+            {
+                Vector3 displacement = eventData.position - pressPosition;
+                draggingIcon.GetComponent<RectTransform>().position = transform.position + displacement;
+            }
         }
         protected virtual void OnDisplayDraggableIcon(IUsableObject usableObject)
         {

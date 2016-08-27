@@ -86,6 +86,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
+                { (byte)InformInventoryItemInfoChangeParameterCode.ItemInfoID, info.inventoryItemInfoID },
                 { (byte)InformInventoryItemInfoChangeParameterCode.Item, info.item },
                 { (byte)InformInventoryItemInfoChangeParameterCode.Count, info.count },
                 { (byte)InformInventoryItemInfoChangeParameterCode.PositionIndex, info.positionIndex }

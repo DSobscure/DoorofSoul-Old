@@ -25,6 +25,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { ContainerOperationCode.ObserveEntityPosition, new ObserveEntityPositionHandler(container) },
                 { ContainerOperationCode.PickupItemEntity, new PickupItemEntityHandler(container) },
                 { ContainerOperationCode.MoveInventoryItemInfo, new MoveInventoryItemInfoHandler(container) },
+                { ContainerOperationCode.DiscardItem, new DiscardItemHandler(container) },
             };
         }
 
@@ -114,6 +115,14 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { (byte)MoveInventoryItemInfoParameterCode.NewPosition, originPosition }
             };
             SendOperation(ContainerOperationCode.MoveInventoryItemInfo, parameters, ContainerCommunicationChannel.Answer);
+        }
+        public void DiscardItem(int positionIndex)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)DiscardItemParameterCode.InventoryPositionIndex, positionIndex }
+            };
+            SendOperation(ContainerOperationCode.DiscardItem, parameters, ContainerCommunicationChannel.Answer);
         }
     }
 }

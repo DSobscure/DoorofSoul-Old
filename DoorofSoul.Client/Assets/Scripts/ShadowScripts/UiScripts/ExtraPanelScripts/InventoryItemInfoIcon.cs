@@ -52,6 +52,15 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
                 base.OnStartDrag(eventData);
             }
         }
+        protected override void OnStopDrag(PointerEventData eventData)
+        {
+            base.OnStopDrag(eventData);
+            if(eventData.pointerCurrentRaycast.gameObject == null)
+            {
+                InventoryItemInfo selfInfo = UsableObject as InventoryItemInfo;
+                Global.Global.Seat.MainContainer.ContainerOperationManager.DiscardItem(selfInfo.positionIndex);
+            }
+        }
         protected override void OnDisplayDraggableIcon(IUsableObject usableObject)
         {
             InventoryItemInfo enterInfo = usableObject as InventoryItemInfo;

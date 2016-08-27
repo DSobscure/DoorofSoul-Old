@@ -5,9 +5,9 @@ namespace DoorofSoul.Hexagram.LightComponents.Nature.ContainerElements
 {
     class HexagramInventoryInterface : InventoryInterface
     {
-        public void DeleteInventoryItemInfo(int inventoryID, int inventoryItemInfoID)
+        public void DeleteInventoryItemInfo(int inventoryItemInfoID)
         {
-            
+            Database.Database.RepositoryList.NatureRepositoryList.ContainerElementsRepositoryList.InventoryItemInfoRepository.DeleteInventoryItemInfo(inventoryItemInfoID);
         }
 
         public void InsertInventoryItemInfo(int inventoryID, InventoryItemInfo info)

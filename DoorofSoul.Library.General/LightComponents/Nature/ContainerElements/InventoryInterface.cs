@@ -5,6 +5,6 @@ namespace DoorofSoul.Library.General.LightComponents.Nature.ContainerElements
     public interface InventoryInterface
     {
         void InsertInventoryItemInfo(int inventoryID, InventoryItemInfo info);
-        void DeleteInventoryItemInfo(int inventoryID, int inventoryItemInfoID);
+        void DeleteInventoryItemInfo(int inventoryItemInfoID);
     }
 }

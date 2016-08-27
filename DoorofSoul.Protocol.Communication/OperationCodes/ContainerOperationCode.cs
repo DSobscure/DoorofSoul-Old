@@ -6,6 +6,7 @@
         Say,
         ObserveEntityPosition,
         PickupItemEntity,
-        MoveInventoryItemInfo
+        MoveInventoryItemInfo,
+        DiscardItem,
     }
 }

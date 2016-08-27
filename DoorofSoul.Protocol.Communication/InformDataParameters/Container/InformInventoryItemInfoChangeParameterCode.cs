@@ -2,6 +2,7 @@
 {
     public enum InformInventoryItemInfoChangeParameterCode : int
     {
+        ItemInfoID,
         Item,
         Count,
         PositionIndex

@@ -34,12 +34,16 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 itemInfos[i] = new InventoryItemInfo { positionIndex = i };
             }
         }
-
-        public void LoadItem(Item item, int count, int positionIndex)
+        public bool IsPositionIndexInRange(int positionIndex)
         {
-            if(positionIndex >= 0 && positionIndex < Capacity)
+            return positionIndex >= 0 && positionIndex < Capacity;
+        }
+
+        public void LoadItem(int infoID, Item item, int count, int positionIndex)
+        {
+            if(IsPositionIndexInRange(positionIndex))
             {
-                itemInfos[positionIndex] = new InventoryItemInfo { item = item, count = count, positionIndex = positionIndex };
+                itemInfos[positionIndex] = new InventoryItemInfo { inventoryItemInfoID = infoID, item = item, count = count, positionIndex = positionIndex };
                 onItemChange?.Invoke(itemInfos[positionIndex]);
             }
         }
@@ -99,6 +103,33 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
             itemInfos[newPosition] = selectedInfo;
             onItemChange?.Invoke(itemInfos[originPosition]);
             onItemChange?.Invoke(itemInfos[newPosition]);
+        }
+        public bool DiscardItem(int positionIndex)
+        {
+            if(IsPositionIndexInRange(positionIndex) && itemInfos[positionIndex].count > 0)
+            {
+                Container container = LibraryInstance.NatureInterface.FindContainer(ContainerID);
+                if(container != null)
+                {
+                    container.Entity.LocatedScene.ItemEntityManager.CreateItemEntity(itemInfos[positionIndex].item.ItemID, container.Entity.Position);
+                    itemInfos[positionIndex].count -= 1;
+                    if(itemInfos[positionIndex].count == 0)
+                    {
+                        LibraryInstance.NatureInterface?.ContainerElementsInterface.InventoryInterface.DeleteInventoryItemInfo(itemInfos[positionIndex].inventoryItemInfoID);
+                        itemInfos[positionIndex] = new InventoryItemInfo { positionIndex = positionIndex };
+                    }
+                    onItemChange?.Invoke(itemInfos[positionIndex]);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

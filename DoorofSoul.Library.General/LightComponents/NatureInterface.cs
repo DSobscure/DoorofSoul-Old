@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DoorofSoul.Library.General.LightComponents.Nature;
+﻿using DoorofSoul.Library.General.LightComponents.Nature;
+using DoorofSoul.Library.General.NatureComponents;
 
 namespace DoorofSoul.Library.General.LightComponents
 {
@@ -9,5 +7,7 @@ namespace DoorofSoul.Library.General.LightComponents
     {
         ContainerElementsInterface ContainerElementsInterface { get; }
         SceneElementsInterface SceneElementsInterface { get; }
+
+        Container FindContainer(int containerID);
     }
 }

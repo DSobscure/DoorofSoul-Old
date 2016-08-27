@@ -6,6 +6,7 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
 {
     public class InventoryItemInfo : IUsableObject
     {
+        public int inventoryItemInfoID;
         public Item item;
         public int count;
         public int positionIndex;

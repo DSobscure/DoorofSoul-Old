@@ -10,7 +10,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformInventoryItemIntoChangeHandler : InformDataHandler
     {
-        internal InformInventoryItemIntoChangeHandler(NatureComponents.Container container) : base(container, 3)
+        internal InformInventoryItemIntoChangeHandler(NatureComponents.Container container) : base(container, 4)
         {
         }
 
@@ -20,10 +20,11 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
+                    int itemInfoID = (int)parameters[(byte)InformInventoryItemInfoChangeParameterCode.ItemInfoID];
                     Item item = (Item)parameters[(byte)InformInventoryItemInfoChangeParameterCode.Item];
                     int itemCount = (int)parameters[(byte)InformInventoryItemInfoChangeParameterCode.Count];
                     int positionIndex = (int)parameters[(byte)InformInventoryItemInfoChangeParameterCode.PositionIndex];
-                    container.Inventory.LoadItem(item, itemCount, positionIndex);
+                    container.Inventory.LoadItem(itemInfoID, item, itemCount, positionIndex);
                     return true;
                 }
                 catch (InvalidCastException ex)

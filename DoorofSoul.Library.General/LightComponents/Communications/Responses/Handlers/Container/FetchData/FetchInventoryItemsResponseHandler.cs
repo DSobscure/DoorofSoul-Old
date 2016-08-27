@@ -20,7 +20,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 3)
+                        if (parameters.Count != 4)
                         {
                             LibraryInstance.ErrorFormat(string.Format("Fetch InventoryItems Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -47,10 +47,11 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                 {
                     if(container.Inventory != null)
                     {
+                        int itemInfoID = (int)parameters[(byte)FetchInventoryItemsResponseParameterCode.ItemInfoID];
                         Item item = (Item)parameters[(byte)FetchInventoryItemsResponseParameterCode.Item];
                         int count = (int)parameters[(byte)FetchInventoryItemsResponseParameterCode.Count];
                         int positionIndex = (int)parameters[(byte)FetchInventoryItemsResponseParameterCode.PositionIndex];
-                        container.Inventory.LoadItem(item, count, positionIndex);
+                        container.Inventory.LoadItem(itemInfoID, item, count, positionIndex);
                         return true;
                     }
                     else

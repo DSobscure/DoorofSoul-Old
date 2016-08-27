@@ -1,6 +1,7 @@
 ﻿using System;
 using DoorofSoul.Hexagram.LightComponents.Nature;
 using DoorofSoul.Library.General.LightComponents;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.LightComponents.Nature;
 
 namespace DoorofSoul.Hexagram.LightComponents
@@ -30,6 +31,11 @@ namespace DoorofSoul.Hexagram.LightComponents
         {
             containerElementsInterface = new HexagramContainerElementsInterface();
             sceneElementsInterface = new HexagramSceneElementsInterface();
+        }
+
+        public Container FindContainer(int containerID)
+        {
+            return Hexagram.Nature.ContainerManager.FindContainer(containerID);
         }
     }
 }

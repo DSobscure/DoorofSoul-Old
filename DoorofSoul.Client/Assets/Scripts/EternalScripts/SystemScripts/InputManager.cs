@@ -16,7 +16,7 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
 
         private List<KeyCode> keyCodes;
 
-        void Start()
+        void Awake()
         {
             Global.Global.InputManager = this;
             keyCodes = new List<KeyCode>

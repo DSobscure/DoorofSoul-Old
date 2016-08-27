@@ -22,6 +22,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                     {
                         var result = new Dictionary<byte, object>
                         {
+                            { (byte)FetchInventoryItemsResponseParameterCode.ItemInfoID, info.inventoryItemInfoID },
                             { (byte)FetchInventoryItemsResponseParameterCode.Item, info.item },
                             { (byte)FetchInventoryItemsResponseParameterCode.Count, info.count },
                             { (byte)FetchInventoryItemsResponseParameterCode.PositionIndex, info.positionIndex }

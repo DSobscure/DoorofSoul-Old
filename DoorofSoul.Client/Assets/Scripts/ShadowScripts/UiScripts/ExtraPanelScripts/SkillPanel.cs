@@ -69,7 +69,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
         public void ShowSkillInfos()
         {
             skillInfoBlockDictionary.Clear();
-            skillInfosScrollViewContent.transform.ClearChild();
+            skillInfosScrollViewContent.transform.ClearChildren();
             if(heptagramSystemSelectDropdown.options.Count > 0)
             {
                 HeptagramSystemTypeCode systemTypeCode = skillLibrary.Systems.ToArray()[heptagramSystemSelectDropdown.value];

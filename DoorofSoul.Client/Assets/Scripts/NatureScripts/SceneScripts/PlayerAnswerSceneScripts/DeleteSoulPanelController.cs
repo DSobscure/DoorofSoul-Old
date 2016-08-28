@@ -46,7 +46,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerAnswerScene
 
         private void ShowSouls()
         {
-            deleteSoulsPanel.ClearChild();
+            deleteSoulsPanel.ClearChildren();
             float blockSize = soulActivatePanelPrefab.GetComponent<RectTransform>().rect.width + 20;
             deleteSoulsPanel.sizeDelta = new Vector2(blockSize * answer.SoulCount, deleteSoulsPanel.rect.height);
             float xOffest = -1 * answer.SoulCount * blockSize / 2f + blockSize / 2;

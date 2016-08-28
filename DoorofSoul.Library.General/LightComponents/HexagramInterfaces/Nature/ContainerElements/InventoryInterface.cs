@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 
-namespace DoorofSoul.Library.General.LightComponents.Nature.ContainerElements
+namespace DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Nature.ContainerElements
 {
     public interface InventoryInterface
     {

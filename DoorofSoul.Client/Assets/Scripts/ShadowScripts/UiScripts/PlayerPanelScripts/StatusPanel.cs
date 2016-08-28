@@ -95,7 +95,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
                     }
                     break;
                 case DataChangeTypeCode.ClearAll:
-                    transform.ClearChild();
+                    transform.ClearChildren();
                     containerStatusEffectIconDictionary.Clear();
                     break;
                 default:

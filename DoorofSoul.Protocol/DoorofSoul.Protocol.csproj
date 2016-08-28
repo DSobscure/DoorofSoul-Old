@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="DataChangeTypeCode.cs" />
     <Compile Include="HeptagramSystemTypeCode.cs" />
+    <Compile Include="HotKeyTarget.cs" />
+    <Compile Include="ItemComponentTypeCode.cs" />
     <Compile Include="MessageSourceTypeCode.cs" />
     <Compile Include="MessageTargetTypeCode.cs" />
     <Compile Include="MessageTypeCode.cs" />

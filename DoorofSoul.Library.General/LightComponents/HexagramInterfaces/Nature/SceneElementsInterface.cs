@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 
-namespace DoorofSoul.Library.General.LightComponents.Nature
+namespace DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Nature
 {
     public interface SceneElementsInterface
     {

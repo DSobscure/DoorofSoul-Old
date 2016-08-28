@@ -1,7 +1,7 @@
-﻿using DoorofSoul.Library.General.LightComponents.Nature;
+﻿using DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Nature;
 using DoorofSoul.Library.General.NatureComponents;
 
-namespace DoorofSoul.Library.General.LightComponents
+namespace DoorofSoul.Library.General.LightComponents.HexagramInterfaces
 {
     public interface NatureInterface
     {

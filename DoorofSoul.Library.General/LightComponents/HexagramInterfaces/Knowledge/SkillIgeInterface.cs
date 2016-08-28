@@ -4,7 +4,7 @@ using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.LightComponents.Knowledge
+namespace DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Knowledge
 {
     public interface SkillIgeInterface
     {

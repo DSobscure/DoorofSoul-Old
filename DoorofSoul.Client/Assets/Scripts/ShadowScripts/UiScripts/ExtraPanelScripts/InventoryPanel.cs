@@ -38,7 +38,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
 
         private void ShowInventory()
         {
-            inventoryItemsContent.transform.ClearChild();
+            inventoryItemsContent.transform.ClearChildren();
             Vector2 blockSize = inventoryItemInfoIconPrefab.GetComponent<RectTransform>().sizeDelta;
             inventoryItemsContent.sizeDelta = new Vector2((blockSize.x + 2) * columnCount + 2, (blockSize.y + 2) * inventory.Capacity / columnCount + 2);
             inventoryItemsContent.position = new Vector2(-inventoryItemsContent.sizeDelta.x / 2, 0);

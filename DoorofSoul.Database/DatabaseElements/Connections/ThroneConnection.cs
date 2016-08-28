@@ -1,9 +1,7 @@
-﻿using DoorofSoul.Database.DatabaseElements.Connections.ThroneConnections;
-
-namespace DoorofSoul.Database.DatabaseElements.Connections
+﻿namespace DoorofSoul.Database.DatabaseElements.Connections
 {
     public abstract class ThroneConnection : DatabaseConnection
     {
-        public abstract SoulElementsConnection SoulElementsConnection { get; }
+        
     }
 }

@@ -7,17 +7,15 @@ namespace DoorofSoul.Hexagram
     public class Throne
     {
         public AnswerManager AnswerManager { get; protected set; }
-        public SoulManager SoulManager { get; protected set; }
+        
 
         public Throne()
         {
             AnswerManager = new AnswerManager();
-            SoulManager = new SoulManager();
         }
         public void Initial()
         {
             AnswerManager.Initial();
-            SoulManager.Initial();
         }
 
         public void ProjectPlayer(Player player)

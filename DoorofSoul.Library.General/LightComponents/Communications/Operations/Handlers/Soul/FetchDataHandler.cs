@@ -8,10 +8,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
 {
     internal abstract class FetchDataHandler
     {
-        protected ThroneComponents.Soul soul;
+        protected MindComponents.Soul soul;
         protected int correctParameterCount;
 
-        protected FetchDataHandler(ThroneComponents.Soul soul, int correctParameterCount)
+        protected FetchDataHandler(MindComponents.Soul soul, int correctParameterCount)
         {
             this.soul = soul;
             this.correctParameterCount = correctParameterCount;

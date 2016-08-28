@@ -8,7 +8,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformSpiritPointChangeHandler : InformDataHandler
     {
-        internal InformSpiritPointChangeHandler(ThroneComponents.Soul soul) : base(soul, 1)
+        internal InformSpiritPointChangeHandler(MindComponents.Soul soul) : base(soul, 1)
         {
         }
 

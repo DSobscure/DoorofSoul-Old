@@ -49,8 +49,10 @@
   <ItemGroup>
     <Compile Include="DatabaseElements\Connections\ElementConnections\MySQLItemsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLMindConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLSceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLMindRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLInventoryItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemsRepositoryList.cs" />
@@ -75,7 +77,7 @@
     <Compile Include="DatabaseElements\Connections\MySQLThroneConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLContainerElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLEntityElementsConnection.cs" />
-    <Compile Include="DatabaseElements\Connections\ThroneConnections\MySQLSoulElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MindConnection\MySQLSoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\MySQLConnectionList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLContainerAttributesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLContainerKernelAbilitiesPotentialRepository.cs" />
@@ -91,11 +93,11 @@
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLWorldRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositories\MySQLItemEntityRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulElementsRepositoryList.cs" />
-    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLSoulRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulAttributesRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulKernelAbilitiesRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\ThroneRepositories\SoulElementsRepositories\MySQLSoulPhaseRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositories\MySQLSoulAttributesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositories\MySQLSoulKernelAbilitiesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositories\MySQLSoulPhaseRepository.cs" />
     <Compile Include="MySQLDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +124,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DatabaseElements\Connections\ThroneConnections\" />
     <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

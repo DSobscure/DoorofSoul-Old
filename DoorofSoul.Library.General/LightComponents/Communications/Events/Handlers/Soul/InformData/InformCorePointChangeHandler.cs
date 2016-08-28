@@ -7,7 +7,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformCorePointChangeHandler : InformDataHandler
     {
-        internal InformCorePointChangeHandler(ThroneComponents.Soul soul) : base(soul, 1)
+        internal InformCorePointChangeHandler(MindComponents.Soul soul) : base(soul, 1)
         {
         }
 

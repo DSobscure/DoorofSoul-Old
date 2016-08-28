@@ -1,10 +1,10 @@
 ﻿using System;
-using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories
 {
     class MySQLSoulKernelAbilitiesRepository : SoulKernelAbilitiesRepository
     {
@@ -14,7 +14,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             (SoulID, Creation, Destruction, Conservation, Revolution, Balance, Guidance, Mind) VALUES 
             (@soulID, @creation, @destruction, @conservation, @revolution, @balance, @guidance, @mind) ;
             SELECT LAST_INSERT_ID();";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 command.Parameters.AddWithValue("@creation", kernelAbilities.Creation);
@@ -40,7 +40,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
         {
             string sqlString = @"DELETE FROM SoulKernelAbilitiesCollection 
             WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 if (command.ExecuteNonQuery() <= 0)
@@ -55,7 +55,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"SELECT  
             Creation, Destruction, Conservation, Revolution, Balance, Guidance, Mind
             from SoulKernelAbilitiesCollection WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -92,7 +92,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"UPDATE SoulKernelAbilitiesCollection SET 
             Creation = @creation, Destruction = @destruction, Conservation = @conservation, Revolution = @revolution, Balance = @balance, Guidance = @guidance, Mind = @mind
             WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@creation", kernelAbilities.Creation);
                 command.Parameters.AddWithValue("@destruction", kernelAbilities.Destruction);

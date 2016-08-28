@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoorofSoul.Library.General.ThroneComponents.SoulElements
+namespace DoorofSoul.Library.General.MindComponents.SoulElements
 {
     public class SoulPhase
     {

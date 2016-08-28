@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+﻿using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Protocol.Communication;
 using DoorofSoul.Protocol.Communication.FetchDataCodes;
 using DoorofSoul.Protocol.Communication.FetchDataResponseParameters.Answer;
@@ -48,8 +48,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                     int soulID = (int)parameters[(byte)FetchSoulsResponseParameterCode.SoulID];
                     string soulName = (string)parameters[(byte)FetchSoulsResponseParameterCode.SoulName];
                     SoulAttributes attributes = (SoulAttributes)parameters[(byte)FetchSoulsResponseParameterCode.SoulAttributes];
-                    ThroneComponents.Soul soul = new ThroneComponents.Soul(soulID, answer, soulName, attributes);
-                    answer.LoadSouls(new List<ThroneComponents.Soul> { soul });
+                    MindComponents.Soul soul = new MindComponents.Soul(soulID, answer, soulName, attributes);
+                    answer.LoadSouls(new List<MindComponents.Soul> { soul });
                     soul.SoulOperationManager.FetchDataResolver.FetchSkillInfos();
                     return true;
                 }

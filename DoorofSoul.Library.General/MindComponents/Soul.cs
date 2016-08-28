@@ -3,12 +3,13 @@ using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
 using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.ThroneComponents
+namespace DoorofSoul.Library.General.MindComponents
 {
     public class Soul
     {

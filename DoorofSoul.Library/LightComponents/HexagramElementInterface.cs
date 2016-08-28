@@ -1,6 +1,6 @@
 ﻿using System;
 using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Library.General.LightComponents;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces;
 
 namespace DoorofSoul.Hexagram.LightComponents
 {

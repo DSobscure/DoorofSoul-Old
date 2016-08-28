@@ -1,8 +1,8 @@
 ﻿using DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
-using DoorofSoul.Library.General.LightComponents.Knowledge;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Knowledge;
 using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol.Communication;
 using System.Collections.Generic;
 

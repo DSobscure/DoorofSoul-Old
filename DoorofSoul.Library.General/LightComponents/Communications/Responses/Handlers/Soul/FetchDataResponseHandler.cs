@@ -6,9 +6,9 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
 {
     public abstract class FetchDataResponseHandler
     {
-        protected ThroneComponents.Soul soul;
+        protected MindComponents.Soul soul;
 
-        protected FetchDataResponseHandler(ThroneComponents.Soul soul)
+        protected FetchDataResponseHandler(MindComponents.Soul soul)
         {
             this.soul = soul;
         }

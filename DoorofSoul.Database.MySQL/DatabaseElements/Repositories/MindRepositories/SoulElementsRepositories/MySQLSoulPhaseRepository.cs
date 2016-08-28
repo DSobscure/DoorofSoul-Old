@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories
 {
     class MySQLSoulPhaseRepository : SoulPhaseRepository
     {
@@ -13,7 +12,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"INSERT INTO SoulPhaseCollection 
             (SoulID, PhaseLevel, UnderstandingLevel, UnderstandingPoint) VALUES 
             (@soulID, @phaseLevel, @understandingLevel, @understandingPoint) ;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 command.Parameters.AddWithValue("@phaseLevel", phase.PhaseLevel);
@@ -35,7 +34,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
         {
             string sqlString = @"DELETE FROM SoulPhaseCollection 
             WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 if (command.ExecuteNonQuery() <= 0)
@@ -50,7 +49,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"SELECT  
             UnderstandingLevel, UnderstandingPoint
             from SoulPhaseCollection WHERE SoulID = @soulID AND PhaseLevel = @phaseLevel;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("soulID", soulID);
                 command.Parameters.AddWithValue("phaseLevel", phaseLevel);
@@ -75,7 +74,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"SELECT  
             PhaseLevel, UnderstandingLevel, UnderstandingPoint
             from SoulPhaseCollection WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("soulID", soulID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -98,7 +97,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"UPDATE SoulPhaseCollection SET
             UnderstandingLevel = @understandingLevel, UnderstandingPoint = @understandingPoint
             WHERE SoulID = @soulID AND PhaseLevel = @phaseLevel;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@understandingLevel", phase.UnderstandingLevel);
                 command.Parameters.AddWithValue("@understandingPoint", phase.UnderstandingPoint);

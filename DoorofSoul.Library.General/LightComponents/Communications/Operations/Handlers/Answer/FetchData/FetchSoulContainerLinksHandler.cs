@@ -19,7 +19,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 try
                 {
-                    foreach (ThroneComponents.Soul soul in answer.Souls)
+                    foreach (MindComponents.Soul soul in answer.Souls)
                     {
                         foreach (NatureComponents.Container container in soul.Containers)
                         {

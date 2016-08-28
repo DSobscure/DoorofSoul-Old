@@ -1,7 +1,7 @@
-﻿using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+﻿using DoorofSoul.Library.General.MindComponents.SoulElements;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories
+namespace DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories
 {
     public abstract class SoulPhaseRepository
     {

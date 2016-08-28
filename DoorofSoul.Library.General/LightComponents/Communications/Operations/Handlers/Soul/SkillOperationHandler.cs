@@ -9,7 +9,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
 {
     internal class SkillOperationHandler : SoulOperationHandler
     {
-        internal SkillOperationHandler(ThroneComponents.Soul soul) : base(soul, 4)
+        internal SkillOperationHandler(MindComponents.Soul soul) : base(soul, 4)
         {
         }
 

@@ -7,10 +7,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
 {
     public abstract class SoulOperationHandler
     {
-        protected ThroneComponents.Soul soul;
+        protected MindComponents.Soul soul;
         protected int correctParameterCount;
 
-        protected SoulOperationHandler(ThroneComponents.Soul soul, int correctParameterCount)
+        protected SoulOperationHandler(MindComponents.Soul soul, int correctParameterCount)
         {
             this.soul = soul;
             this.correctParameterCount = correctParameterCount;

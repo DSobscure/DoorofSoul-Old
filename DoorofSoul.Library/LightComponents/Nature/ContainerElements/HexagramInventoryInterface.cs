@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.LightComponents.Nature.ContainerElements;
+﻿using DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Nature.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 
 namespace DoorofSoul.Hexagram.LightComponents.Nature.ContainerElements

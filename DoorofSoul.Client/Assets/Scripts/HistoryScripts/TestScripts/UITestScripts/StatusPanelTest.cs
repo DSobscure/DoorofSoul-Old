@@ -2,10 +2,11 @@
 using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts;
 using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
+using DoorofSoul.Library.General.MindComponents;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.ThroneComponents;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;

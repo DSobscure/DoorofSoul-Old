@@ -12,6 +12,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         private MySQLElementRepositoryList elementRepositoryList;
         private MySQLLoveRepositoryList loveRepositoryList;
         private MySQLNatureRepositoryList natureRepositoryList;
+        private MySQLMindRepositoryList mindRepositoryList;
         private MySQLThroneRepositoryList throneRepositoryList;
 
         public override PlayerRepository PlayerRepository { get { return playerRepository; } }
@@ -20,6 +21,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         public override ElementRepositoryList ElementRepositoryList { get { return elementRepositoryList; } }
         public override LoveRepositoryList LoveRepositoryList { get { return loveRepositoryList; } }
         public override NatureRepositoryList NatureRepositoryList { get { return natureRepositoryList; } }
+        public override MindRepositoryList MindRepositoryList { get { return mindRepositoryList; } }
         public override ThroneRepositoryList ThroneRepositoryList { get { return throneRepositoryList; } }
 
         public MySQLRepositoryList()
@@ -30,6 +32,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
             elementRepositoryList = new MySQLElementRepositoryList();
             loveRepositoryList = new MySQLLoveRepositoryList();
             natureRepositoryList = new MySQLNatureRepositoryList();
+            mindRepositoryList = new MySQLMindRepositoryList();
             throneRepositoryList = new MySQLThroneRepositoryList();
         }
     }

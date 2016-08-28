@@ -7,9 +7,10 @@ using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 
-namespace DoorofSoul.Hexagram.ThroneComponents
+namespace DoorofSoul.Hexagram.MindComponents
 {
     public class SoulManager
     {
@@ -88,7 +89,7 @@ namespace DoorofSoul.Hexagram.ThroneComponents
         {
             if (soulDictionary.ContainsKey(soul.SoulID))
             {
-                Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.Save(soul);
+                Database.Database.RepositoryList.MindRepositoryList.SoulRepository.Save(soul);
                 foreach (Container container in soul.Containers)
                 {
                     container.UnlinkSoul(soul);
@@ -121,7 +122,7 @@ namespace DoorofSoul.Hexagram.ThroneComponents
             if (Hexagram.Throne.AnswerManager.ContainsAnswer(answerID))
             {
                 Answer answer = Hexagram.Throne.AnswerManager.FindAnswer(answerID);
-                Soul soul = Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.Create(answer, soulName, mainSoulType);
+                Soul soul = Database.Database.RepositoryList.MindRepositoryList.SoulRepository.Create(answer, soulName, mainSoulType);
                 answer.LoadSouls(new List<Soul> { soul });
                 Container defaultContainer = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Create("TestContainer", Hexagram.Nature.SceneManager.FirstScene.SceneID, new EntitySpaceProperties
                 {
@@ -145,7 +146,7 @@ namespace DoorofSoul.Hexagram.ThroneComponents
                 {
                     Soul soul = soulDictionary[soulID];
                     ExtractSoul(soul);
-                    Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.Delete(soulID);
+                    Database.Database.RepositoryList.MindRepositoryList.SoulRepository.Delete(soulID);
                     answer.RemoveSoul(soulID);
                     return true;
                 }

@@ -25,7 +25,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                 {
                     if (answer.Player.PlayerCommunicationInterface.ActiveSoul(answer, soulID))
                     {
-                        ThroneComponents.Soul soul = answer.FindSoul(soulID);
+                        MindComponents.Soul soul = answer.FindSoul(soulID);
                         NatureComponents.Container defaultContainer = soul.Containers.FirstOrDefault();
                         Dictionary<byte, object> responseParameters = new Dictionary<byte, object>
                         {

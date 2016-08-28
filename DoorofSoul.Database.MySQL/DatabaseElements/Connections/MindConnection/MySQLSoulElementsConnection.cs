@@ -1,7 +1,7 @@
-﻿using DoorofSoul.Database.DatabaseElements.Connections.ThroneConnections;
+﻿using DoorofSoul.Database.DatabaseElements.Connections.MindConnections;
 using MySql.Data.MySqlClient;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections.ThroneConnections
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections.MindConnections
 {
     class MySQLSoulElementsConnection : SoulElementsConnection
     {

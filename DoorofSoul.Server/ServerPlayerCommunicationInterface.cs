@@ -25,17 +25,17 @@ namespace DoorofSoul.Server
 
         public override bool ActiveSoul(Answer answer, int soulID)
         {
-            return Hexagram.Hexagram.Throne.SoulManager.ActiveSoul(soulID);
+            return Hexagram.Hexagram.Mind.SoulManager.ActiveSoul(soulID);
         }
 
         public override bool CreateSoul(Answer answer, string soulName, SoulKernelTypeCode mainSoulType)
         {
-            return Hexagram.Hexagram.Throne.SoulManager.CreateSoul(answer.AnswerID, soulName, mainSoulType);
+            return Hexagram.Hexagram.Mind.SoulManager.CreateSoul(answer.AnswerID, soulName, mainSoulType);
         }
 
         public override bool DeleteSoul(Answer answer, int soulID)
         {
-            return Hexagram.Hexagram.Throne.SoulManager.DeleteSoul(answer.AnswerID, soulID);
+            return Hexagram.Hexagram.Mind.SoulManager.DeleteSoul(answer.AnswerID, soulID);
         }
 
         public override void ErrorInform(string title, string message)

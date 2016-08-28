@@ -1,11 +1,12 @@
-﻿using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories;
+using DoorofSoul.Library.General.MindComponents;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Library.General.ThroneComponents;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories
 {
     public class MySQLSoulRepository : SoulRepository
     {
@@ -15,7 +16,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                 (AnswerID, SoulName) VALUES (@answerID, @soulName) ;
                 SELECT LAST_INSERT_ID();";
             int soulID;
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@answerID", answer.AnswerID);
                 command.Parameters.AddWithValue("@soulName", soulName);
@@ -31,7 +32,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                     }
                 }
             }
-            Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Create(soulID, SoulAttributes.GetDefaultAttribute(mainSoulType));
+            Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Create(soulID, SoulAttributes.GetDefaultAttribute(mainSoulType));
             return Find(soulID, answer);
         }
 
@@ -39,7 +40,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
         {
             string sqlString = @"DELETE FROM SoulCollection 
                 WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 if (command.ExecuteNonQuery() <= 0)
@@ -54,8 +55,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"SELECT  
                 AnswerID, SoulName
                 from SoulCollection WHERE SoulID = @soulID;";
-            SoulAttributes attributes = Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Find(soulID);
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            SoulAttributes attributes = Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Find(soulID);
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -88,7 +89,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                 SoulID
                 from SoulCollection Where AnswerID = @answerID;";
             List<int> soulIDs = new List<int>();
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("answerID", answer.AnswerID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -117,7 +118,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"UPDATE SoulCollection SET 
                 AnswerID = @answerID, SoulName = @soulName
                 WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@answerID", soul.AnswerID);
                 command.Parameters.AddWithValue("@soulName", soul.SoulName);
@@ -127,7 +128,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                     Database.Log.ErrorFormat("MySQLSoulRepository Save Soul Error SoulID: {0}", soul.SoulID);
                 }
             }
-            Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Save(soul.SoulID, soul.Attributes);
+            Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulAttributesRepository.Save(soul.SoulID, soul.Attributes);
         }
     }
 }

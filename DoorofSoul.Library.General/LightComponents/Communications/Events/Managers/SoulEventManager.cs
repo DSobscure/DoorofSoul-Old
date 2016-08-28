@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers;
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Soul;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.EventParameters.Answer;
 using System.Collections.Generic;

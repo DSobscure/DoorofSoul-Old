@@ -7,7 +7,7 @@ using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Server.Config;
 using ExitGames.Logging;

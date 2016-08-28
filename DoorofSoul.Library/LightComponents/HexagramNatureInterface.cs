@@ -1,8 +1,8 @@
 ﻿using System;
 using DoorofSoul.Hexagram.LightComponents.Nature;
-using DoorofSoul.Library.General.LightComponents;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces;
 using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.LightComponents.Nature;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Nature;
 
 namespace DoorofSoul.Hexagram.LightComponents
 {

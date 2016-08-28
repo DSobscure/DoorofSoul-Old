@@ -5,10 +5,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal abstract class InformDataHandler
     {
-        protected ThroneComponents.Soul soul;
+        protected MindComponents.Soul soul;
         protected int correctParameterCount;
 
-        protected InformDataHandler(ThroneComponents.Soul soul, int correctParameterCount)
+        protected InformDataHandler(MindComponents.Soul soul, int correctParameterCount)
         {
             this.soul = soul;
             this.correctParameterCount = correctParameterCount;

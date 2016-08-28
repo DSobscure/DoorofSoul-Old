@@ -1,6 +1,6 @@
 ﻿using DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers.Soul;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters.Answer;

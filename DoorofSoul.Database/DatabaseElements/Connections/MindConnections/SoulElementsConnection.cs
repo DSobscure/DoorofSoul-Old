@@ -1,4 +1,4 @@
-﻿namespace DoorofSoul.Database.DatabaseElements.Connections.ThroneConnections
+﻿namespace DoorofSoul.Database.DatabaseElements.Connections.MindConnections
 {
     public abstract class SoulElementsConnection : DatabaseConnection
     {

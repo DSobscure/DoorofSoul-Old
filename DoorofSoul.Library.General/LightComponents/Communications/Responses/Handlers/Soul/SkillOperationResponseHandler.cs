@@ -9,7 +9,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
 {
     internal class SkillOperationResponseHandler : SoulResponseHandler
     {
-        internal SkillOperationResponseHandler(ThroneComponents.Soul soul) : base(soul)
+        internal SkillOperationResponseHandler(MindComponents.Soul soul) : base(soul)
         {
         }
 

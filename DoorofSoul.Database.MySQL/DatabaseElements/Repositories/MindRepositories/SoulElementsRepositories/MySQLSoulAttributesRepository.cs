@@ -1,9 +1,9 @@
-﻿using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
-using DoorofSoul.Library.General.ThroneComponents.SoulElements;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
+using DoorofSoul.Library.General.MindComponents.SoulElements;
 using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories
 {
     class MySQLSoulAttributesRepository : SoulAttributesRepository
     {
@@ -12,7 +12,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"INSERT INTO SoulAttributesCollection 
             (SoulID, MainSoulType, MaxReachedPhaseLevel, CorePoint, MaxCorePoint, SpiritPoint, MaxSpiritPoint) VALUES 
             (@soulID, @mainSoulType, @maxReachedPhaseLevel, @corePoint, @maxCorePoint, @spiritPoint, @maxSpiritPoint) ;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 command.Parameters.AddWithValue("@mainSoulType", (byte)soulAttributes.MainSoulType);
@@ -27,10 +27,10 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                     return null;
                 }
             }
-            Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Create(soulID, soulAttributes.KernelAbilities);
+            Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Create(soulID, soulAttributes.KernelAbilities);
             foreach(SoulPhase phase in soulAttributes.Phases)
             {
-                Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.Create(soulID, phase);
+                Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.Create(soulID, phase);
             }
             return Find(soulID);
         }
@@ -39,7 +39,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
         {
             string sqlString = @"DELETE FROM SoulAttributesCollection 
                 WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 if (command.ExecuteNonQuery() <= 0)
@@ -54,9 +54,9 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"SELECT  
             MainSoulType, CurrentPhaseLevel, MaxReachedPhaseLevel, CorePoint, MaxCorePoint, SpiritPoint, MaxSpiritPoint
             from SoulAttributesCollection WHERE SoulID = @soulID;";
-            SoulKernelAbilities kernelAbilities = Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Find(soulID);
+            SoulKernelAbilities kernelAbilities = Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Find(soulID);
             SoulAttributes attributes = null;
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -87,7 +87,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                     }
                 }
             }
-            attributes.LoadPhases(Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.ListOfSoul(soulID));
+            attributes.LoadPhases(Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.ListOfSoul(soulID));
             return attributes;
         }
 
@@ -96,7 +96,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
             string sqlString = @"UPDATE SoulAttributesCollection SET 
             MainSoulType = @mainSoulType, CurrentPhaseLevel = @currentPhaseLevel, MaxReachedPhaseLevel = @maxReachedPhaseLevel, CorePoint = @corePoint, MaxCorePoint = @maxCorePoint, SpiritPoint = @spiritPoint, MaxSpiritPoint = @maxSpiritPoint
             WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ThroneConnection.SoulElementsConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.MindConnection.SoulElementsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@mainSoulType", (byte)soulAttributes.MainSoulType);
                 command.Parameters.AddWithValue("@currentPhaseLevel", (byte)soulAttributes.CurrentPhaseLevel);
@@ -111,8 +111,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneReposito
                     Database.Log.ErrorFormat("MySQLSoulRepository Save Soul Error SoulID: {0}", soulID);
                 }
             }
-            Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Save(soulID, soulAttributes.KernelAbilities);
-            Database.RepositoryList.ThroneRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.SavePhases(soulID, soulAttributes.Phases);
+            Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulKernelAbilitiesRepository.Save(soulID, soulAttributes.KernelAbilities);
+            Database.RepositoryList.MindRepositoryList.SoulElementsRepositoryList.SoulPhaseRepository.SavePhases(soulID, soulAttributes.Phases);
         }
     }
 }

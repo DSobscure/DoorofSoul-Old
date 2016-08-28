@@ -1,10 +1,10 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
+using DoorofSoul.Client.Protocol.Language;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
-using DoorofSoul.Client.Protocol.Language;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;

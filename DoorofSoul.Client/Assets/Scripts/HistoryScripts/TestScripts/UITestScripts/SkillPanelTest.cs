@@ -2,6 +2,7 @@
 using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts;
 using DoorofSoul.Library.General.KnowledgeComponents;
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Language;

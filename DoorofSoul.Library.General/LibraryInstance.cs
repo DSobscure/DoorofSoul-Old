@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MsgPack.Serialization;
-using DoorofSoul.Library.General.LightComponents;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces;
 
 namespace DoorofSoul.Library.General
 {

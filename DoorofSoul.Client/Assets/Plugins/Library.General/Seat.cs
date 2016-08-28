@@ -1,5 +1,6 @@
-﻿using DoorofSoul.Library.General.ThroneComponents;
+﻿using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.ThroneComponents;
 
 namespace DoorofSoul.Client.Library.General
 {

@@ -253,12 +253,12 @@
     <Compile Include="NatureComponents\SceneElements\MessageLog.cs" />
     <Compile Include="NatureComponents\SceneElements\SceneEye.cs" />
     <Compile Include="LightComponents\HexagramInterfaces\Knowledge\SkillIgeInterface.cs" />
-    <Compile Include="ThroneComponents\Soul.cs" />
+    <Compile Include="MindComponents\Soul.cs" />
     <Compile Include="KnowledgeComponents\Skills\SkillInfo.cs" />
     <Compile Include="KnowledgeComponents\Skills\SkillLibrary.cs" />
-    <Compile Include="ThroneComponents\SoulElements\SoulAttributes.cs" />
-    <Compile Include="ThroneComponents\SoulElements\SoulKernelAbilities.cs" />
-    <Compile Include="ThroneComponents\SoulElements\SoulPhase.cs" />
+    <Compile Include="MindComponents\SoulElements\SoulAttributes.cs" />
+    <Compile Include="MindComponents\SoulElements\SoulKernelAbilities.cs" />
+    <Compile Include="MindComponents\SoulElements\SoulPhase.cs" />
     <Compile Include="NatureComponents\World.cs" />
     <Compile Include="NatureComponents\WorldCommunicationInterface.cs" />
   </ItemGroup>

@@ -6,9 +6,9 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
 {
     public abstract class SoulResponseHandler
     {
-        protected ThroneComponents.Soul soul;
+        protected MindComponents.Soul soul;
 
-        internal SoulResponseHandler(ThroneComponents.Soul soul)
+        internal SoulResponseHandler(MindComponents.Soul soul)
         {
             this.soul = soul;
         }

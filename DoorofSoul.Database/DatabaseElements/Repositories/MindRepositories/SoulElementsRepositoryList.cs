@@ -1,6 +1,6 @@
-﻿using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
 
-namespace DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories
+namespace DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories
 {
     public abstract class SoulElementsRepositoryList
     {

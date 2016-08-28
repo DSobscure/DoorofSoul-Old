@@ -1,9 +1,9 @@
-﻿using DoorofSoul.Library.General;
+﻿using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories
+namespace DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories
 {
     public abstract class SoulRepository
     {

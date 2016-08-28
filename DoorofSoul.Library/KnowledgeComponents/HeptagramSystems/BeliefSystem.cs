@@ -2,7 +2,7 @@
 using DoorofSoul.Library.General.KnowledgeComponents.Skills;
 using DoorofSoul.Library.General.KnowledgeComponents.StatusEffects;
 using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication;
 using System;

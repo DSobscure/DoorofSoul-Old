@@ -10,7 +10,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
 {
     internal class FetchSkillInfosResponseHandler : FetchDataResponseHandler
     {
-        internal FetchSkillInfosResponseHandler(ThroneComponents.Soul soul) : base(soul)
+        internal FetchSkillInfosResponseHandler(MindComponents.Soul soul) : base(soul)
         {
         }
 

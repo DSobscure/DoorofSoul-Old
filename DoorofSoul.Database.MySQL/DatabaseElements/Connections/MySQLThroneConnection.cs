@@ -1,21 +1,13 @@
-﻿using DoorofSoul.Database.MySQL.DatabaseElements.Connections.ThroneConnections;
-using DoorofSoul.Database.DatabaseElements.Connections;
+﻿using DoorofSoul.Database.DatabaseElements.Connections;
 using MySql.Data.MySqlClient;
-using DoorofSoul.Database.DatabaseElements.Connections.ThroneConnections;
-using System;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Connections
 {
     class MySQLThroneConnection : ThroneConnection
     {
-        private MySQLSoulElementsConnection soulElementsConnection;
-
-        public override SoulElementsConnection SoulElementsConnection { get { return soulElementsConnection; } }
-
         public MySQLThroneConnection()
         {
-            soulElementsConnection = new MySQLSoulElementsConnection();
-            childConnections.Add(soulElementsConnection);
+            
         }
 
         public override bool Connect(string hostName, string userName, string password, string database)

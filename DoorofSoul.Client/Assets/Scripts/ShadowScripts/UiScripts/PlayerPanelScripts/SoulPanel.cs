@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -11,7 +11,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
     {
         protected readonly Dictionary<SoulFetchDataCode, FetchDataResponseHandler> fetchResponseTable;
 
-        internal FetchDataResponseResolver(ThroneComponents.Soul soul) : base(soul)
+        internal FetchDataResponseResolver(MindComponents.Soul soul) : base(soul)
         {
             fetchResponseTable = new Dictionary<SoulFetchDataCode, FetchDataResponseHandler>
             {

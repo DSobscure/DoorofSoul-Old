@@ -2,7 +2,7 @@
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
-using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
 using System.Linq;

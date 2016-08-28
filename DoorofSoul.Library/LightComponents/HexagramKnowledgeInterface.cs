@@ -1,7 +1,7 @@
 ﻿using DoorofSoul.Hexagram.LightComponents.Knowledge;
 using DoorofSoul.Library.General.KnowledgeComponents;
-using DoorofSoul.Library.General.LightComponents;
-using DoorofSoul.Library.General.LightComponents.Knowledge;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces.Knowledge;
 
 namespace DoorofSoul.Hexagram.LightComponents
 {

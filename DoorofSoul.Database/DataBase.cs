@@ -1,5 +1,5 @@
 ﻿using DoorofSoul.Database.DatabaseElements;
-using DoorofSoul.Library.General.LightComponents;
+using DoorofSoul.Library.General.LightComponents.HexagramInterfaces;
 using ExitGames.Logging;
 
 namespace DoorofSoul.Database

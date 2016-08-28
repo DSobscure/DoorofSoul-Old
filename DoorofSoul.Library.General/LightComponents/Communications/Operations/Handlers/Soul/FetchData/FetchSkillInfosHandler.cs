@@ -8,7 +8,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
 {
     internal class FetchSkillInfosHandler : FetchDataHandler
     {
-        internal FetchSkillInfosHandler(ThroneComponents.Soul soul) : base(soul, 0)
+        internal FetchSkillInfosHandler(MindComponents.Soul soul) : base(soul, 0)
         {
         }
 

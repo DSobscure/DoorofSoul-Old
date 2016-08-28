@@ -16,12 +16,14 @@ namespace DoorofSoul.Hexagram
             Knowledge.Initial();
             Element.Initial();
             Nature.Initial();
+            Mind.Initial();
             Throne.Initial();
         }
 
         public static Knowledge Knowledge { get; protected set; }
         public static Element Element { get; protected set; }
         public static Nature Nature { get; protected set; }
+        public static Mind Mind { get; protected set; }
         public static Throne Throne { get; protected set; }
         public static ILogger Log { get; protected set; }
 
@@ -31,6 +33,7 @@ namespace DoorofSoul.Hexagram
             Knowledge = new Knowledge();
             Element = new Element();
             Nature = new Nature();
+            Mind = new Mind();
             Throne = new Throne();
         }
     }

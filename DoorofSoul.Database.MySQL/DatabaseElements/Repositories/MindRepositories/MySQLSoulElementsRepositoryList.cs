@@ -1,9 +1,8 @@
-﻿using System;
-using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories;
-using DoorofSoul.Database.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
-using DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories.SoulElementsRepositories;
+﻿using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories;
+using DoorofSoul.Database.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
+using DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories.SoulElementsRepositories;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ThroneRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.MindRepositories
 {
     class MySQLSoulElementsRepositoryList : SoulElementsRepositoryList
     {

@@ -1,4 +1,4 @@
-﻿using DoorofSoul.Library.General.ThroneComponents;
+﻿using DoorofSoul.Library.General.MindComponents;
 using DoorofSoul.Protocol;
 using System.Collections.Generic;
 using System;

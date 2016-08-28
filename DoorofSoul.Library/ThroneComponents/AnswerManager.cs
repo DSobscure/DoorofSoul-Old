@@ -1,4 +1,5 @@
 ﻿using DoorofSoul.Library.General.ThroneComponents;
+using DoorofSoul.Library.General.MindComponents;
 using System.Collections.Generic;
 
 namespace DoorofSoul.Hexagram.ThroneComponents
@@ -38,10 +39,10 @@ namespace DoorofSoul.Hexagram.ThroneComponents
             if (!answerDictionary.ContainsKey(answer.AnswerID))
             {
                 answerDictionary.Add(answer.AnswerID, answer);
-                answer.LoadSouls(Database.Database.RepositoryList.ThroneRepositoryList.SoulRepository.ListOfAnswer(answer));
+                answer.LoadSouls(Database.Database.RepositoryList.MindRepositoryList.SoulRepository.ListOfAnswer(answer));
                 foreach (Soul soul in answer.Souls)
                 {
-                    Hexagram.Throne.SoulManager.ProjectSoul(soul);
+                    Hexagram.Mind.SoulManager.ProjectSoul(soul);
                 }
             }
         }
@@ -52,7 +53,7 @@ namespace DoorofSoul.Hexagram.ThroneComponents
                 Database.Database.RepositoryList.ThroneRepositoryList.AnswerRepository.Save(answer);
                 foreach (Soul soul in answer.Souls)
                 {
-                    Hexagram.Throne.SoulManager.ExtractSoul(soul);
+                    Hexagram.Mind.SoulManager.ExtractSoul(soul);
 
                 }
                 answer.ClearSouls();

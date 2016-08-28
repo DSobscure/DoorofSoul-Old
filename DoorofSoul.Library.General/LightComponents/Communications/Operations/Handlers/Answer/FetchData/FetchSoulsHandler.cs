@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 try
                 {
-                    foreach (ThroneComponents.Soul soul in answer.Souls)
+                    foreach (MindComponents.Soul soul in answer.Souls)
                     {
                         var result = new Dictionary<byte, object>
                         {

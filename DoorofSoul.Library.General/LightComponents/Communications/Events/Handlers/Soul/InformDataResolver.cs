@@ -12,7 +12,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
     {
         private readonly Dictionary<SoulInformDataCode, InformDataHandler> informTable;
 
-        internal InformDataResolver(ThroneComponents.Soul soul) : base(soul, 2)
+        internal InformDataResolver(MindComponents.Soul soul) : base(soul, 2)
         {
             informTable = new Dictionary<SoulInformDataCode, InformDataHandler>
             {

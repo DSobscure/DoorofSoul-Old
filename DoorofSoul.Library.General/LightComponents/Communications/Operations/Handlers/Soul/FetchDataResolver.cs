@@ -11,7 +11,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
     {
         private readonly Dictionary<SoulFetchDataCode, FetchDataHandler> fetchTable;
 
-        internal FetchDataResolver(ThroneComponents.Soul soul) : base(soul, 2)
+        internal FetchDataResolver(MindComponents.Soul soul) : base(soul, 2)
         {
             fetchTable = new Dictionary<SoulFetchDataCode, FetchDataHandler>
             {

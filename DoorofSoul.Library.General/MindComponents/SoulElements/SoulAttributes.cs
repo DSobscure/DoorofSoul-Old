@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace DoorofSoul.Library.General.ThroneComponents.SoulElements
+namespace DoorofSoul.Library.General.MindComponents.SoulElements
 {
     public class SoulAttributes
     {

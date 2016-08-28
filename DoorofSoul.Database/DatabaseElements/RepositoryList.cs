@@ -9,6 +9,7 @@ namespace DoorofSoul.Database.DatabaseElements
         public abstract ElementRepositoryList ElementRepositoryList { get; }
         public abstract LoveRepositoryList LoveRepositoryList { get; }
         public abstract NatureRepositoryList NatureRepositoryList { get; }
+        public abstract MindRepositoryList MindRepositoryList { get; }
         public abstract ThroneRepositoryList ThroneRepositoryList { get; }
     }
 }

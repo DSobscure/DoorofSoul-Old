@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Container;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    decimal newLifePoint = (decimal)parameters[(byte)InformLifePointChangeParameterCode.NewLifePoint];
+                    decimal newLifePoint = (decimal)(DSDecimal)parameters[(byte)InformLifePointChangeParameterCode.NewLifePoint];
                     container.Attributes.LifePoint = newLifePoint;
                     return true;
                 }

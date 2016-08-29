@@ -50,6 +50,8 @@
     <Compile Include="DatabaseElements\Connections\KnowledgeConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\SkillsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\StatusEffectsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\LightConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\LightConnections\EffectsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\LoveConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MindConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnection.cs" />
@@ -58,9 +60,14 @@
     <Compile Include="DatabaseElements\Connections\NatureConnections\SceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\PathConnectionList.cs" />
     <Compile Include="DatabaseElements\Connections\Path\Ego_CognitionConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\Path\Seperation_ConcretionConnection.cs" />
     <Compile Include="DatabaseElements\Connections\ThroneConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MindConnections\SoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\DatabaseConnection.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\ConsumablesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\LifePointEffectorRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositoryList.cs" />
@@ -87,6 +94,8 @@
     <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\PathRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\Ego_CognitionRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\ConsumablesLifePointEffectorPossessionRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositories\EntitySpacePropertiesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\AnswerRepository.cs" />
@@ -125,7 +134,6 @@
   <ItemGroup>
     <Folder Include="DatabaseElements\Connections\Cycle\" />
     <Folder Include="DatabaseElements\Connections\ThroneConnections\" />
-    <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
     <Folder Include="DatabaseElements\Repositories\LoveRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

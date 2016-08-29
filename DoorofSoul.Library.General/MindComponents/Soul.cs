@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
+using DoorofSoul.Library.General.LightComponents.Effects;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.ThroneComponents;
 using DoorofSoul.Library.General.MindComponents.SoulElements;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.MindComponents
 {
-    public class Soul
+    public class Soul : IEffectorTarget
     {
         #region properties
         public int SoulID { get; protected set; }
@@ -94,6 +95,11 @@ namespace DoorofSoul.Library.General.MindComponents
             {
                 return null;
             }
+        }
+
+        public bool IncreaseLifePoint(decimal value)
+        {
+            return false;
         }
     }
 }

@@ -2,6 +2,5 @@
 {
     public interface IEffectorTarget
     {
-        bool IncreaseLifePoint(decimal value);
     }
 }

@@ -10,6 +10,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
     {
         private MySQLKnowledgeConnection knowledgeConnection;
         private MySQLElementConnection elementConnection;
+        private MySQLLightConnection lightConnection;
         private MySQLLoveConnection loveConnection;
         private MySQLNatureConnection natureConnection;
         private MySQLMindConnection mindConnection;
@@ -19,6 +20,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
 
         public override KnowledgeConnection KnowledgeConnection { get { return knowledgeConnection; } }
         public override ElementConnection ElementConnection { get { return elementConnection; } }
+        public override LightConnection LightConnection { get { return lightConnection; } }
         public override LoveConnection LoveConnection { get { return loveConnection; } }
         public override NatureConnection NatureConnection { get { return natureConnection; } }
         public override MindConnection MindConnection { get { return mindConnection; } }
@@ -30,6 +32,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         {
             knowledgeConnection = new MySQLKnowledgeConnection();
             elementConnection = new MySQLElementConnection();
+            lightConnection = new MySQLLightConnection();
             loveConnection = new MySQLLoveConnection();
             natureConnection = new MySQLNatureConnection();
             mindConnection = new MySQLMindConnection();
@@ -39,6 +42,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
 
             childConnections.Add(knowledgeConnection);
             childConnections.Add(elementConnection);
+            childConnections.Add(lightConnection);
             childConnections.Add(loveConnection);
             childConnections.Add(natureConnection);
             childConnections.Add(mindConnection);

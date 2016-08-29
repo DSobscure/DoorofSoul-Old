@@ -6,6 +6,7 @@ namespace DoorofSoul.Database.DatabaseElements
     {
         public abstract KnowledgeConnection KnowledgeConnection { get; }
         public abstract ElementConnection ElementConnection { get; }
+        public abstract LightConnection LightConnection { get; }
         public abstract LoveConnection LoveConnection { get; }
         public abstract NatureConnection NatureConnection { get; }
         public abstract MindConnection MindConnection{ get; }

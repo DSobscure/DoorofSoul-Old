@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Soul;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    decimal newCorePoint = (decimal)parameters[(byte)InformCorePointChangeParameterCode.NewCorePoint];
+                    decimal newCorePoint = (decimal)(DSDecimal)parameters[(byte)InformCorePointChangeParameterCode.NewCorePoint];
                     soul.Attributes.CorePoint = newCorePoint;
                     return true;
                 }

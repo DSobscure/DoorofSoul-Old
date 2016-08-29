@@ -26,6 +26,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
             eventTrigger.OnStopDrag += OnStopDrag;
             eventTrigger.OnDragging += OnDragging;
             eventTrigger.OnDisplayUsableObject += OnDisplayDraggableIcon;
+            eventTrigger.OnDoubleClick += OnUseItem;
 
             iconText = transform.FindChild("IconText").GetComponent<Text>();
         }
@@ -66,6 +67,14 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
             InventoryItemInfo enterInfo = usableObject as InventoryItemInfo;
             InventoryItemInfo selfInfo = UsableObject as InventoryItemInfo;
             Global.Global.Seat.MainContainer.ContainerOperationManager.MoveInventoryItemInfo(enterInfo.positionIndex, selfInfo.positionIndex);
+        }
+        private void OnUseItem(PointerEventData eventData)
+        {
+            InventoryItemInfo selfInfo = UsableObject as InventoryItemInfo;
+            if (selfInfo.item != null)
+            {
+                Global.Global.Seat.MainContainer.ContainerOperationManager.UseItem(selfInfo.positionIndex);
+            }
         }
     }
 }

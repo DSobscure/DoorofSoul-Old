@@ -11,6 +11,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
 
         private MySQLKnowledgeRepositoryList knowledgeRepositoryList;
         private MySQLElementRepositoryList elementRepositoryList;
+        private MySQLLightRepositoryList lightRepositoryList;
         private MySQLLoveRepositoryList loveRepositoryList;
         private MySQLNatureRepositoryList natureRepositoryList;
         private MySQLMindRepositoryList mindRepositoryList;
@@ -22,6 +23,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
 
         public override KnowledgeRepositoryList KnowledgeRepositoryList { get { return knowledgeRepositoryList; } }
         public override ElementRepositoryList ElementRepositoryList { get { return elementRepositoryList; } }
+        public override LightRepositoryList LightRepositoryList { get { return lightRepositoryList; } }
         public override LoveRepositoryList LoveRepositoryList { get { return loveRepositoryList; } }
         public override NatureRepositoryList NatureRepositoryList { get { return natureRepositoryList; } }
         public override MindRepositoryList MindRepositoryList { get { return mindRepositoryList; } }
@@ -35,6 +37,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
 
             knowledgeRepositoryList = new MySQLKnowledgeRepositoryList();
             elementRepositoryList = new MySQLElementRepositoryList();
+            lightRepositoryList = new MySQLLightRepositoryList();
             loveRepositoryList = new MySQLLoveRepositoryList();
             natureRepositoryList = new MySQLNatureRepositoryList();
             mindRepositoryList = new MySQLMindRepositoryList();

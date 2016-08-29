@@ -2,6 +2,7 @@
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
 {
@@ -11,6 +12,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         protected float rotateSpeed;
         protected Rigidbody entityRigidbody;
         protected float moveSpeed;
+        protected Canvas containerCanvus;
+        protected Text nameText; 
 
         public Entity Entity
         {
@@ -45,19 +48,23 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         {
             this.entity = entity;
             entityRigidbody = GetComponent<Rigidbody>();
+            containerCanvus = transform.FindChild("ContainerCanvas").GetComponent<Canvas>();
+            containerCanvus.worldCamera = Camera.main;
+            nameText = containerCanvus.transform.FindChild("NameText").GetComponent<Text>();
+            nameText.text = entity.EntityName;
             rotateSpeed = 1;
             moveSpeed = 1;
             entityRigidbody.velocity = (Vector3)entity.Velocity;
             entityRigidbody.angularVelocity = (Vector3)entity.AngularVelocity;
         }
 
-        public void StartRotate(float velocity)
+        public void StartRotate(float angularVelocity)
         {
-            entityRigidbody.angularVelocity = new Vector3(0, velocity, 0);
+            entityRigidbody.angularVelocity = new Vector3(0, angularVelocity, 0);
         }
-        public void StartMove(float angularVelocity)
+        public void StartMove(float velocity)
         {
-            entityRigidbody.velocity = entityRigidbody.transform.forward * angularVelocity;
+            entityRigidbody.velocity = entityRigidbody.transform.forward * velocity;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace DoorofSoul.Library.General.ElementComponents.Items
 
         public override ItemComponentTypeCode ItemComponentTypeCode { get { return ItemComponentTypeCode.Consumables; } }
         protected List<Effector> effectors;
+        public IEnumerable<Effector> Effectors { get { return effectors; } }
 
         public Consumables(int consumablesID)
         {

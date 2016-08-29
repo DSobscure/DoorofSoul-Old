@@ -1,4 +1,6 @@
 ﻿using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.LightComponents.Effects;
+using DoorofSoul.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +95,24 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 return false;
             }
         }
+        public bool RemoveItem(int positionIndex, int count)
+        {
+            if (IsPositionIndexInRange(positionIndex) && itemInfos[positionIndex].count >= count)
+            {
+                itemInfos[positionIndex].count -= count;
+                if (itemInfos[positionIndex].count == 0)
+                {
+                    LibraryInstance.NatureInterface?.ContainerElementsInterface.InventoryInterface.DeleteInventoryItemInfo(itemInfos[positionIndex].inventoryItemInfoID);
+                    itemInfos[positionIndex] = new InventoryItemInfo { positionIndex = positionIndex };
+                }
+                onItemChange?.Invoke(itemInfos[positionIndex]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void SwapItemInfo(int originPosition, int newPosition)
         {
             itemInfos[originPosition].positionIndex = newPosition;
@@ -112,14 +132,35 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 if(container != null)
                 {
                     container.Entity.LocatedScene.ItemEntityManager.CreateItemEntity(itemInfos[positionIndex].item.ItemID, container.Entity.Position);
-                    itemInfos[positionIndex].count -= 1;
-                    if(itemInfos[positionIndex].count == 0)
+                    return RemoveItem(positionIndex, 1);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool UseItem(int positionIndex)
+        {
+            if (IsPositionIndexInRange(positionIndex) && itemInfos[positionIndex].count > 0)
+            {
+                Container container = LibraryInstance.NatureInterface.FindContainer(ContainerID);
+                if (container != null)
+                {
+                    List<IEffectorTarget> effectorTargets = new List<IEffectorTarget>() { container };
+                    effectorTargets.AddRange(container.Souls.OfType<IEffectorTarget>());
+                    if (itemInfos[positionIndex].item.Use(ItemComponentTypeCode.Consumables, effectorTargets))
                     {
-                        LibraryInstance.NatureInterface?.ContainerElementsInterface.InventoryInterface.DeleteInventoryItemInfo(itemInfos[positionIndex].inventoryItemInfoID);
-                        itemInfos[positionIndex] = new InventoryItemInfo { positionIndex = positionIndex };
+                        return RemoveItem(positionIndex, 1);
                     }
-                    onItemChange?.Invoke(itemInfos[positionIndex]);
-                    return true;
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {

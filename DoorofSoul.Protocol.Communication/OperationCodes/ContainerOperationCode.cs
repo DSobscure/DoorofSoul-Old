@@ -8,5 +8,6 @@
         PickupItemEntity,
         MoveInventoryItemInfo,
         DiscardItem,
+        UseItem
     }
 }

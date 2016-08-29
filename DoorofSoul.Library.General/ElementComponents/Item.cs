@@ -34,6 +34,7 @@ namespace DoorofSoul.Library.General.ElementComponents
         public string ItemName { get; protected set; }
         public string Description { get; protected set; }
         protected List<ItemComponent> components;
+        public IEnumerable<ItemComponent> Components { get { return components; } }
 
         [MessagePackDeserializationConstructor]
         public Item()

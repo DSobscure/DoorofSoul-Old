@@ -36,7 +36,7 @@ namespace DoorofSoul.Database.DatabaseElements
         public abstract bool Connect(string hostName, string userName, string password, string database);
         public void Dispose()
         {
-            connection.Dispose();
+            connection?.Dispose();
             childConnections.ForEach(x => x.Dispose());
         }
     }

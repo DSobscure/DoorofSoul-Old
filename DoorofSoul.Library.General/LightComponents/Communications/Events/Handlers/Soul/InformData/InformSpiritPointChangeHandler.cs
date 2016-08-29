@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DoorofSoul.Protocol.Communication.InformDataParameters.Soul;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
 using DoorofSoul.Protocol.Communication.InformDataCodes;
-using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Soul;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Soul.InformData
 {

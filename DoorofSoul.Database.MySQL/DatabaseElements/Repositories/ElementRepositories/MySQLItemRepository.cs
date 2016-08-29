@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using DoorofSoul.Database.DatabaseElements.Repositories.ElementRepositories;
 using DoorofSoul.Library.General.ElementComponents;
+using DoorofSoul.Library.General.ElementComponents.Items;
 using MySql.Data.MySqlClient;
+using System.Linq;
+using DoorofSoul.Protocol;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementRepositories
 {
@@ -51,6 +54,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
             string sqlString = @"SELECT  
                 ItemName, Description
                 from ItemCollection WHERE ItemID = @itemID;";
+            Item item = null;
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@itemID", itemID);
@@ -60,8 +64,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                     {
                         string itemName = reader.GetString(0);
                         string description = reader.GetString(1);
-                        Item item = new Item(itemID, itemName, description);
-                        return item;
+                        item = new Item(itemID, itemName, description);
                     }
                     else
                     {
@@ -69,6 +72,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                     }
                 }
             }
+            Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ConsumablesRepository.AssemblyConsumables(item);
+            return item;
         }
 
         public override List<Item> List()
@@ -76,11 +81,11 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
             string sqlString = @"SELECT  
                 ItemID,ItemName, Description
                 from ItemCollection;";
+            List<Item> items = new List<Item>();
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.ElementConnection.Connection as MySqlConnection))
             {
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    List<Item> items = new List<Item>();
                     while (reader.Read())
                     {
                         int itemID = reader.GetInt32(0);
@@ -88,9 +93,13 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                         string description = reader.GetString(2);
                         items.Add(new Item(itemID, itemName, description));
                     }
-                    return items;
                 }
             }
+            foreach(Item item in items)
+            {
+                Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ConsumablesRepository.AssemblyConsumables(item);
+            }
+            return items;
         }
 
         public override void Save(Item item)
@@ -107,6 +116,10 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                 {
                     Database.Log.ErrorFormat("MySQLItemRepository Save Item Error ItemID: {0}", item.ItemID);
                 }
+            }
+            foreach(Consumables component in item.Components.OfType<Consumables>())
+            {
+                Database.RepositoryList.ElementRepositoryList.ItemsRepositoryList.ConsumablesRepository.Save(component, item.ItemID);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Container;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    decimal newEnergyPoint = (decimal)parameters[(byte)InformEnergyPointChangeParameterCode.NewEnergyPoint];
+                    decimal newEnergyPoint = (decimal)(DSDecimal)parameters[(byte)InformEnergyPointChangeParameterCode.NewEnergyPoint];
                     container.Attributes.EnergyPoint = newEnergyPoint;
                     return true;
                 }

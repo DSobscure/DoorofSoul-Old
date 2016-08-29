@@ -119,6 +119,7 @@
     <Compile Include="OperationParameters\Container\ObserveEntityPositionParameterCode.cs" />
     <Compile Include="OperationParameters\Container\PickupItemEntityParameterCode.cs" />
     <Compile Include="OperationParameters\Container\SayParameterCode.cs" />
+    <Compile Include="OperationParameters\Container\UseItemParameterCode.cs" />
     <Compile Include="OperationParameters\Entity\MoveParameterCode.cs" />
     <Compile Include="OperationParameters\Entity\RotateParameterCode.cs" />
     <Compile Include="OperationParameters\OperationParameterCode.cs" />

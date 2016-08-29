@@ -49,11 +49,18 @@
   <ItemGroup>
     <Compile Include="DatabaseElements\Connections\ElementConnections\MySQLItemsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\LightConnections\MySQLEffectsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLLightConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MySQLMindConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLSceneElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MySQLPathConnectionList.cs" />
     <Compile Include="DatabaseElements\Connections\Path\MySQLEgo_CognitionConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\Path\MySQLSeperation_ConcretionConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLConsumablesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\MySQLLifePointEffectorRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\MySQLEffectsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLLightRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLMindRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLPathRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLInventoryItemInfoRepository.cs" />
@@ -96,6 +103,8 @@
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLWorldRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositories\MySQLItemEntityRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\MySQLEgo_CognitionRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\MySQLSeperation_ConcretionRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\MySQLConsumablesLifePointEffectorPossessionRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulRepository.cs" />
@@ -129,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DatabaseElements\Connections\ThroneConnections\" />
-    <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
     <Folder Include="DatabaseElements\Repositories\LoveRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

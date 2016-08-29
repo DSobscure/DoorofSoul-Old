@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Database.DatabaseElements;
+﻿using System;
+using DoorofSoul.Database.DatabaseElements;
 using DoorofSoul.Database.DatabaseElements.Repositories;
 using DoorofSoul.Database.MySQL.DatabaseElements.Repositories;
 
@@ -15,6 +16,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         private MySQLMindRepositoryList mindRepositoryList;
         private MySQLThroneRepositoryList throneRepositoryList;
 
+        private MySQLPathRepositoryList pathRepositoryList;
+
         public override PlayerRepository PlayerRepository { get { return playerRepository; } }
 
         public override KnowledgeRepositoryList KnowledgeRepositoryList { get { return knowledgeRepositoryList; } }
@@ -23,6 +26,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         public override NatureRepositoryList NatureRepositoryList { get { return natureRepositoryList; } }
         public override MindRepositoryList MindRepositoryList { get { return mindRepositoryList; } }
         public override ThroneRepositoryList ThroneRepositoryList { get { return throneRepositoryList; } }
+
+        public override PathRepositoryList PathRepositoryList { get { return pathRepositoryList; } }
 
         public MySQLRepositoryList()
         {
@@ -34,6 +39,8 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
             natureRepositoryList = new MySQLNatureRepositoryList();
             mindRepositoryList = new MySQLMindRepositoryList();
             throneRepositoryList = new MySQLThroneRepositoryList();
+
+            pathRepositoryList = new MySQLPathRepositoryList();
         }
     }
 }

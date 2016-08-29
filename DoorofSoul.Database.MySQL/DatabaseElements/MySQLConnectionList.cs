@@ -15,12 +15,16 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
         private MySQLMindConnection mindConnection;
         private MySQLThroneConnection throneConnection;
 
+        private MySQLPathConnectionList pathConnectionList;
+
         public override KnowledgeConnection KnowledgeConnection { get { return knowledgeConnection; } }
         public override ElementConnection ElementConnection { get { return elementConnection; } }
         public override LoveConnection LoveConnection { get { return loveConnection; } }
         public override NatureConnection NatureConnection { get { return natureConnection; } }
         public override MindConnection MindConnection { get { return mindConnection; } }
         public override ThroneConnection ThroneConnection { get { return throneConnection; } }
+
+        public override PathConnectionList PathConnectionList { get { return pathConnectionList; } }
 
         public MySQLConnectionList()
         {
@@ -31,12 +35,16 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements
             mindConnection = new MySQLMindConnection();
             throneConnection = new MySQLThroneConnection();
 
+            pathConnectionList = new MySQLPathConnectionList();
+
             childConnections.Add(knowledgeConnection);
             childConnections.Add(elementConnection);
             childConnections.Add(loveConnection);
             childConnections.Add(natureConnection);
             childConnections.Add(mindConnection);
             childConnections.Add(throneConnection);
+
+            childConnections.Add(pathConnectionList);
         }
         public override bool Connect(string hostName, string userName, string password, string database)
         {

@@ -18,7 +18,16 @@ namespace DoorofSoul.Database.DatabaseElements
             }
         }
         protected List<DatabaseConnection> childConnections;
-        public bool Connected { get { return Connection.State == ConnectionState.Open && childConnections.All(x => x.Connected); } }
+        public bool Connected
+        {
+            get
+            {
+                if(connection == null)
+                    return childConnections.All(x => x.Connected);
+                else
+                    return Connection.State == ConnectionState.Open && childConnections.All(x => x.Connected);
+            }
+        }
 
         protected DatabaseConnection()
         {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DoorofSoul.Database.DatabaseElements.Repositories.LoveRepositories;
+using DoorofSoul.Database.DatabaseElements.Repositories.Path.Ego_CognitionRepositories;
 using MySql.Data.MySqlClient;
 
-namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LoveRepositories
+namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.Path.Ego_CognitionRepositories
 {
     class MySQLSoulContainerLinkRepository : SoulContainerLinkRepository
     {
@@ -12,7 +12,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LoveRepositori
             string sqlString = @"SELECT  
                 ContainerID
                 from SoulContainerLinkCollection WHERE SoulID = @soulID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LoveConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.PathConnectionList.Ego_CognitionConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -33,7 +33,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LoveRepositori
             string sqlString = @"SELECT  
                 SoulID
                 from SoulContainerLinkCollection WHERE ContainerID = @containerID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LoveConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.PathConnectionList.Ego_CognitionConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@containerID", containerID);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -53,7 +53,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LoveRepositori
         {
             string sqlString = @"INSERT INTO SoulContainerLinkCollection 
                 (SoulID, ContainerID) VALUES (@soulID, @containerID) ;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LoveConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.PathConnectionList.Ego_CognitionConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 command.Parameters.AddWithValue("@containerID", containerID);
@@ -68,7 +68,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LoveRepositori
         {
             string sqlString = @"DELETE FROM SoulContainerLinkCollection 
                 WHERE SoulID = @soulID AND ContainerID = @containerID;";
-            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LoveConnection.Connection as MySqlConnection))
+            using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.PathConnectionList.Ego_CognitionConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@soulID", soulID);
                 command.Parameters.AddWithValue("@containerID", containerID);

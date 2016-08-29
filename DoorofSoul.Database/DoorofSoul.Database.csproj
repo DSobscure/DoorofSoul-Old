@@ -56,6 +56,8 @@
     <Compile Include="DatabaseElements\Connections\NatureConnections\ContainerElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\EntityElementsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\SceneElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\PathConnectionList.cs" />
+    <Compile Include="DatabaseElements\Connections\Path\Ego_CognitionConnection.cs" />
     <Compile Include="DatabaseElements\Connections\ThroneConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MindConnections\SoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\DatabaseConnection.cs" />
@@ -69,7 +71,7 @@
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositories\ContainerStatusEffectInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositoryList.cs" />
-    <Compile Include="DatabaseElements\Repositories\LoveRepositories\SoulContainerLinkRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Ego_CognitionRepositories\SoulContainerLinkRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LoveRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerAttributesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\ContainerKernelAbilitiesPotentialRepository.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositories\SoulKernelAbilitiesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositories\SoulPhaseRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\SoulElementsRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\PathRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Ego_CognitionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositories\EntitySpacePropertiesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\AnswerRepository.cs" />
@@ -119,8 +123,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DatabaseElements\Connections\Cycle\" />
     <Folder Include="DatabaseElements\Connections\ThroneConnections\" />
     <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
+    <Folder Include="DatabaseElements\Repositories\LoveRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

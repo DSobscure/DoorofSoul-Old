@@ -51,8 +51,11 @@
     <Compile Include="DatabaseElements\Connections\KnowledgeConnections\MySQLStatusEffectsConnection.cs" />
     <Compile Include="DatabaseElements\Connections\MySQLMindConnection.cs" />
     <Compile Include="DatabaseElements\Connections\NatureConnections\MySQLSceneElementsConnection.cs" />
+    <Compile Include="DatabaseElements\Connections\MySQLPathConnectionList.cs" />
+    <Compile Include="DatabaseElements\Connections\Path\MySQLEgo_CognitionConnection.cs" />
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLMindRepositoryList.cs" />
+    <Compile Include="DatabaseElements\Repositories\MySQLPathRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\ContainerElementsRepositories\MySQLInventoryItemInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\MySQLItemsRepositoryList.cs" />
@@ -62,7 +65,7 @@
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\MySQLStatusEffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\SkillsRepositories\MySQLSkillInfoRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\KnowledgeRepositories\StatusEffectsRepositories\MySQLContainerStatusEffectInfoRepository.cs" />
-    <Compile Include="DatabaseElements\Repositories\LoveRepositories\MySQLSoulContainerLinkRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Ego_CognitionRepositories\MySQLSoulContainerLinkRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLElementRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLKnowledgeRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLLoveRepositoryList.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLSceneRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\MySQLWorldRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\SceneElementsRepositories\MySQLItemEntityRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\MySQLEgo_CognitionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulRepository.cs" />
@@ -126,6 +130,7 @@
   <ItemGroup>
     <Folder Include="DatabaseElements\Connections\ThroneConnections\" />
     <Folder Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\" />
+    <Folder Include="DatabaseElements\Repositories\LoveRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

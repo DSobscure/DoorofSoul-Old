@@ -11,5 +11,7 @@ namespace DoorofSoul.Database.DatabaseElements
         public abstract NatureRepositoryList NatureRepositoryList { get; }
         public abstract MindRepositoryList MindRepositoryList { get; }
         public abstract ThroneRepositoryList ThroneRepositoryList { get; }
+
+        public abstract PathRepositoryList PathRepositoryList { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DoorofSoul.Database.DatabaseElements.Repositories.LoveRepositories
+namespace DoorofSoul.Database.DatabaseElements.Repositories.Path.Ego_CognitionRepositories
 {
     public abstract class SoulContainerLinkRepository
     {

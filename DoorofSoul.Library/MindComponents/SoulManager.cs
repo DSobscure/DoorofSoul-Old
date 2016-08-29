@@ -47,7 +47,7 @@ namespace DoorofSoul.Hexagram.MindComponents
             {
                 soulDictionary.Add(soul.SoulID, soul);
                 AssemblySoul(soul);
-                List<int> containerIDs = Database.Database.RepositoryList.LoveRepositoryList.SoulContainerLinkRepository.GetContainerIDs(soul.SoulID);
+                List<int> containerIDs = Database.Database.RepositoryList.PathRepositoryList.Ego_CognitionRepositoryList.SoulContainerLinkRepository.GetContainerIDs(soul.SoulID);
                 List<Container> containers = new List<Container>();
                 foreach (int containerID in containerIDs)
                 {
@@ -128,7 +128,7 @@ namespace DoorofSoul.Hexagram.MindComponents
                 {
                     Scale = new DSVector3 { x = 1, y = 1, z = 1 },
                 });
-                Database.Database.RepositoryList.LoveRepositoryList.SoulContainerLinkRepository.Link_Soul_Container(soul.SoulID, defaultContainer.ContainerID);
+                Database.Database.RepositoryList.PathRepositoryList.Ego_CognitionRepositoryList.SoulContainerLinkRepository.Link_Soul_Container(soul.SoulID, defaultContainer.ContainerID);
                 ProjectSoul(soul);
                 return true;
             }

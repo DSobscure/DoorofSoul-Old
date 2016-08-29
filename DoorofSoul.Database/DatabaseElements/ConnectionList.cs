@@ -10,5 +10,7 @@ namespace DoorofSoul.Database.DatabaseElements
         public abstract NatureConnection NatureConnection { get; }
         public abstract MindConnection MindConnection{ get; }
         public abstract ThroneConnection ThroneConnection { get; }
+
+        public abstract PathConnectionList PathConnectionList { get; }
     }
 }

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Library.General.NatureComponents;
+using UnityEngine;
 
 namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
 {
-    public class EntityInputController : MonoBehaviour
+    public class EntityInputController : MonoBehaviour, IEventProvider
     {
         private bool HasEntity
         {
@@ -16,13 +17,11 @@ namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
 
         void Start()
         {
-            Global.Global.InputManager.OnKeyDown += OnKeyDown;
-            Global.Global.InputManager.OnKeyUp += OnKeyUp;
+            RegisterEvents();
         }
         void OnDestroy()
         {
-            Global.Global.InputManager.OnKeyDown -= OnKeyDown;
-            Global.Global.InputManager.OnKeyUp -= OnKeyUp;
+            EraseEvents();
         }
         private void OnKeyDown(KeyCode keyCode)
         {
@@ -59,6 +58,18 @@ namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
                     Entity.EntityOperationManager.Move(0);
                 }
             }
+        }
+
+        public void RegisterEvents()
+        {
+            Global.Global.InputManager.OnKeyDown += OnKeyDown;
+            Global.Global.InputManager.OnKeyUp += OnKeyUp;
+        }
+
+        public void EraseEvents()
+        {
+            Global.Global.InputManager.OnKeyDown -= OnKeyDown;
+            Global.Global.InputManager.OnKeyUp -= OnKeyUp;
         }
     }
 }

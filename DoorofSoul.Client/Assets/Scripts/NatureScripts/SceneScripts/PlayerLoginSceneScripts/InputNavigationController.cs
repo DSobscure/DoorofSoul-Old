@@ -1,14 +1,24 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using DoorofSoul.Client.Interfaces;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerLoginSceneScripts
 {
-    public class InputNavigationController : MonoBehaviour
+    public class InputNavigationController : MonoBehaviour, IEventProvider
     {
-        void Update()
+        void Start()
         {
-            if (Input.GetKeyUp(KeyCode.Tab))
+            RegisterEvents();
+        }
+        void OnDestroy()
+        {
+            EraseEvents();
+        }
+
+        private void OnKeyUp(KeyCode keyCode)
+        {
+            if (keyCode == KeyCode.Tab)
             {
                 var next = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
                 if (next != null)
@@ -17,6 +27,16 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.PlayerLoginSceneS
                     next.Select();
                 }
             }
+        }
+
+        public void RegisterEvents()
+        {
+            Global.Global.InputManager.OnKeyUp += OnKeyUp;
+        }
+
+        public void EraseEvents()
+        {
+            Global.Global.InputManager.OnKeyUp -= OnKeyUp;
         }
     }
 }

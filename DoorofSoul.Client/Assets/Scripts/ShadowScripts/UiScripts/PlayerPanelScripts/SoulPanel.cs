@@ -2,10 +2,12 @@
 using DoorofSoul.Library.General.MindComponents;
 using UnityEngine;
 using UnityEngine.UI;
+using DoorofSoul.Client.Interfaces;
+using System;
 
 namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
 {
-    public class SoulPanel : MonoBehaviour
+    public class SoulPanel : MonoBehaviour, IEventProvider
     {
         private Soul soul;
 
@@ -19,9 +21,13 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
         [SerializeField]
         private SkillPanel skillPanelPrefab;
 
-        void Update()
+        void OnDestory()
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            EraseEvents();
+        }
+        private void OnkeyDown(KeyCode keycode)
+        {
+            if (keycode == KeyCode.K)
             {
                 ShowSkillPanel();
             }
@@ -34,21 +40,15 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
                 this.soul = soul;
                 SetupSliders(true);
                 SetupNameAndLevel();
-                this.soul.Attributes.OnCorePointChange += UpdateCorePoint;
-                this.soul.Attributes.OnSpiritPointChange += UpdateSpiritPoint;
-                this.soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].OnUnderstandingPointChange += UpdateUnderstandingPoint;
+                RegisterEvents();
             }
             else
             {
-                this.soul.Attributes.OnCorePointChange -= UpdateCorePoint;
-                this.soul.Attributes.OnSpiritPointChange -= UpdateSpiritPoint;
-                this.soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].OnUnderstandingPointChange -= UpdateUnderstandingPoint;
+                EraseEvents();
                 this.soul = soul;
                 SetupSliders(false);
                 SetupNameAndLevel();
-                this.soul.Attributes.OnCorePointChange += UpdateCorePoint;
-                this.soul.Attributes.OnSpiritPointChange += UpdateSpiritPoint;
-                this.soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].OnUnderstandingPointChange += UpdateUnderstandingPoint;
+                RegisterEvents();
             }
         }
 
@@ -109,6 +109,22 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
             {
                 transform.parent.parent.FindChild("SkillPanel").GetComponent<SkillPanel>().Close();
             }
+        }
+
+        public void RegisterEvents()
+        {
+            soul.Attributes.OnCorePointChange += UpdateCorePoint;
+            soul.Attributes.OnSpiritPointChange += UpdateSpiritPoint;
+            soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].OnUnderstandingPointChange += UpdateUnderstandingPoint;
+            Global.Global.InputManager.OnKeyDown += OnkeyDown;
+        }
+
+        public void EraseEvents()
+        {
+            soul.Attributes.OnCorePointChange -= UpdateCorePoint;
+            soul.Attributes.OnSpiritPointChange -= UpdateSpiritPoint;
+            soul.Attributes.Phases[soul.Attributes.CurrentPhaseLevel].OnUnderstandingPointChange -= UpdateUnderstandingPoint;
+            Global.Global.InputManager.OnKeyDown -= OnkeyDown;
         }
     }
 }

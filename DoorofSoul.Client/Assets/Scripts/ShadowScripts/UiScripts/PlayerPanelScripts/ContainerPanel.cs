@@ -3,10 +3,12 @@ using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts;
 using DoorofSoul.Library.General.NatureComponents;
 using UnityEngine;
 using UnityEngine.UI;
+using DoorofSoul.Client.Interfaces;
+using System;
 
 namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
 {
-    public class ContainerPanel : MonoBehaviour
+    public class ContainerPanel : MonoBehaviour, IEventProvider
     {
         private Container container;
 
@@ -22,9 +24,13 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
         [SerializeField]
         private InventoryPanel inventoryPanelPrefab;
 
-        void Update()
+        void OnDestroy()
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            EraseEvents();
+        }
+        private void OnKeyDown(KeyCode keyCode)
+        {
+            if (keyCode == KeyCode.I)
             {
                 ShowInventoryPanel();
             }
@@ -38,22 +44,16 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
                 SetupSliders(true);
                 SetupInventory();
                 SetupNameAndLevel();
-                this.container.Attributes.OnLifePointChange += UpdateLifePoint;
-                this.container.Attributes.OnEnergyPointChange += UpdateEnergyPoint;
-                this.container.Attributes.OnExperienceChange += UpdateExperiencePoint;
+                RegisterEvents();
             }
             else
             {
-                this.container.Attributes.OnLifePointChange -= UpdateLifePoint;
-                this.container.Attributes.OnEnergyPointChange -= UpdateEnergyPoint;
-                this.container.Attributes.OnExperienceChange -= UpdateExperiencePoint;
+                EraseEvents();
                 this.container = container;
                 SetupSliders(false);
                 SetupInventory();
                 SetupNameAndLevel();
-                this.container.Attributes.OnLifePointChange += UpdateLifePoint;
-                this.container.Attributes.OnEnergyPointChange += UpdateEnergyPoint;
-                this.container.Attributes.OnExperienceChange += UpdateExperiencePoint;
+                RegisterEvents();
             }
         }
 
@@ -118,6 +118,22 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
             {
                 transform.parent.parent.FindChild("InventoryPanel").GetComponent<InventoryPanel>().Close();
             }
+        }
+
+        public void RegisterEvents()
+        {
+            container.Attributes.OnLifePointChange += UpdateLifePoint;
+            container.Attributes.OnEnergyPointChange += UpdateEnergyPoint;
+            container.Attributes.OnExperienceChange += UpdateExperiencePoint;
+            Global.Global.InputManager.OnKeyDown += OnKeyDown;
+        }
+
+        public void EraseEvents()
+        {
+            container.Attributes.OnLifePointChange -= UpdateLifePoint;
+            container.Attributes.OnEnergyPointChange -= UpdateEnergyPoint;
+            container.Attributes.OnExperienceChange -= UpdateExperiencePoint;
+            Global.Global.InputManager.OnKeyDown -= OnKeyDown;
         }
     }
 }

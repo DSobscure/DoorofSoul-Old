@@ -21,6 +21,7 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
             Global.Global.InputManager = this;
             keyCodes = new List<KeyCode>
             {
+                KeyCode.Tab,
                 KeyCode.A,
                 KeyCode.S,
                 KeyCode.D,

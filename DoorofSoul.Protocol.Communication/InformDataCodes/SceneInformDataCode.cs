@@ -4,6 +4,8 @@
     {
         EntityEnter,
         EntityExit,
+        ContainerEnter,
+        ContainerExit,
         BroadcastMessage,
         SynchronizeEntityPosition,
         ItemEntityChange

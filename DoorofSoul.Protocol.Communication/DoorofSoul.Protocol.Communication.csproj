@@ -56,6 +56,8 @@
     <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformBroadcastMessageParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformContainerEnterParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformContainerExitParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\ContainerEventParameterCode.cs" />

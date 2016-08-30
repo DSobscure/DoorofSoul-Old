@@ -50,6 +50,8 @@ namespace DoorofSoul.Hexagram.NatureComponents
 
             scene.OnEntityEnter += scene.SceneEventManager.InformDataResolver.InformEntityEnter;
             scene.OnEntityExit += scene.SceneEventManager.InformDataResolver.InformEntityExit;
+            scene.OnContainerEnter += scene.SceneEventManager.InformDataResolver.InformContainerEnter;
+            scene.OnContainerExit += scene.SceneEventManager.InformDataResolver.InformContainerExit;
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
         }
     }

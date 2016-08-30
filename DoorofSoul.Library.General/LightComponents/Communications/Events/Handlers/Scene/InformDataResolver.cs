@@ -19,6 +19,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 { SceneInformDataCode.EntityEnter, new InformEntityEnterHandler(scene) },
                 { SceneInformDataCode.EntityExit, new InformEntityExitHandler(scene) },
+                { SceneInformDataCode.ContainerEnter, new InformContainerEnterHandler(scene) },
+                { SceneInformDataCode.ContainerExit, new InformContainerExitHandler(scene) },
                 { SceneInformDataCode.BroadcastMessage, new InformBroadcastMessageHandler(scene) },
                 { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
@@ -83,6 +85,25 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformEntityExitParameterCode.EntityID, entity.EntityID }
             };
             SendInform(SceneInformDataCode.EntityExit, parameters);
+        }
+        public void InformContainerEnter(NatureComponents.Container container)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformContainerEnterParameterCode.ContainerID, container.ContainerID },
+                { (byte)InformContainerEnterParameterCode.EntityID, container.ContainerID },
+                { (byte)InformContainerEnterParameterCode.ContainerName, container.ContainerName },
+                { (byte)InformContainerEnterParameterCode.ContainerAttributes, container.Attributes },
+            };
+            SendInform(SceneInformDataCode.ContainerEnter, parameters);
+        }
+        public void InformContainerExit(NatureComponents.Container container)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformContainerExitParameterCode.ContainerID, container.ContainerID }
+            };
+            SendInform(SceneInformDataCode.ContainerExit, parameters);
         }
         public void SynchronizeEntityPosition(NatureComponents.Entity entity)
         {

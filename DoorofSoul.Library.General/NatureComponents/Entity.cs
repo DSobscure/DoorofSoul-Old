@@ -26,18 +26,18 @@ namespace DoorofSoul.Library.General.NatureComponents
         public DSVector3 Rotation
         {
             get { return SpaceProperties.Rotation; }
-            protected set { SpaceProperties.Rotation = value; }
+            set { SpaceProperties.Rotation = value; }
         }
         public DSVector3 Scale
         {
             get { return SpaceProperties.Scale; }
-            protected set { SpaceProperties.Scale = value; }
+            set { SpaceProperties.Scale = value; }
         }
 
         public DSVector3 Velocity
         {
             get { return SpaceProperties.Velocity; }
-            protected set { SpaceProperties.Velocity = value; }
+            set { SpaceProperties.Velocity = value; }
         }
         public DSVector3 MaxVelocity
         {
@@ -47,7 +47,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public DSVector3 AngularVelocity
         {
             get { return SpaceProperties.AngularVelocity; }
-            protected set { SpaceProperties.AngularVelocity = value; }
+            set { SpaceProperties.AngularVelocity = value; }
         }
         public DSVector3 MaxAngularVelocity
         {

@@ -19,6 +19,10 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         void Update()
         {
             Entity.Position = DSVector3.Cast(entityRigidbody.transform.localPosition);
+            Entity.Rotation = DSVector3.Cast(entityRigidbody.transform.localRotation.eulerAngles);
+
+            entityRigidbody.velocity = transform.TransformVector((Vector3)entity.Velocity);
+            entityRigidbody.angularVelocity = transform.TransformVector((Vector3)entity.AngularVelocity);
         }
         void OnMouseEnter()
         {
@@ -42,10 +46,12 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         public void StartRotate(float angularVelocity)
         {
             entityRigidbody.angularVelocity = new Vector3(0, angularVelocity, 0);
+            Entity.AngularVelocity = DSVector3.Cast(transform.InverseTransformVector(entityRigidbody.angularVelocity));
         }
         public void StartMove(float velocity)
         {
             entityRigidbody.velocity = entityRigidbody.transform.forward * velocity;
+            Entity.Velocity = DSVector3.Cast(transform.InverseTransformVector(entityRigidbody.velocity));
         }
     }
 }

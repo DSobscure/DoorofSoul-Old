@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData
 {
-    internal class InformEntityExitHandler : InformDataHandler
+    internal class InformContainerExitHandler : InformDataHandler
     {
-        internal InformEntityExitHandler(NatureComponents.Scene scene) : base(scene, 1)
+        internal InformContainerExitHandler(NatureComponents.Scene scene) : base(scene, 1)
         {
         }
 
@@ -17,13 +17,13 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    int entityID = (int)parameters[(byte)InformEntityExitParameterCode.EntityID];
-                    scene.EntityExit(entityID);
+                    int containerID = (int)parameters[(byte)InformContainerExitParameterCode.ContainerID];
+                    scene.ContainerExit(containerID);
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.Error("InformEntityExit Event Parameter Cast Error");
+                    LibraryInstance.Error("InformContainerExit Event Parameter Cast Error");
                     LibraryInstance.Error(ex.Message);
                     LibraryInstance.Error(ex.StackTrace);
                     return false;

@@ -100,7 +100,7 @@ namespace DoorofSoul.Library.General.NatureComponents
                 entityDictionary.Add(entity.EntityID, entity);
                 entity.LocatedSceneID = SceneID;
                 entity.LocatedScene = this;
-                entity.OnEntityPositionChange += SceneEventManager.SynchronizeEntityPosition;
+                entity.OnEntityPositionChange += SceneEventManager.InformDataResolver.SynchronizeEntityPosition;
                 onEntityEnter?.Invoke(entity);
             }
         }
@@ -110,7 +110,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             {
                 Entity entity = FindEntity(entityID);
                 entityDictionary.Remove(entity.EntityID);
-                entity.OnEntityPositionChange -= SceneEventManager.SynchronizeEntityPosition;
+                entity.OnEntityPositionChange -= SceneEventManager.InformDataResolver.SynchronizeEntityPosition;
                 onEntityExit?.Invoke(entity);
                 entity.LocatedSceneID = -1;
                 entity.LocatedScene = null;

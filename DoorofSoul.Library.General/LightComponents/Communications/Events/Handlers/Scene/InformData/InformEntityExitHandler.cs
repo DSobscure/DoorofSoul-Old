@@ -1,29 +1,29 @@
-﻿using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.EventParameters.Scene;
+﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene
+namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData
 {
-    internal class EntityExitHandler : SceneEventHandler
+    internal class InformEntityExitHandler : InformDataHandler
     {
-        internal EntityExitHandler(NatureComponents.Scene scene) : base(scene, 1)
+        internal InformEntityExitHandler(NatureComponents.Scene scene) : base(scene, 1)
         {
         }
 
-        internal override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneInformDataCode informCode, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(eventCode, parameters))
+            if (base.Handle(informCode, parameters))
             {
                 try
                 {
-                    int entityID = (int)parameters[(byte)EntityExitParameterCode.EntityID];
+                    int entityID = (int)parameters[(byte)InformEntityExitParameterCode.EntityID];
                     scene.EntityExit(entityID);
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.Error("EntityEnter Event Parameter Cast Error");
+                    LibraryInstance.Error("InformEntityEnter Event Parameter Cast Error");
                     LibraryInstance.Error(ex.Message);
                     LibraryInstance.Error(ex.StackTrace);
                     return false;

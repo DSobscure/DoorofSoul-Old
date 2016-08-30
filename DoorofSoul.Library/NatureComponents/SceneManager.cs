@@ -48,8 +48,8 @@ namespace DoorofSoul.Hexagram.NatureComponents
             scene.SetSceneEye(new ProvidenceEye());
             scene.ItemEntityManager.InitialItemEntities(Database.Database.RepositoryList.NatureRepositoryList.SceneElementsRepositoryList.ItemEntityRepository.ListOfScene(scene.SceneID));
 
-            scene.OnEntityEnter += scene.SceneEventManager.EntityEnter;
-            scene.OnEntityExit += scene.SceneEventManager.EntityExit;
+            scene.OnEntityEnter += scene.SceneEventManager.InformDataResolver.InformEntityEnter;
+            scene.OnEntityExit += scene.SceneEventManager.InformDataResolver.InformEntityExit;
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
         }
     }

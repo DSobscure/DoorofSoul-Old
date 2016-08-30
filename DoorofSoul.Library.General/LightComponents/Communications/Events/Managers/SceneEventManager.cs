@@ -24,10 +24,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Manag
                 { SceneEventCode.ContainerEvent, new ContainerEventResolver(scene) },
                 { SceneEventCode.EntityEvent, new EntityEventResolver(scene) },
                 { SceneEventCode.InformData, InformDataResolver },
-                { SceneEventCode.EntityEnter, new EntityEnterHandler(scene) },
-                { SceneEventCode.EntityExit, new EntityExitHandler(scene) },
-                { SceneEventCode.BroadcastMessage, new BroadcastMessageHandler(scene) },
-                { SceneEventCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
             };
         }
 
@@ -59,45 +55,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Manag
         public void ErrorInform(string title, string message)
         {
             scene.World.WorldEventManager.ErrorInform(title, message);
-        }
-
-        public void EntityEnter(Entity entity)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)EntityEnterParameterCode.EntityID, entity.EntityID },
-                { (byte)EntityEnterParameterCode.EntityName, entity.EntityName },
-                { (byte)EntityEnterParameterCode.EntitySpaceProperties, entity.SpaceProperties },
-            };
-            SendEvent(SceneEventCode.EntityEnter, parameters);
-        }
-        public void EntityExit(Entity entity)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)EntityExitParameterCode.EntityID, entity.EntityID }
-            };
-            SendEvent(SceneEventCode.EntityExit, parameters);
-        }
-        public void BroadcastMessage(MessageTypeCode messageType, MessageSourceTypeCode messageSourceType, string sourceName, string message)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)BroadcastMessageParameterCode.MessageType, (byte)messageType },
-                { (byte)BroadcastMessageParameterCode.MessageSourceType, (byte)messageSourceType },
-                { (byte)BroadcastMessageParameterCode.SourceName, sourceName },
-                { (byte)BroadcastMessageParameterCode.Message, message }
-            };
-            SendEvent(SceneEventCode.BroadcastMessage, parameters);
-        }
-        public void SynchronizeEntityPosition(Entity entity)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)SynchronizeEntityPositionParameterCode.EntityID, entity.EntityID },
-                { (byte)SynchronizeEntityPositionParameterCode.Position, entity.Position }
-            };
-            SendEvent(SceneEventCode.SynchronizeEntityPosition, parameters);
         }
     }
 }

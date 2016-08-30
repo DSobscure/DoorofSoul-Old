@@ -55,8 +55,8 @@
     <Compile Include="EventParameters\Entity\StartRotateParameterCode.cs" />
     <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
-    <Compile Include="EventParameters\Scene\BroadcastMessageParameterCode.cs" />
-    <Compile Include="EventParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformBroadcastMessageParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\ContainerEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\EntityEventParameterCode.cs" />
@@ -104,8 +104,8 @@
     <Compile Include="FetchDataCodes\PlayerFetchDataCode.cs" />
     <Compile Include="FetchDataParameters\Player\FetchSceneParameterCode.cs" />
     <Compile Include="InformDataCodes\PlayerInformDataCode.cs" />
-    <Compile Include="EventParameters\Scene\EntityEnterParameterCode.cs" />
-    <Compile Include="EventParameters\Scene\EntityExitParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformEntityEnterParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformEntityExitParameterCode.cs" />
     <Compile Include="OperationCodes\OperationCode.cs" />
     <Compile Include="OperationCodes\PlayerOperationCode.cs" />
     <Compile Include="OperationCodes\WorldOperationCode.cs" />

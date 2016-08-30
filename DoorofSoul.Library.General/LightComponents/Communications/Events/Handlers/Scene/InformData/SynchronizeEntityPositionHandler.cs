@@ -1,20 +1,20 @@
 ﻿using DoorofSoul.Library.General.ElementComponents;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.EventParameters.Scene;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene
+namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData
 {
-    internal class SynchronizeEntityPositionHandler : SceneEventHandler
+    internal class SynchronizeEntityPositionHandler : InformDataHandler
     {
         public SynchronizeEntityPositionHandler(NatureComponents.Scene scene) : base(scene, 2)
         {
         }
 
-        internal override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneInformDataCode informCode, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(eventCode, parameters))
+            if (base.Handle(informCode, parameters))
             {
                 try
                 {

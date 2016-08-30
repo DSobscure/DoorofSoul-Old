@@ -20,7 +20,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                 try
                 {
                     string message = (string)parameters[(byte)SayParameterCode.Message];
-                    container.Entity.LocatedScene.SceneEventManager.BroadcastMessage(MessageTypeCode.TalkMessage, MessageSourceTypeCode.Scene, container.ContainerName, message);
+                    container.Entity.LocatedScene.SceneEventManager.InformDataResolver.InformBroadcastMessage(MessageTypeCode.TalkMessage, MessageSourceTypeCode.Scene, container.ContainerName, message);
                     return true;
                 }
                 catch (InvalidCastException ex)

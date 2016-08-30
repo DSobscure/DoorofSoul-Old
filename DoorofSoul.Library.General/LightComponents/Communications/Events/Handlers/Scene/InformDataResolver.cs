@@ -17,6 +17,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
         {
             informTable = new Dictionary<SceneInformDataCode, InformDataHandler>
             {
+                { SceneInformDataCode.EntityEnter, new InformEntityEnterHandler(scene) },
+                { SceneInformDataCode.EntityExit, new InformEntityExitHandler(scene) },
+                { SceneInformDataCode.BroadcastMessage, new InformBroadcastMessageHandler(scene) },
+                { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
             };
         }
@@ -61,6 +65,44 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformItemEntityChangeParameterCode.DataChangeType, changeTypeCode },
             };
             SendInform(SceneInformDataCode.ItemEntityChange, parameters);
+        }
+        public void InformEntityEnter(NatureComponents.Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformEntityEnterParameterCode.EntityID, entity.EntityID },
+                { (byte)InformEntityEnterParameterCode.EntityName, entity.EntityName },
+                { (byte)InformEntityEnterParameterCode.EntitySpaceProperties, entity.SpaceProperties },
+            };
+            SendInform(SceneInformDataCode.EntityEnter, parameters);
+        }
+        public void InformEntityExit(NatureComponents.Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformEntityExitParameterCode.EntityID, entity.EntityID }
+            };
+            SendInform(SceneInformDataCode.EntityExit, parameters);
+        }
+        public void SynchronizeEntityPosition(NatureComponents.Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)SynchronizeEntityPositionParameterCode.EntityID, entity.EntityID },
+                { (byte)SynchronizeEntityPositionParameterCode.Position, entity.Position }
+            };
+            SendInform(SceneInformDataCode.SynchronizeEntityPosition, parameters);
+        }
+        public void InformBroadcastMessage(MessageTypeCode messageType, MessageSourceTypeCode messageSourceType, string sourceName, string message)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformBroadcastMessageParameterCode.MessageType, (byte)messageType },
+                { (byte)InformBroadcastMessageParameterCode.MessageSourceType, (byte)messageSourceType },
+                { (byte)InformBroadcastMessageParameterCode.SourceName, sourceName },
+                { (byte)InformBroadcastMessageParameterCode.Message, message }
+            };
+            SendInform(SceneInformDataCode.BroadcastMessage, parameters);
         }
     }
 }

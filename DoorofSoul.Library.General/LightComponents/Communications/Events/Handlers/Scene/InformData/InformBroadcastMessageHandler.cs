@@ -1,28 +1,28 @@
 ﻿using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol;
-using DoorofSoul.Protocol.Communication.EventCodes;
-using DoorofSoul.Protocol.Communication.EventParameters.Scene;
+using DoorofSoul.Protocol.Communication.InformDataCodes;
+using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
 using System;
 using System.Collections.Generic;
 
-namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene
+namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData
 {
-    internal class BroadcastMessageHandler : SceneEventHandler
+    internal class InformBroadcastMessageHandler : InformDataHandler
     {
-        internal BroadcastMessageHandler(NatureComponents.Scene scene) : base(scene, 4)
+        internal InformBroadcastMessageHandler(NatureComponents.Scene scene) : base(scene, 4)
         {
         }
 
-        internal override bool Handle(SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        internal override bool Handle(SceneInformDataCode informCode, Dictionary<byte, object> parameters)
         {
-            if (base.Handle(eventCode, parameters))
+            if (base.Handle(informCode, parameters))
             {
                 try
                 {
-                    MessageTypeCode messageType = (MessageTypeCode)parameters[(byte)BroadcastMessageParameterCode.MessageType]; ;
-                    MessageSourceTypeCode messageSourceType = (MessageSourceTypeCode)parameters[(byte)BroadcastMessageParameterCode.MessageSourceType];
-                    string sourceName = (string)parameters[(byte)BroadcastMessageParameterCode.SourceName];
-                    string message = (string)parameters[(byte)BroadcastMessageParameterCode.Message];
+                    MessageTypeCode messageType = (MessageTypeCode)parameters[(byte)InformBroadcastMessageParameterCode.MessageType]; ;
+                    MessageSourceTypeCode messageSourceType = (MessageSourceTypeCode)parameters[(byte)InformBroadcastMessageParameterCode.MessageSourceType];
+                    string sourceName = (string)parameters[(byte)InformBroadcastMessageParameterCode.SourceName];
+                    string message = (string)parameters[(byte)InformBroadcastMessageParameterCode.Message];
                     scene.MessageLog.ReceiveNewMessage(new MessageInformation
                     {
                         messageType = messageType,
@@ -34,7 +34,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.ErrorFormat("BroadcastMessage Event Parameter Cast Error");
+                    LibraryInstance.ErrorFormat("InformBroadcastMessage Event Parameter Cast Error");
                     LibraryInstance.ErrorFormat(ex.Message);
                     LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;

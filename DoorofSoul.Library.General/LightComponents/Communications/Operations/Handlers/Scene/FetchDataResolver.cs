@@ -17,6 +17,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 { SceneFetchDataCode.Entities, new FetchEntitiesHandler(scene) },
                 { SceneFetchDataCode.ItemEntities, new FetchItemEntitiesHandler(scene) },
+                { SceneFetchDataCode.Containers, new FetchContainersHandler(scene) },
             };
         }
 
@@ -60,6 +61,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
         public void FetchItemEntities()
         {
             SendOperation(SceneFetchDataCode.ItemEntities, new Dictionary<byte, object>());
+        }
+        public void FetchContainers()
+        {
+            SendOperation(SceneFetchDataCode.Containers, new Dictionary<byte, object>());
         }
     }
 }

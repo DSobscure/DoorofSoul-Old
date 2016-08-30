@@ -1,10 +1,11 @@
 ﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Managers;
-using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Managers;
 using DoorofSoul.Library.General.LightComponents.Communications.Responses.Managers;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol.Language;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DoorofSoul.Library.General.NatureComponents
 {
@@ -74,7 +75,17 @@ namespace DoorofSoul.Library.General.NatureComponents
             if (!ContainsContainer(container.ContainerID))
             {
                 containerDictionary.Add(container.ContainerID, container);
-                EntityEnter(container.Entity);
+                if(container.Entity == null)
+                {
+                    if(ContainsEntity(container.EntityID))
+                    {
+                        container.BindEntity(FindEntity(container.EntityID));
+                    }
+                }
+                else
+                {
+                    EntityEnter(container.Entity);
+                }
                 onContainerEnter?.Invoke(container);
             }
         }
@@ -82,6 +93,10 @@ namespace DoorofSoul.Library.General.NatureComponents
         {
             if(!ContainsEntity(entity.EntityID))
             {
+                if(Containers.Any(x => x.Entity == null && x.EntityID == entity.EntityID))
+                {
+                    Containers.First(x => x.Entity == null && x.EntityID == entity.EntityID).BindEntity(entity);
+                }
                 entityDictionary.Add(entity.EntityID, entity);
                 entity.LocatedSceneID = SceneID;
                 entity.LocatedScene = this;

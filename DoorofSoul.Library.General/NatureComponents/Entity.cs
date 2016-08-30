@@ -60,8 +60,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             protected set { SpaceProperties.Mass = value; }
         }
         public SupportLauguages UsingLanguage { get { return LocatedScene.UsingLanguage; } }
-        protected IEntityController entityController;
-        public IEntityController EntityController { get { return entityController; } }
+        public IEntityController EntityController { get; protected set; }
         #endregion
 
         #region events
@@ -88,8 +87,9 @@ namespace DoorofSoul.Library.General.NatureComponents
 
         public void BindEntityController(IEntityController entityController)
         {
-            this.entityController = entityController;
-            entityController.BindEntity(this);
+            
+            EntityController = entityController;
+            EntityController.BindEntity(this);
         }
 
         public void SynchronizePosition(DSVector3 position)

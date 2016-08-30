@@ -17,6 +17,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
             {
                 { SceneFetchDataCode.Entities, new FetchEntitiesResponseHandler(scene) },
                 { SceneFetchDataCode.ItemEntities, new FetchItemEntitiesResponseHandler(scene) },
+                { SceneFetchDataCode.Containers, new FetchContainersResponseHandler(scene) },
             };
         }
 

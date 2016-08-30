@@ -22,6 +22,8 @@ namespace DoorofSoul.Client.Global
         public static readonly string AlphaServerAddress = "doorofsoul.duckdns.org";
         public static readonly int AlphaServerPort = 5056;
 
+        public static bool IsObserver { get; set; }
+
         public static IInputScenario InputManager { get; set; }
 
 

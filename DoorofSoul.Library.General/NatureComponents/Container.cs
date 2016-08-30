@@ -39,6 +39,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public Inventory Inventory { get; protected set; }
         public ContainerAttributes Attributes { get; protected set; }
         public ContainerStatusEffectManager ContainerStatusEffectManager { get; protected set; }
+        public IContainerController ContainerController { get; protected set; }
         #endregion
 
         #region communication
@@ -84,6 +85,12 @@ namespace DoorofSoul.Library.General.NatureComponents
             {
                 soulDictionary.Remove(soul.SoulID);
             }
+        }
+        public void BindContainerController(IContainerController containerController)
+        {
+
+            ContainerController = containerController;
+            ContainerController.BindContainer(this);
         }
     }
 }

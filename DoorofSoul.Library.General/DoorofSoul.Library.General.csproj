@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LightComponents\Communications\Operations\Handlers\Container\UseItemHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Scene\FetchData\FetchContainersHandler.cs" />
+    <Compile Include="LightComponents\Communications\Responses\Handlers\Scene\FetchData\FetchContainersResponseHandler.cs" />
     <Compile Include="LightComponents\Effects\Effector.cs" />
     <Compile Include="ElementComponents\Items\Consumables.cs" />
     <Compile Include="LightComponents\Effects\Effectors\LifePointEffector.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="LightComponents\Communications\Responses\Handlers\Player\RegisterResponseHandler.cs" />
     <Compile Include="LightComponents\HexagramInterfaces\Nature\ContainerElements\InventoryInterface.cs" />
     <Compile Include="LightComponents\HexagramInterfaces\Nature\SceneElementsInterface.cs" />
+    <Compile Include="NatureComponents\ContainerElements\IContainerController.cs" />
     <Compile Include="NatureComponents\ContainerElements\InventoryItemInfo.cs" />
     <Compile Include="KnowledgeComponents\StatusEffect.cs" />
     <Compile Include="KnowledgeComponents\StatusEffects\ContainerStatusEffectInfo.cs" />

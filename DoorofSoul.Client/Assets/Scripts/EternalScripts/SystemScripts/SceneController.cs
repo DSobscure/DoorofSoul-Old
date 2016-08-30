@@ -2,11 +2,14 @@
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Scripts.MindScripts.CameraScripts;
 using DoorofSoul.Client.Scripts.NatureScripts.SceneScripts;
+using DoorofSoul.Client.Scripts.NatureScripts.EntityScripts;
+using DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts;
 using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts;
 using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,21 +49,19 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
         }
         void OnSceneLoad(UnityEngine.SceneManagement.Scene unityScene, LoadSceneMode mode)
         {
-            if (scene != null)
-            {
-                scene.OnEntityEnter -= InstantiateEntity;
-                scene.OnEntityEnter -= AttachEntity;
-                scene.OnEntityExit -= DestroyEntity;
-                scene.ItemEntityManager.OnItemEntityChange -= OnItemEntityChange;
-            }
+            DisassemblyScene(scene);
             scene = Global.Global.Horizon.MainScene;
+            AssemblyScene(scene);
+        }
+        private void AssemblyScene(DoorofSoul.Library.General.NatureComponents.Scene scene)
+        {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             if (scene != null)
             {
+                scene.SceneOperationManager.FetchDataResolver.FetchContainers();
                 scene.SceneOperationManager.FetchDataResolver.FetchEntities();
                 scene.SceneOperationManager.FetchDataResolver.FetchItemEntities();
                 scene.OnEntityEnter += InstantiateEntity;
-                scene.OnEntityEnter += AttachEntity;
                 scene.OnEntityExit += DestroyEntity;
                 scene.ItemEntityManager.OnItemEntityChange += OnItemEntityChange;
                 ViewController viewController = Instantiate(viewControllerPrefab);
@@ -77,7 +78,15 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                 playerPanel.Initial(scene, Global.Global.Seat.MainSoul, Global.Global.Seat.MainContainer);
             }
         }
-
+        private void DisassemblyScene(DoorofSoul.Library.General.NatureComponents.Scene scene)
+        {
+            if (scene != null)
+            {
+                scene.OnEntityEnter -= InstantiateEntity;
+                scene.OnEntityExit -= DestroyEntity;
+                scene.ItemEntityManager.OnItemEntityChange -= OnItemEntityChange;
+            }
+        }
         private void InstantiateEntity(Entity entity)
         {
             GameObject gameObjectPrefab = Resources.Load<GameObject>("EntityPrefabs/" + entity.EntityName);
@@ -94,25 +103,23 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                     gameObject.transform.SetParent(entities.transform);
                     gameObject.transform.localPosition = (Vector3)entity.Position;
                     gameObject.transform.localRotation = Quaternion.Euler((Vector3)entity.Rotation);
-                    IEntityController entityController = gameObject.GetComponent<IEntityController>();
+                    IEntityController entityController = gameObject.GetComponent<EntityController>();
                     entity.BindEntityController(entityController);
-                    if (Global.Global.Seat.MainContainer.EntityID == entity.EntityID)
+                    Container container = scene.Containers.First(x => x.EntityID == entity.EntityID);
+                    if(container != null)
                     {
-                        Camera.main.transform.SetParent(entity.EntityController.GameObject.transform.FindChild("ViewPort"));
-                        Camera.main.transform.localPosition = Vector3.zero;
+                        container.BindContainerController(entity.EntityController.GameObject.GetComponent<ContainerController>());
+                        if (Global.Global.Seat.MainContainer.ContainerID == container.ContainerID)
+                        {
+                            Camera.main.transform.SetParent(gameObject.transform.FindChild("ViewPort"));
+                            Camera.main.transform.localPosition = Vector3.zero;
+                        }
                     }
                 }
             }
             else
             {
                 SystemManager.ErrorFormat("EntityPrefabs {0} Not Found", entity.EntityName);
-            }
-        }
-        private void AttachEntity(Entity entity)
-        {
-            if (Global.Global.Seat.MainContainer.EntityID == entity.EntityID)
-            {
-                Global.Global.Seat.MainContainer.BindEntity(entity);
             }
         }
         private void OnItemEntityChange(ItemEntity itemEntity, DataChangeTypeCode changeTypeCode)

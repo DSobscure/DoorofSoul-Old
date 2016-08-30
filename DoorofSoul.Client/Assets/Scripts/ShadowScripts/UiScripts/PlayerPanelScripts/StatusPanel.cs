@@ -60,6 +60,10 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
                         float y = 0;
                         blockRectTransform.anchoredPosition = new Vector2(-x, y);
                         containerStatusEffectIconDictionary.Add(info.ContainerStatusEffectInfoID, newIcon);
+                        if(info.StatusEffect.StatusEffectID == 1)
+                        {
+                            Global.Global.IsObserver = true;
+                        }
                     }
                     break;
                 case DataChangeTypeCode.Unload:
@@ -67,6 +71,10 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
                     {
                         Destroy(containerStatusEffectIconDictionary[info.ContainerStatusEffectInfoID].gameObject);
                         containerStatusEffectIconDictionary.Remove(info.ContainerStatusEffectInfoID);
+                        if (info.StatusEffect.StatusEffectID == 1)
+                        {
+                            Global.Global.IsObserver = false;
+                        }
                     }
                     break;
                 case DataChangeTypeCode.Update:

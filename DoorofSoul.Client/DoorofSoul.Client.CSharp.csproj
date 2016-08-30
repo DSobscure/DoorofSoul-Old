@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\LightScripts\CommunicationScripts\PhotonServiceController.cs" />
     <Compile Include="Assets\Scripts\LightScripts\InputScripts\EntityInputController.cs" />
     <Compile Include="Assets\Scripts\MindScripts\CameraScripts\ViewController.cs" />
+    <Compile Include="Assets\Scripts\NatureScripts\ContainerScripts\ContainerController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\EntityScripts\EntityController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\ItemEntityController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\PlayerAnswerSceneScripts\CreateSoulPanel.cs" />

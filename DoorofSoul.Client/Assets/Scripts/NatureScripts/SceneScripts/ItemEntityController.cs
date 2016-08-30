@@ -10,12 +10,11 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts
 
         void OnMouseEnter()
         {
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.2f, 0.2f, 0.2f));
-
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.2f, 0.2f, 0.2f));
         }
         void OnMouseExit()
         {
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
         }
         void OnMouseUpAsButton()
         {

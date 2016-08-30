@@ -22,10 +22,13 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
             keyCodes = new List<KeyCode>
             {
                 KeyCode.Tab,
+                KeyCode.Space,
                 KeyCode.A,
                 KeyCode.S,
                 KeyCode.D,
-                KeyCode.W
+                KeyCode.W,
+                KeyCode.I,
+                KeyCode.K
             };
         }
 

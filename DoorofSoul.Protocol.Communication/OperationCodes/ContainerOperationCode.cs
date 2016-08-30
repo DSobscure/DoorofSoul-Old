@@ -8,6 +8,7 @@
         PickupItemEntity,
         MoveInventoryItemInfo,
         DiscardItem,
-        UseItem
+        UseItem,
+        ShootABullet
     }
 }

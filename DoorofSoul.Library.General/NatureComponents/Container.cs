@@ -92,5 +92,10 @@ namespace DoorofSoul.Library.General.NatureComponents
             ContainerController = containerController;
             ContainerController.BindContainer(this);
         }
+        public bool ShootABullet()
+        {
+            Entity.LocatedScene.ShootABullet(ContainerID);
+            return true;
+        }
     }
 }

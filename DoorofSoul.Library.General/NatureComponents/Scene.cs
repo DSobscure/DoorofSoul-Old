@@ -37,6 +37,9 @@ namespace DoorofSoul.Library.General.NatureComponents
 
         private event Action<Container> onContainerExit;
         public event Action<Container> OnContainerExit { add { onContainerExit += value; } remove { onContainerExit -= value; } }
+
+        private event Action<int> onShootABullet;
+        public event Action<int> OnShootABullet { add { onShootABullet += value; } remove { onShootABullet -= value; } }
         #endregion
 
         #region communication
@@ -155,6 +158,14 @@ namespace DoorofSoul.Library.General.NatureComponents
             else
             {
                 return null;
+            }
+        }
+
+        public void ShootABullet(int shooterContainerID)
+        {
+            if(ContainsContainer(shooterContainerID))
+            {
+                onShootABullet?.Invoke(shooterContainerID);
             }
         }
     }

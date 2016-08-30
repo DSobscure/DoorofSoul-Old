@@ -24,6 +24,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { SceneInformDataCode.BroadcastMessage, new InformBroadcastMessageHandler(scene) },
                 { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
+                { SceneInformDataCode.ShootABullet, new InformShootABulletHandler(scene) },
             };
         }
 
@@ -124,6 +125,14 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformBroadcastMessageParameterCode.Message, message }
             };
             SendInform(SceneInformDataCode.BroadcastMessage, parameters);
+        }
+        public void InformShootABullet(int shooterContainerID)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformShootABulletParameterCode.ShooterContainerID, shooterContainerID }
+            };
+            SendInform(SceneInformDataCode.ShootABullet, parameters);
         }
     }
 }

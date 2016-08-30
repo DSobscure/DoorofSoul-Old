@@ -27,6 +27,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { ContainerOperationCode.MoveInventoryItemInfo, new MoveInventoryItemInfoHandler(container) },
                 { ContainerOperationCode.DiscardItem, new DiscardItemHandler(container) },
                 { ContainerOperationCode.UseItem, new UseItemHandler(container) },
+                { ContainerOperationCode.ShootABullet, new ShootABulletHandler(container) },
             };
         }
 
@@ -132,6 +133,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { (byte)UseItemParameterCode.InventoryPositionIndex, positionIndex }
             };
             SendOperation(ContainerOperationCode.UseItem, parameters, ContainerCommunicationChannel.Answer);
+        }
+        public void ShootaBullet()
+        {
+            SendOperation(ContainerOperationCode.ShootABullet, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
         }
     }
 }

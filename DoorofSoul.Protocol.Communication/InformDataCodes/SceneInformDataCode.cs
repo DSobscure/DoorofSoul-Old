@@ -8,6 +8,7 @@
         ContainerExit,
         BroadcastMessage,
         SynchronizeEntityPosition,
-        ItemEntityChange
+        ItemEntityChange,
+        ShootABullet
     }
 }

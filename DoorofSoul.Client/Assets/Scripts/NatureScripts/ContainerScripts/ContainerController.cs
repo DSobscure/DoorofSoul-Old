@@ -33,6 +33,13 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
             {
                 nameText.text = container.ContainerName;
             }
+            container.Attributes.OnLifePointChange += OnLifePointChange;
+            OnLifePointChange(container.Attributes.LifePoint);
+        }
+        private void OnLifePointChange(decimal value)
+        {
+            float lifePointRatio = Convert.ToSingle(value / container.Attributes.MaxLifePoint);
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.5f,0.5f,0.5f) * lifePointRatio);
         }
     }
 }

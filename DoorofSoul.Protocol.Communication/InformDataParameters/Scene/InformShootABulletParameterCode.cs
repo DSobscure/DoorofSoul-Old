@@ -2,6 +2,7 @@
 {
     public enum InformShootABulletParameterCode : byte
     {
-        ShooterContainerID
+        ShooterContainerID,
+        BulletID
     }
 }

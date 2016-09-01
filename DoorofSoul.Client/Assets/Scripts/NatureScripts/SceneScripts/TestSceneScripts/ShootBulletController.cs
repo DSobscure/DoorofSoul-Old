@@ -22,7 +22,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
                 Global.Global.Seat.MainContainer.ContainerOperationManager.ShootaBullet();
             }
         }
-        private void InstantiateBullet(int shooterContainerID)
+        private void InstantiateBullet(int shooterContainerID, int bulletID)
         {
             var container = Global.Global.Horizon.MainScene.FindContainer(shooterContainerID);
             if(container != null && container.ContainerController != null)
@@ -33,11 +33,11 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
                 bullet.velocity = container.ContainerController.GameObject.transform.forward * 10;
                 if (Global.Global.IsObserver)
                 {
-                    StartCoroutine(DestroyBullet(bullet.gameObject));
+                    StartCoroutine(DestroyBullet(bullet.gameObject, bulletID));
                 }
             }
         }
-        private IEnumerator DestroyBullet(GameObject bullet)
+        private IEnumerator DestroyBullet(GameObject bullet, int bulletID)
         {
             yield return new WaitForSeconds(1);
             Destroy(bullet);

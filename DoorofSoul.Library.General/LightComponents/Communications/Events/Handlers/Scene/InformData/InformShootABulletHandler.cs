@@ -10,7 +10,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformShootABulletHandler : InformDataHandler
     {
-        internal InformShootABulletHandler(NatureComponents.Scene scene) : base(scene, 1)
+        internal InformShootABulletHandler(NatureComponents.Scene scene) : base(scene, 2)
         {
         }
 
@@ -21,6 +21,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 try
                 {
                     int shooterContainerID = (int)parameters[(byte)InformShootABulletParameterCode.ShooterContainerID];
+                    int bulletID = (int)parameters[(byte)InformShootABulletParameterCode.BulletID];
                     scene.ShootABullet(shooterContainerID);
                     return true;
                 }

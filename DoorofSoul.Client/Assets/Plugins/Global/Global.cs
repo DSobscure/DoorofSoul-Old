@@ -15,7 +15,7 @@ namespace DoorofSoul.Client.Global
         public static Seat Seat { get; private set; }
 
         public static readonly string ServerName = "DoorofSoul.Server";
-        public static readonly string ServerAddress = "127.0.0.1";
+        public static readonly string ServerAddress = "doorofsoul.duckdns.org";
         public static readonly int ServerPort = 5055;
 
         public static readonly string AlphaServerName = "DoorofSoul.AlphaServer";

@@ -26,11 +26,13 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         }
         void OnMouseEnter()
         {
-            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.2f, 0.2f, 0.2f));
+            Color originEmissionColor = gameObject.GetComponent<Renderer>().material.GetColor("_EmissionColor");
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", originEmissionColor + new Color(0.2f, 0.2f, 0.2f));
         }
         void OnMouseExit()
         {
-            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+            Color originEmissionColor = gameObject.GetComponent<Renderer>().material.GetColor("_EmissionColor");
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", originEmissionColor - new Color(0.2f, 0.2f, 0.2f));
         }
 
         public void BindEntity(Entity entity)

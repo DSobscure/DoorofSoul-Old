@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
 {
-    public class EntityInputController : MonoBehaviour, IEventProvider
+    public class ContainerInputController : MonoBehaviour, IEventProvider
     {
-        private bool HasEntity
+        private bool HasContainer
         {
-            get { return Global.Global.Seat != null && Global.Global.Seat.MainContainer != null && Global.Global.Seat.MainContainer.Entity != null; }
+            get { return Global.Global.Seat != null && Global.Global.Seat.MainContainer != null; }
         }
-        private Entity Entity
+        private Container Container
         {
-            get { return Global.Global.Seat.MainContainer.Entity; }
+            get { return Global.Global.Seat.MainContainer; }
         }
 
         void Start()
@@ -25,37 +25,37 @@ namespace DoorofSoul.Client.Scripts.LightScripts.InputScripts
         }
         private void OnKeyDown(KeyCode keyCode)
         {
-            if (HasEntity)
+            if (HasContainer)
             {
                 if (keyCode == KeyCode.A)
                 {
-                    Entity.EntityOperationManager.Rotate(-1);
+                    Container.ContainerOperationManager.Rotate(-1);
                 }
                 if (keyCode == KeyCode.D)
                 {
-                    Entity.EntityOperationManager.Rotate(1);
+                    Container.ContainerOperationManager.Rotate(1);
                 }
                 if (keyCode == KeyCode.W)
                 {
-                    Entity.EntityOperationManager.Move(1);
+                    Container.ContainerOperationManager.Move(1);
                 }
                 if (keyCode == KeyCode.S)
                 {
-                    Entity.EntityOperationManager.Move(-1);
+                    Container.ContainerOperationManager.Move(-1);
                 }
             }
         }
         private void OnKeyUp(KeyCode keyCode)
         {
-            if (HasEntity)
+            if (HasContainer)
             {
                 if (keyCode == KeyCode.A || keyCode == KeyCode.D)
                 {
-                    Entity.EntityOperationManager.Rotate(0);
+                    Container.ContainerOperationManager.Rotate(0);
                 }
                 if (keyCode == KeyCode.W || keyCode == KeyCode.S)
                 {
-                    Entity.EntityOperationManager.Move(0);
+                    Container.ContainerOperationManager.Move(0);
                 }
             }
         }

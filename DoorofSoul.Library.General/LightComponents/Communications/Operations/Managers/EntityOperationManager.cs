@@ -1,8 +1,7 @@
-﻿using DoorofSoul.Library.General.NatureComponents;
-using DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers;
+﻿using DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers;
 using DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers.Entity;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Protocol.Communication.OperationCodes;
-using DoorofSoul.Protocol.Communication.OperationParameters.Entity;
 using DoorofSoul.Protocol.Communication.OperationParameters.Scene;
 using System.Collections.Generic;
 
@@ -21,8 +20,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
             operationTable = new Dictionary<EntityOperationCode, EntityOperationHandler>
             {
                 { EntityOperationCode.FetchData, FetchDataResolver },
-                { EntityOperationCode.Rotate, new RotateHandler(entity) },
-                { EntityOperationCode.Move, new MoveHandler(entity) },
             };
         }
 
@@ -50,23 +47,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { (byte)EntityOperationParameterCode.Parameters, parameters }
             };
             entity.LocatedScene.SceneOperationManager.SendOperation(SceneOperationCode.EntityOperation, eventData);
-        }
-
-        public void Rotate(int direction)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)RotateParameterCode.Direction, direction }
-            };
-            SendOperation(EntityOperationCode.Rotate, parameters);
-        }
-        public void Move(int direction)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)MoveParameterCode.Direction, direction }
-            };
-            SendOperation(EntityOperationCode.Move, parameters);
         }
     }
 }

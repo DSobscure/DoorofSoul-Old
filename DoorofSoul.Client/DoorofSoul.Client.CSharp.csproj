@@ -114,7 +114,7 @@
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\ShootBulletAndBounce.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\SuspandAndClick.cs" />
     <Compile Include="Assets\Scripts\LightScripts\CommunicationScripts\PhotonServiceController.cs" />
-    <Compile Include="Assets\Scripts\LightScripts\InputScripts\EntityInputController.cs" />
+    <Compile Include="Assets\Scripts\LightScripts\InputScripts\ContainerInputController.cs" />
     <Compile Include="Assets\Scripts\MindScripts\CameraScripts\ViewController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\ContainerScripts\ContainerController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\EntityScripts\EntityController.cs" />

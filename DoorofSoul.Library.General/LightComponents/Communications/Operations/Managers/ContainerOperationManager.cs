@@ -28,6 +28,8 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { ContainerOperationCode.DiscardItem, new DiscardItemHandler(container) },
                 { ContainerOperationCode.UseItem, new UseItemHandler(container) },
                 { ContainerOperationCode.ShootABullet, new ShootABulletHandler(container) },
+                { ContainerOperationCode.Rotate, new RotateHandler(container) },
+                { ContainerOperationCode.Move, new MoveHandler(container) },
             };
         }
 
@@ -83,6 +85,22 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                     LibraryInstance.ErrorFormat("Not Exist Channel for Container Communication, Channel: {0}", channel);
                     break;
             }
+        }
+        public void Rotate(int direction)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)RotateParameterCode.Direction, direction }
+            };
+            SendOperation(ContainerOperationCode.Rotate, parameters, ContainerCommunicationChannel.Answer);
+        }
+        public void Move(int direction)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)MoveParameterCode.Direction, direction }
+            };
+            SendOperation(ContainerOperationCode.Move, parameters, ContainerCommunicationChannel.Answer);
         }
         public void Say(string message)
         {

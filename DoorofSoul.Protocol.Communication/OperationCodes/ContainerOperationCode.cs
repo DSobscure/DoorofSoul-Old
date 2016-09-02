@@ -3,6 +3,8 @@
     public enum ContainerOperationCode : byte
     {
         FetchData,
+        Rotate,
+        Move,
         Say,
         ObserveEntityPosition,
         PickupItemEntity,

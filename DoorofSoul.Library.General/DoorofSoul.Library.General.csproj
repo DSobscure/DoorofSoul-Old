@@ -172,8 +172,8 @@
     <Compile Include="LightComponents\Communications\Operations\Handlers\EntityOperationHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Entity\FetchDataHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Entity\FetchDataResolver.cs" />
-    <Compile Include="LightComponents\Communications\Operations\Handlers\Entity\MoveHandler.cs" />
-    <Compile Include="LightComponents\Communications\Operations\Handlers\Entity\RotateHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\MoveHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\RotateHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\PlayerOperationHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Player\AnswerOperationResolver.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Player\FetchDataHandler.cs" />

@@ -1,4 +1,4 @@
-﻿namespace DoorofSoul.Protocol.Communication.OperationParameters.Entity
+﻿namespace DoorofSoul.Protocol.Communication.OperationParameters.Container
 {
     public enum RotateParameterCode : byte
     {

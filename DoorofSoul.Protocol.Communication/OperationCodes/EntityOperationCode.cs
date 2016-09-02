@@ -3,7 +3,5 @@
     public enum EntityOperationCode : byte
     {
         FetchData,
-        Rotate,
-        Move
     }
 }

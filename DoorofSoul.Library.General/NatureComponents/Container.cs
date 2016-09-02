@@ -40,6 +40,11 @@ namespace DoorofSoul.Library.General.NatureComponents
         public ContainerAttributes Attributes { get; protected set; }
         public ContainerStatusEffectManager ContainerStatusEffectManager { get; protected set; }
         public IContainerController ContainerController { get; protected set; }
+        public ShooterAbilities ShooterAbilities { get; protected set; }
+
+        public bool CanShootBullet { get; set; }
+        private event Action<Container> onShootBullet;
+        public event Action<Container> OnShootBullet { add { onShootBullet += value; } remove { onShootBullet -= value; } }
         #endregion
 
         #region communication
@@ -59,6 +64,9 @@ namespace DoorofSoul.Library.General.NatureComponents
             ContainerEventManager = new ContainerEventManager(this);
             ContainerOperationManager = new ContainerOperationManager(this);
             ContainerResponseManager = new ContainerResponseManager(this);
+
+            ShooterAbilities = new ShooterAbilities();
+            CanShootBullet = true;
         }
         public void BindEntity(Entity entity)
         {
@@ -94,8 +102,15 @@ namespace DoorofSoul.Library.General.NatureComponents
         }
         public bool ShootABullet()
         {
-            Entity.LocatedScene.ShootABullet(ContainerID);
-            return true;
+            lock(ShooterAbilities)
+            {
+                if (CanShootBullet)
+                {
+                    Entity.LocatedScene.BulletManager.AddBullet(new SceneElements.Bullet(ContainerID));
+                    onShootBullet?.Invoke(this);
+                }
+                return true;
+            }
         }
     }
 }

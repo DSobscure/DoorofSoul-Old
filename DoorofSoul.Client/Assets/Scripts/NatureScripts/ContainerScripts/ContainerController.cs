@@ -35,11 +35,35 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
             }
             container.Attributes.OnLifePointChange += OnLifePointChange;
             OnLifePointChange(container.Attributes.LifePoint);
+            OnBulletDamageChange(container.ShooterAbilities.Damage);
+            OnMoveSpeedChange(container.ShooterAbilities.MoveSpeed);
+            OnBulletSpeedChange(container.ShooterAbilities.BulletSpeed);
+            OnTransparancyChange(container.ShooterAbilities.Transparancy);
         }
         private void OnLifePointChange(decimal value)
         {
             float lifePointRatio = Convert.ToSingle(value / container.Attributes.MaxLifePoint);
             gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.5f,0.5f,0.5f) * lifePointRatio);
+        }
+        private void OnBulletDamageChange(int damage)
+        {
+            Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(damage / 5f, originColor.g, originColor.b, originColor.a));
+        }
+        private void OnMoveSpeedChange(int speed)
+        {
+            Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, speed / 5f, originColor.b, originColor.a));
+        }
+        private void OnBulletSpeedChange(int speed)
+        {
+            Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, speed / 5f, originColor.a));
+        }
+        private void OnTransparancyChange(int transparancy)
+        {
+            Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, originColor.b, 1 - transparancy / 5f));
         }
     }
 }

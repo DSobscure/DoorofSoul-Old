@@ -25,6 +25,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
                 { SceneInformDataCode.ShootABullet, new InformShootABulletHandler(scene) },
+                { SceneInformDataCode.DestroyBullet, new InformDestroyBulletHandler(scene) },
             };
         }
 
@@ -134,6 +135,14 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformShootABulletParameterCode.BulletID, bulletID }
             };
             SendInform(SceneInformDataCode.ShootABullet, parameters);
+        }
+        public void InformDestroyBullet(int bulletID)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformDestroyBulletParameterCode.BulletID, bulletID }
+            };
+            SendInform(SceneInformDataCode.DestroyBullet, parameters);
         }
     }
 }

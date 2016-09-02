@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DoorofSoul.Library.General.NatureComponents.SceneElements;
-using DoorofSoul.Protocol.Communication.InformDataCodes;
+﻿using DoorofSoul.Protocol.Communication.InformDataCodes;
 using DoorofSoul.Protocol.Communication.InformDataParameters.Scene;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData
 {
-    internal class InformShootABulletHandler : InformDataHandler
+    internal class InformDestroyBulletHandler : InformDataHandler
     {
-        internal InformShootABulletHandler(NatureComponents.Scene scene) : base(scene, 2)
+        internal InformDestroyBulletHandler(NatureComponents.Scene scene) : base(scene, 1)
         {
         }
 
@@ -20,14 +17,13 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    int shooterContainerID = (int)parameters[(byte)InformShootABulletParameterCode.ShooterContainerID];
-                    int bulletID = (int)parameters[(byte)InformShootABulletParameterCode.BulletID];
-                    scene.BulletManager.AddBullet(new Bullet(shooterContainerID, bulletID));
+                    int bulletID = (int)parameters[(byte)InformDestroyBulletParameterCode.BulletID];
+                    scene.BulletManager.RemoveBullet(bulletID);
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.ErrorFormat("InformShootABullet Event Parameter Cast Error");
+                    LibraryInstance.ErrorFormat("InformDestroyBullet Event Parameter Cast Error");
                     LibraryInstance.ErrorFormat(ex.Message);
                     LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;

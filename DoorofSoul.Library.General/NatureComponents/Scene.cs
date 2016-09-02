@@ -23,7 +23,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public SupportLauguages UsingLanguage { get { return World.UsingLanguage; } }
         public SceneEye SceneEye { get; protected set; }
         public ItemEntityManager ItemEntityManager { get; protected set; }
-        private int bulletCounter = 0;
+        public BulletManager BulletManager { get; protected set; }
         #endregion
 
         #region events
@@ -38,9 +38,6 @@ namespace DoorofSoul.Library.General.NatureComponents
 
         private event Action<Container> onContainerExit;
         public event Action<Container> OnContainerExit { add { onContainerExit += value; } remove { onContainerExit -= value; } }
-
-        private event Action<int, int> onShootABullet;
-        public event Action<int, int> OnShootABullet { add { onShootABullet += value; } remove { onShootABullet -= value; } }
         #endregion
 
         #region communication
@@ -63,6 +60,8 @@ namespace DoorofSoul.Library.General.NatureComponents
             SceneResponseManager = new SceneResponseManager(this);
             MessageLog = new MessageLog();
             ItemEntityManager = new ItemEntityManager(this);
+
+            BulletManager = new BulletManager(this);
         }
         public void BindWorld(World world)
         {
@@ -159,15 +158,6 @@ namespace DoorofSoul.Library.General.NatureComponents
             else
             {
                 return null;
-            }
-        }
-
-        public void ShootABullet(int shooterContainerID)
-        {
-            if(ContainsContainer(shooterContainerID))
-            {
-                bulletCounter++;
-                onShootABullet?.Invoke(shooterContainerID, bulletCounter);
             }
         }
     }

@@ -58,6 +58,7 @@
     <Compile Include="InformDataParameters\Scene\InformBroadcastMessageParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerExitParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformDestroyBulletParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformShootABulletParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />

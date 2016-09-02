@@ -1,6 +1,7 @@
 ﻿using DoorofSoul.Library.General.NatureComponents;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DoorofSoul.Hexagram.NatureComponents
 {
@@ -54,7 +55,12 @@ namespace DoorofSoul.Hexagram.NatureComponents
             scene.OnContainerExit += scene.SceneEventManager.InformDataResolver.InformContainerExit;
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
 
-            scene.OnShootABullet += scene.SceneEventManager.InformDataResolver.InformShootABullet;
+            scene.BulletManager.OnShootABullet += scene.SceneEventManager.InformDataResolver.InformShootABullet;
+            scene.BulletManager.OnShootABullet += async(shooterID, bulletID) => 
+            {
+                await Task.Delay(1000);
+                scene.SceneEventManager.InformDataResolver.InformDestroyBullet(bulletID);
+            };
         }
     }
 }

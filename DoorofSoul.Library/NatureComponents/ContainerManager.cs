@@ -82,6 +82,8 @@ namespace DoorofSoul.Hexagram.NatureComponents
             container.Attributes.OnEnergyPointChange += container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
             container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
             container.Inventory.OnItemChange += container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
+
+            container.OnShootBullet += ShootBulletCoolDown;
         }
         public void DisassemblyContainer(Container container)
         {
@@ -89,6 +91,14 @@ namespace DoorofSoul.Hexagram.NatureComponents
             container.Attributes.OnEnergyPointChange -= container.ContainerEventManager.InformDataResolver.InformEnergyPointChange;
             container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange -= container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
             container.Inventory.OnItemChange -= container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
+
+            container.OnShootBullet -= ShootBulletCoolDown;
+        }
+        private async void ShootBulletCoolDown(Container shooter)
+        {
+            shooter.CanShootBullet = false;
+            await Task.Delay(500);
+            shooter.CanShootBullet = true;
         }
     }
 }

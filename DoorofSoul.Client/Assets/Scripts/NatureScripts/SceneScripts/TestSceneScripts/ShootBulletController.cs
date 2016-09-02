@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
 {
@@ -7,12 +7,15 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
     {
         [SerializeField]
         private Rigidbody bulletPrefab;
+        Dictionary<int, Rigidbody> bulletRigidBobyDictionary;
 
         void Start()
         {
+            bulletRigidBobyDictionary = new Dictionary<int, Rigidbody>();
             Physics.gravity = new Vector3(0, -2, 0);
             Global.Global.InputManager.OnKeyDown += OnSpaceDown;
-            Global.Global.Horizon.MainScene.OnShootABullet += InstantiateBullet;
+            Global.Global.Horizon.MainScene.BulletManager.OnShootABullet += InstantiateBullet;
+            Global.Global.Horizon.MainScene.BulletManager.OnDestroyBullet += DestroyBullet;
         }
 
         private void OnSpaceDown(KeyCode keyCode)
@@ -31,16 +34,15 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
                 bullet.transform.SetParent(container.ContainerController.GameObject.transform.parent);
                 bullet.transform.position = container.ContainerController.GameObject.transform.FindChild("BulletPort").position;
                 bullet.velocity = container.ContainerController.GameObject.transform.forward * 10;
-                if (Global.Global.IsObserver)
-                {
-                    StartCoroutine(DestroyBullet(bullet.gameObject, bulletID));
-                }
+                bulletRigidBobyDictionary.Add(bulletID, bullet);
             }
         }
-        private IEnumerator DestroyBullet(GameObject bullet, int bulletID)
+        private void DestroyBullet(int bulletID)
         {
-            yield return new WaitForSeconds(1);
-            Destroy(bullet);
+            if(bulletRigidBobyDictionary.ContainsKey(bulletID))
+            {
+                Destroy(bulletRigidBobyDictionary[bulletID].gameObject);
+            }
         }
     }
 }

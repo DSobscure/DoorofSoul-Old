@@ -9,6 +9,7 @@
         BroadcastMessage,
         SynchronizeEntityPosition,
         ItemEntityChange,
-        ShootABullet
+        ShootABullet,
+        DestroyBullet
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="DatabaseElements\Connections\MindConnections\SoulElementsConnection.cs" />
     <Compile Include="DatabaseElements\DatabaseConnection.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\ConsumablesRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\ShooterAbilitiesEffectorRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\LifePointEffectorRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LightRepositoryList.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="DatabaseElements\Repositories\PathRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\Ego_CognitionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\ConsumablesLifePointEffectorPossessionRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\ConsumablesShooterAbilitiesEffectorPossessionRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\NatureRepositories\EntityElementsRepositories\EntitySpacePropertiesRepository.cs" />

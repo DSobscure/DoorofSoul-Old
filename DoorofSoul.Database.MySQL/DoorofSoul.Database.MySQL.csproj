@@ -59,6 +59,7 @@
     <Compile Include="DatabaseElements\MySQLRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\ElementRepositories\ItemsRepositories\MySQLConsumablesRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\MySQLLifePointEffectorRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\LightRepositories\EffectsRepositories\MySQLShooterAbilitiesEffectorRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\LightRepositories\MySQLEffectsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLLightRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MySQLMindRepositoryList.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="DatabaseElements\Repositories\Path\MySQLEgo_CognitionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\MySQLSeperation_ConcretionRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\MySQLConsumablesLifePointEffectorPossessionRepository.cs" />
+    <Compile Include="DatabaseElements\Repositories\Path\Seperation_ConcretionRepositories\MySQLConsumablesShooterAbilitiesEffectorPossessionRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\ThroneRepositories\MySQLAnswerRepository.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulElementsRepositoryList.cs" />
     <Compile Include="DatabaseElements\Repositories\MindRepositories\MySQLSoulRepository.cs" />

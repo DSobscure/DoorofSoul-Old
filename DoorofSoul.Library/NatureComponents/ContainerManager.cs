@@ -84,6 +84,10 @@ namespace DoorofSoul.Hexagram.NatureComponents
             container.Inventory.OnItemChange += container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
 
             container.OnShootBullet += ShootBulletCoolDown;
+            container.ShooterAbilities.OnDamageChange += container.ContainerEventManager.InformDataResolver.InformBulletDamageChange;
+            container.ShooterAbilities.OnMoveSpeedChange += container.ContainerEventManager.InformDataResolver.InformMoveSpeedChange;
+            container.ShooterAbilities.OnBulletSpeedChange += container.ContainerEventManager.InformDataResolver.InformBulletSpeedChange;
+            container.ShooterAbilities.OnTransparancyChange += container.ContainerEventManager.InformDataResolver.InformTranspancyChange;
         }
         public void DisassemblyContainer(Container container)
         {
@@ -93,6 +97,10 @@ namespace DoorofSoul.Hexagram.NatureComponents
             container.Inventory.OnItemChange -= container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
 
             container.OnShootBullet -= ShootBulletCoolDown;
+            container.ShooterAbilities.OnDamageChange -= container.ContainerEventManager.InformDataResolver.InformBulletDamageChange;
+            container.ShooterAbilities.OnMoveSpeedChange -= container.ContainerEventManager.InformDataResolver.InformMoveSpeedChange;
+            container.ShooterAbilities.OnBulletSpeedChange -= container.ContainerEventManager.InformDataResolver.InformBulletSpeedChange;
+            container.ShooterAbilities.OnTransparancyChange -= container.ContainerEventManager.InformDataResolver.InformTranspancyChange;
         }
         private async void ShootBulletCoolDown(Container shooter)
         {

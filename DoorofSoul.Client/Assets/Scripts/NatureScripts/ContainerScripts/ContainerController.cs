@@ -34,6 +34,12 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
                 nameText.text = container.ContainerName;
             }
             container.Attributes.OnLifePointChange += OnLifePointChange;
+
+            container.ShooterAbilities.OnDamageChange += OnBulletDamageChange;
+            container.ShooterAbilities.OnMoveSpeedChange += OnMoveSpeedChange;
+            container.ShooterAbilities.OnBulletSpeedChange += OnBulletSpeedChange;
+            container.ShooterAbilities.OnTransparancyChange += OnTransparancyChange;
+
             OnLifePointChange(container.Attributes.LifePoint);
             OnBulletDamageChange(container.ShooterAbilities.Damage);
             OnMoveSpeedChange(container.ShooterAbilities.MoveSpeed);
@@ -63,7 +69,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
         private void OnTransparancyChange(int transparancy)
         {
             Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
-            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, originColor.b, 1 - transparancy / 5f));
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, originColor.b, 1.01f - transparancy / 5f));
         }
     }
 }

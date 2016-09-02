@@ -7,11 +7,15 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.Path
     class MySQLSeperation_ConcretionRepositoryList : Seperation_ConcretionRepositoryList
     {
         private MySQLConsumablesLifePointEffectorPossessionRepository consumablesLifePointEffectorPossessionRepository;
+        private MySQLConsumablesShooterAbilitiesEffectorPossessionRepository consumablesShooterAbilitiesEffectorPossessionRepository;
+
         public override ConsumablesLifePointEffectorPossessionRepository ConsumablesLifePointEffectorPossessionRepository { get { return consumablesLifePointEffectorPossessionRepository; } }
+        public override ConsumablesShooterAbilitiesEffectorPossessionRepository ConsumablesShooterAbilitiesEffectorPossessionRepository { get { return consumablesShooterAbilitiesEffectorPossessionRepository; } }
 
         public MySQLSeperation_ConcretionRepositoryList()
         {
             consumablesLifePointEffectorPossessionRepository = new MySQLConsumablesLifePointEffectorPossessionRepository();
+            consumablesShooterAbilitiesEffectorPossessionRepository = new MySQLConsumablesShooterAbilitiesEffectorPossessionRepository();
         }
     }
 }

@@ -1,19 +1,21 @@
 ﻿using DoorofSoul.Database.DatabaseElements.Repositories.LightRepositories.EffectsRepositories;
 using DoorofSoul.Library.General.LightComponents.Effects.Effectors;
+using DoorofSoul.Protocol;
 using MySql.Data.MySqlClient;
 
 namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LightRepositories.EffectsRepositories
 {
-    class MySQLLifePointEffectorRepository : LifePointEffectorRepository
+    class MySQLShooterAbilitiesEffectorRepository : ShooterAbilitiesEffectorRepository
     {
-        public override LifePointEffector Create(decimal effectValue)
+        public override ShooterAbilitiesEffector Create(ShooterAbilitiesTypeCode AbilityType, int effectValue)
         {
-            string sqlString = @"INSERT INTO LifePointEffectorCollection 
-                (EffectValue) VALUES (@effectValue) ;
+            string sqlString = @"INSERT INTO ShooterAbilitiesEffectorCollection 
+                (AbilityType,EffectValue) VALUES (@abilityType,@effectValue) ;
                 SELECT LAST_INSERT_ID();";
             int effectorID;
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LightConnection.EffectsConnection.Connection as MySqlConnection))
             {
+                command.Parameters.AddWithValue("@abilityType", (byte)AbilityType);
                 command.Parameters.AddWithValue("@effectValue", effectValue);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
@@ -32,23 +34,23 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LightRepositor
 
         public override void Delete(int effectorID)
         {
-            string sqlString = @"DELETE FROM LifePointEffectorCollection 
-                WHERE LifePointEffectorID = @effectorID;";
+            string sqlString = @"DELETE FROM ShooterAbilitiesEffectorCollection 
+                WHERE ShooterAbilitiesEffectorID = @effectorID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LightConnection.EffectsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@effectorID", effectorID);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLLifePointEffectorRepository Delete LifePointEffector Error LifePointEffectorID: {0}", effectorID);
+                    Database.Log.ErrorFormat("MySQLShooterAbilitiesEffectorRepository Delete ShooterAbilitiesEffector Error ShooterAbilitiesEffectorID: {0}", effectorID);
                 }
             }
         }
 
-        public override LifePointEffector Find(int effectorID)
+        public override ShooterAbilitiesEffector Find(int effectorID)
         {
             string sqlString = @"SELECT  
-                EffectValue
-                from LifePointEffectorCollection WHERE LifePointEffectorID = @effectorID;";
+                AbilityType, EffectValue
+                from ShooterAbilitiesEffectorCollection WHERE ShooterAbilitiesEffectorID = @effectorID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LightConnection.EffectsConnection.Connection as MySqlConnection))
             {
                 command.Parameters.AddWithValue("@effectorID", effectorID);
@@ -56,29 +58,31 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LightRepositor
                 {
                     if (reader.Read())
                     {
-                        decimal effectValue = reader.GetDecimal(0);
-                        return new LifePointEffector(effectorID, effectValue);
+                        ShooterAbilitiesTypeCode abilityType = (ShooterAbilitiesTypeCode)reader.GetByte(0);
+                        int effectValue = reader.GetInt32(1);
+                        return new ShooterAbilitiesEffector(effectorID, abilityType, effectValue);
                     }
                     else
                     {
                         return null;
                     }
                 }
-            }
+            };
         }
 
-        public override void Save(LifePointEffector effector)
+        public override void Save(ShooterAbilitiesEffector effector)
         {
-            string sqlString = @"UPDATE LifePointEffectorCollection SET 
-                EffectValue = @effectValue
+            string sqlString = @"UPDATE ShooterAbilitiesEffectorCollection SET 
+                AbilityType = @abilityType ,EffectValue = @effectValue
                 WHERE LifePointEffectorID = @effectorID;";
             using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.LightConnection.EffectsConnection.Connection as MySqlConnection))
             {
+                command.Parameters.AddWithValue("@abilityType", (byte)effector.AbilityType);
                 command.Parameters.AddWithValue("@effectValue", effector.EffectValue);
-                command.Parameters.AddWithValue("@effectorID", effector.LifePointEffectorID);
+                command.Parameters.AddWithValue("@effectorID", effector.ShooterAbilitiesEffectorID);
                 if (command.ExecuteNonQuery() <= 0)
                 {
-                    Database.Log.ErrorFormat("MySQLLifePointEffectorRepository Save LifePointEffector Error LifePointEffectorID: {0}", effector.LifePointEffectorID);
+                    Database.Log.ErrorFormat("MySQLShooterAbilitiesEffectorRepository Save ShooterAbilitiesEffector Error ShooterAbilitiesEffectorID: {0}", effector.ShooterAbilitiesEffectorID);
                 }
             }
         }

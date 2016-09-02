@@ -6,6 +6,11 @@
         LifePointChange,
         EnergyPointChange,
         ContainerStatusEffectInfoChange,
-        InventoryItemIntoChange
+        InventoryItemIntoChange,
+
+        BulletDamageChange,
+        MoveSpeedChange,
+        BulletSpeedChange,
+        TransparancyChange
     }
 }

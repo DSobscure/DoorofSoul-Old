@@ -55,6 +55,10 @@
     <Compile Include="EventParameters\Entity\StartRotateParameterCode.cs" />
     <Compile Include="EventParameters\EventParameterCode.cs" />
     <Compile Include="EventParameters\Player\AnswerEventParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformBulletDamageChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformBulletSpeedChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformMoveSpeedChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Container\InformTransparancyChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformBroadcastMessageParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerExitParameterCode.cs" />

@@ -7,11 +7,15 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.LightRepositor
     class MySQLEffectsRepositoryList : EffectsRepositoryList
     {
         private MySQLLifePointEffectorRepository containerLifePointEffectorRepository;
-        public override LifePointEffectorRepository ContainerLifePointEffectorRepository { get { return containerLifePointEffectorRepository; } }
+        private MySQLShooterAbilitiesEffectorRepository shooterAbilitiesEffectorRepository;
 
-       　public MySQLEffectsRepositoryList()
+        public override LifePointEffectorRepository ContainerLifePointEffectorRepository { get { return containerLifePointEffectorRepository; } }
+        public override ShooterAbilitiesEffectorRepository ShooterAbilitiesEffectorRepository { get { return shooterAbilitiesEffectorRepository; } }
+
+        public MySQLEffectsRepositoryList()
         {
             containerLifePointEffectorRepository = new MySQLLifePointEffectorRepository();
+            shooterAbilitiesEffectorRepository = new MySQLShooterAbilitiesEffectorRepository();
         }
     }
 }

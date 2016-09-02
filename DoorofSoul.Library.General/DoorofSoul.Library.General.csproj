@@ -48,6 +48,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformBulletDamageChangeHandler.cs" />
+    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformBulletSpeedChangeHandler.cs" />
+    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformMoveSpeedChangeHandler.cs" />
+    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformTransparancyChangeHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerEnterHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerExitHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformDestroyBulletHandler.cs" />
@@ -59,6 +63,7 @@
     <Compile Include="LightComponents\Effects\Effector.cs" />
     <Compile Include="ElementComponents\Items\Consumables.cs" />
     <Compile Include="LightComponents\Effects\Effectors\LifePointEffector.cs" />
+    <Compile Include="LightComponents\Effects\Effectors\ShooterAbilitiesEffector.cs" />
     <Compile Include="LightComponents\Effects\IEffectorTarget.cs" />
     <Compile Include="ElementComponents\Items\ItemComponent.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformInventoryItemIntoChangeHandler.cs" />

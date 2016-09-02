@@ -75,6 +75,11 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
                 {
                     consumables.AddEffector(Database.RepositoryList.LightRepositoryList.EffectsRepositoryList.ContainerLifePointEffectorRepository.Find(effectID));
                 }
+                effectorIDs = Database.RepositoryList.PathRepositoryList.Seperation_ConcretionRepositoryList.ConsumablesShooterAbilitiesEffectorPossessionRepository.GetShooterAbilitiesEffectorIDs(consumables.ConsumablesID);
+                foreach (int effectID in effectorIDs)
+                {
+                    consumables.AddEffector(Database.RepositoryList.LightRepositoryList.EffectsRepositoryList.ShooterAbilitiesEffectorRepository.Find(effectID));
+                }
             }
             return consumables;
         }
@@ -96,6 +101,10 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.ElementReposit
             foreach(LifePointEffector effector in consumables.Effectors.OfType<LifePointEffector>())
             {
                 Database.RepositoryList.LightRepositoryList.EffectsRepositoryList.ContainerLifePointEffectorRepository.Save(effector);
+            }
+            foreach (ShooterAbilitiesEffector effector in consumables.Effectors.OfType<ShooterAbilitiesEffector>())
+            {
+                Database.RepositoryList.LightRepositoryList.EffectsRepositoryList.ShooterAbilitiesEffectorRepository.Save(effector);
             }
         }
 

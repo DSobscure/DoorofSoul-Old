@@ -3,6 +3,8 @@
     public enum InformShootABulletParameterCode : byte
     {
         ShooterContainerID,
-        BulletID
+        BulletID,
+        BulletDamage,
+        BulletSpeed
     }
 }

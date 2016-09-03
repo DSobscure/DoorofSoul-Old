@@ -56,10 +56,11 @@ namespace DoorofSoul.Hexagram.NatureComponents
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;
 
             scene.BulletManager.OnShootABullet += scene.SceneEventManager.InformDataResolver.InformShootABullet;
-            scene.BulletManager.OnShootABullet += async(shooterID, bulletID) => 
+            scene.BulletManager.OnDestroyBullet += scene.SceneEventManager.InformDataResolver.InformDestroyBullet;
+            scene.BulletManager.OnShootABullet += async(bullet) =>
             {
-                await Task.Delay(1000);
-                scene.SceneEventManager.InformDataResolver.InformDestroyBullet(bulletID);
+                await Task.Delay(2000);
+                scene.BulletManager.RemoveBullet(bullet.BulletID);
             };
         }
     }

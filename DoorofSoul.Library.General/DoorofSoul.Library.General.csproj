@@ -56,6 +56,7 @@
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerExitHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformDestroyBulletHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShootABulletHandler.cs" />
+    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\ObserveBulletHitHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Container\ShootABulletHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Container\UseItemHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Scene\FetchData\FetchContainersHandler.cs" />

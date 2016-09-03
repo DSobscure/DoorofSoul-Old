@@ -127,12 +127,14 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             };
             SendInform(SceneInformDataCode.BroadcastMessage, parameters);
         }
-        public void InformShootABullet(int shooterContainerID, int bulletID)
+        public void InformShootABullet(Bullet bullet)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformShootABulletParameterCode.ShooterContainerID, shooterContainerID },
-                { (byte)InformShootABulletParameterCode.BulletID, bulletID }
+                { (byte)InformShootABulletParameterCode.ShooterContainerID, bullet.ShooterContainerID },
+                { (byte)InformShootABulletParameterCode.BulletID, bullet.BulletID },
+                { (byte)InformShootABulletParameterCode.BulletDamage, bullet.Damage },
+                { (byte)InformShootABulletParameterCode.BulletSpeed, bullet.Speed }
             };
             SendInform(SceneInformDataCode.ShootABullet, parameters);
         }

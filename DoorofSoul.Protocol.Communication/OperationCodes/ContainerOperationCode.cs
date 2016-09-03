@@ -11,6 +11,7 @@
         MoveInventoryItemInfo,
         DiscardItem,
         UseItem,
-        ShootABullet
+        ShootABullet,
+        ObserveBulletHit
     }
 }

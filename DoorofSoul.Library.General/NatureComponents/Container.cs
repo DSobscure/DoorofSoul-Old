@@ -106,7 +106,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             {
                 if (CanShootBullet)
                 {
-                    Entity.LocatedScene.BulletManager.AddBullet(new SceneElements.Bullet(ContainerID));
+                    Entity.LocatedScene.BulletManager.AddBullet(new SceneElements.Bullet(ContainerID, ShooterAbilities.Damage, ShooterAbilities.BulletSpeed));
                     onShootBullet?.Invoke(this);
                 }
                 return true;

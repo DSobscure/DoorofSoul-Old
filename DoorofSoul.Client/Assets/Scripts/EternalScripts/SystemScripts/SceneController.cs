@@ -61,6 +61,7 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                 scene.SceneOperationManager.FetchDataResolver.FetchContainers();
                 scene.SceneOperationManager.FetchDataResolver.FetchEntities();
                 scene.SceneOperationManager.FetchDataResolver.FetchItemEntities();
+                scene.OnContainerEnter += InstantiateContainer;
                 scene.OnEntityEnter += InstantiateEntity;
                 scene.OnEntityExit += DestroyEntity;
                 scene.ItemEntityManager.OnItemEntityChange += OnItemEntityChange;
@@ -82,9 +83,22 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
         {
             if (scene != null)
             {
+                scene.OnContainerEnter -= InstantiateContainer;
                 scene.OnEntityEnter -= InstantiateEntity;
                 scene.OnEntityExit -= DestroyEntity;
                 scene.ItemEntityManager.OnItemEntityChange -= OnItemEntityChange;
+            }
+        }
+        private void InstantiateContainer(Container container)
+        {
+            if(scene.ContainsEntity(container.EntityID))
+            {
+                container.BindContainerController(container.Entity.EntityController.GameObject.GetComponent<ContainerController>());
+                if (Global.Global.Seat.MainContainer.ContainerID == container.ContainerID)
+                {
+                    Camera.main.transform.SetParent(gameObject.transform.FindChild("ViewPort"));
+                    Camera.main.transform.localPosition = Vector3.zero;
+                }
             }
         }
         private void InstantiateEntity(Entity entity)

@@ -30,6 +30,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
                 { ContainerOperationCode.ShootABullet, new ShootABulletHandler(container) },
                 { ContainerOperationCode.Rotate, new RotateHandler(container) },
                 { ContainerOperationCode.Move, new MoveHandler(container) },
+                { ContainerOperationCode.ObserveBulletHit, new ObserveBulletHitHandler(container) },
             };
         }
 
@@ -155,6 +156,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
         public void ShootaBullet()
         {
             SendOperation(ContainerOperationCode.ShootABullet, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
+        }
+        public void ObserveBulletHit(int hitContainerID, float impulse)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)ObserveBulletHitParameterCode.HitContainerID, hitContainerID },
+                { (byte)ObserveBulletHitParameterCode.Impulse, impulse }
+            };
+            SendOperation(ContainerOperationCode.ObserveBulletHit, parameters, ContainerCommunicationChannel.Answer);
         }
     }
 }

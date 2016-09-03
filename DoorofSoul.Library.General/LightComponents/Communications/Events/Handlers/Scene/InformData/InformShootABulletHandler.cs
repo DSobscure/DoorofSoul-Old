@@ -10,7 +10,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformShootABulletHandler : InformDataHandler
     {
-        internal InformShootABulletHandler(NatureComponents.Scene scene) : base(scene, 2)
+        internal InformShootABulletHandler(NatureComponents.Scene scene) : base(scene, 4)
         {
         }
 
@@ -22,7 +22,9 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 {
                     int shooterContainerID = (int)parameters[(byte)InformShootABulletParameterCode.ShooterContainerID];
                     int bulletID = (int)parameters[(byte)InformShootABulletParameterCode.BulletID];
-                    scene.BulletManager.AddBullet(new Bullet(shooterContainerID, bulletID));
+                    int damage = (int)parameters[(byte)InformShootABulletParameterCode.BulletDamage];
+                    int speed = (int)parameters[(byte)InformShootABulletParameterCode.BulletSpeed];
+                    scene.BulletManager.AddBullet(new Bullet(shooterContainerID, bulletID, damage, speed));
                     return true;
                 }
                 catch (InvalidCastException ex)

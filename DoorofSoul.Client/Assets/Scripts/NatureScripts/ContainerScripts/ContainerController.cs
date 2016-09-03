@@ -69,7 +69,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
         private void OnTransparancyChange(int transparancy)
         {
             Color originColor = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
-            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, originColor.b, 1.01f - transparancy / 5f));
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(originColor.r, originColor.g, originColor.b, 1.001f - transparancy / 5f));
         }
     }
 }

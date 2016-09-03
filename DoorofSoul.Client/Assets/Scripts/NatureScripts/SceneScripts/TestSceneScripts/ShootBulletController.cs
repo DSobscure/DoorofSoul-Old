@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using DoorofSoul.Library.General.NatureComponents.SceneElements;
 
 namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
 {
@@ -12,7 +13,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
         void Start()
         {
             bulletRigidBobyDictionary = new Dictionary<int, Rigidbody>();
-            Physics.gravity = new Vector3(0, -2, 0);
+            Physics.gravity = new Vector3(0, -1, 0);
             Global.Global.InputManager.OnKeyDown += OnSpaceDown;
             Global.Global.Horizon.MainScene.BulletManager.OnShootABullet += InstantiateBullet;
             Global.Global.Horizon.MainScene.BulletManager.OnDestroyBullet += DestroyBullet;
@@ -25,16 +26,18 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
                 Global.Global.Seat.MainContainer.ContainerOperationManager.ShootaBullet();
             }
         }
-        private void InstantiateBullet(int shooterContainerID, int bulletID)
+        private void InstantiateBullet(Bullet bullet)
         {
-            var container = Global.Global.Horizon.MainScene.FindContainer(shooterContainerID);
+            var container = Global.Global.Horizon.MainScene.FindContainer(bullet.ShooterContainerID);
             if(container != null && container.ContainerController != null)
             {
-                Rigidbody bullet = Instantiate(bulletPrefab);
-                bullet.transform.SetParent(container.ContainerController.GameObject.transform.parent);
-                bullet.transform.position = container.ContainerController.GameObject.transform.FindChild("BulletPort").position;
-                bullet.velocity = container.ContainerController.GameObject.transform.forward * 10;
-                bulletRigidBobyDictionary.Add(bulletID, bullet);
+                Rigidbody bulletRigidBody = Instantiate(bulletPrefab);
+                bulletRigidBody.transform.SetParent(container.ContainerController.GameObject.transform.parent);
+                bulletRigidBody.transform.position = container.ContainerController.GameObject.transform.FindChild("BulletPort").position;
+                bulletRigidBody.mass = 1 + bullet.Damage;
+                bulletRigidBody.GetComponent<Renderer>().material.SetColor("_Color", new Color(bullet.Damage / 5f, 0, 0, 1));
+                bulletRigidBody.velocity = container.ContainerController.GameObject.transform.forward * 10 * (1 + bullet.Speed / 2f);
+                bulletRigidBobyDictionary.Add(bullet.BulletID, bulletRigidBody);
             }
         }
         private void DestroyBullet(int bulletID)

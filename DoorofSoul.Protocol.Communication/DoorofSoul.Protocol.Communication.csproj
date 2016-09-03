@@ -125,6 +125,7 @@
     <Compile Include="FetchDataParameters\FetchDataParameterCode.cs" />
     <Compile Include="OperationParameters\Container\DiscardItemParameterCode.cs" />
     <Compile Include="OperationParameters\Container\MoveInventoryItemInfoParameterCode.cs" />
+    <Compile Include="OperationParameters\Container\ObserveBulletHitParameterCode.cs" />
     <Compile Include="OperationParameters\Container\ObserveEntityPositionParameterCode.cs" />
     <Compile Include="OperationParameters\Container\PickupItemEntityParameterCode.cs" />
     <Compile Include="OperationParameters\Container\SayParameterCode.cs" />

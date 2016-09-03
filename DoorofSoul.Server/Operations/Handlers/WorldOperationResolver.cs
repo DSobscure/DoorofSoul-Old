@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DoorofSoul.Protocol.Communication.OperationCodes;
+﻿using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Communication.OperationParameters;
-using DoorofSoul.Library;
+using System;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Server.Operations.Handlers
 {

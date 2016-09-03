@@ -10,8 +10,8 @@ namespace DoorofSoul.Library.General.NatureComponents.SceneElements
         protected Scene scene;
         protected Dictionary<int, Bullet> bulletDictionary;
 
-        private event Action<int, int> onShootABullet;
-        public event Action<int, int> OnShootABullet { add { onShootABullet += value; } remove { onShootABullet -= value; } }
+        private event Action<Bullet> onShootABullet;
+        public event Action<Bullet> OnShootABullet { add { onShootABullet += value; } remove { onShootABullet -= value; } }
 
         private event Action<int> onDestroyBullet;
         public event Action<int> OnDestroyBullet { add { onDestroyBullet += value; } remove { onDestroyBullet -= value; } }
@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.NatureComponents.SceneElements
             if(scene.ContainsContainer(bullet.ShooterContainerID) && !bulletDictionary.ContainsKey(bullet.BulletID))
             {
                 bulletDictionary.Add(bullet.BulletID, bullet);
-                onShootABullet?.Invoke(bullet.ShooterContainerID, bullet.BulletID);
+                onShootABullet?.Invoke(bullet);
             }
         }
         public void RemoveBullet(int bulletID)

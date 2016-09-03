@@ -2,6 +2,7 @@
 {
     public enum InformLifePointChangeParameterCode : byte
     {
-        NewLifePoint
+        NewLifePoint,
+        Delta
     }
 }

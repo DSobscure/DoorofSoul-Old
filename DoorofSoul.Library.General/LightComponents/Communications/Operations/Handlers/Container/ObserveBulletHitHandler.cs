@@ -20,8 +20,10 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                 {
                     int containerID = (int)parameters[(byte)ObserveBulletHitParameterCode.HitContainerID];
                     float impulse = (float)parameters[(byte)ObserveBulletHitParameterCode.Impulse];
-                    if (container.Entity.LocatedScene.SceneEye.Observer == container)
+                    NatureComponents.Scene scene = container.Entity.LocatedScene;
+                    if (scene.SceneEye.Observer == container && scene.ContainsContainer(containerID))
                     {
+                        scene.FindContainer(containerID).Attributes.LifePoint -= Convert.ToDecimal(impulse);
                         LibraryInstance.ErrorFormat("ContainerID:{0} hit impulse: {1}", containerID, impulse);
                         return true;
                     }

@@ -66,7 +66,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)InformLifePointChangeParameterCode.NewLifePoint, new DSDecimal { value = lifePoint } },
+                { (byte)InformLifePointChangeParameterCode.NewLifePoint, new DSDecimal { value = lifePoint } }
             };
             SendInform(ContainerInformDataCode.LifePointChange, parameters);
         }

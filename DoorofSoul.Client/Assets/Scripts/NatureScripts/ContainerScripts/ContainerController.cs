@@ -19,6 +19,12 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
 
         public GameObject GameObject { get { return gameObject; } }
 
+        void Update()
+        {
+            nameText.transform.LookAt(Camera.main.transform);
+            nameText.transform.Rotate(0, 180, 0);
+        }
+
         public void BindContainer(Container container)
         {
             this.container = container;

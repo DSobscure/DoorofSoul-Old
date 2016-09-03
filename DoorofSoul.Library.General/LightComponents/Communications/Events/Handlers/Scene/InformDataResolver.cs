@@ -1,4 +1,5 @@
-﻿using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData;
+﻿using DoorofSoul.Library.General.BasicTypeHelpers;
+using DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Scene.InformData;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol;
 using DoorofSoul.Protocol.Communication.EventCodes;
@@ -23,9 +24,11 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { SceneInformDataCode.ContainerExit, new InformContainerExitHandler(scene) },
                 { SceneInformDataCode.BroadcastMessage, new InformBroadcastMessageHandler(scene) },
                 { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
+                { SceneInformDataCode.SynchronizeEntityRotation, new SynchronizeEntityRotationHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
                 { SceneInformDataCode.ShootABullet, new InformShootABulletHandler(scene) },
                 { SceneInformDataCode.DestroyBullet, new InformDestroyBulletHandler(scene) },
+                { SceneInformDataCode.ContainerLifePointChange, new InformContainerLifePointChangeHandler(scene) },
             };
         }
 
@@ -93,7 +96,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
                 { (byte)InformContainerEnterParameterCode.ContainerID, container.ContainerID },
-                { (byte)InformContainerEnterParameterCode.EntityID, container.ContainerID },
+                { (byte)InformContainerEnterParameterCode.EntityID, container.EntityID },
                 { (byte)InformContainerEnterParameterCode.ContainerName, container.ContainerName },
                 { (byte)InformContainerEnterParameterCode.ContainerAttributes, container.Attributes },
             };
@@ -115,6 +118,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)SynchronizeEntityPositionParameterCode.Position, entity.Position }
             };
             SendInform(SceneInformDataCode.SynchronizeEntityPosition, parameters);
+        }
+        public void SynchronizeEntityRotation(NatureComponents.Entity entity)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)SynchronizeEntityRotationParameterCode.EntityID, entity.EntityID },
+                { (byte)SynchronizeEntityRotationParameterCode.Rotation, entity.Rotation }
+            };
+            SendInform(SceneInformDataCode.SynchronizeEntityRotation, parameters);
         }
         public void InformBroadcastMessage(MessageTypeCode messageType, MessageSourceTypeCode messageSourceType, string sourceName, string message)
         {
@@ -145,6 +157,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformDestroyBulletParameterCode.BulletID, bulletID }
             };
             SendInform(SceneInformDataCode.DestroyBullet, parameters);
+        }
+        public void InformContainerLifePointChange(int containerID, decimal lifePoint)
+        {
+            Dictionary<byte, object> parameters = new Dictionary<byte, object>
+            {
+                { (byte)InformContainerLifePointChangeParameterCode.ContainerID, containerID },
+                { (byte)InformContainerLifePointChangeParameterCode.LifePoint, new DSDecimal { value = lifePoint } }
+            };
+            SendInform(SceneInformDataCode.ContainerLifePointChange, parameters);
         }
     }
 }

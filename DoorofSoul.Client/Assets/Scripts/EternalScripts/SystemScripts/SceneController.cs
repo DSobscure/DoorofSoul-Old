@@ -1,17 +1,19 @@
 ﻿using DoorofSoul.Client.Global;
 using DoorofSoul.Client.Interfaces;
 using DoorofSoul.Client.Scripts.MindScripts.CameraScripts;
-using DoorofSoul.Client.Scripts.NatureScripts.SceneScripts;
-using DoorofSoul.Client.Scripts.NatureScripts.EntityScripts;
 using DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts;
+using DoorofSoul.Client.Scripts.NatureScripts.EntityScripts;
+using DoorofSoul.Client.Scripts.NatureScripts.SceneScripts;
 using DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts;
 using DoorofSoul.Library.General.NatureComponents;
+using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
 using DoorofSoul.Library.General.NatureComponents.SceneElements;
 using DoorofSoul.Protocol;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
 {
@@ -24,6 +26,8 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
         private ViewController viewControllerPrefab;
         private Canvas canvas;
         private DoorofSoul.Library.General.NatureComponents.Scene scene;
+        private Dictionary<int, Container> delayedContainerDictionary = new Dictionary<int, Container>();
+
         void Awake()
         {
             RegisterEvents();
@@ -58,10 +62,10 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             if (scene != null)
             {
-                scene.SceneOperationManager.FetchDataResolver.FetchContainers();
                 scene.SceneOperationManager.FetchDataResolver.FetchEntities();
+                scene.SceneOperationManager.FetchDataResolver.FetchContainers();
                 scene.SceneOperationManager.FetchDataResolver.FetchItemEntities();
-                scene.OnContainerEnter += InstantiateContainer;
+                scene.OnContainerEnter += OnContainerEnter;
                 scene.OnEntityEnter += InstantiateEntity;
                 scene.OnEntityExit += DestroyEntity;
                 scene.ItemEntityManager.OnItemEntityChange += OnItemEntityChange;
@@ -70,6 +74,10 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                 foreach (Entity entity in scene.Entities)
                 {
                     InstantiateEntity(entity);
+                }
+                foreach (Container container in scene.Containers)
+                {
+                    BindEntityToContainer(container, container.Entity);
                 }
                 PlayerPanel playerPanel = Instantiate(playerPanelPrefab);
                 RectTransform panel = playerPanel.GetComponent<RectTransform>();
@@ -83,22 +91,30 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
         {
             if (scene != null)
             {
-                scene.OnContainerEnter -= InstantiateContainer;
+                scene.OnContainerEnter -= OnContainerEnter;
                 scene.OnEntityEnter -= InstantiateEntity;
                 scene.OnEntityExit -= DestroyEntity;
                 scene.ItemEntityManager.OnItemEntityChange -= OnItemEntityChange;
             }
         }
-        private void InstantiateContainer(Container container)
+        private void BindEntityToContainer(Container container, Entity entity)
+        {
+            container.BindContainerController(entity.EntityController.GameObject.GetComponent<ContainerController>());
+            if (Global.Global.Seat.MainContainer.ContainerID == container.ContainerID)
+            {
+                Camera.main.transform.SetParent(container.ContainerController.GameObject.transform.FindChild("ViewPort"));
+                Camera.main.transform.localPosition = Vector3.zero;
+            }
+        }
+        private void OnContainerEnter(Container container)
         {
             if(scene.ContainsEntity(container.EntityID))
             {
-                container.BindContainerController(container.Entity.EntityController.GameObject.GetComponent<ContainerController>());
-                if (Global.Global.Seat.MainContainer.ContainerID == container.ContainerID)
-                {
-                    Camera.main.transform.SetParent(gameObject.transform.FindChild("ViewPort"));
-                    Camera.main.transform.localPosition = Vector3.zero;
-                }
+                BindEntityToContainer(container, scene.FindEntity(container.EntityID));
+            }
+            else
+            {
+                delayedContainerDictionary.Add(container.EntityID, container);
             }
         }
         private void InstantiateEntity(Entity entity)
@@ -119,15 +135,14 @@ namespace DoorofSoul.Client.Scripts.EternalScripts.SystemScripts
                     gameObject.transform.localRotation = Quaternion.Euler((Vector3)entity.Rotation);
                     IEntityController entityController = gameObject.GetComponent<EntityController>();
                     entity.BindEntityController(entityController);
-                    Container container = scene.Containers.First(x => x.EntityID == entity.EntityID);
-                    if(container != null)
+                    if(delayedContainerDictionary.ContainsKey(entity.EntityID))
                     {
-                        container.BindContainerController(entity.EntityController.GameObject.GetComponent<ContainerController>());
-                        if (Global.Global.Seat.MainContainer.ContainerID == container.ContainerID)
+                        Container container = delayedContainerDictionary[entity.EntityID];
+                        if(container.ContainerController == null)
                         {
-                            Camera.main.transform.SetParent(gameObject.transform.FindChild("ViewPort"));
-                            Camera.main.transform.localPosition = Vector3.zero;
+                            BindEntityToContainer(container, entity);
                         }
+                        delayedContainerDictionary.Remove(entity.EntityID);
                     }
                 }
             }

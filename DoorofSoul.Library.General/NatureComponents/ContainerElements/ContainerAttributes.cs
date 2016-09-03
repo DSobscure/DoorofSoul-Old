@@ -70,7 +70,15 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         public int MaxExperience { get; protected set; } = int.MaxValue;
 
         private decimal lifePoint;
-        public decimal LifePoint { get { return lifePoint; } set { lifePoint = Math.Max(Math.Min(value, MaxLifePoint), 0); onLifePointChange?.Invoke(lifePoint); } }
+        public decimal LifePoint
+        {
+            get { return lifePoint; }
+            set
+            {
+                lifePoint = Math.Max(Math.Min(value, MaxLifePoint), 0);
+                onLifePointChange?.Invoke(lifePoint);
+            }
+        }
 
         public decimal MaxLifePoint { get; protected set; } = decimal.MaxValue;
 

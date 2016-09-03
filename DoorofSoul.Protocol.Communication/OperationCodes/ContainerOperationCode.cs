@@ -6,7 +6,7 @@
         Rotate,
         Move,
         Say,
-        ObserveEntityPosition,
+        ObserveEntityTransform,
         PickupItemEntity,
         MoveInventoryItemInfo,
         DiscardItem,

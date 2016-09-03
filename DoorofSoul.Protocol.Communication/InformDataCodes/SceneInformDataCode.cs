@@ -8,8 +8,10 @@
         ContainerExit,
         BroadcastMessage,
         SynchronizeEntityPosition,
+        SynchronizeEntityRotation,
         ItemEntityChange,
         ShootABullet,
-        DestroyBullet
+        DestroyBullet,
+        ContainerLifePointChange
     }
 }

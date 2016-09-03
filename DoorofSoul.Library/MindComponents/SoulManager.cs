@@ -124,7 +124,7 @@ namespace DoorofSoul.Hexagram.MindComponents
                 Answer answer = Hexagram.Throne.AnswerManager.FindAnswer(answerID);
                 Soul soul = Database.Database.RepositoryList.MindRepositoryList.SoulRepository.Create(answer, soulName, mainSoulType);
                 answer.LoadSouls(new List<Soul> { soul });
-                Container defaultContainer = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Create("TestContainer", Hexagram.Nature.SceneManager.FirstScene.SceneID, new EntitySpaceProperties
+                Container defaultContainer = Database.Database.RepositoryList.NatureRepositoryList.ContainerRepository.Create(soul.SoulName, "TestContainer", Hexagram.Nature.SceneManager.FirstScene.SceneID, new EntitySpaceProperties
                 {
                     Scale = new DSVector3 { x = 1, y = 1, z = 1 },
                 });

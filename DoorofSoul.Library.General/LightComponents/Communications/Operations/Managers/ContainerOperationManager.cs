@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
             {
                 { ContainerOperationCode.FetchData, FetchDataResolver },
                 { ContainerOperationCode.Say, new SayHandler(container) },
-                { ContainerOperationCode.ObserveEntityPosition, new ObserveEntityPositionHandler(container) },
+                { ContainerOperationCode.ObserveEntityTransform, new ObserveEntityTransformHandler(container) },
                 { ContainerOperationCode.PickupItemEntity, new PickupItemEntityHandler(container) },
                 { ContainerOperationCode.MoveInventoryItemInfo, new MoveInventoryItemInfoHandler(container) },
                 { ContainerOperationCode.DiscardItem, new DiscardItemHandler(container) },
@@ -111,14 +111,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.M
             };
             SendOperation(ContainerOperationCode.Say, parameters, ContainerCommunicationChannel.Answer);
         }
-        public void ObserveEntityPosition(Entity entity)
+        public void ObserveEntityTransform(Entity entity)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
-                { (byte)ObserveEntityPositionParameterCode.EntityID, entity.EntityID },
-                { (byte)ObserveEntityPositionParameterCode.Position, entity.Position }
+                { (byte)ObserveEntityTransformParameterCode.EntityID, entity.EntityID },
+                { (byte)ObserveEntityTransformParameterCode.Position, entity.Position },
+                { (byte)ObserveEntityTransformParameterCode.Rotation, entity.Rotation }
             };
-            SendOperation(ContainerOperationCode.ObserveEntityPosition, parameters, ContainerCommunicationChannel.Answer);
+            SendOperation(ContainerOperationCode.ObserveEntityTransform, parameters, ContainerCommunicationChannel.Answer);
         }
         public void PickupItemEntity(int itemEntityID)
         {

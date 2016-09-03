@@ -19,7 +19,7 @@ namespace DoorofSoul.Client.Scripts.LightScripts.CommunicationScripts
         }
         void OnGUI()
         {
-            if (photonService.ServerConnected)
+            if (photonService != null && photonService.ServerConnected)
             {
                 GUI.Label(new Rect(20, 10, 100, 20), "connected");
             }
@@ -43,7 +43,8 @@ namespace DoorofSoul.Client.Scripts.LightScripts.CommunicationScripts
         }
         void FixedUpdate()
         {
-            photonService.Service();
+            if(photonService != null)
+                photonService.Service();
         }
 
         void OnApplicationQuit()

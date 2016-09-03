@@ -62,6 +62,7 @@
     <Compile Include="InformDataParameters\Scene\InformBroadcastMessageParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerEnterParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformContainerExitParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformContainerLifePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformDestroyBulletParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformShootABulletParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="InformDataParameters\Container\InformContainerStatusEffectInfoChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Container\InformMessageParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformItemEntityChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\SynchronizeEntityRotationParameterCode.cs" />
     <Compile Include="InformDataParameters\Soul\InformCorePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Soul\InformSpiritPointChangeParameterCode.cs" />
     <Compile Include="OperationCodes\AnswerOperationCode.cs" />
@@ -126,7 +128,7 @@
     <Compile Include="OperationParameters\Container\DiscardItemParameterCode.cs" />
     <Compile Include="OperationParameters\Container\MoveInventoryItemInfoParameterCode.cs" />
     <Compile Include="OperationParameters\Container\ObserveBulletHitParameterCode.cs" />
-    <Compile Include="OperationParameters\Container\ObserveEntityPositionParameterCode.cs" />
+    <Compile Include="OperationParameters\Container\ObserveEntityTransformParameterCode.cs" />
     <Compile Include="OperationParameters\Container\PickupItemEntityParameterCode.cs" />
     <Compile Include="OperationParameters\Container\SayParameterCode.cs" />
     <Compile Include="OperationParameters\Container\UseItemParameterCode.cs" />

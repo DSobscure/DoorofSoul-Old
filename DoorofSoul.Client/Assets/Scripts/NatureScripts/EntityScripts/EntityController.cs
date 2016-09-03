@@ -18,11 +18,14 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
 
         void Update()
         {
-            Entity.Position = DSVector3.Cast(entityRigidbody.transform.localPosition);
-            Entity.Rotation = DSVector3.Cast(entityRigidbody.transform.localRotation.eulerAngles);
+            if(entity != null)
+            {
+                entity.Position = DSVector3.Cast(entityRigidbody.transform.localPosition);
+                entity.Rotation = DSVector3.Cast(entityRigidbody.transform.localRotation.eulerAngles);
 
-            entityRigidbody.velocity = transform.TransformVector((Vector3)entity.Velocity);
-            entityRigidbody.angularVelocity = transform.TransformVector((Vector3)entity.AngularVelocity);
+                entityRigidbody.velocity = transform.TransformVector((Vector3)entity.Velocity);
+                entityRigidbody.angularVelocity = transform.TransformVector((Vector3)entity.AngularVelocity);
+            }
         }
         void OnMouseEnter()
         {
@@ -43,6 +46,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
             moveSpeed = 1;
             entityRigidbody.velocity = (Vector3)entity.Velocity;
             entityRigidbody.angularVelocity = (Vector3)entity.AngularVelocity;
+            entity.OnSynchronizePosition += OnSynchronizePosition;
+            entity.OnSynchronizeRotation += OnSynchronizeRotation;
         }
 
         public void StartRotate(float angularVelocity)
@@ -54,6 +59,15 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.EntityScripts
         {
             entityRigidbody.velocity = entityRigidbody.transform.forward * velocity;
             Entity.Velocity = DSVector3.Cast(transform.InverseTransformVector(entityRigidbody.velocity));
+        }
+
+        private void OnSynchronizePosition(DSVector3 position)
+        {
+            entityRigidbody.transform.localPosition = (Vector3)position;
+        }
+        private void OnSynchronizeRotation(DSVector3 rotation)
+        {
+            entityRigidbody.transform.localEulerAngles = (Vector3)rotation;
         }
     }
 }

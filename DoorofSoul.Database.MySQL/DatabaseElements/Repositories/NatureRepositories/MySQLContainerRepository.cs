@@ -9,17 +9,18 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
 {
     public class MySQLContainerRepository : ContainerRepository
     {
-        public override Container Create(string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
+        public override Container Create(string containerName, string entityName, int locatedSceneID, EntitySpaceProperties spaceProperties)
         {
             Entity entity = Database.RepositoryList.NatureRepositoryList.EntityRepository.Create(entityName, locatedSceneID, spaceProperties);
             if (entity != null)
             {
                 string sqlString = @"INSERT INTO ContainerCollection 
-                (EntityID) VALUES (@entityID) ;
+                (ContainerName,EntityID) VALUES (@containerName,@entityID) ;
                 SELECT LAST_INSERT_ID();";
                 int containerID;
                 using (MySqlCommand command = new MySqlCommand(sqlString, Database.ConnectionList.NatureConnection.Connection as MySqlConnection))
                 {
+                    command.Parameters.AddWithValue("containerName", containerName);
                     command.Parameters.AddWithValue("entityID", entity.EntityID);
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -74,7 +75,7 @@ namespace DoorofSoul.Database.MySQL.DatabaseElements.Repositories.NatureReposito
                     if (reader.Read())
                     {
                         entityID = reader.GetInt32(0);
-                        containerName = reader.IsDBNull(1) ? null : reader.GetString(1);
+                        containerName = reader.GetString(1);
                     }
                     else
                     {

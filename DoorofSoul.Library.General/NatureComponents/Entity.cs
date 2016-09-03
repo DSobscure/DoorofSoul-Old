@@ -26,7 +26,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public DSVector3 Rotation
         {
             get { return SpaceProperties.Rotation; }
-            set { SpaceProperties.Rotation = value; }
+            set { SpaceProperties.Rotation = value; onEntityRotationChange?.Invoke(this); }
         }
         public DSVector3 Scale
         {
@@ -66,6 +66,15 @@ namespace DoorofSoul.Library.General.NatureComponents
         #region events
         private event Action<Entity> onEntityPositionChange;
         public event Action<Entity> OnEntityPositionChange { add { onEntityPositionChange += value; } remove { onEntityPositionChange -= value; } }
+
+        private event Action<Entity> onEntityRotationChange;
+        public event Action<Entity> OnEntityRotationChange { add { onEntityRotationChange += value; } remove { onEntityRotationChange -= value; } }
+
+        private event Action<DSVector3> onSynchronizePosition;
+        public event Action<DSVector3> OnSynchronizePosition { add { onSynchronizePosition += value; } remove { onSynchronizePosition -= value; } }
+
+        private event Action<DSVector3> onSynchronizeRotation;
+        public event Action<DSVector3> OnSynchronizeRotation { add { onSynchronizeRotation += value; } remove { onSynchronizeRotation -= value; } }
         #endregion
 
         #region communication
@@ -94,7 +103,11 @@ namespace DoorofSoul.Library.General.NatureComponents
 
         public void SynchronizePosition(DSVector3 position)
         {
-            Position = position;
+            onSynchronizePosition?.Invoke(position);
+        }
+        public void SynchronizeRotation(DSVector3 rotation)
+        {
+            onSynchronizeRotation?.Invoke(rotation);
         }
     }
 }

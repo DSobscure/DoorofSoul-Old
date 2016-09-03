@@ -7,10 +7,10 @@ using System.Collections.Generic;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.Handlers.Container
 {
-    internal class ObserveEntityPositionHandler : ContainerOperationHandler
+    internal class ObserveEntityTransformHandler : ContainerOperationHandler
     {
-        public ObserveEntityPositionHandler(NatureComponents.Container container) : base(container, 2)
-        {
+        public ObserveEntityTransformHandler(NatureComponents.Container container) : base(container, 3)
+        { 
         }
 
         internal override bool Handle(ContainerOperationCode operationCode, Dictionary<byte, object> parameters)
@@ -19,23 +19,24 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 try
                 {
-                    int entityID = (int)parameters[(byte)ObserveEntityPositionParameterCode.EntityID];
-                    DSVector3 position = (DSVector3)parameters[(byte)ObserveEntityPositionParameterCode.Position];
+                    int entityID = (int)parameters[(byte)ObserveEntityTransformParameterCode.EntityID];
+                    DSVector3 position = (DSVector3)parameters[(byte)ObserveEntityTransformParameterCode.Position];
+                    DSVector3 rotation = (DSVector3)parameters[(byte)ObserveEntityTransformParameterCode.Rotation];
                     if (container.Entity.LocatedScene.SceneEye.Observer == container)
                     {
-                        container.Entity.LocatedScene.SceneEye.UpdateEntityPosition(entityID, position);
+                        container.Entity.LocatedScene.SceneEye.UpdateEntityTransform(entityID, position, rotation);
                         return true;
                     }
                     else
                     {
-                        LibraryInstance.ErrorFormat("Container ObserveEntityPosition PermissionDeny ContainerID: {0}", container.ContainerID);
+                        LibraryInstance.ErrorFormat("Container ObserveEntityTransform PermissionDeny ContainerID: {0}", container.ContainerID);
                         SendError(operationCode, ErrorCode.PermissionDeny, "Observer is not you");
                         return false;
                     }
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.ErrorFormat("Container ObserveEntityPosition Operation Invalid Cast!");
+                    LibraryInstance.ErrorFormat("Container ObserveEntityTransform Operation Invalid Cast!");
                     LibraryInstance.Error(ex.Message);
                     LibraryInstance.Error(ex.StackTrace);
                     return false;

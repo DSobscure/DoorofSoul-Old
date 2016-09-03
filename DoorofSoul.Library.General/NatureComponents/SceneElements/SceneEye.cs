@@ -32,13 +32,15 @@ namespace DoorofSoul.Library.General.NatureComponents.SceneElements
 
         public void Monitor()
         {
-            Observer.ContainerEventManager.ObserveSceneEntitiesPosition();
+            Observer.ContainerEventManager.ObserveSceneEntitiesTransform();
         }
-        public void UpdateEntityPosition(int entityID, DSVector3 position)
+        public void UpdateEntityTransform(int entityID, DSVector3 position, DSVector3 rotation)
         {
             if(Scene.ContainsEntity(entityID))
             {
-                Scene.FindEntity(entityID).Position = position;
+                Entity entity = Scene.FindEntity(entityID);
+                entity.Position = position;
+                entity.Rotation = rotation;
             }
         }
     }

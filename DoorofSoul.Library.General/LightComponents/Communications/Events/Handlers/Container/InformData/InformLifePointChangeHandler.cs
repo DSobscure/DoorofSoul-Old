@@ -8,7 +8,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformLifePointChangeHandler : InformDataHandler
     {
-        internal InformLifePointChangeHandler(NatureComponents.Container container) : base(container, 1)
+        internal InformLifePointChangeHandler(NatureComponents.Container container) : base(container, 2)
         {
         }
 

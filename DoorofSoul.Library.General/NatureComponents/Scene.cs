@@ -78,7 +78,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             if (!ContainsContainer(container.ContainerID))
             {
                 containerDictionary.Add(container.ContainerID, container);
-                if(container.Entity == null)
+                if (container.Entity == null)
                 {
                     if(ContainsEntity(container.EntityID))
                     {
@@ -96,15 +96,16 @@ namespace DoorofSoul.Library.General.NatureComponents
         {
             if(!ContainsEntity(entity.EntityID))
             {
-                if(Containers.Any(x => x.Entity == null && x.EntityID == entity.EntityID))
-                {
-                    Containers.First(x => x.Entity == null && x.EntityID == entity.EntityID).BindEntity(entity);
-                }
                 entityDictionary.Add(entity.EntityID, entity);
                 entity.LocatedSceneID = SceneID;
                 entity.LocatedScene = this;
                 entity.OnEntityPositionChange += SceneEventManager.InformDataResolver.SynchronizeEntityPosition;
+                entity.OnEntityRotationChange += SceneEventManager.InformDataResolver.SynchronizeEntityRotation;
                 onEntityEnter?.Invoke(entity);
+                if (Containers.Any(x => x.Entity == null && x.EntityID == entity.EntityID))
+                {
+                    Containers.First(x => x.Entity == null && x.EntityID == entity.EntityID).BindEntity(entity);
+                }
             }
         }
         public void EntityExit(int entityID)
@@ -114,6 +115,7 @@ namespace DoorofSoul.Library.General.NatureComponents
                 Entity entity = FindEntity(entityID);
                 entityDictionary.Remove(entity.EntityID);
                 entity.OnEntityPositionChange -= SceneEventManager.InformDataResolver.SynchronizeEntityPosition;
+                entity.OnEntityRotationChange -= SceneEventManager.InformDataResolver.SynchronizeEntityRotation;
                 onEntityExit?.Invoke(entity);
                 entity.LocatedSceneID = -1;
                 entity.LocatedScene = null;

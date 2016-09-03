@@ -20,7 +20,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Manag
             eventTable = new Dictionary<ContainerEventCode, ContainerEventHandler>
             {
                 { ContainerEventCode.InformData, InformDataResolver },
-                { ContainerEventCode.ObserveSceneEntitiesPosition, new ObserveSceneEntitiesPositionHandler(container) },
+                { ContainerEventCode.ObserveSceneEntitiesTransform, new ObserveSceneEntitiesTransformHandler(container) },
             };
         }
 
@@ -103,9 +103,9 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Manag
                     break;
             }
         }
-        public void ObserveSceneEntitiesPosition()
+        public void ObserveSceneEntitiesTransform()
         {
-            SendEvent(ContainerEventCode.ObserveSceneEntitiesPosition, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
+            SendEvent(ContainerEventCode.ObserveSceneEntitiesTransform, new Dictionary<byte, object>(), ContainerCommunicationChannel.Answer);
         }
     }
 }

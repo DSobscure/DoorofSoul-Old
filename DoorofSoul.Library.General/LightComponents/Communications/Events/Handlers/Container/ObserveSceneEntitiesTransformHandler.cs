@@ -6,9 +6,9 @@ using DoorofSoul.Protocol.Communication.EventCodes;
 
 namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handlers.Container
 {
-    internal class ObserveSceneEntitiesPositionHandler : ContainerEventHandler
+    internal class ObserveSceneEntitiesTransformHandler : ContainerEventHandler
     {
-        public ObserveSceneEntitiesPositionHandler(NatureComponents.Container container) : base(container, 0)
+        public ObserveSceneEntitiesTransformHandler(NatureComponents.Container container) : base(container, 0)
         {
         }
 
@@ -18,15 +18,15 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             {
                 try
                 {
-                    foreach(NatureComponents.Entity entity in container.Entity.LocatedScene.Entities)
+                    foreach (NatureComponents.Entity entity in container.Entity.LocatedScene.Entities)
                     {
-                        container.ContainerOperationManager.ObserveEntityPosition(entity);
+                        container.ContainerOperationManager.ObserveEntityTransform(entity);
                     }
                     return true;
                 }
                 catch (InvalidCastException ex)
                 {
-                    LibraryInstance.ErrorFormat("ObserveSceneEntitiesPosition Event Parameter Cast Error");
+                    LibraryInstance.ErrorFormat("ObserveSceneEntitiesTransform Event Parameter Cast Error");
                     LibraryInstance.ErrorFormat(ex.Message);
                     LibraryInstance.ErrorFormat(ex.StackTrace);
                     return false;

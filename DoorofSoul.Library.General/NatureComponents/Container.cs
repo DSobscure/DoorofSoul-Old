@@ -42,6 +42,9 @@ namespace DoorofSoul.Library.General.NatureComponents
         public IContainerController ContainerController { get; protected set; }
         public ShooterAbilities ShooterAbilities { get; protected set; }
 
+        private event Action<Container, Entity> onBindEntity;
+        public event Action<Container, Entity> OnBindEntity { add { onBindEntity += value; } remove { onBindEntity -= value; } }
+
         public bool CanShootBullet { get; set; }
         private event Action<Container> onShootBullet;
         public event Action<Container> OnShootBullet { add { onShootBullet += value; } remove { onShootBullet -= value; } }
@@ -73,6 +76,7 @@ namespace DoorofSoul.Library.General.NatureComponents
             if(Entity == null)
             {
                 Entity = entity;
+                onBindEntity?.Invoke(this, entity);
             }
         }
         public void BindInventory(Inventory inventory)

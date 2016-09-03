@@ -75,8 +75,9 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
             get { return lifePoint; }
             set
             {
+                decimal originValue = lifePoint;
                 lifePoint = Math.Max(Math.Min(value, MaxLifePoint), 0);
-                onLifePointChange?.Invoke(lifePoint);
+                onLifePointChange?.Invoke(lifePoint, lifePoint - originValue);
             }
         }
 
@@ -97,8 +98,8 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
         private event Action<int> onExperienceChange;
         public event Action<int> OnExperienceChange { add { onExperienceChange += value; } remove { onExperienceChange -= value; } }
 
-        private event Action<decimal> onLifePointChange;
-        public event Action<decimal> OnLifePointChange { add { onLifePointChange += value; } remove { onLifePointChange -= value; } }
+        private event Action<decimal, decimal> onLifePointChange;
+        public event Action<decimal, decimal> OnLifePointChange { add { onLifePointChange += value; } remove { onLifePointChange -= value; } }
 
         private event Action<decimal> onEnergyPointChange;
         public event Action<decimal> OnEnergyPointChange { add { onEnergyPointChange += value; } remove { onEnergyPointChange -= value; } }

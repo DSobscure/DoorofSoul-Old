@@ -62,7 +62,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             };
             container.ContainerEventManager.SendEvent(ContainerEventCode.InformData, informDataParameters, ContainerCommunicationChannel.Answer);
         }
-        public void InformLifePointChange(decimal lifePoint)
+        public void InformLifePointChange(decimal lifePoint, decimal delta)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {

@@ -54,7 +54,7 @@ namespace DoorofSoul.Hexagram.NatureComponents
             scene.OnContainerEnter += scene.SceneEventManager.InformDataResolver.InformContainerEnter;
             scene.OnContainerEnter += (container) => 
             {
-                container.Attributes.OnLifePointChange += (lifePoint) => scene.SceneEventManager.InformDataResolver.InformContainerLifePointChange(container.ContainerID, lifePoint);
+                container.Attributes.OnLifePointChange += (lifePoint,delta) => scene.SceneEventManager.InformDataResolver.InformContainerLifePointChange(container.ContainerID, lifePoint, delta);
             };
             scene.OnContainerExit += scene.SceneEventManager.InformDataResolver.InformContainerExit;
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;

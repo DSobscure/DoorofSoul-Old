@@ -8,7 +8,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformContainerLifePointChangeHandler : InformDataHandler
     {
-        internal InformContainerLifePointChangeHandler(NatureComponents.Scene scene) : base(scene, 2)
+        internal InformContainerLifePointChangeHandler(NatureComponents.Scene scene) : base(scene, 3)
         {
         }
 
@@ -20,9 +20,12 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 {
                     int containerID = (int)parameters[(byte)InformContainerLifePointChangeParameterCode.ContainerID];
                     decimal newLifePoint = (decimal)(DSDecimal)parameters[(byte)InformContainerLifePointChangeParameterCode.LifePoint];
-                    if(scene.ContainsContainer(containerID))
+                    decimal delta = (decimal)(DSDecimal)parameters[(byte)InformContainerLifePointChangeParameterCode.Delta];
+                    if (scene.ContainsContainer(containerID))
                     {
-                        scene.FindContainer(containerID).Attributes.LifePoint = newLifePoint;
+                        NatureComponents.Container container = scene.FindContainer(containerID);
+                        container.Attributes.LifePoint = newLifePoint;
+                        container.ContainerController.ShowLifePointDelta(delta);
                     }
                     return true;
                 }

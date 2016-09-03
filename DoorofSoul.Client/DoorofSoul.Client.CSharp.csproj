@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\SoulsPanelTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\StatusPanelTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\ViewMaskTest.cs" />
+    <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UITestScripts\VolatileTextTest.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\SelectAndDragIcon.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\ShootBulletAndBounce.cs" />
     <Compile Include="Assets\Scripts\HistoryScripts\TestScripts\UnityFunctionTestScripts\SuspandAndClick.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\TestSceneScripts\BulletController.cs" />
     <Compile Include="Assets\Scripts\NatureScripts\SceneScripts\TestSceneScripts\ShootBulletController.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\DraggablePanel.cs" />
+    <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\EffectScripts\VolatileText.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ErrorInformPanel.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryItemInfoIcon.cs" />
     <Compile Include="Assets\Scripts\ShadowScripts\UiScripts\ExtraPanelScripts\InventoryItemInfoIconEventTrigger.cs" />

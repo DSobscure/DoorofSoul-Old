@@ -3,6 +3,7 @@
     public enum InformContainerLifePointChangeParameterCode : byte
     {
         ContainerID,
-        LifePoint
+        LifePoint,
+        Delta
     }
 }

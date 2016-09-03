@@ -68,7 +68,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
             lifePointSlider.maxValue = (float)container.Attributes.MaxLifePoint;
             energyPointSlider.maxValue = (float)container.Attributes.MaxEnergyPoint;
             experienceSlider.maxValue = (float)container.Attributes.MaxExperience;
-            UpdateLifePoint(container.Attributes.LifePoint);
+            UpdateLifePoint(container.Attributes.LifePoint, 0);
             UpdateEnergyPoint(container.Attributes.EnergyPoint);
             UpdateExperiencePoint(container.Attributes.Experience);
         }
@@ -87,7 +87,7 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.PlayerPanelScripts
             containerLevelText.text = string.Format("LV.{0}", container.Attributes.Level);
         }
 
-        private void UpdateLifePoint(decimal value)
+        private void UpdateLifePoint(decimal value, decimal delta)
         {
             lifePointSlider.value = (float)value;
             lifePointSlider.GetComponentInChildren<Text>().text = string.Format("{0:N2}/{1:N2}", value, container.Attributes.MaxLifePoint);

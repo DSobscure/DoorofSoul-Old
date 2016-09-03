@@ -158,12 +158,13 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             };
             SendInform(SceneInformDataCode.DestroyBullet, parameters);
         }
-        public void InformContainerLifePointChange(int containerID, decimal lifePoint)
+        public void InformContainerLifePointChange(int containerID, decimal lifePoint, decimal delta)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
             {
                 { (byte)InformContainerLifePointChangeParameterCode.ContainerID, containerID },
-                { (byte)InformContainerLifePointChangeParameterCode.LifePoint, new DSDecimal { value = lifePoint } }
+                { (byte)InformContainerLifePointChangeParameterCode.LifePoint, new DSDecimal { value = lifePoint } },
+                { (byte)InformContainerLifePointChangeParameterCode.Delta, new DSDecimal { value = delta } }
             };
             SendInform(SceneInformDataCode.ContainerLifePointChange, parameters);
         }

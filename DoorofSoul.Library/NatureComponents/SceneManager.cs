@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DoorofSoul.Hexagram.NatureComponents.SceneElements;
 
 namespace DoorofSoul.Hexagram.NatureComponents
 {
@@ -9,12 +10,14 @@ namespace DoorofSoul.Hexagram.NatureComponents
     {
         private Dictionary<int, Scene> sceneDictionary;
         public IEnumerable<Scene> Scenes { get { return sceneDictionary.Values; } }
+        public NonPlayerContainerManager NonPlayerContainerManager { get; protected set; }
 
         public Scene FirstScene { get { return Scenes.First(); } }
 
         public SceneManager()
         {
             sceneDictionary = new Dictionary<int, Scene>();
+            NonPlayerContainerManager = new NonPlayerContainerManager();
         }
         public void Initial()
         {
@@ -55,6 +58,11 @@ namespace DoorofSoul.Hexagram.NatureComponents
             scene.OnContainerEnter += (container) => 
             {
                 container.Attributes.OnLifePointChange += (lifePoint,delta) => scene.SceneEventManager.InformDataResolver.InformContainerLifePointChange(container.ContainerID, lifePoint, delta);
+
+                container.ShooterAbilities.OnDamageChange += (damage) => scene.SceneEventManager.InformDataResolver.InformShooterDamageChange(container.ContainerID, damage);
+                container.ShooterAbilities.OnMoveSpeedChange += (speed) => scene.SceneEventManager.InformDataResolver.InformShooterMoveSpeedChange(container.ContainerID, speed);
+                container.ShooterAbilities.OnBulletSpeedChange += (speed) => scene.SceneEventManager.InformDataResolver.InformShooterBulletSpeedChange(container.ContainerID, speed);
+                container.ShooterAbilities.OnTransparancyChange += (transparancy) => scene.SceneEventManager.InformDataResolver.InformShooterTransparancyChange(container.ContainerID, transparancy);
             };
             scene.OnContainerExit += scene.SceneEventManager.InformDataResolver.InformContainerExit;
             scene.ItemEntityManager.OnItemEntityChange += scene.SceneEventManager.InformDataResolver.InformItemEntityChange;

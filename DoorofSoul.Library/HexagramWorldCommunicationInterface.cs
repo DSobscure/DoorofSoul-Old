@@ -4,6 +4,7 @@ using DoorofSoul.Protocol.Communication.EventCodes;
 using DoorofSoul.Protocol.Communication.OperationCodes;
 using DoorofSoul.Protocol.Language;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DoorofSoul.Hexagram
 {
@@ -62,7 +63,8 @@ namespace DoorofSoul.Hexagram
 
         public override void SendSceneEvent(Scene scene, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            foreach (Container container in scene.Containers)
+            List<Container> containers = scene.Containers.ToList();
+            foreach (Container container in containers)
             {
                 if (!container.IsEmptyContainer)
                 {

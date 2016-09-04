@@ -3,6 +3,7 @@
     public enum SkillIDCode : int
     {
         ObserverEye = 1,
-        CreateItemEntity = 2
+        CreateItemEntity = 2,
+        SustainableNPCSummon = 3
     }
 }

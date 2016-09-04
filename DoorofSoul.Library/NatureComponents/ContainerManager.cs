@@ -83,6 +83,7 @@ namespace DoorofSoul.Hexagram.NatureComponents
             container.ContainerStatusEffectManager.OnContainerStatusEffectInfoChange += container.ContainerEventManager.InformDataResolver.InformContainerStatusEffectInfoChange;
             container.Inventory.OnItemChange += container.ContainerEventManager.InformDataResolver.InformInventoryItemInfoChange;
 
+            container.Attributes.OnLifePointChange += (lifePoint, delta) => OnShooterDie(container, lifePoint);
             container.OnShootBullet += ShootBulletCoolDown;
             container.ShooterAbilities.OnDamageChange += container.ContainerEventManager.InformDataResolver.InformBulletDamageChange;
             container.ShooterAbilities.OnMoveSpeedChange += container.ContainerEventManager.InformDataResolver.InformMoveSpeedChange;
@@ -107,6 +108,18 @@ namespace DoorofSoul.Hexagram.NatureComponents
             shooter.CanShootBullet = false;
             await Task.Delay(500);
             shooter.CanShootBullet = true;
+        }
+        private async void OnShooterDie(Container shooter, decimal lifePoint)
+        {
+            if(lifePoint <= 0)
+            {
+                shooter.ShooterAbilities.Damage = 0;
+                shooter.ShooterAbilities.MoveSpeed = 0;
+                shooter.ShooterAbilities.BulletSpeed = 0;
+                shooter.ShooterAbilities.Transparancy = 0;
+                await Task.Delay(500);
+                shooter.Attributes.LifePoint = shooter.Attributes.MaxLifePoint / 2;
+            }
         }
     }
 }

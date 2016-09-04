@@ -21,8 +21,8 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.ContainerScripts
 
         void Update()
         {
-            containerCanvus.transform.LookAt(Camera.main.transform);
-            //containerCanvus.transform.Rotate(0, 180, 0);
+            if(containerCanvus != null)
+                containerCanvus.transform.LookAt(Camera.main.transform);
         }
 
         public void BindContainer(Container container)

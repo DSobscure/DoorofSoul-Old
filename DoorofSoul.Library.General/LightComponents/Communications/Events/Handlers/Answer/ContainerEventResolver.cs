@@ -27,7 +27,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                     }
                     else
                     {
-                        LibraryInstance.ErrorFormat("ContainerEvent Error Container ID: {0} Not in Answer ID: {1}", containerID, answer.AnswerID);
+                        //LibraryInstance.ErrorFormat("ContainerEvent Error Container ID: {0} Not in Answer ID: {1}", containerID, answer.AnswerID);
                         return false;
                     }
                 }

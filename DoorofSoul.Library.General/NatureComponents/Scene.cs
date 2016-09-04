@@ -18,6 +18,7 @@ namespace DoorofSoul.Library.General.NatureComponents
         public World World { get; protected set; }
         protected Dictionary<int, Container> containerDictionary;
         public IEnumerable<Container> Containers { get { return containerDictionary.Values; } }
+        public int ContainerCount { get { return containerDictionary.Count; } }
         protected Dictionary<int, Entity> entityDictionary;
         public IEnumerable<Entity> Entities { get { return entityDictionary.Values; } }
         public SupportLauguages UsingLanguage { get { return World.UsingLanguage; } }

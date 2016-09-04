@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -75,11 +73,11 @@
     <Reference Include="DoorofSoul.Protocol.Language">
       <HintPath>Assets\Plugins\DLL\DoorofSoul.Protocol.Language.dll</HintPath>
     </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
-    </Reference>
     <Reference Include="MsgPack">
       <HintPath>Assets\Plugins\DLL\MsgPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Plugins\DLL\Photon3Unity3D.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -97,12 +95,12 @@
     <Compile Include="Assets\Plugins\HelpFunctions\TransformHelpFunctions.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IEventProvider.cs" />
     <Compile Include="Assets\Plugins\Interfaces\IInputScenario.cs" />
-    <Compile Include="Assets\Plugins\Protocol\Language\UILanguageSeletor.cs" />
-    <Compile Include="Assets\Plugins\Protocol\Language\UILanguages\ChineseUIDictionary.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientPlayerCommunicationInterface.cs" />
     <Compile Include="Assets\Plugins\Library.General\ClientWorldCommunicationInterface.cs" />
     <Compile Include="Assets\Plugins\Library.General\Horizon.cs" />
     <Compile Include="Assets\Plugins\Library.General\Seat.cs" />
+    <Compile Include="Assets\Plugins\Protocol\Language\UILanguageSeletor.cs" />
+    <Compile Include="Assets\Plugins\Protocol\Language\UILanguages\ChineseUIDictionary.cs" />
     <Compile Include="Assets\Plugins\Protocol\SkillPanelViewMode.cs" />
     <Compile Include="Assets\Standard Assets\Image Effects (Pro Only)\BlurEffect.cs" />
     <Compile Include="Assets\Standard Assets\Image Effects (Pro Only)\ColorCorrectionEffect.cs" />
@@ -192,6 +190,5 @@
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

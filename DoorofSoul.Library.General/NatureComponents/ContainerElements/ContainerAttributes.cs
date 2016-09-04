@@ -32,9 +32,9 @@ namespace DoorofSoul.Library.General.NatureComponents.ContainerElements
                 maxLevel: 30,
                 experience: 0,
                 lifePoint: 100,
-                maxEnergyPoint: 100,
+                maxLifePoint: 100,
                 energyPoint: 50,
-                maxLifePoint: 50,
+                maxEnergyPoint: 50,
                 kernelAbilitiesPotential: new ContainerKernelAbilitiesPotential(
                     sensibility: 1,
                     regeneration: 1,

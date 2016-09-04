@@ -1,0 +1,88 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   NVIDIA
+    VRAM:     8085 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Library.General.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Library.General.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.Communication.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.Communication.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.Language.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\DoorofSoul.Protocol.Language.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\MsgPack.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\MsgPack.dll into Unity Child Domain
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+- Completed reload, in  0.198 seconds
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.692582 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 5a40 -> priority: 1 
+  Thread -> id: 53a4 -> priority: 1 
+INFO : Connecting
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\System.Configuration.dll (this message is harmless)
+Platform assembly: W:\Desktop\DoorofSoul\DoorofSoul\DoorofSoul.Client\Bin\TestClient_Data\Managed\System.Xml.dll (this message is harmless)
+Connected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.775136 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1304.
+Total: 0.811568 ms (FindLiveObjects: 0.088338 ms CreateObjectMapping: 0.041765 ms MarkObjects: 0.675455 ms  DeleteObjects: 0.005708 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.127662 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 1331.
+Total: 0.923643 ms (FindLiveObjects: 0.045671 ms CreateObjectMapping: 0.027643 ms MarkObjects: 0.842216 ms  DeleteObjects: 0.007812 ms)
+
+SceneEvent Error Scene ID: 1 Not in World ID: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+World Event Error: SceneEvent from AnswerID: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+SceneEvent Error Scene ID: 1 Not in World ID: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+World Event Error: SceneEvent from AnswerID: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.951587 ms
+
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 1576.
+Total: 1.293821 ms (FindLiveObjects: 0.060995 ms CreateObjectMapping: 0.026741 ms MarkObjects: 1.154404 ms  DeleteObjects: 0.051380 ms)
+

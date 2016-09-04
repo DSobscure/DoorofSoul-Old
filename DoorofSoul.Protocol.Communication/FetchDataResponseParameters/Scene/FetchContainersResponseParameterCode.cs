@@ -5,6 +5,11 @@
         ContainerID,
         EntityID,
         ContainerName,
-        ContainerAttributes
+        ContainerAttributes,
+
+        ShooterDamage,
+        ShooterMoveSpeed,
+        ShooterBulletSpeed,
+        ShooterTransparancy
     }
 }

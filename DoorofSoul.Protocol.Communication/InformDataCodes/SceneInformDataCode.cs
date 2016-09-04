@@ -12,6 +12,10 @@
         ItemEntityChange,
         ShootABullet,
         DestroyBullet,
-        ContainerLifePointChange
+        ContainerLifePointChange,
+        ShooterDamageChange,
+        ShooterMoveSpeedChange,
+        ShooterBulletSpeedChange,
+        ShooterTransparancyChange,
     }
 }

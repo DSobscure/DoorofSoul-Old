@@ -65,6 +65,10 @@
     <Compile Include="InformDataParameters\Scene\InformContainerLifePointChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformDestroyBulletParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\InformShootABulletParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformShooterBulletSpeedChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformShooterDamageChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformShooterMoveSpeedChangeParameterCode.cs" />
+    <Compile Include="InformDataParameters\Scene\InformShooterTransparancyChangeParameterCode.cs" />
     <Compile Include="InformDataParameters\Scene\SynchronizeEntityPositionParameterCode.cs" />
     <Compile Include="EventParameters\World\SceneEventParameterCode.cs" />
     <Compile Include="EventParameters\Scene\ContainerEventParameterCode.cs" />

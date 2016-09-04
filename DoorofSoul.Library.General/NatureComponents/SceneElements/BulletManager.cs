@@ -24,18 +24,24 @@ namespace DoorofSoul.Library.General.NatureComponents.SceneElements
 
         public void AddBullet(Bullet bullet)
         {
-            if(scene.ContainsContainer(bullet.ShooterContainerID) && !bulletDictionary.ContainsKey(bullet.BulletID))
+            lock(bulletDictionary)
             {
-                bulletDictionary.Add(bullet.BulletID, bullet);
-                onShootABullet?.Invoke(bullet);
+                if (scene.ContainsContainer(bullet.ShooterContainerID) && !bulletDictionary.ContainsKey(bullet.BulletID))
+                {
+                    bulletDictionary.Add(bullet.BulletID, bullet);
+                    onShootABullet?.Invoke(bullet);
+                }
             }
         }
         public void RemoveBullet(int bulletID)
         {
-            if (bulletDictionary.ContainsKey(bulletID))
+            lock (bulletDictionary)
             {
-                onDestroyBullet?.Invoke(bulletID);
-                bulletDictionary.Remove(bulletID);
+                if (bulletDictionary.ContainsKey(bulletID))
+                {
+                    onDestroyBullet?.Invoke(bulletID);
+                    bulletDictionary.Remove(bulletID);
+                }
             }
         }
     }

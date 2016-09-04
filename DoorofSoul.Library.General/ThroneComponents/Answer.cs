@@ -28,8 +28,12 @@ namespace DoorofSoul.Library.General.ThroneComponents
 
         private event Action<List<Soul>> onLoadSouls;
         public event Action<List<Soul>> OnLoadSouls { add { onLoadSouls += value; } remove { onLoadSouls -= value; } }
+
         private event Action<List<Container>> onLoadContainers;
         public event Action<List<Container>> OnLoadContainers { add { onLoadContainers += value; } remove { onLoadContainers -= value; } }
+
+        private event Action<int, int> onLinkSoulContainer;
+        public event Action<int, int> OnLinkSoulContainer { add { onLinkSoulContainer += value; } remove { onLinkSoulContainer -= value; } }
         #endregion
 
         #region communication
@@ -174,6 +178,7 @@ namespace DoorofSoul.Library.General.ThroneComponents
                 Container container = FindContainer(containerID);
                 soul.LinkContainer(container);
                 container.LinkSoul(soul);
+                onLinkSoulContainer?.Invoke(soulID, containerID);
             }
             else
             {

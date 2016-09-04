@@ -80,6 +80,9 @@ namespace DoorofSoul.Client.Scripts.ShadowScripts.UiScripts.ExtraPanelScripts
                         { (byte)CreateItemEntityParameterCode.ItemEntityPosition, Global.Global.Seat.MainContainer.Entity.Position}
                     });
                     break;
+                case SkillIDCode.SustainableNPCSummon:
+                    Global.Global.Seat.MainSoul.SoulOperationManager.OperateSkill(Global.Global.Seat.MainContainer.ContainerID, skillInfo.Skill.SystemTypeCode, skillInfo.SkillInfoID, new Dictionary<byte, object>());
+                    break;
 
             }
         }

@@ -230,3 +230,6 @@ ShaderCache/
 
 ##secret
 .config
+
+TestClient Alpha/
+.assets

@@ -1,12 +1,16 @@
-# DoorofSoul
+# Shooter
 
-實作目標清單  
-  技能-方塊練成  
-  技能-方塊破壞  
-  場景方塊  
-  資源採集點  
-  NPC  
-  任務系統 
-  生產系統  
-  野外生物  
-  商店 
+A simple game release use DS architecture  
+
+#How To Deploy?  
+Download latest Photon Server  
+Setting Photon Server And Build .dll  
+
+Setup Database(yoy may do lots of task)  
+Setting config and DoorofSoul.Client.Global elements
+
+#How to play?
+use ASWD to move Space to shoot a ball  
+press i to use items 
+
+if you are a system manager, you need use skill ObserberEye and NPCSummon First

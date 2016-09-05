@@ -8,7 +8,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
 {
     internal class InformContainerEnterHandler : InformDataHandler
     {
-        internal InformContainerEnterHandler(NatureComponents.Scene scene) : base(scene, 4)
+        internal InformContainerEnterHandler(NatureComponents.Scene scene) : base(scene, 8)
         {
         }
 
@@ -22,7 +22,18 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                     int entityID = (int)parameters[(byte)InformContainerEnterParameterCode.EntityID];
                     string containerName = (string)parameters[(byte)InformContainerEnterParameterCode.ContainerName];
                     ContainerAttributes attributes = (ContainerAttributes)parameters[(byte)InformContainerEnterParameterCode.ContainerAttributes];
+
+                    int shooterDamage = (int)parameters[(byte)InformContainerEnterParameterCode.ShooterDamage];
+                    int shooterMoveSpeed = (int)parameters[(byte)InformContainerEnterParameterCode.ShooterMoveSpeed];
+                    int shooterBulletSpeed = (int)parameters[(byte)InformContainerEnterParameterCode.ShooterBulletSpeed];
+                    int shooterTransparancy = (int)parameters[(byte)InformContainerEnterParameterCode.ShooterTransparancy];
+
                     NatureComponents.Container container = new NatureComponents.Container(containerID, entityID, containerName, attributes);
+                    container.ShooterAbilities.Damage = shooterDamage;
+                    container.ShooterAbilities.MoveSpeed = shooterMoveSpeed;
+                    container.ShooterAbilities.BulletSpeed = shooterBulletSpeed;
+                    container.ShooterAbilities.Transparancy = shooterTransparancy;
+
                     scene.ContainerEnter(container);
                     return true;
                 }

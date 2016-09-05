@@ -103,6 +103,11 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformContainerEnterParameterCode.EntityID, container.EntityID },
                 { (byte)InformContainerEnterParameterCode.ContainerName, container.ContainerName },
                 { (byte)InformContainerEnterParameterCode.ContainerAttributes, container.Attributes },
+
+                { (byte)InformContainerEnterParameterCode.ShooterDamage, container.ShooterAbilities.Damage },
+                { (byte)InformContainerEnterParameterCode.ShooterMoveSpeed, container.ShooterAbilities.MoveSpeed },
+                { (byte)InformContainerEnterParameterCode.ShooterBulletSpeed, container.ShooterAbilities.BulletSpeed },
+                { (byte)InformContainerEnterParameterCode.ShooterTransparancy, container.ShooterAbilities.Transparancy },
             };
             SendInform(SceneInformDataCode.ContainerEnter, parameters);
         }

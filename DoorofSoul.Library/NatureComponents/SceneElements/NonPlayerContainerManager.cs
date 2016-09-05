@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DoorofSoul.Library.General.NatureComponents;
+﻿using DoorofSoul.Library.General.ElementComponents;
 using DoorofSoul.Library.General.MindComponents;
-using System.Threading.Tasks;
+using DoorofSoul.Library.General.NatureComponents;
 using DoorofSoul.Library.General.NatureComponents.ContainerElements;
 using DoorofSoul.Library.General.NatureComponents.EntityElements;
-using DoorofSoul.Library.General.ElementComponents;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
 {
@@ -15,6 +14,7 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
         protected Scene scene;
         protected Soul controlSoul;
         protected Dictionary<int, Container> NPCDictionary;
+
         private int containerCounter;
         private List<int> itemList;
 
@@ -38,7 +38,7 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
         public async void AutoManage()
         {
             int npcRatio = 5;
-            while (controlSoul.IsActivate)
+            while (scene.SceneEye.Observer != null)
             {
                 if (NPCDictionary.Count < (scene.ContainerCount - NPCDictionary.Count) * npcRatio)
                 {
@@ -48,9 +48,10 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
                         InstantiateShooter();
                     }
                 }
-                Hexagram.Log.Debug("30sec NPC created");
+                Hexagram.Log.Error("30sec NPC created");
                 await Task.Delay(30000);
             }
+            NPCDictionary.Clear();
         }
         private void InstantiateShooter()
         {
@@ -60,7 +61,7 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
                 Position = new DSVector3 { x = randomGenerator.Next(-50, 50), y = 0, z = randomGenerator.Next(-50, 50) },
                 Scale = new DSVector3 { x = 1, y = 1, z = 1 }
             });
-            Container npcContainer = new Container(containerCounter, containerCounter, "", ContainerAttributes.GetDefaultAttribute());
+            Container npcContainer = new Container(containerCounter, containerCounter, "晶體" + (containerCounter - 10000).ToString(), ContainerAttributes.GetDefaultAttribute());
             npcContainer.BindEntity(npcEntity);
             npcContainer.BindInventory(new Inventory(containerCounter, containerCounter, 1));
             npcContainer.Attributes.OnLifePointChange += (lifePoint, delta) => OnShooterDie(npcContainer, lifePoint);
@@ -78,18 +79,36 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
             Random randomGenerator = new Random(Guid.NewGuid().GetHashCode());
             while (shooter.Entity.LocatedScene != null)
             {
-                switch(randomGenerator.Next(0,3))
+                switch(randomGenerator.Next(0,5))
                 {
                     case 0:
-                        shooter.Entity.EntityEventManager.StartMove(randomGenerator.Next(-1, 1) * 5 * (1 + shooter.ShooterAbilities.MoveSpeed * 0.3f));
+                        shooter.Entity.EntityEventManager.StartMove(randomGenerator.Next(-1, 2) * 5 * (1 + shooter.ShooterAbilities.MoveSpeed * 0.3f));
                         break;
                     case 1:
-                        shooter.Entity.EntityEventManager.StartRotate(randomGenerator.Next(-1, 1) * 1);
+                        shooter.Entity.EntityEventManager.StartRotate(randomGenerator.Next(-1, 2) * 1);
                         break;
                     case 2:
                         shooter.ShootABullet();
                         break;
                     case 3:
+                        break;
+                    case 4:
+                        Hexagram.Log.Error("LevelUp");
+                        switch (randomGenerator.Next(0, 4))
+                        {
+                            case 0:
+                                shooter.ShooterAbilities.Damage++;
+                                break;
+                            case 1:
+                                shooter.ShooterAbilities.MoveSpeed++;
+                                break;
+                            case 2:
+                                shooter.ShooterAbilities.BulletSpeed++;
+                                break;
+                            case 3:
+                                shooter.ShooterAbilities.Transparancy++;
+                                break;
+                        }
                         break;
                 }
                 await Task.Delay(randomGenerator.Next(500, 5000));
@@ -100,7 +119,17 @@ namespace DoorofSoul.Hexagram.NatureComponents.SceneElements
             if(lifePoint <= 0)
             {
                 Random randomGenerator = new Random(Guid.NewGuid().GetHashCode());
-                scene.ItemEntityManager.CreateItemEntity(itemList[randomGenerator.Next(0, itemList.Count - 1)], shooter.Entity.Position);
+                int itemNumber = (shooter.ShooterAbilities.Damage + shooter.ShooterAbilities.MoveSpeed + shooter.ShooterAbilities.BulletSpeed + shooter.ShooterAbilities.Transparancy) / 4 + 1;
+                for (int i = 0; i < itemNumber; i++)
+                {
+                    DSVector3 itemPosition = new DSVector3
+                    {
+                        x = shooter.Entity.Position.x + Convert.ToSingle(randomGenerator.NextDouble() - 0.5),
+                        y = shooter.Entity.Position.y,
+                        z = shooter.Entity.Position.z + Convert.ToSingle(randomGenerator.NextDouble() - 0.5)
+                    };
+                    scene.ItemEntityManager.CreateItemEntity(itemList[randomGenerator.Next(0, itemList.Count)], itemPosition);
+                }
                 Hexagram.Nature.ContainerManager.ExtractContainer(shooter);
                 controlSoul.UnlinkContainer(shooter);
                 shooter.UnlinkSoul(controlSoul);

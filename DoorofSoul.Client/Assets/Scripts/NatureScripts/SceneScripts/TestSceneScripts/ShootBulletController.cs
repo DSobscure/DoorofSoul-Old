@@ -13,7 +13,7 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
         void Start()
         {
             bulletRigidBobyDictionary = new Dictionary<int, Rigidbody>();
-            Physics.gravity = new Vector3(0, -1, 0);
+            Physics.gravity = new Vector3(0, -3, 0);
             Global.Global.InputManager.OnKeyDown += OnSpaceDown;
             Global.Global.Horizon.MainScene.BulletManager.OnShootABullet += InstantiateBullet;
             Global.Global.Horizon.MainScene.BulletManager.OnDestroyBullet += DestroyBullet;
@@ -34,9 +34,9 @@ namespace DoorofSoul.Client.Scripts.NatureScripts.SceneScripts.TestSceneScripts
                 Rigidbody bulletRigidBody = Instantiate(bulletPrefab);
                 bulletRigidBody.transform.SetParent(container.ContainerController.GameObject.transform.parent);
                 bulletRigidBody.transform.position = container.ContainerController.GameObject.transform.FindChild("BulletPort").position;
-                bulletRigidBody.mass = 1 + bullet.Damage;
+                bulletRigidBody.mass = 0.5f + bullet.Damage;
                 bulletRigidBody.GetComponent<Renderer>().material.SetColor("_Color", new Color(bullet.Damage / 5f, 0, 0, 1));
-                bulletRigidBody.velocity = container.ContainerController.GameObject.transform.forward * 10 * (1 + bullet.Speed / 2f);
+                bulletRigidBody.velocity = container.ContainerController.GameObject.transform.forward * 20 * (1 + bullet.Speed / 1.5f);
                 bulletRigidBobyDictionary.Add(bullet.BulletID, bulletRigidBody);
             }
         }

@@ -231,5 +231,4 @@ ShaderCache/
 ##secret
 .config
 
-TestClient Alpha/
-.assets
+packages/**/*.xml

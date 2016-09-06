@@ -223,10 +223,11 @@ pip-log.txt
 *.unity
 *.png
 *.prefab
-Temp/
+DoorofSoul.Client/Temp/
 metadata/
 Standard Assets/
-ShaderCache/
+UnityGenerated/
+DoorofSoul.Client/Library/
 
 ##secret
 .config

@@ -22,7 +22,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
             {
                 case ErrorCode.NoError:
                     {
-                        if (parameters.Count != 8)
+                        if (parameters.Count != 4)
                         {
                             LibraryInstance.ErrorFormat(string.Format("Fetch Containers Response Parameter Error, Parameter Count: {0}", parameters.Count));
                             return false;
@@ -52,16 +52,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Responses.Ha
                     string containerName = (string)parameters[(byte)FetchContainersResponseParameterCode.ContainerName];
                     ContainerAttributes attributes = (ContainerAttributes)parameters[(byte)FetchContainersResponseParameterCode.ContainerAttributes];
 
-                    int shooterDamage = (int)parameters[(byte)FetchContainersResponseParameterCode.ShooterDamage];
-                    int shooterMoveSpeed = (int)parameters[(byte)FetchContainersResponseParameterCode.ShooterMoveSpeed];
-                    int shooterBulletSpeed = (int)parameters[(byte)FetchContainersResponseParameterCode.ShooterBulletSpeed];
-                    int shooterTransparancy = (int)parameters[(byte)FetchContainersResponseParameterCode.ShooterTransparancy];
-
                     NatureComponents.Container container = new NatureComponents.Container(containerID, entityID, containerName, attributes);
-                    container.ShooterAbilities.Damage = shooterDamage;
-                    container.ShooterAbilities.MoveSpeed = shooterMoveSpeed;
-                    container.ShooterAbilities.BulletSpeed = shooterBulletSpeed;
-                    container.ShooterAbilities.Transparancy = shooterTransparancy;
 
                     scene.ContainerEnter(container);
                     return true;

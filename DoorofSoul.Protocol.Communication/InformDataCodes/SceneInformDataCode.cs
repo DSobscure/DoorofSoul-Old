@@ -10,12 +10,6 @@
         SynchronizeEntityPosition,
         SynchronizeEntityRotation,
         ItemEntityChange,
-        ShootABullet,
-        DestroyBullet,
         ContainerLifePointChange,
-        ShooterDamageChange,
-        ShooterMoveSpeedChange,
-        ShooterBulletSpeedChange,
-        ShooterTransparancyChange,
     }
 }

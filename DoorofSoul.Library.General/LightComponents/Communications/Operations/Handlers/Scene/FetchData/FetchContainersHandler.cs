@@ -24,12 +24,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
                             { (byte)FetchContainersResponseParameterCode.ContainerID, container.ContainerID },
                             { (byte)FetchContainersResponseParameterCode.EntityID, container.EntityID },
                             { (byte)FetchContainersResponseParameterCode.ContainerName, container.ContainerName },
-                            { (byte)FetchContainersResponseParameterCode.ContainerAttributes, container.Attributes },
-
-                            { (byte)FetchContainersResponseParameterCode.ShooterDamage, container.ShooterAbilities.Damage },
-                            { (byte)FetchContainersResponseParameterCode.ShooterMoveSpeed, container.ShooterAbilities.MoveSpeed },
-                            { (byte)FetchContainersResponseParameterCode.ShooterBulletSpeed, container.ShooterAbilities.BulletSpeed },
-                            { (byte)FetchContainersResponseParameterCode.ShooterTransparancy, container.ShooterAbilities.Transparancy }
+                            { (byte)FetchContainersResponseParameterCode.ContainerAttributes, container.Attributes }
                         };
                         SendResponse(fetchCode, result);
                     }

@@ -17,7 +17,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Operations.H
             {
                 int direction = (int)parameters[(byte)MoveParameterCode.Direction];
                 direction = Math.Max(Math.Min(direction, 1), -1);
-                container.Entity.EntityEventManager.StartMove(direction * 5 * (1 + container.ShooterAbilities.MoveSpeed * 0.5f));
+                container.Entity.EntityEventManager.StartMove(direction * 5);
                 return true;
             }
             else

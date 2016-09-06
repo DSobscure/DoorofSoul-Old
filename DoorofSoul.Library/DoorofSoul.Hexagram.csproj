@@ -72,7 +72,6 @@
     <Compile Include="Nature.cs" />
     <Compile Include="NatureComponents\ContainerManager.cs" />
     <Compile Include="NatureComponents\EntityManager.cs" />
-    <Compile Include="NatureComponents\SceneElements\NonPlayerContainerManager.cs" />
     <Compile Include="NatureComponents\SceneManager.cs" />
     <Compile Include="NatureComponents\WorldManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

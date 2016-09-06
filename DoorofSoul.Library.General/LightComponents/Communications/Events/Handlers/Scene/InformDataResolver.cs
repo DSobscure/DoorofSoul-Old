@@ -26,13 +26,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { SceneInformDataCode.SynchronizeEntityPosition, new SynchronizeEntityPositionHandler(scene) },
                 { SceneInformDataCode.SynchronizeEntityRotation, new SynchronizeEntityRotationHandler(scene) },
                 { SceneInformDataCode.ItemEntityChange, new InformItemEntityChangeHandler(scene) },
-                { SceneInformDataCode.ShootABullet, new InformShootABulletHandler(scene) },
-                { SceneInformDataCode.DestroyBullet, new InformDestroyBulletHandler(scene) },
                 { SceneInformDataCode.ContainerLifePointChange, new InformContainerLifePointChangeHandler(scene) },
-                { SceneInformDataCode.ShooterDamageChange, new InformShooterDamageChangeHandler(scene) },
-                { SceneInformDataCode.ShooterMoveSpeedChange, new InformShooterMoveSpeedChangeHandler(scene) },
-                { SceneInformDataCode.ShooterBulletSpeedChange, new InformShooterBulletSpeedChangeHandler(scene) },
-                { SceneInformDataCode.ShooterTransparancyChange, new InformShooterTransparancyChangeHandler(scene) },
             };
         }
 
@@ -102,12 +96,7 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformContainerEnterParameterCode.ContainerID, container.ContainerID },
                 { (byte)InformContainerEnterParameterCode.EntityID, container.EntityID },
                 { (byte)InformContainerEnterParameterCode.ContainerName, container.ContainerName },
-                { (byte)InformContainerEnterParameterCode.ContainerAttributes, container.Attributes },
-
-                { (byte)InformContainerEnterParameterCode.ShooterDamage, container.ShooterAbilities.Damage },
-                { (byte)InformContainerEnterParameterCode.ShooterMoveSpeed, container.ShooterAbilities.MoveSpeed },
-                { (byte)InformContainerEnterParameterCode.ShooterBulletSpeed, container.ShooterAbilities.BulletSpeed },
-                { (byte)InformContainerEnterParameterCode.ShooterTransparancy, container.ShooterAbilities.Transparancy },
+                { (byte)InformContainerEnterParameterCode.ContainerAttributes, container.Attributes }
             };
             SendInform(SceneInformDataCode.ContainerEnter, parameters);
         }
@@ -148,25 +137,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
             };
             SendInform(SceneInformDataCode.BroadcastMessage, parameters);
         }
-        public void InformShootABullet(Bullet bullet)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformShootABulletParameterCode.ShooterContainerID, bullet.ShooterContainerID },
-                { (byte)InformShootABulletParameterCode.BulletID, bullet.BulletID },
-                { (byte)InformShootABulletParameterCode.BulletDamage, bullet.Damage },
-                { (byte)InformShootABulletParameterCode.BulletSpeed, bullet.Speed }
-            };
-            SendInform(SceneInformDataCode.ShootABullet, parameters);
-        }
-        public void InformDestroyBullet(int bulletID)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformDestroyBulletParameterCode.BulletID, bulletID }
-            };
-            SendInform(SceneInformDataCode.DestroyBullet, parameters);
-        }
         public void InformContainerLifePointChange(int containerID, decimal lifePoint, decimal delta)
         {
             Dictionary<byte, object> parameters = new Dictionary<byte, object>
@@ -176,42 +146,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformContainerLifePointChangeParameterCode.Delta, new DSDecimal { value = delta } }
             };
             SendInform(SceneInformDataCode.ContainerLifePointChange, parameters);
-        }
-        public void InformShooterDamageChange(int containerID, int damage)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformShooterDamageChangeParameterCode.ContainerID, containerID },
-                { (byte)InformShooterDamageChangeParameterCode.Damage, damage }
-            };
-            SendInform(SceneInformDataCode.ShooterDamageChange, parameters);
-        }
-        public void InformShooterMoveSpeedChange(int containerID, int speed)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformShooterMoveSpeedChangeParameterCode.ContainerID, containerID },
-                { (byte)InformShooterMoveSpeedChangeParameterCode.Speed, speed }
-            };
-            SendInform(SceneInformDataCode.ShooterMoveSpeedChange, parameters);
-        }
-        public void InformShooterBulletSpeedChange(int containerID, int speed)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformShooterBulletSpeedChangeParameterCode.ContainerID, containerID },
-                { (byte)InformShooterBulletSpeedChangeParameterCode.Speed, speed }
-            };
-            SendInform(SceneInformDataCode.ShooterBulletSpeedChange, parameters);
-        }
-        public void InformShooterTransparancyChange(int containerID, int transparancy)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformShooterTransparancyChangeParameterCode.ContainerID, containerID },
-                { (byte)InformShooterTransparancyChangeParameterCode.Transparancy, transparancy }
-            };
-            SendInform(SceneInformDataCode.ShooterTransparancyChange, parameters);
         }
     }
 }

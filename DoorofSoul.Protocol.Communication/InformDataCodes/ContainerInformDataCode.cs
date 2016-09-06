@@ -7,10 +7,5 @@
         EnergyPointChange,
         ContainerStatusEffectInfoChange,
         InventoryItemIntoChange,
-
-        BulletDamageChange,
-        MoveSpeedChange,
-        BulletSpeedChange,
-        TransparancyChange
     }
 }

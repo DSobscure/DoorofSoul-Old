@@ -20,18 +20,9 @@ namespace DoorofSoul.Hexagram.KnowledgeComponents.HeptagramSystems
             {
                 try
                 {
-                    if ((SkillIDCode)skillInfo.Skill.SkillID == SkillIDCode.SustainableNPCSummon)
-                    {
-                        Hexagram.Nature.SceneManager.NonPlayerContainerManager.StartManage(agent.Entity.LocatedScene, user);
-                        skillResponseParameters = new Dictionary<byte, object>();
-                        return true;
-                    }
-                    else
-                    {
-                        skillResponseParameters = new Dictionary<byte, object>();
-                        debugMessage = string.Format("Skill Not Exist SkillID: {0}", skillInfo.Skill.SkillID);
-                        return false;
-                    }
+                    skillResponseParameters = new Dictionary<byte, object>();
+                    debugMessage = string.Format("Skill Not Exist SkillID: {0}", skillInfo.Skill.SkillID);
+                    return false;
                 }
                 catch (InvalidCastException ex)
                 {

@@ -24,11 +24,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { ContainerInformDataCode.EnergyPointChange, new InformEnergyPointChangeHandler(container) },
                 { ContainerInformDataCode.ContainerStatusEffectInfoChange, new InformContainerStatusEffectInfoChangeHandler(container) },
                 { ContainerInformDataCode.InventoryItemIntoChange, new InformInventoryItemIntoChangeHandler(container) },
-
-                { ContainerInformDataCode.BulletDamageChange, new InformBulletDamageChangeHandler(container) },
-                { ContainerInformDataCode.MoveSpeedChange, new InformMoveSpeedChangeHandler(container) },
-                { ContainerInformDataCode.BulletSpeedChange, new InformBulletSpeedChangeHandler(container) },
-                { ContainerInformDataCode.TransparancyChange, new InformTransparancyChangeHandler(container) },
             };
         }
 
@@ -97,39 +92,6 @@ namespace DoorofSoul.Library.General.LightComponents.Communications.Events.Handl
                 { (byte)InformInventoryItemInfoChangeParameterCode.PositionIndex, info.positionIndex }
             };
             SendInform(ContainerInformDataCode.InventoryItemIntoChange, parameters);
-        }
-
-        public void InformBulletDamageChange(int damage)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformBulletDamageChangeParameterCode.Damage, damage },
-            };
-            SendInform(ContainerInformDataCode.BulletDamageChange, parameters);
-        }
-        public void InformMoveSpeedChange(int speed)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformMoveSpeedChangeParameterCode.MoveSpeed, speed },
-            };
-            SendInform(ContainerInformDataCode.MoveSpeedChange, parameters);
-        }
-        public void InformBulletSpeedChange(int speed)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformBulletSpeedChangeParameterCode.BulletSpeed, speed },
-            };
-            SendInform(ContainerInformDataCode.BulletSpeedChange, parameters);
-        }
-        public void InformTranspancyChange(int transpancy)
-        {
-            Dictionary<byte, object> parameters = new Dictionary<byte, object>
-            {
-                { (byte)InformTransparancyChangeParameterCode.Transparancy, transpancy },
-            };
-            SendInform(ContainerInformDataCode.TransparancyChange, parameters);
         }
     }
 }

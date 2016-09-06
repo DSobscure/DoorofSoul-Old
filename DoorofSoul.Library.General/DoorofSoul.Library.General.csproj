@@ -48,29 +48,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformBulletDamageChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformBulletSpeedChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformMoveSpeedChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformTransparancyChangeHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerEnterHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerExitHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformContainerLifePointChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformDestroyBulletHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShootABulletHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShooterBulletSpeedChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShooterDamageChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShooterMoveSpeedChangeHandler.cs" />
-    <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\InformShooterTransparancyChangeHandler.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Scene\InformData\SynchronizeEntityRotationHandler.cs" />
-    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\ObserveBulletHitHandler.cs" />
-    <Compile Include="LightComponents\Communications\Operations\Handlers\Container\ShootABulletHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Container\UseItemHandler.cs" />
     <Compile Include="LightComponents\Communications\Operations\Handlers\Scene\FetchData\FetchContainersHandler.cs" />
     <Compile Include="LightComponents\Communications\Responses\Handlers\Scene\FetchData\FetchContainersResponseHandler.cs" />
     <Compile Include="LightComponents\Effects\Effector.cs" />
     <Compile Include="ElementComponents\Items\Consumables.cs" />
     <Compile Include="LightComponents\Effects\Effectors\LifePointEffector.cs" />
-    <Compile Include="LightComponents\Effects\Effectors\ShooterAbilitiesEffector.cs" />
     <Compile Include="LightComponents\Effects\IEffectorTarget.cs" />
     <Compile Include="ElementComponents\Items\ItemComponent.cs" />
     <Compile Include="LightComponents\Communications\Events\Handlers\Container\InformData\InformInventoryItemIntoChangeHandler.cs" />
@@ -97,9 +84,6 @@
     <Compile Include="LightComponents\HexagramInterfaces\NatureInterface.cs" />
     <Compile Include="LightComponents\HexagramInterfaces\Nature\ContainerElementsInterface.cs" />
     <Compile Include="NatureComponents\ContainerElements\ContainerStatusEffectManager.cs" />
-    <Compile Include="NatureComponents\ContainerElements\ShooterAbilities.cs" />
-    <Compile Include="NatureComponents\SceneElements\Bullet.cs" />
-    <Compile Include="NatureComponents\SceneElements\BulletManager.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntity.cs" />
     <Compile Include="NatureComponents\SceneElements\ItemEntityManager.cs" />
     <Compile Include="ShadowComponents\UIComponents\IUsableObject.cs" />
